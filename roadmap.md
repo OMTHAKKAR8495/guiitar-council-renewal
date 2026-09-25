@@ -1,11 +1,11 @@
 # Roadmap
 
-- [ ] Recreate shared navigation and footer
-- [ ] Build Home page
-- [ ] Build About page
-- [ ] Build Funding page
-- [ ] Build Events page
-- [ ] Build Partner page
-- [ ] Build Resources page
-- [ ] Build Contact page
-- [ ] Verify desktop and mobile layouts
+- [x] Recreate shared navigation and footer
+- [x] Build Home page
+- [x] Build About page
+- [x] Build Funding page
+- [x] Build Events page
+- [x] Build Partner page
+- [x] Build Resources page
+- [x] Build Contact page
+- [x] Verify desktop and mobile layouts
