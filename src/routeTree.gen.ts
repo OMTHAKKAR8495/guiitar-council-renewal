@@ -11,11 +11,40 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as EcosystemRouteImport } from './routes/ecosystem'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FundingRouteImport } from './routes/funding'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as InnovationRouteImport } from './routes/innovation'
 import { Route as PartnerRouteImport } from './routes/partner'
+import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as StartupsRouteImport } from './routes/startups'
+import { Route as SubmitIdeaRouteImport } from './routes/submit-idea'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin/analytics'
+import { Route as AdminApplicationsRouteImport } from './routes/admin/applications'
+import { Route as AdminAuditLogRouteImport } from './routes/admin/audit-log'
+import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
+import { Route as AdminEventsRouteImport } from './routes/admin/events'
+import { Route as AdminFaqsRouteImport } from './routes/admin/faqs'
+import { Route as AdminFundingRouteImport } from './routes/admin/funding'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminMentorsRouteImport } from './routes/admin/mentors'
+import { Route as AdminPartnersRouteImport } from './routes/admin/partners'
+import { Route as AdminProgramsRouteImport } from './routes/admin/programs'
+import { Route as AdminResourcesRouteImport } from './routes/admin/resources'
+import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
+import { Route as AdminStartupsRouteImport } from './routes/admin/startups'
+import { Route as AdminUsersRouteImport } from './routes/admin/users'
+import { Route as InnovationSlugRouteImport } from './routes/innovation/$slug'
+import { Route as AdminIdeasIndexRouteImport } from './routes/admin/ideas/index'
+import { Route as AdminIdeasIdRouteImport } from './routes/admin/ideas/$id'
+import { Route as AdminIdeasCategoriesRouteImport } from './routes/admin/ideas/categories'
+import { Route as AdminIdeasNewRouteImport } from './routes/admin/ideas/new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -27,9 +56,19 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApplyRoute = ApplyRouteImport.update({
+  id: '/apply',
+  path: '/apply',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EcosystemRoute = EcosystemRouteImport.update({
+  id: '/ecosystem',
+  path: '/ecosystem',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -37,9 +76,24 @@ const EventsRoute = EventsRouteImport.update({
   path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FundingRoute = FundingRouteImport.update({
   id: '/funding',
   path: '/funding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InnovationRoute = InnovationRouteImport.update({
+  id: '/innovation',
+  path: '/innovation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartnerRoute = PartnerRouteImport.update({
@@ -47,78 +101,400 @@ const PartnerRoute = PartnerRouteImport.update({
   path: '/partner',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgramsRoute = ProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StartupsRoute = StartupsRouteImport.update({
+  id: '/startups',
+  path: '/startups',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SubmitIdeaRoute = SubmitIdeaRouteImport.update({
+  id: '/submit-idea',
+  path: '/submit-idea',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/admin/analytics',
+  path: '/admin/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminApplicationsRoute = AdminApplicationsRouteImport.update({
+  id: '/admin/applications',
+  path: '/admin/applications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAuditLogRoute = AdminAuditLogRouteImport.update({
+  id: '/admin/audit-log',
+  path: '/admin/audit-log',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminEventsRoute = AdminEventsRouteImport.update({
+  id: '/admin/events',
+  path: '/admin/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminFaqsRoute = AdminFaqsRouteImport.update({
+  id: '/admin/faqs',
+  path: '/admin/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminFundingRoute = AdminFundingRouteImport.update({
+  id: '/admin/funding',
+  path: '/admin/funding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMentorsRoute = AdminMentorsRouteImport.update({
+  id: '/admin/mentors',
+  path: '/admin/mentors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminPartnersRoute = AdminPartnersRouteImport.update({
+  id: '/admin/partners',
+  path: '/admin/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminProgramsRoute = AdminProgramsRouteImport.update({
+  id: '/admin/programs',
+  path: '/admin/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminResourcesRoute = AdminResourcesRouteImport.update({
+  id: '/admin/resources',
+  path: '/admin/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/admin/settings',
+  path: '/admin/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminStartupsRoute = AdminStartupsRouteImport.update({
+  id: '/admin/startups',
+  path: '/admin/startups',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InnovationSlugRoute = InnovationSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => InnovationRoute,
+} as any)
+const AdminIdeasIndexRoute = AdminIdeasIndexRouteImport.update({
+  id: '/admin/ideas/',
+  path: '/admin/ideas/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIdeasIdRoute = AdminIdeasIdRouteImport.update({
+  id: '/admin/ideas/$id',
+  path: '/admin/ideas/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIdeasCategoriesRoute = AdminIdeasCategoriesRouteImport.update({
+  id: '/admin/ideas/categories',
+  path: '/admin/ideas/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIdeasNewRoute = AdminIdeasNewRouteImport.update({
+  id: '/admin/ideas/new',
+  path: '/admin/ideas/new',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
+  '/ecosystem': typeof EcosystemRoute
   '/events': typeof EventsRoute
+  '/faq': typeof FaqRoute
   '/funding': typeof FundingRoute
+  '/impact': typeof ImpactRoute
+  '/innovation': typeof InnovationRouteWithChildren
   '/partner': typeof PartnerRoute
+  '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
+  '/startups': typeof StartupsRoute
+  '/submit-idea': typeof SubmitIdeaRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/audit-log': typeof AdminAuditLogRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/faqs': typeof AdminFaqsRoute
+  '/admin/funding': typeof AdminFundingRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/mentors': typeof AdminMentorsRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/programs': typeof AdminProgramsRoute
+  '/admin/resources': typeof AdminResourcesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/startups': typeof AdminStartupsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/innovation/$slug': typeof InnovationSlugRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/ideas/$id': typeof AdminIdeasIdRoute
+  '/admin/ideas/categories': typeof AdminIdeasCategoriesRoute
+  '/admin/ideas/new': typeof AdminIdeasNewRoute
+  '/admin/ideas/': typeof AdminIdeasIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
+  '/ecosystem': typeof EcosystemRoute
   '/events': typeof EventsRoute
+  '/faq': typeof FaqRoute
   '/funding': typeof FundingRoute
+  '/impact': typeof ImpactRoute
+  '/innovation': typeof InnovationRouteWithChildren
   '/partner': typeof PartnerRoute
+  '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
+  '/startups': typeof StartupsRoute
+  '/submit-idea': typeof SubmitIdeaRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/audit-log': typeof AdminAuditLogRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/faqs': typeof AdminFaqsRoute
+  '/admin/funding': typeof AdminFundingRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/mentors': typeof AdminMentorsRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/programs': typeof AdminProgramsRoute
+  '/admin/resources': typeof AdminResourcesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/startups': typeof AdminStartupsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/innovation/$slug': typeof InnovationSlugRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/ideas/$id': typeof AdminIdeasIdRoute
+  '/admin/ideas/categories': typeof AdminIdeasCategoriesRoute
+  '/admin/ideas/new': typeof AdminIdeasNewRoute
+  '/admin/ideas': typeof AdminIdeasIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
+  '/ecosystem': typeof EcosystemRoute
   '/events': typeof EventsRoute
+  '/faq': typeof FaqRoute
   '/funding': typeof FundingRoute
+  '/impact': typeof ImpactRoute
+  '/innovation': typeof InnovationRouteWithChildren
   '/partner': typeof PartnerRoute
+  '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
+  '/startups': typeof StartupsRoute
+  '/submit-idea': typeof SubmitIdeaRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/audit-log': typeof AdminAuditLogRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/faqs': typeof AdminFaqsRoute
+  '/admin/funding': typeof AdminFundingRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/mentors': typeof AdminMentorsRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/programs': typeof AdminProgramsRoute
+  '/admin/resources': typeof AdminResourcesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/startups': typeof AdminStartupsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/innovation/$slug': typeof InnovationSlugRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/ideas/$id': typeof AdminIdeasIdRoute
+  '/admin/ideas/categories': typeof AdminIdeasCategoriesRoute
+  '/admin/ideas/new': typeof AdminIdeasNewRoute
+  '/admin/ideas/': typeof AdminIdeasIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/apply'
     | '/contact'
+    | '/ecosystem'
     | '/events'
+    | '/faq'
     | '/funding'
+    | '/impact'
+    | '/innovation'
     | '/partner'
+    | '/programs'
     | '/resources'
+    | '/startups'
+    | '/submit-idea'
+    | '/admin/analytics'
+    | '/admin/applications'
+    | '/admin/audit-log'
+    | '/admin/dashboard'
+    | '/admin/events'
+    | '/admin/faqs'
+    | '/admin/funding'
+    | '/admin/login'
+    | '/admin/mentors'
+    | '/admin/partners'
+    | '/admin/programs'
+    | '/admin/resources'
+    | '/admin/settings'
+    | '/admin/startups'
+    | '/admin/users'
+    | '/innovation/$slug'
+    | '/admin/'
+    | '/admin/ideas/$id'
+    | '/admin/ideas/categories'
+    | '/admin/ideas/new'
+    | '/admin/ideas/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/apply'
     | '/contact'
+    | '/ecosystem'
     | '/events'
+    | '/faq'
     | '/funding'
+    | '/impact'
+    | '/innovation'
     | '/partner'
+    | '/programs'
     | '/resources'
+    | '/startups'
+    | '/submit-idea'
+    | '/admin/analytics'
+    | '/admin/applications'
+    | '/admin/audit-log'
+    | '/admin/dashboard'
+    | '/admin/events'
+    | '/admin/faqs'
+    | '/admin/funding'
+    | '/admin/login'
+    | '/admin/mentors'
+    | '/admin/partners'
+    | '/admin/programs'
+    | '/admin/resources'
+    | '/admin/settings'
+    | '/admin/startups'
+    | '/admin/users'
+    | '/innovation/$slug'
+    | '/admin'
+    | '/admin/ideas/$id'
+    | '/admin/ideas/categories'
+    | '/admin/ideas/new'
+    | '/admin/ideas'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/apply'
     | '/contact'
+    | '/ecosystem'
     | '/events'
+    | '/faq'
     | '/funding'
+    | '/impact'
+    | '/innovation'
     | '/partner'
+    | '/programs'
     | '/resources'
+    | '/startups'
+    | '/submit-idea'
+    | '/admin/analytics'
+    | '/admin/applications'
+    | '/admin/audit-log'
+    | '/admin/dashboard'
+    | '/admin/events'
+    | '/admin/faqs'
+    | '/admin/funding'
+    | '/admin/login'
+    | '/admin/mentors'
+    | '/admin/partners'
+    | '/admin/programs'
+    | '/admin/resources'
+    | '/admin/settings'
+    | '/admin/startups'
+    | '/admin/users'
+    | '/innovation/$slug'
+    | '/admin/'
+    | '/admin/ideas/$id'
+    | '/admin/ideas/categories'
+    | '/admin/ideas/new'
+    | '/admin/ideas/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ApplyRoute: typeof ApplyRoute
   ContactRoute: typeof ContactRoute
+  EcosystemRoute: typeof EcosystemRoute
   EventsRoute: typeof EventsRoute
+  FaqRoute: typeof FaqRoute
   FundingRoute: typeof FundingRoute
+  ImpactRoute: typeof ImpactRoute
+  InnovationRoute: typeof InnovationRouteWithChildren
   PartnerRoute: typeof PartnerRoute
+  ProgramsRoute: typeof ProgramsRoute
   ResourcesRoute: typeof ResourcesRoute
+  StartupsRoute: typeof StartupsRoute
+  SubmitIdeaRoute: typeof SubmitIdeaRoute
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminApplicationsRoute: typeof AdminApplicationsRoute
+  AdminAuditLogRoute: typeof AdminAuditLogRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminEventsRoute: typeof AdminEventsRoute
+  AdminFaqsRoute: typeof AdminFaqsRoute
+  AdminFundingRoute: typeof AdminFundingRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminMentorsRoute: typeof AdminMentorsRoute
+  AdminPartnersRoute: typeof AdminPartnersRoute
+  AdminProgramsRoute: typeof AdminProgramsRoute
+  AdminResourcesRoute: typeof AdminResourcesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminStartupsRoute: typeof AdminStartupsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminIdeasIdRoute: typeof AdminIdeasIdRoute
+  AdminIdeasCategoriesRoute: typeof AdminIdeasCategoriesRoute
+  AdminIdeasNewRoute: typeof AdminIdeasNewRoute
+  AdminIdeasIndexRoute: typeof AdminIdeasIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -137,11 +513,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apply': {
+      id: '/apply'
+      path: '/apply'
+      fullPath: '/apply'
+      preLoaderRoute: typeof ApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ecosystem': {
+      id: '/ecosystem'
+      path: '/ecosystem'
+      fullPath: '/ecosystem'
+      preLoaderRoute: typeof EcosystemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -151,11 +541,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/funding': {
       id: '/funding'
       path: '/funding'
       fullPath: '/funding'
       preLoaderRoute: typeof FundingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/innovation': {
+      id: '/innovation'
+      path: '/innovation'
+      fullPath: '/innovation'
+      preLoaderRoute: typeof InnovationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partner': {
@@ -165,6 +576,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PartnerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programs': {
+      id: '/programs'
+      path: '/programs'
+      fullPath: '/programs'
+      preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources': {
       id: '/resources'
       path: '/resources'
@@ -172,17 +590,218 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/startups': {
+      id: '/startups'
+      path: '/startups'
+      fullPath: '/startups'
+      preLoaderRoute: typeof StartupsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/submit-idea': {
+      id: '/submit-idea'
+      path: '/submit-idea'
+      fullPath: '/submit-idea'
+      preLoaderRoute: typeof SubmitIdeaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/admin/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/applications': {
+      id: '/admin/applications'
+      path: '/admin/applications'
+      fullPath: '/admin/applications'
+      preLoaderRoute: typeof AdminApplicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/audit-log': {
+      id: '/admin/audit-log'
+      path: '/admin/audit-log'
+      fullPath: '/admin/audit-log'
+      preLoaderRoute: typeof AdminAuditLogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/events': {
+      id: '/admin/events'
+      path: '/admin/events'
+      fullPath: '/admin/events'
+      preLoaderRoute: typeof AdminEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/faqs': {
+      id: '/admin/faqs'
+      path: '/admin/faqs'
+      fullPath: '/admin/faqs'
+      preLoaderRoute: typeof AdminFaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/funding': {
+      id: '/admin/funding'
+      path: '/admin/funding'
+      fullPath: '/admin/funding'
+      preLoaderRoute: typeof AdminFundingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/mentors': {
+      id: '/admin/mentors'
+      path: '/admin/mentors'
+      fullPath: '/admin/mentors'
+      preLoaderRoute: typeof AdminMentorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/partners': {
+      id: '/admin/partners'
+      path: '/admin/partners'
+      fullPath: '/admin/partners'
+      preLoaderRoute: typeof AdminPartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/programs': {
+      id: '/admin/programs'
+      path: '/admin/programs'
+      fullPath: '/admin/programs'
+      preLoaderRoute: typeof AdminProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/resources': {
+      id: '/admin/resources'
+      path: '/admin/resources'
+      fullPath: '/admin/resources'
+      preLoaderRoute: typeof AdminResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/admin/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/startups': {
+      id: '/admin/startups'
+      path: '/admin/startups'
+      fullPath: '/admin/startups'
+      preLoaderRoute: typeof AdminStartupsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/innovation/$slug': {
+      id: '/innovation/$slug'
+      path: '/$slug'
+      fullPath: '/innovation/$slug'
+      preLoaderRoute: typeof InnovationSlugRouteImport
+      parentRoute: typeof InnovationRoute
+    }
+    '/admin/ideas/': {
+      id: '/admin/ideas/'
+      path: '/admin/ideas'
+      fullPath: '/admin/ideas/'
+      preLoaderRoute: typeof AdminIdeasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/ideas/$id': {
+      id: '/admin/ideas/$id'
+      path: '/admin/ideas/$id'
+      fullPath: '/admin/ideas/$id'
+      preLoaderRoute: typeof AdminIdeasIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/ideas/categories': {
+      id: '/admin/ideas/categories'
+      path: '/admin/ideas/categories'
+      fullPath: '/admin/ideas/categories'
+      preLoaderRoute: typeof AdminIdeasCategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/ideas/new': {
+      id: '/admin/ideas/new'
+      path: '/admin/ideas/new'
+      fullPath: '/admin/ideas/new'
+      preLoaderRoute: typeof AdminIdeasNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
+
+interface InnovationRouteChildren {
+  InnovationSlugRoute: typeof InnovationSlugRoute
+}
+
+const InnovationRouteChildren: InnovationRouteChildren = {
+  InnovationSlugRoute: InnovationSlugRoute,
+}
+
+const InnovationRouteWithChildren = InnovationRoute._addFileChildren(
+  InnovationRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ApplyRoute: ApplyRoute,
   ContactRoute: ContactRoute,
+  EcosystemRoute: EcosystemRoute,
   EventsRoute: EventsRoute,
+  FaqRoute: FaqRoute,
   FundingRoute: FundingRoute,
+  ImpactRoute: ImpactRoute,
+  InnovationRoute: InnovationRouteWithChildren,
   PartnerRoute: PartnerRoute,
+  ProgramsRoute: ProgramsRoute,
   ResourcesRoute: ResourcesRoute,
+  StartupsRoute: StartupsRoute,
+  SubmitIdeaRoute: SubmitIdeaRoute,
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminApplicationsRoute: AdminApplicationsRoute,
+  AdminAuditLogRoute: AdminAuditLogRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminEventsRoute: AdminEventsRoute,
+  AdminFaqsRoute: AdminFaqsRoute,
+  AdminFundingRoute: AdminFundingRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminMentorsRoute: AdminMentorsRoute,
+  AdminPartnersRoute: AdminPartnersRoute,
+  AdminProgramsRoute: AdminProgramsRoute,
+  AdminResourcesRoute: AdminResourcesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminStartupsRoute: AdminStartupsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminIdeasIdRoute: AdminIdeasIdRoute,
+  AdminIdeasCategoriesRoute: AdminIdeasCategoriesRoute,
+  AdminIdeasNewRoute: AdminIdeasNewRoute,
+  AdminIdeasIndexRoute: AdminIdeasIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
