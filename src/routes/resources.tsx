@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { useState, useMemo, useEffect } from 'react';
+import { createFileRoute } from "@tanstack/react-router";
+import { useState, useMemo, useEffect } from "react";
 import {
   FileText,
   Search,
@@ -10,42 +10,36 @@ import {
   ExternalLink,
   ShieldCheck,
   Sparkles,
-} from 'lucide-react';
-import { PageHero, SectionTitle, ButtonLink } from '@/components/site';
-import { AdminDataStore, type ResourceDoc } from '@/lib/adminStore';
+} from "lucide-react";
+import { PageHero, SectionTitle, ButtonLink } from "@/components/site";
+import { AdminDataStore, type ResourceDoc } from "@/lib/adminStore";
 
-export const Route = createFileRoute('/resources')({
+export const Route = createFileRoute("/resources")({
   head: () => ({
     meta: [
-      { title: 'Resources & Guidelines — GUIITAR Council' },
+      { title: "Resources & Guidelines — GUIITAR Council" },
       {
-        name: 'description',
+        name: "description",
         content:
-          'Download official SSIP 2.0 guidelines, Gujarat Industrial Policy manuals, IPR filing forms, and startup pitch templates from GUIITAR Council.',
+          "Download official SSIP 2.0 guidelines, Gujarat Industrial Policy manuals, IPR filing forms, and startup pitch templates from GUIITAR Council.",
       },
-      { property: 'og:title', content: 'Resources & Guidelines — GUIITAR Council' },
+      { property: "og:title", content: "Resources & Guidelines — GUIITAR Council" },
       {
-        property: 'og:description',
-        content: 'Download policies, templates, and application documents for startups.',
+        property: "og:description",
+        content: "Download policies, templates, and application documents for startups.",
       },
-      { property: 'og:type', content: 'website' },
-      { name: 'twitter:card', content: 'summary_large_image' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Resources,
 });
 
-const categories = [
-  'All',
-  'Policy Document',
-  'IPR Template',
-  'Pitch Template',
-  'Lab Guidelines',
-];
+const categories = ["All", "Policy Document", "IPR Template", "Pitch Template", "Lab Guidelines"];
 
 function Resources() {
-  const [q, setQ] = useState('');
-  const [cat, setCat] = useState('All');
+  const [q, setQ] = useState("");
+  const [cat, setCat] = useState("All");
   const [downloaded, setDownloaded] = useState<string | null>(null);
   const [docsList, setDocsList] = useState<ResourceDoc[]>([]);
 
@@ -56,8 +50,8 @@ function Resources() {
   useEffect(() => {
     loadResources();
     const handleUpdate = () => loadResources();
-    window.addEventListener('guiitar_store_update', handleUpdate);
-    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+    window.addEventListener("guiitar_store_update", handleUpdate);
+    return () => window.removeEventListener("guiitar_store_update", handleUpdate);
   }, []);
 
   const documents = useMemo(() => {
@@ -72,8 +66,10 @@ function Resources() {
   }, [docsList]);
 
   const shown = documents.filter((doc) => {
-    const matchCat = cat === 'All' || doc.category.toLowerCase().includes(cat.toLowerCase());
-    const matchQuery = `${doc.title} ${doc.desc} ${doc.category}`.toLowerCase().includes(q.toLowerCase());
+    const matchCat = cat === "All" || doc.category.toLowerCase().includes(cat.toLowerCase());
+    const matchQuery = `${doc.title} ${doc.desc} ${doc.category}`
+      .toLowerCase()
+      .includes(q.toLowerCase());
     return matchCat && matchQuery;
   });
 
@@ -109,7 +105,7 @@ function Resources() {
             {categories.map((c) => (
               <button
                 key={c}
-                className={`tab ${cat === c ? 'active' : ''}`}
+                className={`tab ${cat === c ? "active" : ""}`}
                 onClick={() => setCat(c)}
               >
                 {c}
@@ -118,7 +114,7 @@ function Resources() {
           </div>
 
           {/* DOCUMENT CARDS LIST */}
-          <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+          <div style={{ maxWidth: "960px", margin: "0 auto" }}>
             {shown.map((doc) => (
               <article className="resource-card" key={doc.title}>
                 <div className="resource-main">
@@ -126,16 +122,23 @@ function Resources() {
                     <FileText />
                   </div>
                   <div>
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '4px' }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "8px",
+                        alignItems: "center",
+                        marginBottom: "4px",
+                      }}
+                    >
                       <span className="pill">{doc.category}</span>
                       <span
                         style={{
-                          fontSize: '11.5px',
+                          fontSize: "11.5px",
                           fontWeight: 700,
-                          background: '#f1f5f9',
-                          color: '#475569',
-                          padding: '2px 6px',
-                          borderRadius: '4px',
+                          background: "#f1f5f9",
+                          color: "#475569",
+                          padding: "2px 6px",
+                          borderRadius: "4px",
                         }}
                       >
                         {doc.format} • {doc.size}
@@ -153,22 +156,24 @@ function Resources() {
                     onClick={() => handleDownload(doc.title)}
                   >
                     <Download className="w-3.5 h-3.5" />
-                    <span>{downloaded === doc.title ? 'Downloaded!' : 'Download'}</span>
+                    <span>{downloaded === doc.title ? "Downloaded!" : "Download"}</span>
                   </button>
                 </div>
               </article>
             ))}
 
             {shown.length === 0 && (
-              <div className="center" style={{ padding: '60px 20px', color: '#64748b' }}>
-                <p style={{ fontSize: '18px', fontWeight: 600 }}>No documents found matching "{q}"</p>
+              <div className="center" style={{ padding: "60px 20px", color: "#64748b" }}>
+                <p style={{ fontSize: "18px", fontWeight: 600 }}>
+                  No documents found matching "{q}"
+                </p>
                 <p>Try clearing your search query or selecting another category.</p>
                 <button
                   className="btn btn-outline btn-sm"
-                  style={{ marginTop: '16px' }}
+                  style={{ marginTop: "16px" }}
                   onClick={() => {
-                    setQ('');
-                    setCat('All');
+                    setQ("");
+                    setCat("All");
                   }}
                 >
                   Reset Filters
@@ -194,9 +199,12 @@ function Resources() {
               <ArrowRight className="w-4 h-4" />
             </ButtonLink>
           </div>
-          <div className="plain-card" style={{ padding: '32px' }}>
-            <h3 style={{ marginBottom: '12px' }}>Popular Downloads:</h3>
-            <ul className="list" style={{ paddingLeft: '18px', fontSize: '14.5px', color: '#475569' }}>
+          <div className="plain-card" style={{ padding: "32px" }}>
+            <h3 style={{ marginBottom: "12px" }}>Popular Downloads:</h3>
+            <ul
+              className="list"
+              style={{ paddingLeft: "18px", fontSize: "14.5px", color: "#475569" }}
+            >
               <li>SSIP 2.0 Student Component Procurement Format</li>
               <li>Provisional Patent Filing Checklist (Indian Patent Office)</li>
               <li>Startup Mentor Agreement & Milestone Tracker</li>

@@ -1,5 +1,5 @@
-import { createFileRoute, useNavigate, Link } from '@tanstack/react-router';
-import { useState } from 'react';
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Lightbulb,
   CheckCircle2,
@@ -15,25 +15,30 @@ import {
   X,
   Plus,
   Trash2,
-} from 'lucide-react';
-import { AdminLayout } from '@/components/admin/AdminLayout';
-import { AdminDataStore, type InnovationStage, type CreatorType, type IdeaStatus } from '@/lib/adminStore';
+} from "lucide-react";
+import { AdminLayout } from "@/components/admin/AdminLayout";
+import {
+  AdminDataStore,
+  type InnovationStage,
+  type CreatorType,
+  type IdeaStatus,
+} from "@/lib/adminStore";
 
-export const Route = createFileRoute('/admin/ideas/new')({
+export const Route = createFileRoute("/admin/ideas/new")({
   head: () => ({
-    meta: [{ title: 'Add Innovation — GUIITAR Admin Console' }],
+    meta: [{ title: "Add Innovation — GUIITAR Admin Console" }],
   }),
   component: AddIdeaPage,
 });
 
 const steps = [
-  'Basic Info',
-  'Creator',
-  'Innovation Details',
-  'Media & Links',
-  'Impact & SDGs',
-  'Support Required',
-  'Publication',
+  "Basic Info",
+  "Creator",
+  "Innovation Details",
+  "Media & Links",
+  "Impact & SDGs",
+  "Support Required",
+  "Publication",
 ];
 
 export function AddIdeaPage() {
@@ -44,100 +49,101 @@ export function AddIdeaPage() {
 
   // Form State
   const [formData, setFormData] = useState({
-    title: '',
-    shortDescription: '',
-    detailedDescription: '',
-    category: 'Biotech',
-    subcategory: '',
-    technology: '',
-    stage: 'Prototype' as InnovationStage,
-    creatorType: 'Student' as CreatorType,
-    creatorName: '',
-    creatorEmail: '',
-    creatorPhone: '',
-    department: '',
-    university: 'GSFC University, Vadodara',
-    teamMembers: [''],
-    problemStatement: '',
-    proposedSolution: '',
-    innovationUsp: '',
-    technologyUsed: '',
-    targetUsers: '',
-    industry: '',
-    thrustArea: 'Biotechnology & Life Sciences',
-    coverImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80',
+    title: "",
+    shortDescription: "",
+    detailedDescription: "",
+    category: "Biotech",
+    subcategory: "",
+    technology: "",
+    stage: "Prototype" as InnovationStage,
+    creatorType: "Student" as CreatorType,
+    creatorName: "",
+    creatorEmail: "",
+    creatorPhone: "",
+    department: "",
+    university: "GSFC University, Vadodara",
+    teamMembers: [""],
+    problemStatement: "",
+    proposedSolution: "",
+    innovationUsp: "",
+    technologyUsed: "",
+    targetUsers: "",
+    industry: "",
+    thrustArea: "Biotechnology & Life Sciences",
+    coverImage:
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80",
     galleryImages: [] as string[],
-    videoUrl: '',
-    demoUrl: '',
-    githubUrl: '',
-    websiteUrl: '',
-    expectedImpact: '',
-    socialImpact: '',
-    environmentalImpact: '',
-    economicImpact: '',
+    videoUrl: "",
+    demoUrl: "",
+    githubUrl: "",
+    websiteUrl: "",
+    expectedImpact: "",
+    socialImpact: "",
+    environmentalImpact: "",
+    economicImpact: "",
     sdgAlignment: [] as string[],
-    supportRequired: ['Mentorship', 'Funding', 'Lab Access'],
-    visibility: 'Public' as 'Draft' | 'Private' | 'Public',
-    status: 'Published' as IdeaStatus,
+    supportRequired: ["Mentorship", "Funding", "Lab Access"],
+    visibility: "Public" as "Draft" | "Private" | "Public",
+    status: "Published" as IdeaStatus,
     isFeatured: true,
   });
 
   const categories = [
-    'AI',
-    'Robotics',
-    'IoT',
-    'Biotech',
-    'CleanTech',
-    'Healthcare',
-    'Energy',
-    'Cyber Security',
-    'ICT',
-    'Manufacturing',
-    'Agriculture',
-    'Water',
+    "AI",
+    "Robotics",
+    "IoT",
+    "Biotech",
+    "CleanTech",
+    "Healthcare",
+    "Energy",
+    "Cyber Security",
+    "ICT",
+    "Manufacturing",
+    "Agriculture",
+    "Water",
   ];
 
   const thrustAreas = [
-    'Agriculture & Allied Fields',
-    'Artificial Intelligence & Robotics',
-    'Biotechnology & Life Sciences',
-    'Clean-Tech & Circular Economy',
-    'Cyber Security & Network Defense',
-    'Renewable Energy & Power Systems',
-    'Environmental Engineering Solutions',
-    'Healthcare & Biomedical Devices',
-    'Information & Communication Tech (ICT)',
-    'Internet of Things (IoT) & Embedded',
-    'Advanced Manufacturing & Materials',
-    'Deep-Tech Services & Automation',
-    'Water & Wastewater Treatment Tech',
+    "Agriculture & Allied Fields",
+    "Artificial Intelligence & Robotics",
+    "Biotechnology & Life Sciences",
+    "Clean-Tech & Circular Economy",
+    "Cyber Security & Network Defense",
+    "Renewable Energy & Power Systems",
+    "Environmental Engineering Solutions",
+    "Healthcare & Biomedical Devices",
+    "Information & Communication Tech (ICT)",
+    "Internet of Things (IoT) & Embedded",
+    "Advanced Manufacturing & Materials",
+    "Deep-Tech Services & Automation",
+    "Water & Wastewater Treatment Tech",
   ];
 
   const sdgOptions = [
-    'SDG 2: Zero Hunger',
-    'SDG 3: Good Health & Well-being',
-    'SDG 6: Clean Water & Sanitation',
-    'SDG 7: Affordable & Clean Energy',
-    'SDG 8: Decent Work & Economic Growth',
-    'SDG 9: Industry, Innovation & Infrastructure',
-    'SDG 11: Sustainable Cities & Communities',
-    'SDG 12: Responsible Consumption & Production',
-    'SDG 13: Climate Action',
+    "SDG 2: Zero Hunger",
+    "SDG 3: Good Health & Well-being",
+    "SDG 6: Clean Water & Sanitation",
+    "SDG 7: Affordable & Clean Energy",
+    "SDG 8: Decent Work & Economic Growth",
+    "SDG 9: Industry, Innovation & Infrastructure",
+    "SDG 11: Sustainable Cities & Communities",
+    "SDG 12: Responsible Consumption & Production",
+    "SDG 13: Climate Action",
   ];
 
   const supportOptions = [
-    'Mentorship',
-    'Funding / SSIP 2.0 Grant',
-    'Prototype Development',
-    'IPR & Patent Filing',
-    'Lab & Supercomputer Access',
-    'Industry Connection (GSFC Ltd)',
-    'Market Access & Demo Days',
-    'Co-Working Desk Space',
+    "Mentorship",
+    "Funding / SSIP 2.0 Grant",
+    "Prototype Development",
+    "IPR & Patent Filing",
+    "Lab & Supercomputer Access",
+    "Industry Connection (GSFC Ltd)",
+    "Market Access & Demo Days",
+    "Co-Working Desk Space",
   ];
 
   const handleAddTeamMember = () => {
-    setFormData({ ...formData, teamMembers: [...formData.teamMembers, ''] });
+    setFormData({ ...formData, teamMembers: [...formData.teamMembers, ""] });
   };
 
   const handleUpdateTeamMember = (index: number, val: string) => {
@@ -184,24 +190,24 @@ export function AddIdeaPage() {
       title="Add Innovation"
       subtitle="Publish an innovation or student project to the GUIITAR Innovation Showcase."
       breadcrumbs={[
-        { label: 'Admin', href: '/admin/dashboard' },
-        { label: 'Ideas', href: '/admin/ideas' },
-        { label: 'Add Innovation' },
+        { label: "Admin", href: "/admin/dashboard" },
+        { label: "Ideas", href: "/admin/ideas" },
+        { label: "Add Innovation" },
       ]}
       actions={
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: "flex", gap: "8px" }}>
           <button
             onClick={() => setShowPreviewModal(true)}
             className="btn btn-outline btn-sm"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
           >
             <Eye className="w-4 h-4" />
             <span>Preview Public Page</span>
           </button>
           <button
-            onClick={() => handleSave('Draft')}
+            onClick={() => handleSave("Draft")}
             className="btn btn-outline btn-sm"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
           >
             <Save className="w-4 h-4" />
             <span>Save Draft</span>
@@ -209,7 +215,7 @@ export function AddIdeaPage() {
           <button
             onClick={() => setShowPublishModal(true)}
             className="btn btn-primary btn-sm"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
           >
             <Send className="w-4 h-4" />
             <span>Publish Innovation</span>
@@ -218,15 +224,7 @@ export function AddIdeaPage() {
       }
     >
       {/* 7-STEP PROGRESS STEPPER */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${steps.length}, 1fr)`,
-          gap: '8px',
-          marginBottom: '32px',
-        }}
-        className="form-stepper-bar"
-      >
+      <div className="form-stepper-bar">
         {steps.map((s, i) => {
           const isActive = currentStep === i;
           const isDone = currentStep > i;
@@ -235,34 +233,37 @@ export function AddIdeaPage() {
               key={s}
               onClick={() => setCurrentStep(i)}
               style={{
-                background: isActive ? '#2563eb' : isDone ? '#f0fdf4' : '#ffffff',
-                color: isActive ? '#ffffff' : isDone ? '#059669' : '#64748b',
-                border: `1px solid ${isActive ? '#2563eb' : isDone ? '#bbf7d0' : '#e2e8f0'}`,
-                borderRadius: '8px',
-                padding: '10px 8px',
-                textAlign: 'center',
-                cursor: 'pointer',
-                fontSize: '12px',
+                background: isActive ? "#2563eb" : isDone ? "#f0fdf4" : "#ffffff",
+                color: isActive ? "#ffffff" : isDone ? "#059669" : "#64748b",
+                border: `1px solid ${isActive ? "#2563eb" : isDone ? "#bbf7d0" : "#e2e8f0"}`,
+                borderRadius: "8px",
+                padding: "10px 8px",
+                textAlign: "center",
+                cursor: "pointer",
+                fontSize: "12px",
                 fontWeight: 700,
-                transition: 'all 0.2s',
+                transition: "all 0.2s",
               }}
             >
-              <span>0{i + 1}. {s}</span>
+              <span>
+                0{i + 1}. {s}
+              </span>
             </button>
           );
         })}
       </div>
 
       {/* MULTI-STEP FORM CARD */}
-      <div className="plain-card" style={{ padding: '36px', maxWidth: '960px', margin: '0 auto' }}>
+      <div className="plain-card" style={{ padding: "36px", maxWidth: "960px", margin: "0 auto" }}>
         {/* STEP 1: BASIC INFORMATION */}
         {currentStep === 0 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '0 0 4px', color: '#0f172a' }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 4px", color: "#0f172a" }}>
               Step 1 — Basic Information
             </h3>
-            <p style={{ color: '#64748b', fontSize: '14px', margin: 0 }}>
-              Provide the high-level identity, domain classification, and maturity stage of the innovation.
+            <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>
+              Provide the high-level identity, domain classification, and maturity stage of the
+              innovation.
             </p>
 
             <label className="field">
@@ -296,7 +297,7 @@ export function AddIdeaPage() {
               />
             </label>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+            <div className="form-row-3">
               <label className="field">
                 <span>Category *</span>
                 <select
@@ -304,7 +305,9 @@ export function AddIdeaPage() {
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                 >
                   {categories.map((c) => (
-                    <option key={c} value={c}>{c}</option>
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
                   ))}
                 </select>
               </label>
@@ -322,10 +325,24 @@ export function AddIdeaPage() {
                 <span>Innovation Stage *</span>
                 <select
                   value={formData.stage}
-                  onChange={(e) => setFormData({ ...formData, stage: e.target.value as InnovationStage })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, stage: e.target.value as InnovationStage })
+                  }
                 >
-                  {(['Idea', 'Research', 'Prototype', 'MVP', 'Pilot', 'Startup', 'Scale'] as InnovationStage[]).map((s) => (
-                    <option key={s} value={s}>{s}</option>
+                  {(
+                    [
+                      "Idea",
+                      "Research",
+                      "Prototype",
+                      "MVP",
+                      "Pilot",
+                      "Startup",
+                      "Scale",
+                    ] as InnovationStage[]
+                  ).map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
                   ))}
                 </select>
               </label>
@@ -335,23 +352,36 @@ export function AddIdeaPage() {
 
         {/* STEP 2: CREATOR */}
         {currentStep === 1 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '0 0 4px', color: '#0f172a' }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 4px", color: "#0f172a" }}>
               Step 2 — Creator & Department
             </h3>
-            <p style={{ color: '#64748b', fontSize: '14px', margin: 0 }}>
+            <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>
               Identify the primary inventor, institutional affiliation, and team members.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="form-row-3">
               <label className="field">
                 <span>Creator Type *</span>
                 <select
                   value={formData.creatorType}
-                  onChange={(e) => setFormData({ ...formData, creatorType: e.target.value as CreatorType })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, creatorType: e.target.value as CreatorType })
+                  }
                 >
-                  {(['Student', 'Faculty', 'Researcher', 'Startup', 'Alumni', 'External Innovator'] as CreatorType[]).map((ct) => (
-                    <option key={ct} value={ct}>{ct}</option>
+                  {(
+                    [
+                      "Student",
+                      "Faculty",
+                      "Researcher",
+                      "Startup",
+                      "Alumni",
+                      "External Innovator",
+                    ] as CreatorType[]
+                  ).map((ct) => (
+                    <option key={ct} value={ct}>
+                      {ct}
+                    </option>
                   ))}
                 </select>
               </label>
@@ -367,7 +397,7 @@ export function AddIdeaPage() {
               </label>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="form-row-3">
               <label className="field">
                 <span>Email Address</span>
                 <input
@@ -389,7 +419,7 @@ export function AddIdeaPage() {
               </label>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="form-row-3">
               <label className="field">
                 <span>Department / School</span>
                 <input
@@ -410,13 +440,22 @@ export function AddIdeaPage() {
             </div>
 
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#334155' }}>Team Members</span>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "8px",
+                }}
+              >
+                <span style={{ fontSize: "13.5px", fontWeight: 700, color: "#334155" }}>
+                  Team Members
+                </span>
                 <button
                   type="button"
                   onClick={handleAddTeamMember}
                   className="btn btn-outline btn-sm"
-                  style={{ height: '28px', padding: '0 8px', fontSize: '12px' }}
+                  style={{ height: "28px", padding: "0 8px", fontSize: "12px" }}
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add Member</span>
@@ -424,18 +463,30 @@ export function AddIdeaPage() {
               </div>
 
               {formData.teamMembers.map((member, i) => (
-                <div key={i} style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
                   <input
                     value={member}
                     onChange={(e) => handleUpdateTeamMember(i, e.target.value)}
                     placeholder={`Team Member #${i + 1} (Name & Role)`}
-                    style={{ flexGrow: 1, padding: '10px 12px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '13.5px' }}
+                    style={{
+                      flexGrow: 1,
+                      padding: "10px 12px",
+                      borderRadius: "6px",
+                      border: "1px solid #cbd5e1",
+                      fontSize: "13.5px",
+                    }}
                   />
                   {formData.teamMembers.length > 1 && (
                     <button
                       type="button"
                       onClick={() => handleRemoveTeamMember(i)}
-                      style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', padding: '8px' }}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        color: "#ef4444",
+                        cursor: "pointer",
+                        padding: "8px",
+                      }}
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -448,11 +499,11 @@ export function AddIdeaPage() {
 
         {/* STEP 3: INNOVATION DETAILS */}
         {currentStep === 2 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '0 0 4px', color: '#0f172a' }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 4px", color: "#0f172a" }}>
               Step 3 — Problem, Solution & USPs
             </h3>
-            <p style={{ color: '#64748b', fontSize: '14px', margin: 0 }}>
+            <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>
               Clearly articulate the value proposition, competitive novelty, and industry relevance.
             </p>
 
@@ -489,7 +540,7 @@ export function AddIdeaPage() {
               />
             </label>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="form-row-2">
               <label className="field">
                 <span>Thrust Area *</span>
                 <select
@@ -497,7 +548,9 @@ export function AddIdeaPage() {
                   onChange={(e) => setFormData({ ...formData, thrustArea: e.target.value })}
                 >
                   {thrustAreas.map((t) => (
-                    <option key={t} value={t}>{t}</option>
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
                   ))}
                 </select>
               </label>
@@ -516,11 +569,11 @@ export function AddIdeaPage() {
 
         {/* STEP 4: MEDIA & LINKS */}
         {currentStep === 3 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '0 0 4px', color: '#0f172a' }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 4px", color: "#0f172a" }}>
               Step 4 — Media & External Links
             </h3>
-            <p style={{ color: '#64748b', fontSize: '14px', margin: 0 }}>
+            <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>
               Upload visual assets, prototype demos, video links, or code repositories.
             </p>
 
@@ -535,16 +588,23 @@ export function AddIdeaPage() {
             </label>
 
             {formData.coverImage && (
-              <div style={{ borderRadius: '10px', overflow: 'hidden', maxHeight: '220px', border: '1px solid #e2e8f0' }}>
+              <div
+                style={{
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                  maxHeight: "220px",
+                  border: "1px solid #e2e8f0",
+                }}
+              >
                 <img
                   src={formData.coverImage}
                   alt="Cover preview"
-                  style={{ width: '100%', height: '220px', objectFit: 'cover' }}
+                  style={{ width: "100%", height: "220px", objectFit: "cover" }}
                 />
               </div>
             )}
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="form-row-2">
               <label className="field">
                 <span>Demo / Prototype URL</span>
                 <input
@@ -564,7 +624,7 @@ export function AddIdeaPage() {
               </label>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="form-row-2">
               <label className="field">
                 <span>GitHub / Code Repo</span>
                 <input
@@ -588,11 +648,11 @@ export function AddIdeaPage() {
 
         {/* STEP 5: IMPACT & SDGS */}
         {currentStep === 4 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '0 0 4px', color: '#0f172a' }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 4px", color: "#0f172a" }}>
               Step 5 — Impact & SDG Alignment
             </h3>
-            <p style={{ color: '#64748b', fontSize: '14px', margin: 0 }}>
+            <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>
               Highlight societal, environmental, and commercial value generated.
             </p>
 
@@ -608,10 +668,18 @@ export function AddIdeaPage() {
             </label>
 
             <div>
-              <span style={{ fontSize: '13.5px', fontWeight: 700, color: '#334155', display: 'block', marginBottom: '10px' }}>
+              <span
+                style={{
+                  fontSize: "13.5px",
+                  fontWeight: 700,
+                  color: "#334155",
+                  display: "block",
+                  marginBottom: "10px",
+                }}
+              >
                 United Nations SDG Alignment:
               </span>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+              <div className="form-row-2" style={{ gap: "8px", marginBottom: 0 }}>
                 {sdgOptions.map((sdg) => {
                   const isChecked = formData.sdgAlignment.includes(sdg);
                   return (
@@ -620,18 +688,18 @@ export function AddIdeaPage() {
                       key={sdg}
                       onClick={() => toggleSdg(sdg)}
                       style={{
-                        padding: '8px 12px',
-                        borderRadius: '6px',
-                        fontSize: '13px',
-                        textAlign: 'left',
-                        background: isChecked ? '#eff6ff' : '#f8fafc',
-                        border: `1px solid ${isChecked ? '#2563eb' : '#e2e8f0'}`,
-                        color: isChecked ? '#1d4ed8' : '#475569',
+                        padding: "8px 12px",
+                        borderRadius: "6px",
+                        fontSize: "13px",
+                        textAlign: "left",
+                        background: isChecked ? "#eff6ff" : "#f8fafc",
+                        border: `1px solid ${isChecked ? "#2563eb" : "#e2e8f0"}`,
+                        color: isChecked ? "#1d4ed8" : "#475569",
                         fontWeight: isChecked ? 700 : 500,
-                        cursor: 'pointer',
+                        cursor: "pointer",
                       }}
                     >
-                      {isChecked ? '✓ ' : '+ '} {sdg}
+                      {isChecked ? "✓ " : "+ "} {sdg}
                     </button>
                   );
                 })}
@@ -642,15 +710,15 @@ export function AddIdeaPage() {
 
         {/* STEP 6: SUPPORT REQUIRED */}
         {currentStep === 5 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '0 0 4px', color: '#0f172a' }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 4px", color: "#0f172a" }}>
               Step 6 — Incubation Support Required
             </h3>
-            <p style={{ color: '#64748b', fontSize: '14px', margin: 0 }}>
+            <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>
               Specify the exact resources and institutional assistance needed from GUIITAR Council.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
+            <div className="form-row-2" style={{ gap: "10px", marginBottom: 0 }}>
               {supportOptions.map((sup) => {
                 const isChecked = formData.supportRequired.includes(sup);
                 return (
@@ -659,18 +727,18 @@ export function AddIdeaPage() {
                     key={sup}
                     onClick={() => toggleSupport(sup)}
                     style={{
-                      padding: '12px 14px',
-                      borderRadius: '8px',
-                      fontSize: '13.5px',
-                      textAlign: 'left',
-                      background: isChecked ? '#ecfdf5' : '#f8fafc',
-                      border: `1px solid ${isChecked ? '#059669' : '#e2e8f0'}`,
-                      color: isChecked ? '#065f46' : '#334155',
+                      padding: "12px 14px",
+                      borderRadius: "8px",
+                      fontSize: "13.5px",
+                      textAlign: "left",
+                      background: isChecked ? "#ecfdf5" : "#f8fafc",
+                      border: `1px solid ${isChecked ? "#059669" : "#e2e8f0"}`,
+                      color: isChecked ? "#065f46" : "#334155",
                       fontWeight: isChecked ? 700 : 500,
-                      cursor: 'pointer',
+                      cursor: "pointer",
                     }}
                   >
-                    {isChecked ? '✓ ' : '+ '} {sup}
+                    {isChecked ? "✓ " : "+ "} {sup}
                   </button>
                 );
               })}
@@ -680,20 +748,22 @@ export function AddIdeaPage() {
 
         {/* STEP 7: PUBLICATION CONTROLS */}
         {currentStep === 6 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '0 0 4px', color: '#0f172a' }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 4px", color: "#0f172a" }}>
               Step 7 — Visibility & Publication
             </h3>
-            <p style={{ color: '#64748b', fontSize: '14px', margin: 0 }}>
+            <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>
               Set showcase status, public visibility, and featured highlight position.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="form-row-2">
               <label className="field">
                 <span>Publication Status *</span>
                 <select
                   value={formData.status}
-                  onChange={(e) => setFormData({ ...formData, status: e.target.value as IdeaStatus })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, status: e.target.value as IdeaStatus })
+                  }
                 >
                   <option value="Published">Published (Live on Showcase)</option>
                   <option value="Approved">Approved (Internal Only)</option>
@@ -705,8 +775,10 @@ export function AddIdeaPage() {
               <label className="field">
                 <span>Featured on Homepage Showcase?</span>
                 <select
-                  value={formData.isFeatured ? 'yes' : 'no'}
-                  onChange={(e) => setFormData({ ...formData, isFeatured: e.target.value === 'yes' })}
+                  value={formData.isFeatured ? "yes" : "no"}
+                  onChange={(e) =>
+                    setFormData({ ...formData, isFeatured: e.target.value === "yes" })
+                  }
                 >
                   <option value="yes">Yes — Highlight on Homepage & Top of Showcase</option>
                   <option value="no">No — Standard listing</option>
@@ -714,12 +786,32 @@ export function AddIdeaPage() {
               </label>
             </div>
 
-            <div style={{ background: '#eff6ff', padding: '16px', borderRadius: '10px', border: '1px solid #bfdbfe' }}>
-              <strong style={{ color: '#1d4ed8', display: 'block', fontSize: '14px', marginBottom: '4px' }}>
+            <div
+              style={{
+                background: "#eff6ff",
+                padding: "16px",
+                borderRadius: "10px",
+                border: "1px solid #bfdbfe",
+              }}
+            >
+              <strong
+                style={{
+                  color: "#1d4ed8",
+                  display: "block",
+                  fontSize: "14px",
+                  marginBottom: "4px",
+                }}
+              >
                 ⚡ Automatic Public Showcase Synchronization
               </strong>
-              <p style={{ fontSize: '13px', color: '#1e3a8a', margin: 0 }}>
-                When published, this innovation will automatically be indexed on <code>/innovation</code> and available at its dedicated public slug page <code>/innovation/{formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'project-slug'}</code>.
+              <p style={{ fontSize: "13px", color: "#1e3a8a", margin: 0 }}>
+                When published, this innovation will automatically be indexed on{" "}
+                <code>/innovation</code> and available at its dedicated public slug page{" "}
+                <code>
+                  /innovation/
+                  {formData.title.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "project-slug"}
+                </code>
+                .
               </p>
             </div>
           </div>
@@ -728,12 +820,12 @@ export function AddIdeaPage() {
         {/* STEP NAVIGATION BUTTONS */}
         <div
           style={{
-            marginTop: '32px',
-            paddingTop: '20px',
-            borderTop: '1px solid #e2e8f0',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            marginTop: "32px",
+            paddingTop: "20px",
+            borderTop: "1px solid #e2e8f0",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
           <button
@@ -760,7 +852,7 @@ export function AddIdeaPage() {
               type="button"
               onClick={() => setShowPublishModal(true)}
               className="btn btn-primary btn-sm"
-              style={{ background: '#059669', borderColor: '#059669' }}
+              style={{ background: "#059669", borderColor: "#059669" }}
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>Publish to Showcase</span>
@@ -773,42 +865,42 @@ export function AddIdeaPage() {
       {showPublishModal && (
         <div
           style={{
-            position: 'fixed',
+            position: "fixed",
             inset: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
-            display: 'grid',
-            placeItems: 'center',
+            background: "rgba(0, 0, 0, 0.5)",
+            display: "grid",
+            placeItems: "center",
             zIndex: 100,
-            padding: '20px',
+            padding: "20px",
           }}
         >
           <div
             style={{
-              background: '#ffffff',
-              borderRadius: '16px',
-              padding: '32px',
-              maxWidth: '480px',
-              width: '100%',
-              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.3)',
+              background: "#ffffff",
+              borderRadius: "16px",
+              padding: "32px",
+              maxWidth: "480px",
+              width: "100%",
+              boxShadow: "0 25px 60px rgba(0, 0, 0, 0.3)",
             }}
           >
-            <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '0 0 8px', color: '#0f172a' }}>
+            <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 8px", color: "#0f172a" }}>
               Publish this Innovation?
             </h3>
-            <p style={{ color: '#475569', fontSize: '14.5px', lineHeight: 1.6, margin: '0 0 24px' }}>
-              Once published, <strong>"{formData.title || 'Untitled Innovation'}"</strong> will become immediately visible on the public GUIITAR Innovation Showcase.
+            <p
+              style={{ color: "#475569", fontSize: "14.5px", lineHeight: 1.6, margin: "0 0 24px" }}
+            >
+              Once published, <strong>"{formData.title || "Untitled Innovation"}"</strong> will
+              become immediately visible on the public GUIITAR Innovation Showcase.
             </p>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
-              <button
-                onClick={() => setShowPublishModal(false)}
-                className="btn btn-outline btn-sm"
-              >
+            <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}>
+              <button onClick={() => setShowPublishModal(false)} className="btn btn-outline btn-sm">
                 Cancel
               </button>
               <button
-                onClick={() => handleSave('Published')}
+                onClick={() => handleSave("Published")}
                 className="btn btn-primary btn-sm"
-                style={{ background: '#059669', borderColor: '#059669' }}
+                style={{ background: "#059669", borderColor: "#059669" }}
               >
                 <span>Publish Innovation</span>
                 <CheckCircle2 className="w-4 h-4" />
@@ -822,32 +914,39 @@ export function AddIdeaPage() {
       {showPreviewModal && (
         <div
           style={{
-            position: 'fixed',
+            position: "fixed",
             inset: 0,
-            background: 'rgba(0, 0, 0, 0.7)',
-            display: 'grid',
-            placeItems: 'center',
+            background: "rgba(0, 0, 0, 0.7)",
+            display: "grid",
+            placeItems: "center",
             zIndex: 100,
-            padding: '24px',
+            padding: "24px",
           }}
         >
           <div
             style={{
-              background: '#ffffff',
-              borderRadius: '20px',
-              padding: '36px',
-              maxWidth: '780px',
-              width: '100%',
-              maxHeight: '90vh',
-              overflowY: 'auto',
-              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.4)',
+              background: "#ffffff",
+              borderRadius: "20px",
+              padding: "36px",
+              maxWidth: "780px",
+              width: "100%",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              boxShadow: "0 25px 60px rgba(0, 0, 0, 0.4)",
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "20px",
+              }}
+            >
               <span className="pill emerald">Live Public Preview</span>
               <button
                 onClick={() => setShowPreviewModal(false)}
-                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                style={{ background: "none", border: "none", cursor: "pointer" }}
               >
                 <X className="w-5 h-5 text-slate-500" />
               </button>
@@ -857,32 +956,66 @@ export function AddIdeaPage() {
               <img
                 src={formData.coverImage}
                 alt="Cover"
-                style={{ width: '100%', height: '260px', objectFit: 'cover', borderRadius: '12px', marginBottom: '20px' }}
+                style={{
+                  width: "100%",
+                  height: "260px",
+                  objectFit: "cover",
+                  borderRadius: "12px",
+                  marginBottom: "20px",
+                }}
               />
             )}
 
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+            <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
               <span className="pill amber">{formData.category}</span>
               <span className="pill">{formData.stage}</span>
             </div>
 
-            <h2 style={{ fontSize: '26px', fontWeight: 900, margin: '0 0 6px' }}>{formData.title || 'Untitled Project'}</h2>
-            <p style={{ color: '#2563eb', fontWeight: 600, fontSize: '15px', margin: '0 0 16px' }}>{formData.shortDescription}</p>
+            <h2 style={{ fontSize: "26px", fontWeight: 900, margin: "0 0 6px" }}>
+              {formData.title || "Untitled Project"}
+            </h2>
+            <p style={{ color: "#2563eb", fontWeight: 600, fontSize: "15px", margin: "0 0 16px" }}>
+              {formData.shortDescription}
+            </p>
 
-            <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
-              <strong style={{ display: 'block', fontSize: '13px', color: '#0f172a' }}>Problem Statement:</strong>
-              <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#475569' }}>{formData.problemStatement || 'Not specified'}</p>
+            <div
+              style={{
+                background: "#f8fafc",
+                padding: "16px",
+                borderRadius: "10px",
+                border: "1px solid #e2e8f0",
+                marginBottom: "20px",
+              }}
+            >
+              <strong style={{ display: "block", fontSize: "13px", color: "#0f172a" }}>
+                Problem Statement:
+              </strong>
+              <p style={{ margin: "4px 0 0", fontSize: "14px", color: "#475569" }}>
+                {formData.problemStatement || "Not specified"}
+              </p>
             </div>
 
-            <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0', marginBottom: '24px' }}>
-              <strong style={{ display: 'block', fontSize: '13px', color: '#0f172a' }}>Proposed Solution:</strong>
-              <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#475569' }}>{formData.proposedSolution || 'Not specified'}</p>
+            <div
+              style={{
+                background: "#f8fafc",
+                padding: "16px",
+                borderRadius: "10px",
+                border: "1px solid #e2e8f0",
+                marginBottom: "24px",
+              }}
+            >
+              <strong style={{ display: "block", fontSize: "13px", color: "#0f172a" }}>
+                Proposed Solution:
+              </strong>
+              <p style={{ margin: "4px 0 0", fontSize: "14px", color: "#475569" }}>
+                {formData.proposedSolution || "Not specified"}
+              </p>
             </div>
 
             <button
               onClick={() => setShowPreviewModal(false)}
               className="btn btn-outline btn-sm"
-              style={{ width: '100%', justifyContent: 'center' }}
+              style={{ width: "100%", justifyContent: "center" }}
             >
               Close Preview
             </button>

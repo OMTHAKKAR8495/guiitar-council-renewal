@@ -1,88 +1,88 @@
-import React, { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { Sun, Moon, Laptop } from 'lucide-react';
+import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { Sun, Moon, Laptop } from "lucide-react";
 
-export type Theme = 'light' | 'dark' | 'system';
+export type Theme = "light" | "dark" | "system";
 
 interface ThemeContextType {
   theme: Theme;
-  resolvedTheme: 'light' | 'dark';
+  resolvedTheme: "light" | "dark";
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-const THEME_STORAGE_KEY = 'guiitar_theme';
+const THEME_STORAGE_KEY = "guiitar_theme";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('system');
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setThemeState] = useState<Theme>("system");
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
 
   // Load stored theme on mount
   useEffect(() => {
     try {
       const stored = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
-      if (stored === 'light' || stored === 'dark' || stored === 'system') {
+      if (stored === "light" || stored === "dark" || stored === "system") {
         setThemeState(stored);
       } else {
-        setThemeState('system');
+        setThemeState("system");
       }
     } catch {
-      setThemeState('system');
+      setThemeState("system");
     }
   }, []);
 
   // Sync class on <html> and update resolvedTheme
   useEffect(() => {
     const root = document.documentElement;
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
     const applyTheme = () => {
       let isDark = false;
-      if (theme === 'dark') {
+      if (theme === "dark") {
         isDark = true;
-      } else if (theme === 'light') {
+      } else if (theme === "light") {
         isDark = false;
       } else {
         isDark = mediaQuery.matches;
       }
 
       if (isDark) {
-        root.classList.add('dark');
-        setResolvedTheme('dark');
+        root.classList.add("dark");
+        setResolvedTheme("dark");
       } else {
-        root.classList.remove('dark');
-        setResolvedTheme('light');
+        root.classList.remove("dark");
+        setResolvedTheme("light");
       }
     };
 
     applyTheme();
 
     const handleChange = () => {
-      if (theme === 'system') {
+      if (theme === "system") {
         applyTheme();
       }
     };
 
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, [theme]);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
     try {
       localStorage.setItem(THEME_STORAGE_KEY, newTheme);
-      window.dispatchEvent(new Event('guiitar_theme_change'));
+      window.dispatchEvent(new Event("guiitar_theme_change"));
     } catch (e) {
-      console.warn('Unable to persist theme:', e);
+      console.warn("Unable to persist theme:", e);
     }
   };
 
   const toggleTheme = () => {
-    if (resolvedTheme === 'dark') {
-      setTheme('light');
+    if (resolvedTheme === "dark") {
+      setTheme("light");
     } else {
-      setTheme('dark');
+      setTheme("dark");
     }
   };
 
@@ -98,8 +98,8 @@ export function useTheme() {
   if (!context) {
     // Fallback if rendered outside provider
     return {
-      theme: 'light' as Theme,
-      resolvedTheme: 'light' as const,
+      theme: "light" as Theme,
+      resolvedTheme: "light" as const,
       setTheme: () => {},
       toggleTheme: () => {},
     };
@@ -108,13 +108,13 @@ export function useTheme() {
 }
 
 export function ThemeToggle({
-  className = '',
+  className = "",
   showLabel = false,
-  variant = 'icon',
+  variant = "icon",
 }: {
   className?: string;
   showLabel?: boolean;
-  variant?: 'icon' | 'dropdown' | 'segmented';
+  variant?: "icon" | "dropdown" | "segmented";
 }) {
   const { theme, resolvedTheme, setTheme, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -140,13 +140,17 @@ export function ThemeToggle({
     );
   }
 
-  if (variant === 'segmented') {
+  if (variant === "segmented") {
     return (
-      <div className={`theme-segmented-control ${className}`} role="radiogroup" aria-label="Theme selection">
+      <div
+        className={`theme-segmented-control ${className}`}
+        role="radiogroup"
+        aria-label="Theme selection"
+      >
         <button
           type="button"
-          onClick={() => setTheme('light')}
-          className={`theme-seg-btn ${theme === 'light' ? 'active' : ''}`}
+          onClick={() => setTheme("light")}
+          className={`theme-seg-btn ${theme === "light" ? "active" : ""}`}
           title="Light Theme"
           aria-label="Light Theme"
         >
@@ -155,8 +159,8 @@ export function ThemeToggle({
         </button>
         <button
           type="button"
-          onClick={() => setTheme('dark')}
-          className={`theme-seg-btn ${theme === 'dark' ? 'active' : ''}`}
+          onClick={() => setTheme("dark")}
+          className={`theme-seg-btn ${theme === "dark" ? "active" : ""}`}
           title="Dark Theme"
           aria-label="Dark Theme"
         >
@@ -165,8 +169,8 @@ export function ThemeToggle({
         </button>
         <button
           type="button"
-          onClick={() => setTheme('system')}
-          className={`theme-seg-btn ${theme === 'system' ? 'active' : ''}`}
+          onClick={() => setTheme("system")}
+          className={`theme-seg-btn ${theme === "system" ? "active" : ""}`}
           title="System Preference"
           aria-label="System Theme"
         >
@@ -177,7 +181,7 @@ export function ThemeToggle({
     );
   }
 
-  if (variant === 'dropdown') {
+  if (variant === "dropdown") {
     return (
       <div className="relative inline-block text-left">
         <button
@@ -187,32 +191,27 @@ export function ThemeToggle({
           aria-label="Select theme"
           title={`Current theme: ${theme} (${resolvedTheme})`}
         >
-          {resolvedTheme === 'dark' ? (
+          {resolvedTheme === "dark" ? (
             <Moon className="w-4 h-4 text-amber-400" />
           ) : (
             <Sun className="w-4 h-4 text-amber-500" />
           )}
           {showLabel && (
-            <span className="text-xs font-semibold capitalize ml-1.5 text-foreground">
-              {theme}
-            </span>
+            <span className="text-xs font-semibold capitalize ml-1.5 text-foreground">{theme}</span>
           )}
         </button>
 
         {open && (
           <>
-            <div
-              className="fixed inset-0 z-40"
-              onClick={() => setOpen(false)}
-            />
+            <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
             <div className="theme-dropdown-menu">
               <button
                 type="button"
                 onClick={() => {
-                  setTheme('light');
+                  setTheme("light");
                   setOpen(false);
                 }}
-                className={`theme-dropdown-item ${theme === 'light' ? 'active' : ''}`}
+                className={`theme-dropdown-item ${theme === "light" ? "active" : ""}`}
               >
                 <Sun className="w-4 h-4 text-amber-500" />
                 <span>Light</span>
@@ -220,10 +219,10 @@ export function ThemeToggle({
               <button
                 type="button"
                 onClick={() => {
-                  setTheme('dark');
+                  setTheme("dark");
                   setOpen(false);
                 }}
-                className={`theme-dropdown-item ${theme === 'dark' ? 'active' : ''}`}
+                className={`theme-dropdown-item ${theme === "dark" ? "active" : ""}`}
               >
                 <Moon className="w-4 h-4 text-indigo-400" />
                 <span>Dark</span>
@@ -231,10 +230,10 @@ export function ThemeToggle({
               <button
                 type="button"
                 onClick={() => {
-                  setTheme('system');
+                  setTheme("system");
                   setOpen(false);
                 }}
-                className={`theme-dropdown-item ${theme === 'system' ? 'active' : ''}`}
+                className={`theme-dropdown-item ${theme === "system" ? "active" : ""}`}
               >
                 <Laptop className="w-4 h-4 text-slate-400" />
                 <span>System</span>
@@ -252,20 +251,18 @@ export function ThemeToggle({
       type="button"
       onClick={toggleTheme}
       className={`theme-toggle-btn ${className}`}
-      aria-label={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
-      title={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode (current: ${theme})`}
+      aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
+      title={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode (current: ${theme})`}
     >
       <div className="theme-toggle-icon-wrap">
-        {resolvedTheme === 'dark' ? (
+        {resolvedTheme === "dark" ? (
           <Moon className="w-4 h-4 theme-icon-moon" />
         ) : (
           <Sun className="w-4 h-4 theme-icon-sun" />
         )}
       </div>
       {showLabel && (
-        <span className="theme-toggle-label">
-          {resolvedTheme === 'dark' ? 'Dark' : 'Light'}
-        </span>
+        <span className="theme-toggle-label">{resolvedTheme === "dark" ? "Dark" : "Light"}</span>
       )}
     </button>
   );

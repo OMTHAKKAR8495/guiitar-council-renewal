@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { useState, useMemo, useEffect } from 'react';
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, useMemo, useEffect } from "react";
 import {
   Lightbulb,
   Cpu,
@@ -20,57 +20,57 @@ import {
   Search,
   Filter,
   ExternalLink,
-} from 'lucide-react';
-import { PageHero, SectionTitle, ButtonLink } from '@/components/site';
+} from "lucide-react";
+import { PageHero, SectionTitle, ButtonLink } from "@/components/site";
 import {
   SHOWCASE_PROJECTS,
   LAB_FACILITIES,
   INNOVATION_JOURNEY,
   type ShowcaseProject,
-} from '@/lib/data';
-import { AdminDataStore, type IdeaItem } from '@/lib/adminStore';
+} from "@/lib/data";
+import { AdminDataStore, type IdeaItem } from "@/lib/adminStore";
 
-export const Route = createFileRoute('/innovation')({
+export const Route = createFileRoute("/innovation")({
   head: () => ({
     meta: [
-      { title: 'Innovation & Research Hub — GUIITAR Council | GSFC University' },
+      { title: "Innovation & Research Hub — GUIITAR Council | GSFC University" },
       {
-        name: 'description',
+        name: "description",
         content:
-          'Explore student innovations, 13 thrust areas, advanced prototyping laboratories, patents, and deep-tech research breakthroughs at GUIITAR Council.',
+          "Explore student innovations, 13 thrust areas, advanced prototyping laboratories, patents, and deep-tech research breakthroughs at GUIITAR Council.",
       },
-      { property: 'og:title', content: 'Innovation & Research Hub — GUIITAR Council' },
+      { property: "og:title", content: "Innovation & Research Hub — GUIITAR Council" },
       {
-        property: 'og:description',
-        content: 'From laboratory proof-of-concept to patented technology solutions.',
+        property: "og:description",
+        content: "From laboratory proof-of-concept to patented technology solutions.",
       },
-      { property: 'og:type', content: 'website' },
-      { name: 'twitter:card', content: 'summary_large_image' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: InnovationPage,
 });
 
 const thrust = [
-  ['Agriculture & Allied Fields', Leaf],
-  ['Artificial Intelligence & Robotics', Bot],
-  ['Biotechnology & Life Sciences', Dna],
-  ['Clean-Tech & Circular Economy', Leaf],
-  ['Cyber Security & Network Defense', ShieldCheck],
-  ['Renewable Energy & Power Systems', Zap],
-  ['Environmental Engineering Solutions', Leaf],
-  ['Healthcare & Biomedical Devices', HeartPulse],
-  ['Information & Communication Tech (ICT)', Wifi],
-  ['Internet of Things (IoT) & Embedded', Cpu],
-  ['Advanced Manufacturing & Materials', Factory],
-  ['Deep-Tech Services & Automation', Bot],
-  ['Water & Wastewater Treatment Tech', Droplets],
+  ["Agriculture & Allied Fields", Leaf],
+  ["Artificial Intelligence & Robotics", Bot],
+  ["Biotechnology & Life Sciences", Dna],
+  ["Clean-Tech & Circular Economy", Leaf],
+  ["Cyber Security & Network Defense", ShieldCheck],
+  ["Renewable Energy & Power Systems", Zap],
+  ["Environmental Engineering Solutions", Leaf],
+  ["Healthcare & Biomedical Devices", HeartPulse],
+  ["Information & Communication Tech (ICT)", Wifi],
+  ["Internet of Things (IoT) & Embedded", Cpu],
+  ["Advanced Manufacturing & Materials", Factory],
+  ["Deep-Tech Services & Automation", Bot],
+  ["Water & Wastewater Treatment Tech", Droplets],
 ] as const;
 
 export function InnovationPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeLabId, setActiveLabId] = useState('param-shavak');
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeLabId, setActiveLabId] = useState("param-shavak");
   const [publishedIdeas, setPublishedIdeas] = useState<IdeaItem[]>([]);
 
   const reloadPublished = () => {
@@ -80,11 +80,11 @@ export function InnovationPage() {
   useEffect(() => {
     reloadPublished();
     const handleUpdate = () => reloadPublished();
-    window.addEventListener('guiitar_store_update', handleUpdate);
-    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+    window.addEventListener("guiitar_store_update", handleUpdate);
+    return () => window.removeEventListener("guiitar_store_update", handleUpdate);
   }, []);
 
-  const categories = ['All', 'AI', 'Robotics', 'IoT', 'Biotech', 'CleanTech'];
+  const categories = ["All", "AI", "Robotics", "IoT", "Biotech", "CleanTech"];
 
   // Combined published ideas and legacy showcase projects
   const allProjects = useMemo(() => {
@@ -99,13 +99,13 @@ export function InnovationPage() {
       creator: i.creatorName,
       description: i.shortDescription || i.detailedDescription,
       impact: i.expectedImpact,
-      fundingSanctioned: i.fundingSanctioned || 'SSIP 2.0 Evaluated',
+      fundingSanctioned: i.fundingSanctioned || "SSIP 2.0 Evaluated",
       isFromStore: true,
     }));
 
     // Legacy projects that aren't duplicate slugs
     const fromLegacy = SHOWCASE_PROJECTS.filter(
-      (p) => !fromStore.some((s) => s.slug === p.id || s.name === p.name)
+      (p) => !fromStore.some((s) => s.slug === p.id || s.name === p.name),
     ).map((p) => ({
       ...p,
       slug: p.id,
@@ -118,7 +118,7 @@ export function InnovationPage() {
   const filteredProjects = useMemo(() => {
     return allProjects.filter((p) => {
       const matchCat =
-        selectedCategory === 'All' ||
+        selectedCategory === "All" ||
         p.category.toLowerCase().includes(selectedCategory.toLowerCase());
       const matchQuery = `${p.name} ${p.description} ${p.technology} ${p.creator}`
         .toLowerCase()
@@ -129,7 +129,7 @@ export function InnovationPage() {
 
   const currentLab = useMemo(
     () => LAB_FACILITIES.find((l) => l.id === activeLabId) || LAB_FACILITIES[0],
-    [activeLabId]
+    [activeLabId],
   );
 
   return (
@@ -184,45 +184,68 @@ export function InnovationPage() {
             {LAB_FACILITIES.map((lab) => (
               <button
                 key={lab.id}
-                className={`tab ${activeLabId === lab.id ? 'active' : ''}`}
+                className={`tab ${activeLabId === lab.id ? "active" : ""}`}
                 onClick={() => setActiveLabId(lab.id)}
               >
-                {lab.name.split(' (')[0]}
+                {lab.name.split(" (")[0]}
               </button>
             ))}
           </div>
 
           <div
             style={{
-              background: '#ffffff',
-              border: '1px solid #e2e8f0',
-              borderRadius: '20px',
-              padding: '40px',
-              boxShadow: 'var(--shadow-md)',
-              display: 'grid',
-              gridTemplateColumns: '1.2fr 0.8fr',
-              gap: '40px',
+              background: "#ffffff",
+              border: "1px solid #e2e8f0",
+              borderRadius: "20px",
+              boxShadow: "var(--shadow-md)",
             }}
             className="lab-showcase-split"
           >
             <div>
-              <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '12px' }}>
+              <div
+                style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "12px" }}
+              >
                 <span className="pill">{currentLab.zone}</span>
-                <span style={{ fontSize: '13px', fontWeight: 700, color: '#059669' }}>GSFC University Official Facility</span>
+                <span style={{ fontSize: "13px", fontWeight: 700, color: "#059669" }}>
+                  GSFC University Official Facility
+                </span>
               </div>
 
-              <h3 style={{ fontSize: '28px', fontWeight: 800, margin: '0 0 8px' }}>{currentLab.name}</h3>
-              <p style={{ fontSize: '16px', fontWeight: 600, color: '#2563eb', margin: '0 0 16px' }}>{currentLab.headline}</p>
+              <h3 style={{ fontSize: "28px", fontWeight: 800, margin: "0 0 8px" }}>
+                {currentLab.name}
+              </h3>
+              <p
+                style={{ fontSize: "16px", fontWeight: 600, color: "#2563eb", margin: "0 0 16px" }}
+              >
+                {currentLab.headline}
+              </p>
 
-              <p style={{ color: '#475569', fontSize: '15px', lineHeight: 1.65, marginBottom: '24px' }}>
+              <p
+                style={{
+                  color: "#475569",
+                  fontSize: "15px",
+                  lineHeight: 1.65,
+                  marginBottom: "24px",
+                }}
+              >
                 {currentLab.description}
               </p>
 
-              <div style={{ marginBottom: '24px' }}>
-                <h4 style={{ fontSize: '15px', fontWeight: 800, color: '#0f172a', marginBottom: '10px' }}>
+              <div style={{ marginBottom: "24px" }}>
+                <h4
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: 800,
+                    color: "#0f172a",
+                    marginBottom: "10px",
+                  }}
+                >
                   Available Equipment & Infrastructure:
                 </h4>
-                <ul className="list" style={{ paddingLeft: '20px', fontSize: '14.5px', color: '#334155' }}>
+                <ul
+                  className="list"
+                  style={{ paddingLeft: "20px", fontSize: "14.5px", color: "#334155" }}
+                >
                   {currentLab.equipment.map((eq) => (
                     <li key={eq}>{eq}</li>
                   ))}
@@ -237,31 +260,68 @@ export function InnovationPage() {
 
             <div
               style={{
-                background: '#f8fafc',
-                border: '1px solid #e2e8f0',
-                borderRadius: '16px',
-                padding: '28px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
+                background: "#f8fafc",
+                border: "1px solid #e2e8f0",
+                borderRadius: "16px",
+                padding: "28px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
               }}
             >
               <div>
-                <h4 style={{ fontSize: '15px', fontWeight: 800, color: '#0f172a', marginBottom: '12px' }}>
+                <h4
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: 800,
+                    color: "#0f172a",
+                    marginBottom: "12px",
+                  }}
+                >
                   Target Use Cases:
                 </h4>
-                <ul className="list" style={{ paddingLeft: '18px', fontSize: '14px', color: '#475569', marginBottom: '24px' }}>
+                <ul
+                  className="list"
+                  style={{
+                    paddingLeft: "18px",
+                    fontSize: "14px",
+                    color: "#475569",
+                    marginBottom: "24px",
+                  }}
+                >
                   {currentLab.useCases.map((u) => (
                     <li key={u}>{u}</li>
                   ))}
                 </ul>
               </div>
 
-              <div style={{ background: '#ffffff', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
-                <span style={{ display: 'block', fontSize: '12px', fontWeight: 800, textTransform: 'uppercase', color: '#64748b' }}>
+              <div
+                style={{
+                  background: "#ffffff",
+                  padding: "16px",
+                  borderRadius: "10px",
+                  border: "1px solid #e2e8f0",
+                }}
+              >
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: "12px",
+                    fontWeight: 800,
+                    textTransform: "uppercase",
+                    color: "#64748b",
+                  }}
+                >
                   Authorized Users:
                 </span>
-                <p style={{ margin: '4px 0 0', fontSize: '13.5px', color: '#0f172a', fontWeight: 600 }}>
+                <p
+                  style={{
+                    margin: "4px 0 0",
+                    fontSize: "13.5px",
+                    color: "#0f172a",
+                    fontWeight: 600,
+                  }}
+                >
                   {currentLab.whoCanAccess}
                 </p>
               </div>
@@ -294,7 +354,7 @@ export function InnovationPage() {
             {categories.map((c) => (
               <button
                 key={c}
-                className={`tab ${selectedCategory === c ? 'active' : ''}`}
+                className={`tab ${selectedCategory === c ? "active" : ""}`}
                 onClick={() => setSelectedCategory(c)}
               >
                 {c}
@@ -308,67 +368,108 @@ export function InnovationPage() {
                 key={p.id}
                 className="plain-card"
                 style={{
-                  padding: '30px 26px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  height: '100%',
+                  padding: "30px 26px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  height: "100%",
                 }}
               >
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginBottom: "14px",
+                    }}
+                  >
                     <span className="pill amber">{p.category}</span>
                     <span className="startup-grant-tag">{p.fundingSanctioned}</span>
                   </div>
 
-                  <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '0 0 8px', color: '#0f172a' }}>
+                  <h3
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: 800,
+                      margin: "0 0 8px",
+                      color: "#0f172a",
+                    }}
+                  >
                     <Link
                       to="/innovation/$slug"
                       params={{ slug: p.slug }}
-                      style={{ color: '#0f172a', textDecoration: 'none' }}
+                      style={{ color: "#0f172a", textDecoration: "none" }}
                     >
                       {p.name}
                     </Link>
                   </h3>
 
-                  <span style={{ fontSize: '13px', color: '#2563eb', fontWeight: 700, display: 'block', marginBottom: '10px' }}>
+                  <span
+                    style={{
+                      fontSize: "13px",
+                      color: "#2563eb",
+                      fontWeight: 700,
+                      display: "block",
+                      marginBottom: "10px",
+                    }}
+                  >
                     {p.technology}
                   </span>
 
-                  <p style={{ color: '#475569', fontSize: '14px', lineHeight: 1.6, marginBottom: '18px' }}>
+                  <p
+                    style={{
+                      color: "#475569",
+                      fontSize: "14px",
+                      lineHeight: 1.6,
+                      marginBottom: "18px",
+                    }}
+                  >
                     {p.description}
                   </p>
 
                   <div
                     style={{
-                      background: '#f8fafc',
-                      padding: '12px 14px',
-                      borderRadius: '8px',
-                      border: '1px solid #e2e8f0',
-                      fontSize: '13px',
-                      color: '#334155',
-                      marginBottom: '18px',
+                      background: "#f8fafc",
+                      padding: "12px 14px",
+                      borderRadius: "8px",
+                      border: "1px solid #e2e8f0",
+                      fontSize: "13px",
+                      color: "#334155",
+                      marginBottom: "18px",
                     }}
                   >
-                    <strong style={{ color: '#0f172a', display: 'block', marginBottom: '2px' }}>Impact Milestone:</strong>
+                    <strong style={{ color: "#0f172a", display: "block", marginBottom: "2px" }}>
+                      Impact Milestone:
+                    </strong>
                     {p.impact}
                   </div>
                 </div>
 
-                <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '12px', color: '#64748b' }}>{p.creator}</span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span className="pill emerald" style={{ fontSize: '11px' }}>{p.stage}</span>
+                <div
+                  style={{
+                    borderTop: "1px solid #f1f5f9",
+                    paddingTop: "14px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <span style={{ fontSize: "12px", color: "#64748b" }}>{p.creator}</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    <span className="pill emerald" style={{ fontSize: "11px" }}>
+                      {p.stage}
+                    </span>
                     <Link
                       to="/innovation/$slug"
                       params={{ slug: p.slug }}
                       style={{
-                        fontSize: '12px',
+                        fontSize: "12px",
                         fontWeight: 700,
-                        color: '#2563eb',
-                        display: 'flex',
-                        alignItems: 'center',
-                        textDecoration: 'none',
+                        color: "#2563eb",
+                        display: "flex",
+                        alignItems: "center",
+                        textDecoration: "none",
                       }}
                     >
                       <span>Profile</span>
@@ -381,14 +482,16 @@ export function InnovationPage() {
           </div>
 
           {filteredProjects.length === 0 && (
-            <div className="center" style={{ padding: '60px 20px', color: '#64748b' }}>
-              <p style={{ fontSize: '18px', fontWeight: 600 }}>No innovations found matching "{searchQuery}"</p>
+            <div className="center" style={{ padding: "60px 20px", color: "#64748b" }}>
+              <p style={{ fontSize: "18px", fontWeight: 600 }}>
+                No innovations found matching "{searchQuery}"
+              </p>
               <button
                 className="btn btn-outline btn-sm"
-                style={{ marginTop: '14px' }}
+                style={{ marginTop: "14px" }}
                 onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('All');
+                  setSearchQuery("");
+                  setSelectedCategory("All");
                 }}
               >
                 Reset Filters

@@ -1,6 +1,6 @@
-import { type SVGProps } from 'react';
+import { type SVGProps } from "react";
 
-export function GuiitarEmblem({ className = 'w-10 h-10', ...props }: SVGProps<SVGSVGElement>) {
+export function GuiitarEmblem({ className = "w-10 h-10", ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 100 100"
@@ -18,15 +18,9 @@ export function GuiitarEmblem({ className = 'w-10 h-10', ...props }: SVGProps<SV
         strokeLinejoin="round"
       />
       {/* Green layer */}
-      <path
-        d="M26 23 L74 23 L62 38 L38 38 L26 23 Z"
-        fill="#65A30D"
-      />
+      <path d="M26 23 L74 23 L62 38 L38 38 L26 23 Z" fill="#65A30D" />
       {/* Yellow Beaker / Liquid Fill */}
-      <path
-        d="M22 50 L38 38 L62 38 L78 50 L68 76 L32 76 Z"
-        fill="#EAB308"
-      />
+      <path d="M22 50 L38 38 L62 38 L78 50 L68 76 L32 76 Z" fill="#EAB308" />
       {/* Liquid Bubbles */}
       <circle cx="38" cy="44" r="2" fill="#CA8A04" />
       <circle cx="45" cy="40" r="1.5" fill="#CA8A04" />
@@ -34,19 +28,13 @@ export function GuiitarEmblem({ className = 'w-10 h-10', ...props }: SVGProps<SV
       <circle cx="58" cy="42" r="1.5" fill="#CA8A04" />
       <circle cx="42" cy="48" r="1.8" fill="#CA8A04" />
       {/* G Shape inner cut & orange corner */}
-      <path
-        d="M50 50 L84 50 L84 76 L50 76 Z"
-        fill="#EA580C"
-      />
-      <path
-        d="M52 52 L78 52 L68 70 L52 70 Z"
-        fill="#F97316"
-      />
+      <path d="M50 50 L84 50 L84 76 L50 76 Z" fill="#EA580C" />
+      <path d="M52 52 L78 52 L68 70 L52 70 Z" fill="#F97316" />
     </svg>
   );
 }
 
-export function GuiitarFullLogo({ className = 'h-12', ...props }: SVGProps<SVGSVGElement>) {
+export function GuiitarFullLogo({ className = "h-12", ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 320 80"
@@ -66,28 +54,27 @@ export function GuiitarFullLogo({ className = 'h-12', ...props }: SVGProps<SVGSV
           strokeLinejoin="round"
         />
         {/* Top Green Accent */}
-        <path
-          d="M23 18 L61 18 L51 30 L33 30 Z"
-          fill="#65A30D"
-        />
+        <path d="M23 18 L61 18 L51 30 L33 30 Z" fill="#65A30D" />
         {/* Yellow Liquid Base */}
-        <path
-          d="M20 40 L33 30 L51 30 L64 40 L56 62 L28 62 Z"
-          fill="#EAB308"
-        />
+        <path d="M20 40 L33 30 L51 30 L64 40 L56 62 L28 62 Z" fill="#EAB308" />
         {/* Bubbles */}
         <circle cx="34" cy="35" r="1.8" fill="#CA8A04" />
         <circle cx="40" cy="32" r="1.3" fill="#CA8A04" />
         <circle cx="46" cy="36" r="2" fill="#CA8A04" />
         {/* Orange right wing */}
-        <path
-          d="M44 40 L70 40 L70 62 L44 62 Z"
-          fill="#EA580C"
-        />
+        <path d="M44 40 L70 40 L70 62 L44 62 Z" fill="#EA580C" />
       </g>
 
       {/* Divider */}
-      <line x1="90" y1="12" x2="90" y2="68" stroke="currentColor" strokeWidth="2" className="text-slate-300 dark:text-slate-700" />
+      <line
+        x1="90"
+        y1="12"
+        x2="90"
+        y2="68"
+        stroke="currentColor"
+        strokeWidth="2"
+        className="text-slate-300 dark:text-slate-700"
+      />
 
       {/* Text: GUIITAR */}
       <text
@@ -120,10 +107,7 @@ export function GuiitarFullLogo({ className = 'h-12', ...props }: SVGProps<SVGSV
 
 export function StickyBackgroundWatermark() {
   return (
-    <div
-      className="page-background-watermark"
-      aria-hidden="true"
-    >
+    <div className="page-background-watermark" aria-hidden="true">
       <img
         src="/guiitar-council-logo.png"
         alt=""

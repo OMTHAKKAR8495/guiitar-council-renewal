@@ -1,6 +1,6 @@
-import { useState, type ReactNode } from 'react';
-import { ChevronDown, ChevronRight, CheckCircle2, ArrowRight } from 'lucide-react';
-import { Link } from '@tanstack/react-router';
+import { useState, type ReactNode } from "react";
+import { ChevronDown, ChevronRight, CheckCircle2, ArrowRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export function IconCard({
   icon,
@@ -16,7 +16,11 @@ export function IconCard({
   return (
     <article className="icon-card">
       <div className="icon-box">{icon}</div>
-      {tag && <span className="pill" style={{ width: 'fit-content', marginBottom: '12px' }}>{tag}</span>}
+      {tag && (
+        <span className="pill" style={{ width: "fit-content", marginBottom: "12px" }}>
+          {tag}
+        </span>
+      )}
       <h3>{title}</h3>
       <p>{text}</p>
     </article>
@@ -27,9 +31,9 @@ export function FundingCard({
   title,
   text,
   amount,
-  badge = 'Grant Scheme',
+  badge = "Grant Scheme",
   features,
-  link = '/funding',
+  link = "/funding",
 }: {
   title: string;
   text: string;
@@ -67,23 +71,16 @@ export function FundingCard({
   );
 }
 
-export function Accordion({
-  items,
-}: {
-  items: { q: string; a: string; category?: string }[];
-}) {
+export function Accordion({ items }: { items: { q: string; a: string; category?: string }[] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <div className="accordion">
       {items.map((item, i) => (
-        <div className={`accordion-item ${open === i ? 'active' : ''}`} key={item.q}>
-          <button
-            onClick={() => setOpen(open === i ? null : i)}
-            aria-expanded={open === i}
-          >
+        <div className={`accordion-item ${open === i ? "active" : ""}`} key={item.q}>
+          <button onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}>
             <span>{item.q}</span>
-            <ChevronDown className={`accordion-chevron ${open === i ? 'rotate' : ''}`} />
+            <ChevronDown className={`accordion-chevron ${open === i ? "rotate" : ""}`} />
           </button>
           {open === i && (
             <div className="accordion-content">
@@ -98,10 +95,10 @@ export function Accordion({
 
 export function Pill({
   children,
-  variant = 'blue',
+  variant = "blue",
 }: {
   children: ReactNode;
-  variant?: 'blue' | 'emerald' | 'amber' | 'purple';
+  variant?: "blue" | "emerald" | "amber" | "purple";
 }) {
   return <span className={`pill ${variant}`}>{children}</span>;
 }
