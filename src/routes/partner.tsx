@@ -154,17 +154,31 @@ const steps = [
   },
 ];
 
-const partners = [
-  { name: 'GSFC LTD', type: 'Parent Industrial Corporation', category: 'Corporate' },
-  { name: 'GSFC University', type: 'Academic & Research Foundation', category: 'Academic' },
-  { name: 'DST Gujarat', type: 'Department of Science & Technology', category: 'Government' },
-  { name: 'NASSCOM', type: 'Premier Tech Trade Association', category: 'Industry Body' },
-  { name: 'iCreate', type: 'International Center for Innovation', category: 'Incubator' },
-  { name: 'AIC-GISC', type: 'Atal Incubation Center', category: 'Incubator' },
-];
+import { useEffect, useMemo } from 'react';
+import { AdminDataStore, type PartnerItem } from '@/lib/adminStore';
 
 function Partner() {
-  const [partnerFormSent, setPartnerFormSent] = useState(false);
+  const [storePartners, setStorePartners] = useState<PartnerItem[]>([]);
+
+  const loadPartners = () => {
+    setStorePartners(AdminDataStore.getPartners());
+  };
+
+  useEffect(() => {
+    loadPartners();
+    const handleUpdate = () => loadPartners();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
+
+  const partners = useMemo(() => {
+    if (storePartners.length === 0) return [];
+    return storePartners.map((p) => ({
+      name: p.name,
+      type: p.scope,
+      category: p.category,
+    }));
+  }, [storePartners]);
 
   return (
     <>

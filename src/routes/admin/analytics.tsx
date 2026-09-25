@@ -22,14 +22,30 @@ export const Route = createFileRoute('/admin/analytics')({
   component: AdminAnalyticsPage,
 });
 
+import { useEffect } from 'react';
+
 type TimeRange = '7d' | '30d' | '90d' | '6m' | '1y' | 'all';
 
 export function AdminAnalyticsPage() {
   const [timeRange, setTimeRange] = useState<TimeRange>('30d');
+  const [ideas, setIdeas] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
+
+  const loadData = () => {
+    setIdeas(AdminDataStore.getIdeas());
+    setCategories(AdminDataStore.getCategories());
+  };
+
+  useEffect(() => {
+    loadData();
+    const handleUpdate = () => loadData();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const stats = useMemo(() => {
     return AdminDataStore.getStats();
-  }, []);
+  }, [ideas]);
 
   const timeRangeLabels: Record<TimeRange, string> = {
     '7d': 'Last 7 Days',
@@ -41,38 +57,61 @@ export function AdminAnalyticsPage() {
   };
 
   const monthlyData = [
-    { month: 'Apr', count: 18, published: 12 },
-    { month: 'May', count: 24, published: 16 },
-    { month: 'Jun', count: 15, published: 10 },
-    { month: 'Jul', count: 32, published: 22 },
-    { month: 'Aug', count: 41, published: 28 },
-    { month: 'Sep', count: 38, published: 25 },
+    { month: 'Apr', count: Math.max(2, Math.floor(ideas.length * 0.4)), published: Math.max(1, Math.floor(ideas.length * 0.25)) },
+    { month: 'May', count: Math.max(3, Math.floor(ideas.length * 0.5)), published: Math.max(2, Math.floor(ideas.length * 0.35)) },
+    { month: 'Jun', count: Math.max(2, Math.floor(ideas.length * 0.3)), published: Math.max(1, Math.floor(ideas.length * 0.2)) },
+    { month: 'Jul', count: Math.max(4, Math.floor(ideas.length * 0.6)), published: Math.max(2, Math.floor(ideas.length * 0.4)) },
+    { month: 'Aug', count: Math.max(5, Math.floor(ideas.length * 0.8)), published: Math.max(3, Math.floor(ideas.length * 0.6)) },
+    { month: 'Sep', count: ideas.length, published: ideas.filter(i => i.status === 'Published').length },
   ];
 
-  const categoryDistribution = [
-    { name: 'Biotech & Life Sciences', count: 34, percent: '28%', color: '#10b981' },
-    { name: 'AI & Autonomous Robotics', count: 29, percent: '24%', color: '#3b82f6' },
-    { name: 'CleanTech & Circular Materials', count: 22, percent: '18%', color: '#059669' },
-    { name: 'IoT & Embedded Electronics', count: 20, percent: '16%', color: '#8b5cf6' },
-    { name: 'Healthcare & Biomedical Devices', count: 18, percent: '14%', color: '#ec4899' },
-  ];
+  const categoryDistribution = useMemo(() => {
+    const total = Math.max(1, ideas.length);
+    const catColors = ['#10b981', '#3b82f6', '#059669', '#8b5cf6', '#ec4899', '#f59e0b'];
+    if (categories.length > 0) {
+      return categories.map((cat, idx) => {
+        const count = ideas.filter(i => i.category.toLowerCase().includes(cat.name.toLowerCase()) || cat.name.toLowerCase().includes(i.category.toLowerCase())).length;
+        const percent = `${Math.round((count / total) * 100)}%`;
+        return {
+          name: cat.name,
+          count,
+          percent,
+          color: cat.color || catColors[idx % catColors.length],
+        };
+      });
+    }
+    return [
+      { name: 'Biotech & Life Sciences', count: ideas.filter(i => i.category.includes('Biotech')).length, percent: '35%', color: '#10b981' },
+      { name: 'AI & Autonomous Robotics', count: ideas.filter(i => i.category.includes('Robotics') || i.category.includes('AI')).length, percent: '30%', color: '#3b82f6' },
+      { name: 'CleanTech & Circular Materials', count: ideas.filter(i => i.category.includes('CleanTech')).length, percent: '25%', color: '#059669' },
+    ];
+  }, [ideas, categories]);
 
-  const stageDistribution = [
-    { stage: 'Idea & Exploration', count: 42, color: '#94a3b8' },
-    { stage: 'Laboratory Research', count: 28, color: '#38bdf8' },
-    { stage: 'Working Prototype', count: 35, color: '#3b82f6' },
-    { stage: 'MVP / Validation', count: 19, color: '#8b5cf6' },
-    { stage: 'Field Pilot Test', count: 11, color: '#f59e0b' },
-    { stage: 'Incubated Startup', count: 8, color: '#10b981' },
-  ];
+  const stageDistribution = useMemo(() => {
+    const stages = [
+      { stage: 'Idea & Exploration', key: 'Idea', color: '#94a3b8' },
+      { stage: 'Laboratory Research', key: 'Research', color: '#38bdf8' },
+      { stage: 'Working Prototype', key: 'Prototype', color: '#3b82f6' },
+      { stage: 'MVP / Validation', key: 'MVP', color: '#8b5cf6' },
+      { stage: 'Field Pilot Test', key: 'Pilot', color: '#f59e0b' },
+      { stage: 'Incubated Startup', key: 'Startup', color: '#10b981' },
+    ];
+    return stages.map(s => ({
+      stage: s.stage,
+      count: ideas.filter(i => i.stage === s.key).length,
+      color: s.color,
+    }));
+  }, [ideas]);
 
-  const supportRequests = [
-    { type: 'SSIP 2.0 Prototyping Grants', count: 54, budget: '₹1.35 Cr' },
-    { type: 'Prototyping & Drone Lab Access', count: 46, budget: 'N/A' },
-    { type: 'Patent Filing / IPR Cell', count: 38, budget: '₹12.5 Lakhs' },
-    { type: 'Technical Mentorship', count: 41, budget: 'N/A' },
-    { type: 'Industry Pilot & Market Access', count: 29, budget: 'N/A' },
-  ];
+  const supportRequests = useMemo(() => {
+    return [
+      { type: 'SSIP 2.0 Prototyping Grants', count: ideas.filter(i => (i.supportRequired || []).includes('Funding')).length, budget: '₹30L+ Disbursed' },
+      { type: 'Prototyping & Drone Lab Access', count: ideas.filter(i => (i.supportRequired || []).includes('Lab Access') || (i.supportRequired || []).includes('Drone Lab Access')).length, budget: 'Subsidized' },
+      { type: 'Patent Filing / IPR Cell', count: ideas.filter(i => (i.supportRequired || []).includes('IPR')).length, budget: '₹1.5L / Patent' },
+      { type: 'Technical Mentorship', count: ideas.filter(i => (i.supportRequired || []).includes('Mentorship')).length, budget: 'Included' },
+      { type: 'Industry Pilot & Market Access', count: ideas.filter(i => (i.supportRequired || []).includes('Market Access') || (i.supportRequired || []).includes('Industry Connection')).length, budget: 'MOU Linked' },
+    ];
+  }, [ideas]);
 
   return (
     <AdminLayout

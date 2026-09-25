@@ -9,17 +9,28 @@ import {
   Layers,
   FileSpreadsheet,
 } from 'lucide-react';
-import { AdminLayout } from '@/components/admin/AdminLayout';
-import { FUNDING_SCHEMES, type FundingScheme } from '@/lib/data';
+import { useEffect } from 'react';
+import { AdminDataStore, type FundingScheme } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/admin/funding')({
   component: AdminFundingPage,
 });
 
 export function AdminFundingPage() {
-  const [schemes, setSchemes] = useState<FundingScheme[]>(FUNDING_SCHEMES);
+  const [schemes, setSchemes] = useState<FundingScheme[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+
+  const loadFunding = () => {
+    setSchemes(AdminDataStore.getFundingSchemes());
+  };
+
+  useEffect(() => {
+    loadFunding();
+    const handleUpdate = () => loadFunding();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -33,8 +44,7 @@ export function AdminFundingPage() {
     e.preventDefault();
     if (!formData.title) return;
 
-    const newScheme: FundingScheme = {
-      id: `fund-${Date.now()}`,
+    AdminDataStore.saveFundingScheme({
       title: formData.title,
       agency: formData.agency,
       maxGrant: formData.maxGrant,
@@ -43,17 +53,24 @@ export function AdminFundingPage() {
       eligibility: 'Student innovators & incubated founders',
       stagesCovered: ['Prototype', 'MVP'],
       timeline: 'Annual Scrutiny Cycle',
-    };
+      status: 'Active',
+    });
 
-    setSchemes([newScheme, ...schemes]);
     setModalOpen(false);
+    setFormData({
+      title: '',
+      agency: 'Government of Gujarat',
+      maxGrant: '₹2,50,000',
+      type: 'PoC & Prototyping Grant',
+      description: '',
+    });
     setToast(`Added grant scheme "${formData.title}"`);
     setTimeout(() => setToast(null), 3000);
   };
 
   const handleDelete = (id: string, title: string) => {
     if (window.confirm(`Delete funding scheme "${title}"?`)) {
-      setSchemes(schemes.filter((s) => s.id !== id));
+      AdminDataStore.deleteFundingScheme(id);
       setToast(`Deleted "${title}"`);
       setTimeout(() => setToast(null), 3000);
     }

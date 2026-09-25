@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   Network,
   Users,
@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { PageHero, SectionTitle, ButtonLink } from '@/components/site';
 import { GuiitarEmblem } from '@/components/GuiitarBrand';
-import { MENTOR_NETWORK, type MentorItem } from '@/lib/data';
+import { AdminDataStore, type MentorItem } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/ecosystem')({
   head: () => ({
@@ -100,18 +100,30 @@ function RocketIcon(props: any) {
 export function EcosystemPage() {
   const [selectedDomain, setSelectedDomain] = useState('All');
   const [searchMentor, setSearchMentor] = useState('');
+  const [mentorList, setMentorList] = useState<MentorItem[]>([]);
+
+  const loadMentors = () => {
+    setMentorList(AdminDataStore.getMentors());
+  };
+
+  useEffect(() => {
+    loadMentors();
+    const handleUpdate = () => loadMentors();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const domains = ['All', 'Technology', 'Business', 'Research', 'Legal & IPR', 'Industry'];
 
   const filteredMentors = useMemo(() => {
-    return MENTOR_NETWORK.filter((m) => {
+    return mentorList.filter((m) => {
       const matchDom = selectedDomain === 'All' || m.domain === selectedDomain;
-      const matchQuery = `${m.name} ${m.designation} ${m.organization} ${m.expertise.join(' ')}`
+      const matchQuery = `${m.name} ${m.designation || m.role} ${m.organization} ${(m.expertise || []).join(' ')}`
         .toLowerCase()
         .includes(searchMentor.toLowerCase());
       return matchDom && matchQuery;
     });
-  }, [selectedDomain, searchMentor]);
+  }, [selectedDomain, searchMentor, mentorList]);
 
   return (
     <>

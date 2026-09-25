@@ -14,75 +14,35 @@ import {
 } from 'lucide-react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 
+import { useEffect } from 'react';
+import { AdminDataStore, type ApplicationItem } from '@/lib/adminStore';
+
 export const Route = createFileRoute('/admin/applications')({
   component: AdminApplicationsPage,
 });
 
-interface ApplicationItem {
-  id: string;
-  type: 'Innovation Grant' | 'Incubation Suite' | 'Mentorship Request' | 'Partnership Inquiry';
-  applicant: string;
-  email: string;
-  organization: string;
-  summary: string;
-  date: string;
-  status: 'Pending' | 'Approved' | 'Rejected';
-}
-
-const INITIAL_APPLICATIONS: ApplicationItem[] = [
-  {
-    id: 'app-101',
-    type: 'Incubation Suite',
-    applicant: 'HydroSense IoT Systems',
-    email: 'contact@hydrosense.tech',
-    organization: 'Student Startup Team',
-    summary: 'Request for 4 workbenches and wet chemistry prototyping lab in Anviksha building.',
-    date: '24 Sep 2026',
-    status: 'Pending',
-  },
-  {
-    id: 'app-102',
-    type: 'Innovation Grant',
-    applicant: 'AeroVanguard UAV Team',
-    email: 'yash.rana@gsfcuniversity.ac.in',
-    organization: 'GSFC University (Mechanical)',
-    summary: 'SSIP 2.0 grant request of ₹2,00,000 for thermal FLIR sensor payloads.',
-    date: '24 Sep 2026',
-    status: 'Pending',
-  },
-  {
-    id: 'app-103',
-    type: 'Mentorship Request',
-    applicant: 'Pooja Shah',
-    email: 'pooja.s@gsfcuniversity.ac.in',
-    organization: 'School of Science',
-    summary: 'Requesting 1-on-1 HPLC bio-fractionation mentorship with Dr. Rajeshwari Nair.',
-    date: '22 Sep 2026',
-    status: 'Approved',
-  },
-  {
-    id: 'app-104',
-    type: 'Partnership Inquiry',
-    applicant: 'Reliance Foundation CSR',
-    email: 'innovate@reliance.com',
-    organization: 'Reliance Industries Limited',
-    summary: 'Exploring bilateral grant matching fund for GSFC University clean-tech prototypes.',
-    date: '20 Sep 2026',
-    status: 'Approved',
-  },
-];
-
 export function AdminApplicationsPage() {
-  const [apps, setApps] = useState<ApplicationItem[]>(INITIAL_APPLICATIONS);
+  const [apps, setApps] = useState<ApplicationItem[]>([]);
   const [filterType, setFilterType] = useState('All');
   const [toast, setToast] = useState<string | null>(null);
 
-  const types = ['All', 'Innovation Grant', 'Incubation Suite', 'Mentorship Request', 'Partnership Inquiry'];
+  const loadApps = () => {
+    setApps(AdminDataStore.getApplications());
+  };
+
+  useEffect(() => {
+    loadApps();
+    const handleUpdate = () => loadApps();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
+
+  const types = ['All', 'Innovation Grant', 'Incubation Suite', 'Mentorship Request', 'Partnership Inquiry', 'General Application'];
 
   const filtered = apps.filter((a) => filterType === 'All' || a.type === filterType);
 
   const handleStatus = (id: string, newStatus: ApplicationItem['status']) => {
-    setApps(apps.map((a) => (a.id === id ? { ...a, status: newStatus } : a)));
+    AdminDataStore.updateApplicationStatus(id, newStatus);
     setToast(`Application status updated to ${newStatus}`);
     setTimeout(() => setToast(null), 3000);
   };

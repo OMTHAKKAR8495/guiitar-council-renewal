@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { useState, useMemo } from 'react';
+import { createFileRoute } from '@tanstack/react-router'
+import { useState, useMemo, useEffect } from 'react';
 import {
   HelpCircle,
   Search,
@@ -11,7 +11,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { PageHero, SectionTitle, ButtonLink } from '@/components/site';
-import { OFFICIAL_FAQS, type FaqItem } from '@/lib/data';
+import { AdminDataStore, type FaqItem } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/faq')({
   head: () => ({
@@ -50,16 +50,28 @@ export function FaqPage() {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [faqsList, setFaqsList] = useState<FaqItem[]>([]);
+
+  const loadFaqs = () => {
+    setFaqsList(AdminDataStore.getFaqs());
+  };
+
+  useEffect(() => {
+    loadFaqs();
+    const handleUpdate = () => loadFaqs();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const filteredFaqs = useMemo(() => {
-    return OFFICIAL_FAQS.filter((item) => {
+    return faqsList.filter((item) => {
       const matchCat = activeCategory === 'All' || item.category === activeCategory;
       const matchQuery = `${item.q} ${item.a} ${item.category}`
         .toLowerCase()
         .includes(search.toLowerCase());
       return matchCat && matchQuery;
     });
-  }, [activeCategory, search]);
+  }, [activeCategory, search, faqsList]);
 
   return (
     <>

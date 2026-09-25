@@ -11,18 +11,29 @@ import {
   FileCode,
   Sparkles,
 } from 'lucide-react';
-import { AdminLayout } from '@/components/admin/AdminLayout';
-import { RESOURCE_DOCS, type ResourceDoc } from '@/lib/data';
+import { useEffect } from 'react';
+import { AdminDataStore, type ResourceDoc } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/admin/resources')({
   component: AdminResourcesPage,
 });
 
 export function AdminResourcesPage() {
-  const [resources, setResources] = useState<ResourceDoc[]>(RESOURCE_DOCS);
+  const [resources, setResources] = useState<ResourceDoc[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+
+  const loadResources = () => {
+    setResources(AdminDataStore.getResources());
+  };
+
+  useEffect(() => {
+    loadResources();
+    const handleUpdate = () => loadResources();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -42,8 +53,7 @@ export function AdminResourcesPage() {
     e.preventDefault();
     if (!formData.title) return;
 
-    const newRes: ResourceDoc = {
-      id: `res-${Date.now()}`,
+    AdminDataStore.saveResource({
       title: formData.title,
       category: formData.category,
       format: formData.format,
@@ -52,17 +62,24 @@ export function AdminResourcesPage() {
       description: formData.description,
       downloads: 0,
       link: '#',
-    };
+      isPublic: true,
+    });
 
-    setResources([newRes, ...resources]);
     setModalOpen(false);
+    setFormData({
+      title: '',
+      category: 'Policy Document',
+      format: 'PDF',
+      size: '1.2 MB',
+      description: '',
+    });
     setToast(`Uploaded resource "${formData.title}"`);
     setTimeout(() => setToast(null), 3000);
   };
 
   const handleDelete = (id: string, title: string) => {
     if (window.confirm(`Delete resource "${title}"?`)) {
-      setResources(resources.filter((r) => r.id !== id));
+      AdminDataStore.deleteResource(id);
       setToast(`Deleted "${title}"`);
       setTimeout(() => setToast(null), 3000);
     }

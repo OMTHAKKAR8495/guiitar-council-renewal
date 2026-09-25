@@ -12,13 +12,16 @@ import {
 } from 'lucide-react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 
+import { useEffect } from 'react';
+import { AdminDataStore, type SystemSettings } from '@/lib/adminStore';
+
 export const Route = createFileRoute('/admin/settings')({
   component: AdminSettingsPage,
 });
 
 export function AdminSettingsPage() {
   const [toast, setToast] = useState<string | null>(null);
-  const [config, setConfig] = useState({
+  const [config, setConfig] = useState<SystemSettings>({
     institutionName: 'GUIITAR Council (GSFC University)',
     nodalOfficer: 'KiranKumar Parmar',
     contactEmail: 'guiitar@gsfcuniversity.ac.in',
@@ -29,8 +32,13 @@ export function AdminSettingsPage() {
     publicShowcaseLive: true,
   });
 
+  useEffect(() => {
+    setConfig(AdminDataStore.getSettings());
+  }, []);
+
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
+    AdminDataStore.saveSettings(config);
     setToast('Institutional settings saved successfully');
     setTimeout(() => setToast(null), 3000);
   };

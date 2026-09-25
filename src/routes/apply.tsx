@@ -14,6 +14,7 @@ import {
   Lock,
 } from 'lucide-react';
 import { PageHero, SectionTitle, ButtonLink } from '@/components/site';
+import { AdminDataStore } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/apply')({
   head: () => ({
@@ -99,6 +100,18 @@ export function ApplyPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    AdminDataStore.addApplication({
+      type: activeTrackObj.title as any,
+      applicant: formData.fullName || 'Innovator',
+      email: formData.email,
+      phone: formData.phone,
+      organization: formData.organization || 'Independent',
+      projectTitle: formData.projectTitle,
+      stage: formData.stage,
+      fundingRequested: formData.fundingRequested,
+      summary: formData.summary || `Application submitted for ${activeTrackObj.title}`,
+      status: 'Pending',
+    });
     setSubmitted(true);
   };
 

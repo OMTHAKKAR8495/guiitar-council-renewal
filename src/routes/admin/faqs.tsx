@@ -7,16 +7,28 @@ import {
   CheckCircle,
 } from 'lucide-react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
-import { FAQS_DATA, type FaqItem } from '@/lib/data';
+import { useEffect } from 'react';
+import { AdminDataStore, type FaqItem } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/admin/faqs')({
   component: AdminFaqsPage,
 });
 
 export function AdminFaqsPage() {
-  const [faqs, setFaqs] = useState<FaqItem[]>(FAQS_DATA);
+  const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+
+  const loadFaqs = () => {
+    setFaqs(AdminDataStore.getFaqs());
+  };
+
+  useEffect(() => {
+    loadFaqs();
+    const handleUpdate = () => loadFaqs();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const [formData, setFormData] = useState({
     q: '',
@@ -28,21 +40,25 @@ export function AdminFaqsPage() {
     e.preventDefault();
     if (!formData.q || !formData.a) return;
 
-    const newFaq: FaqItem = {
+    AdminDataStore.saveFaq({
       q: formData.q,
       a: formData.a,
       category: formData.category,
-    };
+    });
 
-    setFaqs([newFaq, ...faqs]);
     setModalOpen(false);
+    setFormData({
+      q: '',
+      a: '',
+      category: 'Funding & Grants',
+    });
     setToast('Added new FAQ');
     setTimeout(() => setToast(null), 3000);
   };
 
-  const handleDelete = (index: number) => {
+  const handleDelete = (idOrQuestion: string) => {
     if (window.confirm('Delete this FAQ entry?')) {
-      setFaqs(faqs.filter((_, idx) => idx !== index));
+      AdminDataStore.deleteFaq(idOrQuestion);
       setToast('Deleted FAQ entry');
       setTimeout(() => setToast(null), 3000);
     }
@@ -123,7 +139,7 @@ export function AdminFaqsPage() {
             </div>
 
             <button
-              onClick={() => handleDelete(idx)}
+              onClick={() => handleDelete(faq.id || faq.q)}
               style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '6px' }}
             >
               <Trash2 className="w-4 h-4 text-red-500 hover:text-red-700" />

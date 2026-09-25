@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { createFileRoute } from '@tanstack/react-router'
+import { useState, useMemo, useEffect } from 'react';
 import {
   Briefcase,
   Lightbulb,
@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { PageHero, SectionTitle, ButtonLink } from '@/components/site';
 import { Accordion } from '@/components/content';
+import { AdminDataStore, type IncubationProgram } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/programs')({
   head: () => ({
@@ -38,76 +39,62 @@ export const Route = createFileRoute('/programs')({
   component: ProgramsPage,
 });
 
-const programsList = [
-  {
-    id: 'student-innovation',
-    name: 'Student Innovation Wing (The E-Club)',
-    badge: 'Ideation & Pre-Incubation',
-    tagline: 'Empowering curious minds to test ideas, form multidisciplinary teams, and build first PoCs.',
-    whoCanApply: 'School students (Classes 9–12), Diploma, Undergraduate, Postgraduate, and PhD researchers at GSFC University and regional colleges.',
-    whatYouReceive: [
-      'SSIP 2.0 Prototyping Grant funding up to ₹2.5 Lakhs (or up to ₹20,000 for school projects)',
-      'Access to E-Club hackathons, ideation clinics, and monthly founder meetups',
-      'Free bench access to Makers 3D Lab and Design IoT Lab',
-      'Peer-to-peer founder circles and faculty domain mentoring',
-    ],
-    process: ['Online idea submission', 'Technical screening review', 'Pitch to ISC Committee', 'Tranche grant release'],
-    timeline: '3 to 6 months ideation & prototyping cycle',
-    cta: 'Apply for E-Club Track',
-  },
-  {
-    id: 'incubation',
-    name: 'Full Venture Incubation & Co-Working',
-    badge: 'Startup Commercialization',
-    tagline: 'Transforming validated prototypes into incorporated, revenue-generating commercial companies.',
-    whoCanApply: 'Early-stage startup founders with functional prototypes, minimum viable products (MVPs), or preliminary customer traction.',
-    whatYouReceive: [
-      'Furnished dedicated startup workstations at Anviksha Innovation Hub',
-      'Assistance for DPIIT recognition, company incorporation (Pvt Ltd / LLP), and tax exemptions',
-      'Eligibility for Gujarat Industrial Policy 2020 grant assistance up to ₹30 Lakhs',
-      'Conference room, high-speed Wi-Fi, and printing infrastructure',
-    ],
-    process: ['Detailed business plan review', 'Due-diligence interview', 'MOU & Lease Agreement', 'Incubation onboarding'],
-    timeline: '12 to 24 months incubation residency',
-    cta: 'Apply for Incubation Cohort',
-  },
-  {
-    id: 'ipr-support',
-    name: 'IPR & Patent Support Program',
-    badge: 'Intellectual Property',
-    tagline: 'Safeguarding novel inventions with full financial subsidies and professional attorney drafting.',
-    whoCanApply: 'Students, faculty researchers, and incubated startups with novel technologies, formulations, or industrial designs.',
-    whatYouReceive: [
-      'Prior-art search reports across global patent databases (USPTO, EPO, WIPO, InPASS)',
-      'Professional patent drafting by registered Indian Patent Attorneys',
-      'Up to ₹1.5 Lakhs financial reimbursement per patent filing',
-      'Commercialization and licensing negotiation support',
-    ],
-    process: ['Submit Invention Disclosure Form (IDF)', 'Novelty report generation', 'IP Committee review', 'Filing at Indian Patent Office'],
-    timeline: '4 to 8 weeks from disclosure to formal filing',
-    cta: 'Submit Invention Disclosure',
-  },
-  {
-    id: 'mentorship',
-    name: '1-on-1 Industry Mentorship Network',
-    badge: 'Expert Advisory',
-    tagline: 'Pairing founders with seasoned corporate leaders, research scientists, and venture architects.',
-    whoCanApply: 'All active GUIITAR incubatees, SSIP 2.0 grant recipients, and pre-incubation cohort founders.',
-    whatYouReceive: [
-      'Monthly sprint reviews with domain specialists (Biotech, DeepTech, AI, Chemical, IoT)',
-      'Product architecture and engineering scale-up advisory',
-      'Financial modeling, unit economics, and go-to-market strategy coaching',
-      'Direct introductions to industrial clients and angel investors',
-    ],
-    process: ['Founder diagnostic needs assessment', 'Mentor-founder matching', 'Monthly structured sprint reviews'],
-    timeline: 'Continuous throughout incubation tenure',
-    cta: 'Request Mentor Pairing',
-  },
-];
-
 export function ProgramsPage() {
-  const [selectedProgramId, setSelectedProgramId] = useState('student-innovation');
-  const activeProgram = programsList.find((p) => p.id === selectedProgramId) || programsList[0];
+  const [storePrograms, setStorePrograms] = useState<IncubationProgram[]>([]);
+
+  const loadPrograms = () => {
+    setStorePrograms(AdminDataStore.getPrograms());
+  };
+
+  useEffect(() => {
+    loadPrograms();
+    const handleUpdate = () => loadPrograms();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
+
+  const programsList = useMemo(() => {
+    if (storePrograms.length === 0) return [];
+    return storePrograms.map((p) => ({
+      id: p.id,
+      name: p.name,
+      badge: p.duration,
+      tagline: p.tagline || p.description,
+      whoCanApply: (p.eligibility && p.eligibility.length > 0) ? p.eligibility.join(' • ') : 'Students, faculty researchers, and innovators.',
+      whatYouReceive: (p.features && p.features.length > 0) ? p.features : [
+        `Grant funding: ${p.grantSupport}`,
+        'Access to specialized prototyping labs and Param Shavak compute',
+        'Direct 1-on-1 industry mentorship',
+        'Assistance for patent search and attorney filings',
+      ],
+      process: ['Online submission', 'Technical screening review', 'Institutional pitch', 'Onboarding & tranche release'],
+      timeline: `${p.duration} structured incubation cycle`,
+      cta: 'Apply for Track',
+      grantSupport: p.grantSupport,
+      targetCohort: p.targetCohort,
+      description: p.description,
+    }));
+  }, [storePrograms]);
+
+  const [selectedProgramId, setSelectedProgramId] = useState<string>('');
+
+  useEffect(() => {
+    if (programsList.length > 0 && (!selectedProgramId || !programsList.some(p => p.id === selectedProgramId))) {
+      setSelectedProgramId(programsList[0].id);
+    }
+  }, [programsList, selectedProgramId]);
+
+  const activeProgram = programsList.find((p) => p.id === selectedProgramId) || programsList[0] || {
+    id: 'default',
+    name: 'Genesis Incubation Track',
+    badge: '3 Months',
+    tagline: 'From hypothesis to working proof of concept.',
+    whoCanApply: 'Students and innovators.',
+    whatYouReceive: ['Prototyping Grant', 'Lab access'],
+    process: ['Apply', 'Review', 'Incubate'],
+    timeline: '3 Months',
+    cta: 'Apply',
+  };
 
   return (
     <>

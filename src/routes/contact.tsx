@@ -34,6 +34,8 @@ export const Route = createFileRoute('/contact')({
   component: Contact,
 });
 
+import { AdminDataStore } from '@/lib/adminStore';
+
 function Contact() {
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({
@@ -47,6 +49,16 @@ function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    AdminDataStore.addApplication({
+      type: 'General Application',
+      applicant: form.name || 'Website Visitor',
+      email: form.email,
+      phone: form.phone,
+      organization: 'Contact Portal Inquiry',
+      projectTitle: form.subject || form.type,
+      summary: form.message || `Inquiry from ${form.name}: ${form.type}`,
+      status: 'Pending',
+    });
     setSent(true);
   };
 

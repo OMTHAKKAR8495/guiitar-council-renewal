@@ -13,79 +13,29 @@ import {
 } from 'lucide-react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 
+import { AdminDataStore, type EventItem } from '@/lib/adminStore';
+import { useEffect } from 'react';
+
 export const Route = createFileRoute('/admin/events')({
   component: AdminEventsPage,
 });
 
-interface EventItem {
-  id: string;
-  title: string;
-  date: string;
-  time: string;
-  location: string;
-  speaker: string;
-  category: string;
-  capacity: number;
-  registered: number;
-  status: 'Upcoming' | 'Registration Open' | 'Registration Closed' | 'Completed';
-}
-
-const INITIAL_EVENTS: EventItem[] = [
-  {
-    id: 'ev-1',
-    title: 'Autonomous Drone & Edge AI Prototyping Workshop',
-    date: '12 Oct 2026',
-    time: '10:00 AM – 04:00 PM',
-    location: 'SOT Drone Arena & Param Shavak Cell',
-    speaker: 'Prof. G. R. Sinha & Industrial Drone Pilots',
-    category: 'Hands-on Bootcamp',
-    capacity: 50,
-    registered: 45,
-    status: 'Registration Open',
-  },
-  {
-    id: 'ev-2',
-    title: 'SSIP 2.0 Institutional Pitch & Grant Screening Call',
-    date: '28 Oct 2026',
-    time: '02:00 PM – 06:00 PM',
-    location: 'GUIITAR Incubation Suite, Anviksha',
-    speaker: 'ISC Scrutiny Committee',
-    category: 'Grant Pitching',
-    capacity: 25,
-    registered: 18,
-    status: 'Upcoming',
-  },
-  {
-    id: 'ev-3',
-    title: 'Intellectual Property & Patent Claim Drafting Masterclass',
-    date: '08 Nov 2026',
-    time: '11:00 AM – 01:30 PM',
-    location: 'University Auditorium & Hybrid Stream',
-    speaker: 'Patent Attorney Mr. Aniket Dave',
-    category: 'IPR & Legal',
-    capacity: 120,
-    registered: 88,
-    status: 'Registration Open',
-  },
-  {
-    id: 'ev-4',
-    title: 'Chemical Engineering Bioprocess Pitchathon 2026',
-    date: '15 Sep 2026',
-    time: '09:30 AM – 05:00 PM',
-    location: 'School of Science Seminar Hall',
-    speaker: 'Dr. Jignesh Valand',
-    category: 'Competition',
-    capacity: 60,
-    registered: 60,
-    status: 'Completed',
-  },
-];
-
 export function AdminEventsPage() {
-  const [events, setEvents] = useState<EventItem[]>(INITIAL_EVENTS);
+  const [events, setEvents] = useState<EventItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+
+  const loadEvents = () => {
+    setEvents(AdminDataStore.getEvents());
+  };
+
+  useEffect(() => {
+    loadEvents();
+    const handleUpdate = () => loadEvents();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -108,28 +58,36 @@ export function AdminEventsPage() {
     e.preventDefault();
     if (!formData.title) return;
 
-    const newEv: EventItem = {
-      id: `ev-${Date.now()}`,
+    AdminDataStore.saveEvent({
       title: formData.title,
       date: formData.date || 'TBD',
       time: formData.time,
       location: formData.location,
-      speaker: formData.speaker,
+      speaker: formData.speaker || 'GUIITAR Faculty & Experts',
       category: formData.category,
       capacity: Number(formData.capacity) || 50,
       registered: 0,
       status: formData.status,
-    };
+    });
 
-    setEvents([newEv, ...events]);
     setModalOpen(false);
+    setFormData({
+      title: '',
+      date: '',
+      time: '10:00 AM – 01:00 PM',
+      location: 'GSFC University Campus',
+      speaker: '',
+      category: 'Workshop',
+      capacity: 50,
+      status: 'Registration Open',
+    });
     setToast(`Scheduled event "${formData.title}"`);
     setTimeout(() => setToast(null), 3000);
   };
 
   const handleDelete = (id: string, title: string) => {
     if (window.confirm(`Delete event "${title}"?`)) {
-      setEvents(events.filter((e) => e.id !== id));
+      AdminDataStore.deleteEvent(id);
       setToast(`Deleted event "${title}"`);
       setTimeout(() => setToast(null), 3000);
     }

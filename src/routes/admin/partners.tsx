@@ -10,53 +10,28 @@ import {
 } from 'lucide-react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 
+import { useEffect } from 'react';
+import { AdminDataStore, type PartnerItem } from '@/lib/adminStore';
+
 export const Route = createFileRoute('/admin/partners')({
   component: AdminPartnersPage,
 });
 
-interface PartnerItem {
-  id: string;
-  name: string;
-  category: 'Industry' | 'Government' | 'Academic' | 'Investor';
-  scope: string;
-  mouStatus: 'Active MOU' | 'In Discussion' | 'Renewed';
-}
-
-const INITIAL_PARTNERS: PartnerItem[] = [
-  {
-    id: 'pt-1',
-    name: 'GSFC Limited (Gujarat State Fertilizers & Chemicals)',
-    category: 'Industry',
-    scope: 'Industrial pilot testing, chemical labs, plant access & R&D grants.',
-    mouStatus: 'Active MOU',
-  },
-  {
-    id: 'pt-2',
-    name: 'Student Startup & Innovation Policy (SSIP Gujarat)',
-    category: 'Government',
-    scope: 'Grant funding disbursement node under Education Department.',
-    mouStatus: 'Active MOU',
-  },
-  {
-    id: 'pt-3',
-    name: 'DST — Government of India (NIDHI-TBI)',
-    category: 'Government',
-    scope: 'National incubation ecosystem development and EIR fellowship.',
-    mouStatus: 'Active MOU',
-  },
-  {
-    id: 'pt-4',
-    name: 'Vadodara Chamber of Commerce and Industry (VCCI)',
-    category: 'Industry',
-    scope: 'SME vendor matching and manufacturing proof-of-concept facilities.',
-    mouStatus: 'Active MOU',
-  },
-];
-
 export function AdminPartnersPage() {
-  const [partners, setPartners] = useState<PartnerItem[]>(INITIAL_PARTNERS);
+  const [partners, setPartners] = useState<PartnerItem[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+
+  const loadPartners = () => {
+    setPartners(AdminDataStore.getPartners());
+  };
+
+  useEffect(() => {
+    loadPartners();
+    const handleUpdate = () => loadPartners();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -69,23 +44,28 @@ export function AdminPartnersPage() {
     e.preventDefault();
     if (!formData.name) return;
 
-    const newP: PartnerItem = {
-      id: `pt-${Date.now()}`,
+    AdminDataStore.savePartner({
       name: formData.name,
       category: formData.category,
       scope: formData.scope,
       mouStatus: formData.mouStatus,
-    };
+      signedDate: new Date().toISOString().split('T')[0],
+    });
 
-    setPartners([newP, ...partners]);
     setModalOpen(false);
+    setFormData({
+      name: '',
+      category: 'Industry',
+      scope: '',
+      mouStatus: 'Active MOU',
+    });
     setToast(`Added partner "${formData.name}"`);
     setTimeout(() => setToast(null), 3000);
   };
 
   const handleDelete = (id: string, name: string) => {
     if (window.confirm(`Delete partner "${name}"?`)) {
-      setPartners(partners.filter((p) => p.id !== id));
+      AdminDataStore.deletePartner(id);
       setToast(`Deleted "${name}"`);
       setTimeout(() => setToast(null), 3000);
     }

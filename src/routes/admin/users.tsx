@@ -12,72 +12,28 @@ import {
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { type AdminRole } from '@/lib/authStore';
 
+import { useEffect } from 'react';
+import { AdminDataStore, type UserAccount } from '@/lib/adminStore';
+
 export const Route = createFileRoute('/admin/users')({
   component: AdminUsersPage,
 });
 
-interface UserAccount {
-  id: string;
-  name: string;
-  email: string;
-  role: AdminRole;
-  department: string;
-  status: 'Active' | 'Invited' | 'Suspended';
-  lastActive: string;
-}
-
-const INITIAL_USERS: UserAccount[] = [
-  {
-    id: 'usr-1',
-    name: 'Prof. G. R. Sinha',
-    email: 'admin@guiitar.org',
-    role: 'Super Admin',
-    department: 'Provost Office & GUIITAR Council',
-    status: 'Active',
-    lastActive: 'Just now',
-  },
-  {
-    id: 'usr-2',
-    name: 'KiranKumar Parmar',
-    email: 'kiran.parmar@gsfcuniversity.ac.in',
-    role: 'Innovation Manager',
-    department: 'Incubation Operations & SSIP Cell',
-    status: 'Active',
-    lastActive: '10 mins ago',
-  },
-  {
-    id: 'usr-3',
-    name: 'Dr. Jignesh Valand',
-    email: 'jignesh.valand@gsfcuniversity.ac.in',
-    role: 'Reviewer',
-    department: 'School of Science',
-    status: 'Active',
-    lastActive: '2 hours ago',
-  },
-  {
-    id: 'usr-4',
-    name: 'Mr. Amit Duggal',
-    email: 'amit.duggal@gsfcuniversity.ac.in',
-    role: 'Event Manager',
-    department: 'School of Technology',
-    status: 'Active',
-    lastActive: '1 day ago',
-  },
-  {
-    id: 'usr-5',
-    name: 'Editorial Staff',
-    email: 'content@guiitar.org',
-    role: 'Content Admin',
-    department: 'Media & Public Relations',
-    status: 'Active',
-    lastActive: '3 days ago',
-  },
-];
-
 export function AdminUsersPage() {
-  const [users, setUsers] = useState<UserAccount[]>(INITIAL_USERS);
+  const [users, setUsers] = useState<UserAccount[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+
+  const loadUsers = () => {
+    setUsers(AdminDataStore.getUsers());
+  };
+
+  useEffect(() => {
+    loadUsers();
+    const handleUpdate = () => loadUsers();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -90,25 +46,28 @@ export function AdminUsersPage() {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
 
-    const newUsr: UserAccount = {
-      id: `usr-${Date.now()}`,
+    AdminDataStore.saveUser({
       name: formData.name,
       email: formData.email,
       role: formData.role,
       department: formData.department,
       status: 'Active',
-      lastActive: 'Never',
-    };
+    });
 
-    setUsers([newUsr, ...users]);
     setModalOpen(false);
+    setFormData({
+      name: '',
+      email: '',
+      role: 'Innovation Manager',
+      department: 'GSFC University',
+    });
     setToast(`Provisioned administrator account for "${formData.name}"`);
     setTimeout(() => setToast(null), 3000);
   };
 
   const handleDelete = (id: string, name: string) => {
     if (window.confirm(`Revoke admin access for "${name}"?`)) {
-      setUsers(users.filter((u) => u.id !== id));
+      AdminDataStore.deleteUser(id);
       setToast(`Revoked access for "${name}"`);
       setTimeout(() => setToast(null), 3000);
     }

@@ -9,17 +9,28 @@ import {
   Award,
   Users,
 } from 'lucide-react';
-import { AdminLayout } from '@/components/admin/AdminLayout';
-import { INCUBATION_PROGRAMS, type IncubationProgram } from '@/lib/data';
+import { useEffect } from 'react';
+import { AdminDataStore, type IncubationProgram } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/admin/programs')({
   component: AdminProgramsPage,
 });
 
 export function AdminProgramsPage() {
-  const [programs, setPrograms] = useState<IncubationProgram[]>(INCUBATION_PROGRAMS);
+  const [programs, setPrograms] = useState<IncubationProgram[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+
+  const loadPrograms = () => {
+    setPrograms(AdminDataStore.getPrograms());
+  };
+
+  useEffect(() => {
+    loadPrograms();
+    const handleUpdate = () => loadPrograms();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -34,8 +45,7 @@ export function AdminProgramsPage() {
     e.preventDefault();
     if (!formData.name) return;
 
-    const newProg: IncubationProgram = {
-      id: `prog-${Date.now()}`,
+    AdminDataStore.saveProgram({
       name: formData.name,
       tagline: formData.tagline,
       duration: formData.duration,
@@ -44,17 +54,25 @@ export function AdminProgramsPage() {
       description: formData.description,
       features: ['Mentorship Access', 'Lab Workbenches', 'IPR Filing Support'],
       eligibility: ['Enrolled students, alumni, or research fellows'],
-    };
+      status: 'Active',
+    });
 
-    setPrograms([newProg, ...programs]);
     setModalOpen(false);
+    setFormData({
+      name: '',
+      tagline: '',
+      duration: '6 Months',
+      grantSupport: 'Up to ₹2.5 Lakhs',
+      targetCohort: 'Students & Faculty',
+      description: '',
+    });
     setToast(`Created incubation track "${formData.name}"`);
     setTimeout(() => setToast(null), 3000);
   };
 
   const handleDelete = (id: string, name: string) => {
     if (window.confirm(`Delete program track "${name}"?`)) {
-      setPrograms(programs.filter((p) => p.id !== id));
+      AdminDataStore.deleteProgram(id);
       setToast(`Deleted "${name}"`);
       setTimeout(() => setToast(null), 3000);
     }

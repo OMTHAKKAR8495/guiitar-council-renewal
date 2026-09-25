@@ -13,23 +13,35 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
-import { STARTUP_VENTURES, type StartupVenture } from '@/lib/data';
+import { useEffect } from 'react';
+import { AdminDataStore, type StartupItem } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/admin/startups')({
   component: AdminStartupsPage,
 });
 
 export function AdminStartupsPage() {
-  const [startups, setStartups] = useState<StartupVenture[]>(STARTUP_VENTURES);
+  const [startups, setStartups] = useState<StartupItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
+  const loadStartups = () => {
+    setStartups(AdminDataStore.getStartups());
+  };
+
+  useEffect(() => {
+    loadStartups();
+    const handleUpdate = () => loadStartups();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     industry: 'DeepTech',
-    stage: 'Incubated',
-    funding: '₹2,50,000 (SSIP)',
+    stage: 'Incubated Startup',
+    funding: '₹2,50,000 (SSIP 2.0)',
     description: '',
     founder: '',
   });
@@ -44,27 +56,35 @@ export function AdminStartupsPage() {
     e.preventDefault();
     if (!formData.name) return;
 
-    const newStartup: StartupVenture = {
-      id: `startup-${Date.now()}`,
+    AdminDataStore.saveStartup({
       name: formData.name,
       industry: formData.industry,
       stage: formData.stage,
-      funding: formData.funding,
+      fundingReceived: formData.funding,
       description: formData.description,
+      team: formData.founder || 'Founding Team',
       patents: 1,
       tags: [formData.industry, 'GSFC Incubated'],
       valuation: 'Seed',
-    };
+      status: 'Incubated',
+    });
 
-    setStartups([newStartup, ...startups]);
     setModalOpen(false);
+    setFormData({
+      name: '',
+      industry: 'DeepTech',
+      stage: 'Incubated Startup',
+      funding: '₹2,50,000 (SSIP 2.0)',
+      description: '',
+      founder: '',
+    });
     setToast(`Registered new startup "${formData.name}"`);
     setTimeout(() => setToast(null), 3000);
   };
 
   const handleDelete = (id: string, name: string) => {
     if (window.confirm(`Delete "${name}" from startup records?`)) {
-      setStartups(startups.filter((s) => s.id !== id));
+      AdminDataStore.deleteStartup(id);
       setToast(`Deleted "${name}"`);
       setTimeout(() => setToast(null), 3000);
     }

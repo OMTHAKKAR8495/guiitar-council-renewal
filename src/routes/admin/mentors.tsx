@@ -11,17 +11,29 @@ import {
   Building,
 } from 'lucide-react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
-import { MENTOR_ROSTER, type MentorProfile } from '@/lib/data';
+import { useEffect } from 'react';
+import { AdminDataStore, type MentorItem } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/admin/mentors')({
   component: AdminMentorsPage,
 });
 
 export function AdminMentorsPage() {
-  const [mentors, setMentors] = useState<MentorProfile[]>(MENTOR_ROSTER);
+  const [mentors, setMentors] = useState<MentorItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+
+  const loadMentors = () => {
+    setMentors(AdminDataStore.getMentors());
+  };
+
+  useEffect(() => {
+    loadMentors();
+    const handleUpdate = () => loadMentors();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -33,7 +45,7 @@ export function AdminMentorsPage() {
   });
 
   const filteredMentors = mentors.filter((m) =>
-    `${m.name} ${m.role} ${m.organization} ${m.domain}`
+    `${m.name} ${m.role || m.designation} ${m.organization} ${m.domain}`
       .toLowerCase()
       .includes(searchQuery.toLowerCase())
   );
@@ -42,27 +54,36 @@ export function AdminMentorsPage() {
     e.preventDefault();
     if (!formData.name) return;
 
-    const newM: MentorProfile = {
-      id: `men-${Date.now()}`,
+    AdminDataStore.saveMentor({
       name: formData.name,
-      role: formData.role,
-      organization: formData.organization,
+      role: formData.role || 'Mentor',
+      designation: formData.role || 'Mentor & Domain Specialist',
+      organization: formData.organization || 'GSFC University / Industry',
       domain: formData.domain,
       experience: formData.experience,
       avatar:
         formData.avatar ||
         'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80',
-    };
+      expertise: [formData.domain, 'Mentorship'],
+      status: 'Active',
+    });
 
-    setMentors([newM, ...mentors]);
     setModalOpen(false);
+    setFormData({
+      name: '',
+      role: '',
+      organization: '',
+      domain: 'Artificial Intelligence',
+      experience: '10+ Years',
+      avatar: '',
+    });
     setToast(`Added mentor "${formData.name}"`);
     setTimeout(() => setToast(null), 3000);
   };
 
   const handleDelete = (id: string, name: string) => {
     if (window.confirm(`Remove mentor "${name}"?`)) {
-      setMentors(mentors.filter((m) => m.id !== id));
+      AdminDataStore.deleteMentor(id);
       setToast(`Removed "${name}"`);
       setTimeout(() => setToast(null), 3000);
     }

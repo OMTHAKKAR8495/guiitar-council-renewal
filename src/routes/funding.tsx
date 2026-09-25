@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { createFileRoute } from '@tanstack/react-router'
+import { useState, useMemo, useEffect } from 'react';
 import {
   Banknote,
   CheckCircle2,
@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { PageHero, SectionTitle, ButtonLink } from '@/components/site';
 import { Accordion } from '@/components/content';
+import { AdminDataStore, type FundingScheme } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/funding')({
   head: () => ({
@@ -38,106 +39,7 @@ export const Route = createFileRoute('/funding')({
   component: Funding,
 });
 
-const programs = [
-  {
-    title: 'SSIP 2.0 Grant Scheme',
-    badge: 'Student Innovation Policy',
-    amount: 'Up to ₹2.5 Lakhs',
-    desc: 'Empowering school students, diploma, UG, PG, and PhD researchers to transform academic prototypes into market-ready minimum viable products (MVPs).',
-    covered: [
-      'Raw materials, electronic components & fabrication costs',
-      'Testing, lab analysis, and industrial validation charges',
-      'Third-party prototyping services & 3D printing consumables',
-      'Zero equity dilution or repayment required',
-    ],
-    eligibility: [
-      'Any student or innovator up to the age of 35 years',
-      'School Students (Classes 9–12) eligible for grants up to ₹20,000',
-      'Diploma, Undergraduate, Postgraduate, Doctoral students or recent alumni',
-      'Dropouts from recognized schools, institutes, or universities with innovative concepts',
-    ],
-    application: [
-      'Submit detailed PoC proposal via online portal',
-      'Technical review by Faculty Expert Committee',
-      'Pitch presentation before the Institutional Screening Committee (ISC)',
-      'Sanction letter and milestone-linked tranche release',
-    ],
-  },
-  {
-    title: 'Gujarat Industrial Policy 2020',
-    badge: 'Venture Acceleration',
-    amount: 'Up to ₹30 Lakhs',
-    desc: 'Catalytic milestone funding for registered startups to scale commercial operations, hire specialized technical talent, and establish market distribution channels.',
-    covered: [
-      'Pilot production setup & tooling machinery',
-      'Marketing campaigns, exhibition showcases & sales expansion',
-      'Key technical hiring and compliance consulting',
-      'Product certification & regulatory safety approvals',
-    ],
-    eligibility: [
-      'Registered startup entity (DPIIT recognized or Gujarat registered)',
-      'Operational history with a validated, working prototype or beta product',
-      'Demonstrated market traction, customer interest, or revenue model',
-      'Clear, scalable growth strategy for employment and economic value',
-    ],
-    application: [
-      'Submit comprehensive business plan and audited financials',
-      'Due-diligence and technical validation by industry experts',
-      'High-level Committee pitch and milestone agreement',
-      'Quarterly progress review and disbursal schedule',
-    ],
-  },
-  {
-    title: 'IPR & Patent Support Grant',
-    badge: 'Intellectual Property',
-    amount: 'Up to ₹1.5 Lakhs',
-    desc: 'Comprehensive financial and attorney support for students, faculty, and incubated startups to safeguard proprietary technologies and novel inventions.',
-    covered: [
-      'Prior-art searching and novelty assessment by patent attorneys',
-      'Professional patent drafting and complete specification filing',
-      'Official statutory fees paid to the Indian Patent Office (IPO)',
-      'Assistance for International PCT & design registration filings',
-    ],
-    eligibility: [
-      'Novel technological invention, chemical formulation, or industrial design',
-      'Clear IP ownership and assignment documentation with GUIITAR',
-      'Documented commercialization roadmap and societal applicability',
-      'Must be incubated or affiliated with GSFC University / GUIITAR Council',
-    ],
-    application: [
-      'Submit invention disclosure form (IDF) to GUIITAR IPR Cell',
-      'Prior art validation and patentability report by attorney',
-      'Institutional IPR Committee approval',
-      'Formal filing at IPO and commercialization facilitation',
-    ],
-  },
-];
-
-const fundedProjects = [
-  {
-    title: 'Ayurtrix — Three Folding Life',
-    amount: '₹2,50,000 Sanctioned',
-    category: 'Ayurveda & Phytopharma',
-    desc: 'Developing standardized authentic Ayurvedic formulations with verified botanical bioactive markers to meet rising healthcare demands.',
-    impact: 'Established standardized extraction protocols and filed formulation documentation for clinical benchmarking.',
-  },
-  {
-    title: 'Bacterial Chroma: Biopigment Factory',
-    amount: '₹1,70,000 Sanctioned',
-    category: 'Industrial BioTech',
-    desc: 'Isolating and synthesizing non-toxic bacterial pigments as eco-friendly alternatives to harmful synthetic chemical dyes for textiles and cosmetics.',
-    impact: 'Synthesized 4 vibrant bio-pigments exhibiting natural antimicrobial properties with zero heavy-metal residue.',
-  },
-  {
-    title: 'Bio-Lastic: Future with Flowers',
-    amount: '₹1,00,000 Sanctioned',
-    category: 'CleanTech & Circular Economy',
-    desc: 'Upcycling floral waste from temples and urban centers into completely biodegradable polymer resins for packaging and single-use film alternatives.',
-    impact: 'Created 100% home-compostable film samples and diverted over 500 kg of urban temple waste.',
-  },
-];
-
-const fundingFaqs = [
+const defaultFundingFaqs = [
   {
     q: 'Do I have to give equity to GUIITAR Council for SSIP 2.0 grants?',
     a: 'No. SSIP 2.0 grants are non-dilutive government and institutional grants. You retain 100% of your company’s equity and ownership.',
@@ -158,6 +60,55 @@ const fundingFaqs = [
 
 function Funding() {
   const [userRole, setUserRole] = useState<'student' | 'startup' | 'ipr'>('student');
+  const [storeSchemes, setStoreSchemes] = useState<FundingScheme[]>([]);
+  const [fundedIdeas, setFundedIdeas] = useState<any[]>([]);
+
+  const loadData = () => {
+    setStoreSchemes(AdminDataStore.getFundingSchemes());
+    const ideas = AdminDataStore.getPublishedIdeas();
+    setFundedIdeas(ideas.filter(i => i.fundingSanctioned));
+  };
+
+  useEffect(() => {
+    loadData();
+    const handleUpdate = () => loadData();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
+
+  const programs = useMemo(() => {
+    return storeSchemes.map((s) => ({
+      title: s.title,
+      badge: s.type,
+      amount: s.maxGrant,
+      desc: s.description,
+      covered: [
+        'Raw materials, fabrication costs & testing analysis charges',
+        'Direct lab instrumentation and third-party consumable services',
+        'Milestone-linked transparent tranche disbursements',
+        'Zero equity dilution or repayment required',
+      ],
+      eligibility: s.eligibility ? [s.eligibility] : ['Enrolled students, young innovators, and incubated founders'],
+      application: [
+        'Submit detailed proposal via online portal',
+        'Technical review by Institutional Screening Committee (ISC)',
+        'Pitch presentation and milestone agreement',
+        'Sanction letter and milestone-linked tranche release',
+      ],
+    }));
+  }, [storeSchemes]);
+
+  const fundedProjects = useMemo(() => {
+    return fundedIdeas.map((i) => ({
+      title: i.title,
+      amount: i.fundingSanctioned,
+      category: i.category,
+      desc: i.shortDescription || i.detailedDescription,
+      impact: i.expectedImpact || 'Validated PoC and prototyping progress.',
+    }));
+  }, [fundedIdeas]);
+
+  const fundingFaqs = defaultFundingFaqs;
 
   return (
     <>

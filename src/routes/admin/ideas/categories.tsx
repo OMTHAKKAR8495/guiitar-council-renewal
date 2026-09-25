@@ -12,81 +12,15 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { AdminLayout } from '@/components/admin/AdminLayout';
-import { AdminDataStore } from '@/lib/adminStore';
+import { useEffect } from 'react';
+import { AdminDataStore, type CategoryItem } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/admin/ideas/categories')({
   component: AdminIdeaCategoriesPage,
 });
 
-interface CategoryItem {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  color: string;
-  thrustArea: string;
-  count: number;
-}
-
-const INITIAL_CATEGORIES: CategoryItem[] = [
-  {
-    id: 'cat-1',
-    name: 'Artificial Intelligence & Robotics',
-    slug: 'ai-robotics',
-    description: 'Autonomous drones, edge computing, neural vision, NLP, and intelligent industrial automation.',
-    color: '#3b82f6',
-    thrustArea: 'AI & Robotics',
-    count: 14,
-  },
-  {
-    id: 'cat-2',
-    name: 'Biotechnology & Life Sciences',
-    slug: 'biotech',
-    description: 'Microbial bio-pigments, phytochemical extraction, botanical standardization, enzyme catalysis.',
-    color: '#10b981',
-    thrustArea: 'Biotechnology',
-    count: 22,
-  },
-  {
-    id: 'cat-3',
-    name: 'CleanTech & Circular Materials',
-    slug: 'cleantech',
-    description: 'Floral biopolymers, carbon capture, wastewater treatment, bio-pellet extrusion.',
-    color: '#059669',
-    thrustArea: 'Circular Economy',
-    count: 18,
-  },
-  {
-    id: 'cat-4',
-    name: 'Internet of Things (IoT) & Smart Hardware',
-    slug: 'iot-hardware',
-    description: 'Agricultural sensor networks, industrial vibration monitoring, smart grid telemetry.',
-    color: '#8b5cf6',
-    thrustArea: 'IoT & Embedded',
-    count: 19,
-  },
-  {
-    id: 'cat-5',
-    name: 'Healthcare & Biomedical Devices',
-    slug: 'healthcare',
-    description: 'Point-of-care diagnostics, non-invasive blood monitors, telehealth telemetry devices.',
-    color: '#ec4899',
-    thrustArea: 'Healthcare',
-    count: 11,
-  },
-  {
-    id: 'cat-6',
-    name: 'Advanced Manufacturing & Chemical Materials',
-    slug: 'materials-manufacturing',
-    description: 'Polymer nano-composites, specialized flame-retardant coatings, 3D printing filaments.',
-    color: '#f59e0b',
-    thrustArea: 'Materials',
-    count: 9,
-  },
-];
-
 export function AdminIdeaCategoriesPage() {
-  const [categories, setCategories] = useState<CategoryItem[]>(INITIAL_CATEGORIES);
+  const [categories, setCategories] = useState<CategoryItem[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingCat, setEditingCat] = useState<CategoryItem | null>(null);
   const [formData, setFormData] = useState({
@@ -96,6 +30,17 @@ export function AdminIdeaCategoriesPage() {
     color: '#2563eb',
   });
   const [toast, setToast] = useState<string | null>(null);
+
+  const loadCategories = () => {
+    setCategories(AdminDataStore.getCategories());
+  };
+
+  useEffect(() => {
+    loadCategories();
+    const handleUpdate = () => loadCategories();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const handleOpenAdd = () => {
     setEditingCat(null);
@@ -124,31 +69,22 @@ export function AdminIdeaCategoriesPage() {
     if (!formData.name.trim()) return;
 
     if (editingCat) {
-      setCategories((prev) =>
-        prev.map((c) =>
-          c.id === editingCat.id
-            ? {
-                ...c,
-                name: formData.name,
-                description: formData.description,
-                thrustArea: formData.thrustArea,
-                color: formData.color,
-              }
-            : c
-        )
-      );
+      AdminDataStore.saveCategory({
+        id: editingCat.id,
+        name: formData.name,
+        description: formData.description,
+        thrustArea: formData.thrustArea,
+        color: formData.color,
+      });
       setToast(`Updated category "${formData.name}"`);
     } else {
-      const newCat: CategoryItem = {
-        id: `cat-${Date.now()}`,
+      AdminDataStore.saveCategory({
         name: formData.name,
-        slug: formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         description: formData.description,
         thrustArea: formData.thrustArea,
         color: formData.color,
         count: 0,
-      };
-      setCategories((prev) => [newCat, ...prev]);
+      });
       setToast(`Created category "${formData.name}"`);
     }
 
@@ -158,7 +94,7 @@ export function AdminIdeaCategoriesPage() {
 
   const handleDelete = (id: string, name: string) => {
     if (window.confirm(`Delete category "${name}"?`)) {
-      setCategories((prev) => prev.filter((c) => c.id !== id));
+      AdminDataStore.deleteCategory(id);
       setToast(`Deleted category "${name}"`);
       setTimeout(() => setToast(null), 3000);
     }

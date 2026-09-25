@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   ShieldAlert,
   Search,
@@ -20,9 +20,20 @@ export const Route = createFileRoute('/admin/audit-log')({
 });
 
 export function AdminAuditLogPage() {
-  const [logs, setLogs] = useState<AuditLogEntry[]>(() => AdminDataStore.getAuditLogs());
+  const [logs, setLogs] = useState<AuditLogEntry[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState('All');
+
+  const loadLogs = () => {
+    setLogs(AdminDataStore.getAuditLogs());
+  };
+
+  useEffect(() => {
+    loadLogs();
+    const handleUpdate = () => loadLogs();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
 
   const recordTypes = ['All', 'Idea', 'Funding', 'Infrastructure', 'Startup', 'User', 'System'];
 

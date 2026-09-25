@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   Rocket,
   Search,
@@ -16,7 +16,7 @@ import {
   Layers,
 } from 'lucide-react';
 import { PageHero, SectionTitle, ButtonLink } from '@/components/site';
-import { STARTUP_DIRECTORY, type StartupItem } from '@/lib/data';
+import { AdminDataStore, type StartupItem } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/startups')({
   head: () => ({
@@ -43,18 +43,30 @@ export function StartupsPage() {
   const [search, setSearch] = useState('');
   const [industryFilter, setIndustryFilter] = useState('All');
   const [selectedStartup, setSelectedStartup] = useState<StartupItem | null>(null);
+  const [startupsList, setStartupsList] = useState<StartupItem[]>([]);
 
-  const industries = ['All', 'Biotech', 'CleanTech', 'Robotics', 'Ayurveda'];
+  const loadStartups = () => {
+    setStartupsList(AdminDataStore.getStartups());
+  };
+
+  useEffect(() => {
+    loadStartups();
+    const handleUpdate = () => loadStartups();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
+
+  const industries = ['All', 'Biotech', 'CleanTech', 'Robotics', 'Ayurveda', 'DeepTech'];
 
   const filtered = useMemo(() => {
-    return STARTUP_DIRECTORY.filter((s) => {
+    return startupsList.filter((s) => {
       const matchInd = industryFilter === 'All' || s.industry.toLowerCase().includes(industryFilter.toLowerCase());
       const matchQuery = `${s.name} ${s.description} ${s.technology} ${s.tagline}`
         .toLowerCase()
         .includes(search.toLowerCase());
       return matchInd && matchQuery;
     });
-  }, [industryFilter, search]);
+  }, [industryFilter, search, startupsList]);
 
   return (
     <>

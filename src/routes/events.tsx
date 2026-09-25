@@ -14,6 +14,9 @@ import {
 } from 'lucide-react';
 import { PageHero, SectionTitle, ButtonLink } from '@/components/site';
 
+import { useEffect } from 'react';
+import { AdminDataStore, type EventItem } from '@/lib/adminStore';
+
 export const Route = createFileRoute('/events')({
   head: () => ({
     meta: [
@@ -35,84 +38,39 @@ export const Route = createFileRoute('/events')({
   component: Events,
 });
 
-const allEvents = [
-  {
-    id: 1,
-    title: 'Autonomous Drone Technology & Aerodynamics Workshop',
-    date: 'October 17, 2026',
-    time: '10:00 AM – 4:30 PM IST',
-    location: 'Advanced Drone Research Lab & SOT Ground, GSFC University',
-    category: 'Hardware & UAVs',
-    isUpcoming: true,
-    seats: '45 Seats Available',
-    desc: 'An intensive, hands-on masterclass covering multi-rotor drone assembly, flight avionics, autonomous waypoint programming with ArduPilot, and DGCA drone compliance rules.',
-    topics: [
-      'Aerodynamic flight principles & brushless motor sizing',
-      'Electronic speed controllers (ESC) & flight controller rigging',
-      'Autonomous mission planning using Mission Planner & QGroundControl',
-      'Payload integration: Thermal sensors & aerial mapping cameras',
-      'DGCA airspace categorization and drone pilot guidelines',
-    ],
-  },
-  {
-    id: 2,
-    title: 'Deep Learning & AI Acceleration on Param Shavak',
-    date: 'November 05, 2026',
-    time: '02:00 PM – 06:00 PM IST',
-    location: 'Param Shavak Supercomputer Lab, Anviksha',
-    category: 'AI / DeepTech',
-    isUpcoming: true,
-    seats: '30 Seats Available',
-    desc: 'Explore GPU-accelerated computing pipelines for training neural networks, optimizing PyTorch models, and deploying computer vision systems at scale.',
-    topics: [
-      'Param Shavak DL GPU cluster architecture & CUDA setup',
-      'Distributed training strategies for Vision & LLM models',
-      'Model quantization & edge inference benchmarking',
-    ],
-  },
-  {
-    id: 3,
-    title: 'Patent Drafting & Prior Art Search Masterclass',
-    date: 'November 21, 2026',
-    time: '11:00 AM – 02:00 PM IST',
-    location: 'Event Room, 2nd Floor Anviksha & Virtual Stream',
-    category: 'IPR & Legal',
-    isUpcoming: true,
-    seats: '60 Seats Available',
-    desc: 'Learn directly from registered Indian Patent Attorneys on how to conduct bulletproof novelty searches, write independent claims, and protect research innovations.',
-    topics: [
-      'Techniques for Google Patents & InPASS database searches',
-      'Drafting patent claims that withstand examination objections',
-      'Claiming GUIITAR IPR Grant subsidies up to ₹1.5 Lakhs',
-    ],
-  },
-  {
-    id: 4,
-    title: '3D Printing & Additive Manufacturing Bootcamp',
-    date: 'July 10, 2026',
-    time: '10:00 AM – 04:00 PM IST',
-    location: 'Makers Lab, GSFC University',
-    category: 'Rapid Prototyping',
-    isUpcoming: false,
-    desc: 'Hands-on CAD modeling in Fusion 360, slicing configurations, and rapid prototype fabrication using FDM & resin printers for 80+ student participants.',
-    topics: ['CAD modeling to STL export', 'Slicer settings & support optimization', 'Post-processing resin prints'],
-  },
-  {
-    id: 5,
-    title: 'SSIP 2.0 Ideathon & Innovation Showcase',
-    date: 'April 22, 2026',
-    time: '09:00 AM – 06:00 PM IST',
-    location: 'Surjan Open Arena & Vigyan Bhavan',
-    category: 'Hackathon',
-    isUpcoming: false,
-    desc: 'Over 200 student innovators pitched 55 novel proof-of-concept projects to a panel of corporate judges and angel investors from Vadodara and Ahmedabad.',
-    topics: ['55 project demos', '₹5.5L total prizes and grants sanctioned', '12 new incubatees onboarded'],
-  },
-];
-
 function Events() {
   const [tab, setTab] = useState<'Upcoming' | 'Past'>('Upcoming');
-  const [registered, setRegistered] = useState<number | null>(null);
+  const [registered, setRegistered] = useState<string | null>(null);
+  const [eventsList, setEventsList] = useState<EventItem[]>([]);
+
+  const loadEvents = () => {
+    setEventsList(AdminDataStore.getEvents());
+  };
+
+  useEffect(() => {
+    loadEvents();
+    const handleUpdate = () => loadEvents();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
+
+  const allEvents = eventsList.map((e) => ({
+    id: e.id,
+    title: e.title,
+    date: e.date,
+    time: e.time,
+    location: e.location,
+    category: e.category,
+    isUpcoming: e.status === 'Upcoming' || e.status === 'Registration Open' || e.isUpcoming !== false,
+    seats: e.seats || `${e.capacity - e.registered} Seats Available`,
+    desc: e.desc || `Led by ${e.speaker}. Designed for innovators and technical founders looking to build practical expertise.`,
+    topics: e.topics && e.topics.length > 0 ? e.topics : [
+      'Interactive hands-on methodology',
+      'Technical rigging & live benchmarking',
+      'Direct Q&A with domain mentors',
+      'Certificate of participation from GUIITAR Council',
+    ],
+  }));
 
   const displayed = allEvents.filter((e) => (tab === 'Upcoming' ? e.isUpcoming : !e.isUpcoming));
   const featured = allEvents.find((e) => e.isUpcoming);

@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { createFileRoute } from '@tanstack/react-router'
+import { useState, useMemo, useEffect } from 'react';
 import {
   FileText,
   Search,
@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { PageHero, SectionTitle, ButtonLink } from '@/components/site';
+import { AdminDataStore, type ResourceDoc } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/resources')({
   head: () => ({
@@ -36,79 +37,42 @@ export const Route = createFileRoute('/resources')({
 
 const categories = [
   'All',
-  'Policies & Schemes',
-  'SSIP Guidelines',
-  'IPR & Patents',
-  'Templates & Pitch Decks',
-  'Lab Handbooks',
-];
-
-const documents = [
-  {
-    title: 'SSIP 2.0 Comprehensive Policy & Operational Guidelines',
-    category: 'SSIP Guidelines',
-    desc: 'Official Government of Gujarat Student Startup and Innovation Policy (SSIP 2.0) guidelines, eligibility criteria, and disbursement rules.',
-    date: 'Updated Dec 2025',
-    format: 'PDF',
-    size: '2.4 MB',
-  },
-  {
-    title: 'Gujarat Industrial Policy 2020 — Startup Scheme Manual',
-    category: 'Policies & Schemes',
-    desc: 'Detailed framework for operational assistance, milestone grants up to ₹30 Lakhs, and fiscal incentives for tech startups.',
-    date: 'Updated Nov 2025',
-    format: 'PDF',
-    size: '3.1 MB',
-  },
-  {
-    title: 'GUIITAR Invention Disclosure Form (IDF) & Prior Art Template',
-    category: 'IPR & Patents',
-    desc: 'Mandatory intake form for students and faculty seeking institutional IPR filing subsidies and patent attorney reviews.',
-    date: 'Updated Oct 2025',
-    format: 'DOCX',
-    size: '480 KB',
-  },
-  {
-    title: 'Institutional Screening Committee (ISC) Pitch Deck Template',
-    category: 'Templates & Pitch Decks',
-    desc: 'Standardized 10-slide presentation template for pitching proof-of-concept projects to the GUIITAR grant committee.',
-    date: 'Updated Oct 2025',
-    format: 'PPTX',
-    size: '1.8 MB',
-  },
-  {
-    title: 'Param Shavak Supercomputer & GPU Lab User Access Manual',
-    category: 'Lab Handbooks',
-    desc: 'Standard operating procedures, SLURM scheduler guidelines, CUDA environment setup, and compute quota request procedures.',
-    date: 'Updated Sep 2025',
-    format: 'PDF',
-    size: '1.5 MB',
-  },
-  {
-    title: 'Drone Lab Safety Protocols & Autonomous Flight Checklist',
-    category: 'Lab Handbooks',
-    desc: 'Safety regulations, LiPo battery maintenance protocols, and DGCA flight logging procedures for GUIITAR Drone Lab users.',
-    date: 'Updated Aug 2025',
-    format: 'PDF',
-    size: '950 KB',
-  },
-  {
-    title: 'Standard Memorandum of Understanding (MOU) Draft Template',
-    category: 'Templates & Pitch Decks',
-    desc: 'Sample bilateral collaboration agreement for prospective corporate, academic, and incubator partner organizations.',
-    date: 'Updated Aug 2025',
-    format: 'DOCX',
-    size: '320 KB',
-  },
+  'Policy Document',
+  'IPR Template',
+  'Pitch Template',
+  'Lab Guidelines',
 ];
 
 function Resources() {
   const [q, setQ] = useState('');
   const [cat, setCat] = useState('All');
   const [downloaded, setDownloaded] = useState<string | null>(null);
+  const [docsList, setDocsList] = useState<ResourceDoc[]>([]);
+
+  const loadResources = () => {
+    setDocsList(AdminDataStore.getResources());
+  };
+
+  useEffect(() => {
+    loadResources();
+    const handleUpdate = () => loadResources();
+    window.addEventListener('guiitar_store_update', handleUpdate);
+    return () => window.removeEventListener('guiitar_store_update', handleUpdate);
+  }, []);
+
+  const documents = useMemo(() => {
+    return docsList.map((d) => ({
+      title: d.title,
+      category: d.category,
+      desc: d.description,
+      date: `Updated ${d.updated}`,
+      format: d.format,
+      size: d.size,
+    }));
+  }, [docsList]);
 
   const shown = documents.filter((doc) => {
-    const matchCat = cat === 'All' || doc.category === cat;
+    const matchCat = cat === 'All' || doc.category.toLowerCase().includes(cat.toLowerCase());
     const matchQuery = `${doc.title} ${doc.desc} ${doc.category}`.toLowerCase().includes(q.toLowerCase());
     return matchCat && matchQuery;
   });
