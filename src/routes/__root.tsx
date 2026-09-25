@@ -9,8 +9,23 @@ import {
 } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 import { SiteLayout } from "@/components/site";
+import { ThemeProvider } from "@/lib/theme";
 
 import appCss from "../styles.css?url";
+
+const themeScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('guiitar_theme');
+    var isDark = stored === 'dark' || ((!stored || stored === 'system') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  } catch(e) {}
+})();
+`;
 
 function NotFoundComponent() {
   return (
@@ -104,8 +119,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <HeadContent />
       </head>
       <body>
@@ -121,7 +137,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteLayout><Outlet /></SiteLayout>
+      <ThemeProvider>
+        <SiteLayout><Outlet /></SiteLayout>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

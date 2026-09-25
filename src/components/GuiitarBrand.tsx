@@ -87,7 +87,7 @@ export function GuiitarFullLogo({ className = 'h-12', ...props }: SVGProps<SVGSV
       </g>
 
       {/* Divider */}
-      <line x1="90" y1="12" x2="90" y2="68" stroke="#CBD5E1" strokeWidth="2" />
+      <line x1="90" y1="12" x2="90" y2="68" stroke="currentColor" strokeWidth="2" className="text-slate-300 dark:text-slate-700" />
 
       {/* Text: GUIITAR */}
       <text
@@ -96,7 +96,7 @@ export function GuiitarFullLogo({ className = 'h-12', ...props }: SVGProps<SVGSV
         fontFamily="'Outfit', 'Plus Jakarta Sans', sans-serif"
         fontSize="32"
         fontWeight="800"
-        fill="#1E3A8A"
+        className="fill-[#1E3A8A] dark:fill-[#60A5FA]"
         letterSpacing="0.04em"
       >
         GUIITAR
@@ -109,7 +109,7 @@ export function GuiitarFullLogo({ className = 'h-12', ...props }: SVGProps<SVGSV
         fontFamily="'Outfit', 'Plus Jakarta Sans', sans-serif"
         fontSize="21"
         fontWeight="800"
-        fill="#334155"
+        className="fill-[#334155] dark:fill-[#E2E8F0]"
         letterSpacing="0.22em"
       >
         COUNCIL

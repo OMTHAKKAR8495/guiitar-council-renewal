@@ -27,6 +27,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { GuiitarFullLogo, StickyBackgroundWatermark, GuiitarEmblem } from './GuiitarBrand';
+import { ThemeToggle } from '@/lib/theme';
 
 export interface MegaMenuItem {
   title: string;
@@ -485,7 +486,7 @@ export function Header() {
                 gap: '4px',
                 fontSize: '14px',
                 fontWeight: 600,
-                color: path.startsWith('/contact') ? 'var(--primary)' : '#475569',
+                color: path.startsWith('/contact') ? 'var(--primary)' : 'var(--foreground)',
                 textDecoration: 'none',
                 padding: '6px 10px',
               }}
@@ -493,6 +494,8 @@ export function Header() {
             >
               <span>Contact</span>
             </Link>
+
+            <ThemeToggle variant="dropdown" />
 
             <Link className="btn btn-primary btn-sm" to="/apply" style={{ padding: '0 18px' }}>
               <span>Apply Now</span>
@@ -554,7 +557,12 @@ export function Header() {
               </Link>
             </div>
 
-            <div style={{ marginTop: '16px' }}>
+            <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: 'var(--muted)', borderRadius: '10px', border: '1px solid var(--border)' }}>
+                <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--foreground)' }}>Theme Mode</span>
+                <ThemeToggle variant="segmented" />
+              </div>
+
               <Link
                 to="/apply"
                 onClick={() => setOpen(false)}
@@ -683,13 +691,14 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="footer-bottom container">
+      <div className="footer-bottom container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px' }}>
         <span>© {new Date().getFullYear()} GUIITAR Council, GSFC University. Section 8 Not-For-Profit Organization.</span>
-        <div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
           <Link to="/resources">Policies & Governance</Link>
           <Link to="/partner">MOU Guidelines</Link>
           <Link to="/faq">FAQ</Link>
           <Link to="/contact">Support</Link>
+          <ThemeToggle variant="segmented" />
         </div>
       </div>
     </footer>

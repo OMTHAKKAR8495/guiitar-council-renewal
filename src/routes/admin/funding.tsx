@@ -10,6 +10,7 @@ import {
   FileSpreadsheet,
 } from 'lucide-react';
 import { useEffect } from 'react';
+import { AdminLayout } from '@/components/admin/AdminLayout';
 import { AdminDataStore, type FundingScheme } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/admin/funding')({

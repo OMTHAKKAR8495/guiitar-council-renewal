@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useEffect } from 'react';
+import { AdminLayout } from '@/components/admin/AdminLayout';
 import { AdminDataStore, type ResourceDoc } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/admin/resources')({

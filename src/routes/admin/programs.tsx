@@ -10,6 +10,7 @@ import {
   Users,
 } from 'lucide-react';
 import { useEffect } from 'react';
+import { AdminLayout } from '@/components/admin/AdminLayout';
 import { AdminDataStore, type IncubationProgram } from '@/lib/adminStore';
 
 export const Route = createFileRoute('/admin/programs')({
