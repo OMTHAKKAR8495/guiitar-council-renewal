@@ -573,7 +573,7 @@ export function AdminLayout({
         </div>
 
         {/* WORKSPACE MAIN BODY */}
-        <main style={{ padding: '32px', flexGrow: 1 }}>{children}</main>
+        <main className="admin-main" style={{ padding: '32px', flexGrow: 1, minWidth: 0 }}>{children}</main>
       </div>
     </div>
   );
