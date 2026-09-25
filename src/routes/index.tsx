@@ -1,24 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from '@tanstack/react-router';
+import { Lightbulb, Banknote, Users, Presentation, Network, Rocket } from 'lucide-react';
+import { Accordion, FundingCard, IconCard } from '@/components/content';
+import { ButtonLink, SectionTitle } from '@/components/site';
+import hero from '@/assets/home-hero.jpg.asset.json';
+import impact from '@/assets/impact.png.asset.json';
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+export const Route=createFileRoute('/')({head:()=>({meta:[{title:'GUIITAR Council | Premier Innovation Hub'},{name:'description',content:"GUIITAR Council by GSFC University is Vadodara's premier incubation center."},{property:'og:title',content:'GUIITAR Council | Premier Innovation Hub'},{property:'og:description',content:"Vadodara's premier incubation center empowering visionaries."},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Home});
+const offers=[['Innovation Support','Access resources to transform your innovative ideas into viable products and services.',Lightbulb],['Funding Opportunities','Multiple grant programs including SSIP 2.0, IPR grant, and Gujarat Industrial Policy 2020 for students and startups.',Banknote],['Mentorship','Guidance from Industry Experts, Academicians, Researchers, and Successful Entrepreneurs to navigate your journey.',Users],['Workshops & Training','Workshops on emerging technologies like Drones and 3D printing.',Presentation],['Networking','Connect with potential investors, partners, and fellow entrepreneurs.',Network],['Incubation','Full-cycle support from ideation to market penetration for your startup.',Rocket]] as const;
+const faqs=['What is the GUIITAR Council ?','Who can apply for incubation support at GUIITAR Council','Where is GUIITAR Council Located ?','What support does GUIITAR Council offer to startup ?','How can i apply for incubation support ?','Does the GUIITAR Council provide funding support ?','What are the eligibility criteria for funding support ?','Does the GUIITAR Council organize events for startups ?','How can I participate in startup events and workshops ?','Can external startups or entrepreneurs use GUIITAR Council facilities ?','What is the incubation duration at the GUIITAR Council ?','Is there any cost to join the incubation program?','How can I contact the GUIITAR Council for more information ?','Can I collaborate with the GUIITAR Council as an investor, mentor, or service provider?'];
+function Home(){return <>
+<section className="home-hero" style={{backgroundImage:`linear-gradient(90deg,oklch(.16 .03 255/.82),oklch(.16 .03 255/.3)),url(${hero.url})`}}><div className="container"><div><h1>Innovate, Inspire, Incubate</h1><p>GUIITAR COUNCIL by GSFC University is Vadodara's premier incubation center empowering visionaries to transform ideas into impactful ventures.</p><ButtonLink to="/about">Learn More</ButtonLink></div></div></section>
+<section><div className="container"><SectionTitle title="Why Choose GUIITAR Council?"/><div className="why-grid">{['Expert Mentorship from industry leaders','Access to well furnished Co Working Space','Multiple funding opportunities','Specialized workshops and events'].map((x,i)=><div className="why-item" key={x}><span>{i+1}</span><h3>{x}</h3></div>)}</div><div className="center"><ButtonLink to="/contact">Apply Now</ButtonLink></div></div></section>
+<section className="section-muted"><div className="container split"><div className="prose"><h2>GUIITAR's Impact</h2><p>GUIITAR COUNCIL is a non-profit incubation center founded by GSFC University, located in Vadodara, Gujarat. We are dedicated to fostering innovation, entrepreneurship, and technological advancement in the region.</p><p>Our incubation support and expert mentorship programs help startups and innovators transform their ideas into successful ventures, contributing to the entrepreneurial ecosystem of Gujarat.</p><ButtonLink to="/about">Learn More About Us</ButtonLink></div><img className="split-image" src={impact.url} alt="GUIITAR Council collaboration"/></div><div className="container stats">{[['1000+','Students/Startups Mentored'],['62+','Students/Startups Incubated'],['₹30 Lakhs+','Students/Startups Funded'],['10+','IPR Filed'],['115+','Events Organized'],['11,000+','Student Sensitized']].map(([n,l])=><div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div></section>
+<section><div className="container"><SectionTitle title="What We Offer" text="GUIITAR Council provides comprehensive support to nurture innovation and entrepreneurship through our specialized services."/><div className="grid-6">{offers.map(([t,d,I])=><IconCard key={t} icon={<I/>} title={t} text={d}/>)}</div></div></section>
+<section className="section-muted"><div className="container"><SectionTitle title="Funding Schemes" text="GUIITAR Council offers various funding options to support innovators and entrepreneurs at different stages of their journey. These programs are designed to provide not just financial support, but also mentorship and resources to ensure the success of innovator."/><div className="grid-3"><FundingCard title="SSIP 2.0 Grant" text="Supporting student-led innovations with comprehensive funding and mentorship." amount="Up to ₹2.5 Lakhs"/><FundingCard title="Gujarat Industrial Policy 2020" text="Funding for growing startups to scale operations and expand market reach." amount="Up to ₹30 Lakhs"/><FundingCard title="IPR Support" text="Protect students and startups intellectual property by providing guidance and funding support." amount="Up to ₹1.5 Lakhs"/></div><div className="center spaced"><ButtonLink to="/funding">Explore All Funding Options</ButtonLink></div></div></section>
+<section><div className="container split"><img className="split-image" src={hero.url} alt="Student innovation wing"/><div className="prose"><h2>Student Innovation Wing: The E-Club</h2><p>Join a vibrant community of innovators. The E-Club is designed to empower students through peer learning, hackathons, and exclusive mentorship sessions.</p><ButtonLink to="/about">Know more</ButtonLink></div></div></section>
+<section className="section-muted"><div className="container"><SectionTitle title="Our Linkages" text="GUIITAR Council collaborates with leading Industry Partners, Government Organizations, and Academic Institutions to foster Innovation and Entrepreneurship."/><div className="linkages">{['GSFC LTD','GSFC UNIVERSITY','DST','NASSCOM','iCreate','AIC-GISC'].map(x=><div key={x}>{x}</div>)}</div></div></section>
+<section><div className="container"><SectionTitle title="Frequently Asked Questions" text="Find answers to common questions about our incubation center, programs, and support services."/><Accordion items={faqs.map(q=>({q,a:'GUIITAR Council provides incubation, mentorship, funding guidance, facilities, and opportunities for students, startups, and innovators.'}))}/></div></section>
+<section className="section-blue cta"><div className="container"><h2>Ready to Transform Your Idea Into Reality?</h2><p>Join GUIITAR COUNCIL's incubation program and get the support, funding, and resources you need to succeed.</p><ButtonLink to="/contact" outline>Apply Now</ButtonLink></div></section></>}
