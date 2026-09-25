@@ -121,21 +121,16 @@ export function GuiitarFullLogo({ className = 'h-12', ...props }: SVGProps<SVGSV
 export function StickyBackgroundWatermark() {
   return (
     <div
-      className="sticky-bg-watermark"
+      className="page-background-watermark"
       aria-hidden="true"
-      style={{
-        position: 'fixed',
-        right: '-5%',
-        top: '18%',
-        width: '550px',
-        height: '550px',
-        opacity: 0.035,
-        pointerEvents: 'none',
-        zIndex: 0,
-        transform: 'rotate(-10deg)',
-      }}
     >
-      <GuiitarEmblem className="w-full h-full" />
+      <img
+        src="/guiitar-council-logo.png"
+        alt=""
+        loading="eager"
+        decoding="async"
+        draggable={false}
+      />
     </div>
   );
 }

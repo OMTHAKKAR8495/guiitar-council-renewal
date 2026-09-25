@@ -701,7 +701,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     <>
       <StickyBackgroundWatermark />
       <Header />
-      <main style={{ position: 'relative', zIndex: 1, minHeight: '80vh' }}>{children}</main>
+      <main className="page-content" style={{ position: 'relative', zIndex: 1, minHeight: '80vh' }}>{children}</main>
       <Footer />
     </>
   );
