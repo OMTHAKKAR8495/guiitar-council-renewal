@@ -1568,28 +1568,46 @@ export function HomePage() {
                 }}
               >
                 <div>
-                  <div
-                    className="avatar"
-                    style={{
-                      margin: "0 auto 16px",
-                      width: "64px",
-                      height: "64px",
-                      fontSize: "20px",
-                    }}
-                  >
-                    {m.name
-                      .split(" ")
-                      .filter(
-                        (x) =>
-                          x.length > 2 &&
-                          !x.includes("Dr.") &&
-                          !x.includes("Mr.") &&
-                          !x.includes("Prof."),
-                      )
-                      .slice(0, 2)
-                      .map((x) => x[0])
-                      .join("") || "GM"}
-                  </div>
+                  {m.avatar ? (
+                    <img
+                      src={m.avatar}
+                      alt={m.name}
+                      style={{
+                        margin: "0 auto 16px",
+                        width: "64px",
+                        height: "64px",
+                        borderRadius: "50%",
+                        objectFit: "cover",
+                        border: "2px solid #3b82f6",
+                        display: "block",
+                        boxShadow: "0 4px 12px rgba(37, 99, 235, 0.15)",
+                      }}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div
+                      className="avatar"
+                      style={{
+                        margin: "0 auto 16px",
+                        width: "64px",
+                        height: "64px",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {m.name
+                        .split(" ")
+                        .filter(
+                          (x) =>
+                            x.length > 2 &&
+                            !x.includes("Dr.") &&
+                            !x.includes("Mr.") &&
+                            !x.includes("Prof."),
+                        )
+                        .slice(0, 2)
+                        .map((x) => x[0])
+                        .join("") || "GM"}
+                    </div>
+                  )}
 
                   <span className="pill" style={{ marginBottom: "8px", fontSize: "11px" }}>
                     {m.domain}
@@ -1872,16 +1890,24 @@ export function HomePage() {
             <article className="leader-card">
               <div className="leader-quote-mark">“</div>
               <p className="leader-quote">
-                Create an environment of excellence through innovation, for you will forever be
+                Create an environment of excellence through innovation for you will forever be
                 remembered for your contribution to the world. Innovation is a journey in which you
-                have to say no to thousands of things which already exist while boldly embracing the
+                have to say no to thousands of things which already exist while embracing the
                 one which is yet to come.
               </p>
               <div className="leader-footer">
-                <div className="avatar">PK</div>
+                <img
+                  src="/leaders/pk-taneja.png"
+                  alt="Shri P. K. Taneja, IAS (Retd.)"
+                  className="leader-avatar-photo"
+                  width={68}
+                  height={68}
+                  loading="lazy"
+                />
                 <div className="leader-info">
+                  <span className="leader-desk-badge">Message from President's Desk</span>
                   <h3>Shri P. K. Taneja, IAS (Retd.)</h3>
-                  <p>President, GSFC University & Chairman, GUIITAR Council</p>
+                  <p>President, GSFC University & Director, GUIITAR Council</p>
                 </div>
               </div>
             </article>
@@ -1889,14 +1915,21 @@ export function HomePage() {
             <article className="leader-card">
               <div className="leader-quote-mark">“</div>
               <p className="leader-quote">
-                Innovation is not merely about repeating a textbook success story, but celebrating
-                every iterative failure as a critical learning milestone. Pick-up and never give-up
-                is the foundational attitude that turns students into resilient startup founders.
+                Innovation is not to repeat a success story but to celebrate a failure. Pick-up and
+                never Give-up is an attitude towards innovation.
               </p>
               <div className="leader-footer">
-                <div className="avatar">GR</div>
+                <img
+                  src="/leaders/gr-sinha.png"
+                  alt="Dr G R Sinha"
+                  className="leader-avatar-photo"
+                  width={68}
+                  height={68}
+                  loading="lazy"
+                />
                 <div className="leader-info">
-                  <h3>Prof. G. R. Sinha</h3>
+                  <span className="leader-desk-badge">Message from Provost's Desk</span>
+                  <h3>Dr G R Sinha</h3>
                   <p>Provost, GSFC University & CEO, GUIITAR Council</p>
                 </div>
               </div>

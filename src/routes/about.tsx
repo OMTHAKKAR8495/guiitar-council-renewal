@@ -261,16 +261,24 @@ function About() {
             <article className="leader-card">
               <div className="leader-quote-mark">“</div>
               <p className="leader-quote">
-                Create an environment of excellence through innovation, for you will forever be
+                Create an environment of excellence through innovation for you will forever be
                 remembered for your contribution to the world. Innovation is a journey in which you
-                have to say no to thousands of things which already exist while boldly embracing the
+                have to say no to thousands of things which already exist while embracing the
                 one which is yet to come.
               </p>
               <div className="leader-footer">
-                <div className="avatar">PK</div>
+                <img
+                  src="/leaders/pk-taneja.png"
+                  alt="Shri P. K. Taneja, IAS (Retd.)"
+                  className="leader-avatar-photo"
+                  width={68}
+                  height={68}
+                  loading="lazy"
+                />
                 <div className="leader-info">
+                  <span className="leader-desk-badge">Message from President's Desk</span>
                   <h3>Shri P. K. Taneja, IAS (Retd.)</h3>
-                  <p>President, GSFC University & Chairman, GUIITAR Council</p>
+                  <p>President, GSFC University & Director, GUIITAR Council</p>
                 </div>
               </div>
             </article>
@@ -278,14 +286,21 @@ function About() {
             <article className="leader-card">
               <div className="leader-quote-mark">“</div>
               <p className="leader-quote">
-                Innovation is not merely about repeating a textbook success story, but celebrating
-                every iterative failure as a critical learning milestone. Pick-up and never give-up
-                is the foundational attitude that turns students into resilient startup founders.
+                Innovation is not to repeat a success story but to celebrate a failure. Pick-up and
+                never Give-up is an attitude towards innovation.
               </p>
               <div className="leader-footer">
-                <div className="avatar">GR</div>
+                <img
+                  src="/leaders/gr-sinha.png"
+                  alt="Dr G R Sinha"
+                  className="leader-avatar-photo"
+                  width={68}
+                  height={68}
+                  loading="lazy"
+                />
                 <div className="leader-info">
-                  <h3>Prof. G. R. Sinha</h3>
+                  <span className="leader-desk-badge">Message from Provost's Desk</span>
+                  <h3>Dr G R Sinha</h3>
                   <p>Provost, GSFC University & CEO, GUIITAR Council</p>
                 </div>
               </div>
@@ -330,42 +345,63 @@ function About() {
             </button>
 
             <div className="team-grid">
-              {visible.map(([n, t, desc]) => (
-                <article className="team-card" key={n}>
-                  <div className="avatar">
-                    {n
-                      .split(" ")
-                      .filter((x) => x.length > 2 && !x.includes("Dr.") && !x.includes("Mr."))
-                      .slice(0, 2)
-                      .map((x) => x[0])
-                      .join("") || "GC"}
-                  </div>
-                  <h3>{n}</h3>
-                  <p>{t}</p>
-                  {desc && (
-                    <span
-                      style={{
-                        fontSize: "12.5px",
-                        color: "#64748b",
-                        display: "block",
-                        marginBottom: "16px",
-                      }}
-                    >
-                      {desc}
-                    </span>
-                  )}
-                  <div className="team-socials">
-                    <a
-                      href="https://linkedin.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="LinkedIn Profile"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                  </div>
-                </article>
-              ))}
+              {visible.map(([n, t, desc]) => {
+                const leaderPhotos: Record<string, string> = {
+                  "Shri P. K. Taneja, IAS (Retd.)": "/leaders/pk-taneja.png",
+                  "Prof. G. R. Sinha": "/leaders/gr-sinha.png",
+                  "Dr G R Sinha": "/leaders/gr-sinha.png",
+                };
+                const photo = leaderPhotos[n];
+
+                return (
+                  <article className="team-card" key={n}>
+                    {photo ? (
+                      <img
+                        src={photo}
+                        alt={n}
+                        className="avatar"
+                        style={{ objectFit: "cover", border: "2px solid #3b82f6" }}
+                        width={56}
+                        height={56}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="avatar">
+                        {n
+                          .split(" ")
+                          .filter((x) => x.length > 2 && !x.includes("Dr.") && !x.includes("Mr."))
+                          .slice(0, 2)
+                          .map((x) => x[0])
+                          .join("") || "GC"}
+                      </div>
+                    )}
+                    <h3>{n}</h3>
+                    <p>{t}</p>
+                    {desc && (
+                      <span
+                        style={{
+                          fontSize: "12.5px",
+                          color: "#64748b",
+                          display: "block",
+                          marginBottom: "16px",
+                        }}
+                      >
+                        {desc}
+                      </span>
+                    )}
+                    <div className="team-socials">
+                      <a
+                        href="https://linkedin.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="LinkedIn Profile"
+                      >
+                        <Linkedin className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
 
             <button

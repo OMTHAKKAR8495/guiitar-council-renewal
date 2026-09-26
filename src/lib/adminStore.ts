@@ -787,8 +787,7 @@ const INITIAL_MENTORS: MentorItem[] = [
       "IPR Strategy",
       "Academic Entrepreneurship",
     ],
-    avatar:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
+    avatar: "/leaders/gr-sinha.png",
     status: "Active",
   },
   {

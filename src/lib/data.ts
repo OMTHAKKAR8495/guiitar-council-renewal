@@ -674,6 +674,7 @@ export interface MentorItem {
   organization: string;
   experience: string;
   expertise: string[];
+  avatar?: string;
 }
 
 export const MENTOR_NETWORK: MentorItem[] = [
@@ -684,6 +685,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Research",
     organization: "GSFC University",
     experience: "25+ Years in Engineering Research & Academic Leadership",
+    avatar: "/leaders/gr-sinha.png",
     expertise: [
       "Biomedical Signal Processing",
       "AI/ML in Healthcare",
