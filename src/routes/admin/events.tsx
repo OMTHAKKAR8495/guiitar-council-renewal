@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Calendar,
   Plus,
@@ -15,6 +15,30 @@ import {
 } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { AdminDataStore, type EventItem } from "@/lib/adminStore";
+
+function toISODateString(str: string): string {
+  if (!str) return "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
+  const parsed = Date.parse(str);
+  if (isNaN(parsed)) return "";
+  const d = new Date(parsed);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function formatReadableDate(isoStr: string): string {
+  if (!isoStr) return "";
+  const [y, m, d] = isoStr.split("-").map(Number);
+  if (!y || !m || !d) return isoStr;
+  const date = new Date(y, m - 1, d);
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
 
 export const Route = createFileRoute("/admin/events")({
   component: AdminEventsPage,
@@ -56,6 +80,7 @@ export function AdminEventsPage() {
   };
 
   const [formData, setFormData] = useState(defaultForm);
+  const datePickerRef = useRef<HTMLInputElement>(null);
 
   const filteredEvents = events.filter((e) =>
     `${e.title} ${e.speaker} ${e.location} ${e.category} ${e.status}`
@@ -423,27 +448,83 @@ export function AdminEventsPage() {
                       display: "block",
                       fontSize: "13px",
                       fontWeight: 700,
-                      color: "#0f172a",
+                      color: "var(--foreground, #0f172a)",
                       marginBottom: "6px",
                     }}
                   >
                     Event Date *
                   </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.date}
-                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    placeholder="e.g., November 28, 2026"
-                    style={{
-                      width: "100%",
-                      padding: "10px 14px",
-                      borderRadius: "8px",
-                      border: "1px solid #cbd5e1",
-                      fontSize: "14px",
-                      boxSizing: "border-box",
-                    }}
-                  />
+                  <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+                    <input
+                      type="text"
+                      required
+                      value={formData.date}
+                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      placeholder="e.g., November 28, 2026"
+                      style={{
+                        width: "100%",
+                        padding: "10px 42px 10px 14px",
+                        borderRadius: "8px",
+                        border: "1px solid var(--border, #cbd5e1)",
+                        background: "var(--card, #ffffff)",
+                        color: "var(--foreground, #0f172a)",
+                        fontSize: "14px",
+                        boxSizing: "border-box",
+                      }}
+                    />
+                    <button
+                      type="button"
+                      title="Select date from calendar"
+                      onClick={() => {
+                        if (datePickerRef.current) {
+                          if (typeof datePickerRef.current.showPicker === "function") {
+                            datePickerRef.current.showPicker();
+                          } else {
+                            datePickerRef.current.focus();
+                          }
+                        }
+                      }}
+                      style={{
+                        position: "absolute",
+                        right: "6px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        background: "transparent",
+                        border: "none",
+                        cursor: "pointer",
+                        color: "var(--primary, #2563eb)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "6px 8px",
+                        borderRadius: "6px",
+                      }}
+                    >
+                      <Calendar className="w-4 h-4" />
+                    </button>
+                    <input
+                      type="date"
+                      ref={datePickerRef}
+                      value={toISODateString(formData.date)}
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          setFormData({ ...formData, date: formatReadableDate(e.target.value) });
+                        }
+                      }}
+                      style={{
+                        position: "absolute",
+                        right: "12px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        opacity: 0,
+                        width: "20px",
+                        height: "20px",
+                        pointerEvents: "none",
+                      }}
+                      tabIndex={-1}
+                      aria-hidden="true"
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -452,7 +533,7 @@ export function AdminEventsPage() {
                       display: "block",
                       fontSize: "13px",
                       fontWeight: 700,
-                      color: "#0f172a",
+                      color: "var(--foreground, #0f172a)",
                       marginBottom: "6px",
                     }}
                   >
@@ -467,7 +548,9 @@ export function AdminEventsPage() {
                       width: "100%",
                       padding: "10px 14px",
                       borderRadius: "8px",
-                      border: "1px solid #cbd5e1",
+                      border: "1px solid var(--border, #cbd5e1)",
+                      background: "var(--card, #ffffff)",
+                      color: "var(--foreground, #0f172a)",
                       fontSize: "14px",
                       boxSizing: "border-box",
                     }}
@@ -482,7 +565,7 @@ export function AdminEventsPage() {
                       display: "block",
                       fontSize: "13px",
                       fontWeight: 700,
-                      color: "#0f172a",
+                      color: "var(--foreground, #0f172a)",
                       marginBottom: "6px",
                     }}
                   >
@@ -497,7 +580,9 @@ export function AdminEventsPage() {
                       width: "100%",
                       padding: "10px 14px",
                       borderRadius: "8px",
-                      border: "1px solid #cbd5e1",
+                      border: "1px solid var(--border, #cbd5e1)",
+                      background: "var(--card, #ffffff)",
+                      color: "var(--foreground, #0f172a)",
                       fontSize: "14px",
                       boxSizing: "border-box",
                     }}
@@ -510,7 +595,7 @@ export function AdminEventsPage() {
                       display: "block",
                       fontSize: "13px",
                       fontWeight: 700,
-                      color: "#0f172a",
+                      color: "var(--foreground, #0f172a)",
                       marginBottom: "6px",
                     }}
                   >
@@ -525,10 +610,11 @@ export function AdminEventsPage() {
                       width: "100%",
                       padding: "10px 14px",
                       borderRadius: "8px",
-                      border: "1px solid #cbd5e1",
+                      border: "1px solid var(--border, #cbd5e1)",
                       fontSize: "14px",
                       boxSizing: "border-box",
-                      background: "#ffffff",
+                      background: "var(--card, #ffffff)",
+                      color: "var(--foreground, #0f172a)",
                     }}
                   >
                     <option value="Registration Open">Registration Open</option>
@@ -546,7 +632,7 @@ export function AdminEventsPage() {
                       display: "block",
                       fontSize: "13px",
                       fontWeight: 700,
-                      color: "#0f172a",
+                      color: "var(--foreground, #0f172a)",
                       marginBottom: "6px",
                     }}
                   >
@@ -561,7 +647,9 @@ export function AdminEventsPage() {
                       width: "100%",
                       padding: "10px 14px",
                       borderRadius: "8px",
-                      border: "1px solid #cbd5e1",
+                      border: "1px solid var(--border, #cbd5e1)",
+                      background: "var(--card, #ffffff)",
+                      color: "var(--foreground, #0f172a)",
                       fontSize: "14px",
                       boxSizing: "border-box",
                     }}
