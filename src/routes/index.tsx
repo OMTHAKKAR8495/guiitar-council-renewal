@@ -164,8 +164,39 @@ export function HomePage() {
             backgroundSize: "32px 32px",
             opacity: 0.25,
             pointerEvents: "none",
+            zIndex: 0,
           }}
         />
+
+        {/* Subtle deep blue ambient glow behind center-right graphic */}
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            right: "8%",
+            transform: "translate(20%, -50%)",
+            width: "650px",
+            height: "650px",
+            background:
+              "radial-gradient(circle, rgba(37, 99, 235, 0.14) 0%, rgba(30, 58, 138, 0.06) 50%, transparent 70%)",
+            borderRadius: "50%",
+            pointerEvents: "none",
+            zIndex: 0,
+            filter: "blur(40px)",
+          }}
+        />
+
+        {/* GUIITAR Council Institutional Watermark (Center-Right behind Innovation Journey graphic) */}
+        <div className="hero-watermark-bg" aria-hidden="true">
+          <img
+            src="/guiitar-council-logo.png"
+            alt=""
+            loading="eager"
+            decoding="async"
+            draggable={false}
+            className="hero-watermark-img"
+          />
+        </div>
 
         <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <div className="hero-grid-split">
