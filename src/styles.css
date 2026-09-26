@@ -2821,12 +2821,40 @@ section {
   }
 }
 
+.admin-sidebar-desktop {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  height: 100vh !important;
+  z-index: 50 !important;
+  overflow: hidden !important;
+}
+
+.admin-workspace-wrapper {
+  margin-left: 280px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+  transition: margin-left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.admin-workspace-wrapper.sidebar-collapsed {
+  margin-left: 80px;
+}
+
 @media (max-width: 1024px) {
   .admin-sidebar-desktop {
     display: none !important;
   }
   .admin-mobile-header-toggle {
     display: flex !important;
+  }
+  .admin-workspace-wrapper,
+  .admin-workspace-wrapper.sidebar-collapsed {
+    margin-left: 0 !important;
   }
 }
 

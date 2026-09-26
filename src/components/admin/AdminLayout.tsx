@@ -150,7 +150,16 @@ export function AdminLayout({
   }
 
   const renderSidebarContent = (isMobile = false) => (
-    <>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        width: "100%",
+        minHeight: "100%",
+        overflow: "hidden",
+      }}
+    >
       {/* Sidebar Header Brand */}
       <div
         style={{
@@ -160,6 +169,7 @@ export function AdminLayout({
           alignItems: "center",
           justifyContent: "space-between",
           borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+          flexShrink: 0,
         }}
       >
         <Link
@@ -217,7 +227,7 @@ export function AdminLayout({
       </div>
 
       {/* Sidebar Navigation Items */}
-      <div style={{ flexGrow: 1, overflowY: "auto", padding: "16px 12px" }}>
+      <div style={{ flex: "1 1 auto", overflowY: "auto", padding: "16px 12px", minHeight: 0 }}>
         {navSections.map((sec) => (
           <div key={sec.title} style={{ marginBottom: "20px" }}>
             {(!sidebarCollapsed || isMobile) && (
@@ -295,7 +305,9 @@ export function AdminLayout({
         style={{
           padding: "16px",
           borderTop: "1px solid rgba(255, 255, 255, 0.08)",
-          background: "rgba(0, 0, 0, 0.2)",
+          background: "rgba(0, 0, 0, 0.35)",
+          flexShrink: 0,
+          marginTop: "auto",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -352,7 +364,7 @@ export function AdminLayout({
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 
   return (
@@ -372,7 +384,7 @@ export function AdminLayout({
       <aside
         style={{
           width: sidebarCollapsed ? "80px" : "280px",
-          background: "rgba(9, 13, 22, 0.94)",
+          background: "rgba(9, 13, 22, 0.96)",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
           color: "#cbd5e1",
@@ -380,11 +392,14 @@ export function AdminLayout({
           display: "flex",
           flexDirection: "column",
           transition: "width 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
-          position: "sticky",
+          position: "fixed",
           top: 0,
+          bottom: 0,
+          left: 0,
           height: "100vh",
           zIndex: 50,
           flexShrink: 0,
+          overflow: "hidden",
         }}
         className="admin-sidebar admin-sidebar-desktop"
       >
@@ -427,7 +442,9 @@ export function AdminLayout({
           minWidth: 0,
           position: "relative",
           zIndex: 1,
+          minHeight: "100vh",
         }}
+        className={`admin-workspace-wrapper ${sidebarCollapsed ? "sidebar-collapsed" : ""}`}
       >
         {/* TOP BAR */}
         <header
