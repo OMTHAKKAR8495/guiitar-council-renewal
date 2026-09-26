@@ -36,6 +36,7 @@ import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminMentorsRouteImport } from './routes/admin/mentors'
 import { Route as AdminPartnersRouteImport } from './routes/admin/partners'
 import { Route as AdminProgramsRouteImport } from './routes/admin/programs'
+import { Route as AdminRegistrationsRouteImport } from './routes/admin/registrations'
 import { Route as AdminResourcesRouteImport } from './routes/admin/resources'
 import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
 import { Route as AdminStartupsRouteImport } from './routes/admin/startups'
@@ -181,6 +182,11 @@ const AdminProgramsRoute = AdminProgramsRouteImport.update({
   path: '/admin/programs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRegistrationsRoute = AdminRegistrationsRouteImport.update({
+  id: '/admin/registrations',
+  path: '/admin/registrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminResourcesRoute = AdminResourcesRouteImport.update({
   id: '/admin/resources',
   path: '/admin/resources',
@@ -254,6 +260,7 @@ export interface FileRoutesByFullPath {
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/programs': typeof AdminProgramsRoute
+  '/admin/registrations': typeof AdminRegistrationsRoute
   '/admin/resources': typeof AdminResourcesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/startups': typeof AdminStartupsRoute
@@ -292,6 +299,7 @@ export interface FileRoutesByTo {
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/programs': typeof AdminProgramsRoute
+  '/admin/registrations': typeof AdminRegistrationsRoute
   '/admin/resources': typeof AdminResourcesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/startups': typeof AdminStartupsRoute
@@ -331,6 +339,7 @@ export interface FileRoutesById {
   '/admin/mentors': typeof AdminMentorsRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/programs': typeof AdminProgramsRoute
+  '/admin/registrations': typeof AdminRegistrationsRoute
   '/admin/resources': typeof AdminResourcesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/startups': typeof AdminStartupsRoute
@@ -371,6 +380,7 @@ export interface FileRouteTypes {
     | '/admin/mentors'
     | '/admin/partners'
     | '/admin/programs'
+    | '/admin/registrations'
     | '/admin/resources'
     | '/admin/settings'
     | '/admin/startups'
@@ -409,6 +419,7 @@ export interface FileRouteTypes {
     | '/admin/mentors'
     | '/admin/partners'
     | '/admin/programs'
+    | '/admin/registrations'
     | '/admin/resources'
     | '/admin/settings'
     | '/admin/startups'
@@ -447,6 +458,7 @@ export interface FileRouteTypes {
     | '/admin/mentors'
     | '/admin/partners'
     | '/admin/programs'
+    | '/admin/registrations'
     | '/admin/resources'
     | '/admin/settings'
     | '/admin/startups'
@@ -486,6 +498,7 @@ export interface RootRouteChildren {
   AdminMentorsRoute: typeof AdminMentorsRoute
   AdminPartnersRoute: typeof AdminPartnersRoute
   AdminProgramsRoute: typeof AdminProgramsRoute
+  AdminRegistrationsRoute: typeof AdminRegistrationsRoute
   AdminResourcesRoute: typeof AdminResourcesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminStartupsRoute: typeof AdminStartupsRoute
@@ -688,6 +701,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminProgramsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/registrations': {
+      id: '/admin/registrations'
+      path: '/admin/registrations'
+      fullPath: '/admin/registrations'
+      preLoaderRoute: typeof AdminRegistrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/resources': {
       id: '/admin/resources'
       path: '/admin/resources'
@@ -793,6 +813,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminMentorsRoute: AdminMentorsRoute,
   AdminPartnersRoute: AdminPartnersRoute,
   AdminProgramsRoute: AdminProgramsRoute,
+  AdminRegistrationsRoute: AdminRegistrationsRoute,
   AdminResourcesRoute: AdminResourcesRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminStartupsRoute: AdminStartupsRoute,

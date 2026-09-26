@@ -172,6 +172,28 @@ async function main() {
     `;
     console.log("✓ Table 'audit_logs' created or verified");
 
+    // 8. Registrations table
+    await sql`
+      CREATE TABLE IF NOT EXISTS registrations (
+        id TEXT PRIMARY KEY,
+        ticket_id TEXT UNIQUE,
+        student_name TEXT NOT NULL,
+        enrollment_no TEXT NOT NULL,
+        email TEXT NOT NULL,
+        phone TEXT,
+        department TEXT NOT NULL,
+        event_id TEXT,
+        event_title TEXT NOT NULL,
+        registration_date TEXT NOT NULL,
+        status TEXT DEFAULT 'Registered',
+        semester TEXT DEFAULT '6th Sem',
+        notes TEXT DEFAULT '',
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+    console.log("✓ Table 'registrations' created or verified");
+
     console.log("\nAll tables successfully created in your Neon Postgres Database!");
   } catch (error) {
     console.error("Migration failed:", error);

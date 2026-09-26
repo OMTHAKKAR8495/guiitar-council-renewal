@@ -1,5 +1,5 @@
 import { neon } from "@neondatabase/serverless";
-import type { EventItem, IdeaItem, StartupItem, ApplicationItem, MentorItem } from "./adminStore";
+import type { EventItem, IdeaItem, StartupItem, ApplicationItem, MentorItem, RegistrationItem } from "./adminStore";
 
 export const NEON_CONNECTION_STRING =
   "postgresql://neondb_owner:npg_6xstyEme5PMN@ep-twilight-brook-b4c0f74u-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
@@ -405,6 +405,136 @@ export const NeonClient = {
       return true;
     } catch (err) {
       console.error("Neon deleteStartup error:", err);
+      return false;
+    }
+  },
+
+  // 4. Student Registrations
+  async getRegistrations(): Promise<RegistrationItem[] | null> {
+    const sql = getSql();
+    if (!sql) return null;
+    try {
+      const rows = await sql`
+        SELECT * FROM registrations 
+        ORDER BY created_at DESC;
+      `;
+      return rows.map((r: any) => ({
+        id: r.id,
+        ticketId: r.ticket_id || `TIC-${r.id}`,
+        studentName: r.student_name,
+        enrollmentNo: r.enrollment_no,
+        email: r.email,
+        phone: r.phone || "",
+        department: r.department,
+        eventId: r.event_id || "",
+        eventTitle: r.event_title,
+        registrationDate: r.registration_date,
+        status: r.status || "Registered",
+        semester: r.semester || "6th Sem",
+        notes: r.notes || "",
+        createdAt: r.created_at ? new Date(r.created_at).toISOString() : new Date().toISOString(),
+      }));
+    } catch (err) {
+      console.warn("Neon getRegistrations error, falling back to local store:", err);
+      return null;
+    }
+  },
+
+  async saveRegistration(reg: Partial<RegistrationItem> & { studentName: string; email: string; eventTitle: string }): Promise<RegistrationItem | null> {
+    const sql = getSql();
+    if (!sql) return null;
+    try {
+      const id = reg.id || `reg-${Date.now()}`;
+      const ticketId = reg.ticketId || `GUI-${new Date().getFullYear()}-REG-${Math.floor(1000 + Math.random() * 9000)}`;
+      const regDate = reg.registrationDate || new Date().toISOString().split("T")[0];
+
+      const rows = await sql`
+        INSERT INTO registrations (
+          id, ticket_id, student_name, enrollment_no, email, phone,
+          department, event_id, event_title, registration_date, status, semester, notes, updated_at
+        ) VALUES (
+          ${id},
+          ${ticketId},
+          ${reg.studentName},
+          ${reg.enrollmentNo || "N/A"},
+          ${reg.email},
+          ${reg.phone || ""},
+          ${reg.department || "Computer Science & Eng"},
+          ${reg.eventId || ""},
+          ${reg.eventTitle},
+          ${regDate},
+          ${reg.status || "Registered"},
+          ${reg.semester || "6th Sem"},
+          ${reg.notes || ""},
+          CURRENT_TIMESTAMP
+        )
+        ON CONFLICT (id) DO UPDATE SET
+          ticket_id = EXCLUDED.ticket_id,
+          student_name = EXCLUDED.student_name,
+          enrollment_no = EXCLUDED.enrollment_no,
+          email = EXCLUDED.email,
+          phone = EXCLUDED.phone,
+          department = EXCLUDED.department,
+          event_id = EXCLUDED.event_id,
+          event_title = EXCLUDED.event_title,
+          registration_date = EXCLUDED.registration_date,
+          status = EXCLUDED.status,
+          semester = EXCLUDED.semester,
+          notes = EXCLUDED.notes,
+          updated_at = CURRENT_TIMESTAMP
+        RETURNING *;
+      `;
+
+      if (rows && rows.length > 0) {
+        const r = rows[0];
+        return {
+          id: r.id,
+          ticketId: r.ticket_id,
+          studentName: r.student_name,
+          enrollmentNo: r.enrollment_no,
+          email: r.email,
+          phone: r.phone || "",
+          department: r.department,
+          eventId: r.event_id || "",
+          eventTitle: r.event_title,
+          registrationDate: r.registration_date,
+          status: r.status,
+          semester: r.semester || "6th Sem",
+          notes: r.notes || "",
+          createdAt: r.created_at ? new Date(r.created_at).toISOString() : new Date().toISOString(),
+        };
+      }
+      return null;
+    } catch (err) {
+      console.error("Neon saveRegistration error:", err);
+      return null;
+    }
+  },
+
+  async updateRegistrationStatus(id: string, status: "Registered" | "Attended" | "Cancelled" | "Waitlisted"): Promise<boolean> {
+    const sql = getSql();
+    if (!sql) return false;
+    try {
+      await sql`
+        UPDATE registrations 
+        SET status = ${status}, updated_at = CURRENT_TIMESTAMP 
+        WHERE id = ${id};
+      `;
+      return true;
+    } catch (err) {
+      console.error("Neon updateRegistrationStatus error:", err);
+      return false;
+    }
+  },
+
+  async deleteRegistration(id: string): Promise<boolean> {
+    const sql = getSql();
+    if (!sql) return false;
+    try {
+      await sql`DELETE FROM registrations WHERE id = ${id};`;
+      return true;
+    } catch (err) {
+      console.error("Neon deleteRegistration error:", err);
       return false;
     }
   },

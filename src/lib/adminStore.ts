@@ -216,6 +216,23 @@ export interface ApplicationItem {
   notes?: string;
 }
 
+export interface RegistrationItem {
+  id: string;
+  ticketId: string;
+  studentName: string;
+  enrollmentNo: string;
+  email: string;
+  phone: string;
+  department: string;
+  eventId?: string;
+  eventTitle: string;
+  registrationDate: string;
+  status: "Registered" | "Attended" | "Cancelled" | "Waitlisted";
+  semester?: string;
+  notes?: string;
+  createdAt?: string;
+}
+
 export interface UserAccount {
   id: string;
   name: string;
@@ -1294,11 +1311,135 @@ const INITIAL_AUDIT_LOGS: AuditLogEntry[] = [
   },
 ];
 
+const INITIAL_REGISTRATIONS: RegistrationItem[] = [
+  {
+    id: "reg-001",
+    ticketId: "GUI-2026-REG-1049",
+    studentName: "Aarav Patel",
+    enrollmentNo: "22BT04019",
+    email: "aarav.patel@gsfcuniversity.ac.in",
+    phone: "+91 98251 12345",
+    department: "Biotechnology",
+    eventId: "ev-1",
+    eventTitle: "Autonomous Drone Technology & Aerodynamics Workshop",
+    registrationDate: "2026-10-10",
+    status: "Registered",
+    semester: "7th Sem",
+    notes: "Lead innovator for Ayurtrix",
+  },
+  {
+    id: "reg-002",
+    ticketId: "GUI-2026-REG-1050",
+    studentName: "Pooja Shah",
+    enrollmentNo: "22BT04032",
+    email: "pooja.shah@gsfcuniversity.ac.in",
+    phone: "+91 98252 23456",
+    department: "Biotechnology",
+    eventId: "ev-1",
+    eventTitle: "Autonomous Drone Technology & Aerodynamics Workshop",
+    registrationDate: "2026-10-11",
+    status: "Attended",
+    semester: "7th Sem",
+    notes: "Analytical Chemist",
+  },
+  {
+    id: "reg-003",
+    ticketId: "GUI-2026-REG-1051",
+    studentName: "Devanshi Trivedi",
+    enrollmentNo: "23BT03014",
+    email: "devanshi.t@gsfcuniversity.ac.in",
+    phone: "+91 97241 87654",
+    department: "Biotechnology",
+    eventId: "ev-2",
+    eventTitle: "Deep Learning & AI Acceleration on Param Shavak Supercomputer",
+    registrationDate: "2026-10-18",
+    status: "Registered",
+    semester: "5th Sem",
+    notes: "Bacterial Chroma Lead",
+  },
+  {
+    id: "reg-004",
+    ticketId: "GUI-2026-REG-1052",
+    studentName: "Yashwardhan Rana",
+    enrollmentNo: "22ME02041",
+    email: "yash.rana@gsfcuniversity.ac.in",
+    phone: "+91 99099 87123",
+    department: "Mechanical Engineering",
+    eventId: "ev-1",
+    eventTitle: "Autonomous Drone Technology & Aerodynamics Workshop",
+    registrationDate: "2026-09-28",
+    status: "Registered",
+    semester: "7th Sem",
+    notes: "AeroVanguard Pilot",
+  },
+  {
+    id: "reg-005",
+    ticketId: "GUI-2026-REG-1053",
+    studentName: "Kunal Verma",
+    enrollmentNo: "23CH01008",
+    email: "kunal.verma@gsfcuniversity.ac.in",
+    phone: "+91 94081 23456",
+    department: "Chemical Engineering",
+    eventId: "ev-3",
+    eventTitle: "SSIP 2.0 Institutional Pitch & Grant Screening Call",
+    registrationDate: "2026-10-02",
+    status: "Registered",
+    semester: "5th Sem",
+    notes: "Bio-Lastic team lead",
+  },
+  {
+    id: "reg-006",
+    ticketId: "GUI-2026-REG-1054",
+    studentName: "Rohan Mehta",
+    enrollmentNo: "24CS05088",
+    email: "rohan.mehta@gsfcuniversity.ac.in",
+    phone: "+91 98795 33412",
+    department: "Computer Science & Eng",
+    eventId: "ev-2",
+    eventTitle: "Deep Learning & AI Acceleration on Param Shavak Supercomputer",
+    registrationDate: "2026-10-05",
+    status: "Attended",
+    semester: "3rd Sem",
+    notes: "CUDA parallel training participant",
+  },
+  {
+    id: "reg-007",
+    ticketId: "GUI-2026-REG-1055",
+    studentName: "Ananya Desai",
+    enrollmentNo: "22CS05012",
+    email: "ananya.desai@gsfcuniversity.ac.in",
+    phone: "+91 91234 56780",
+    department: "Computer Science & Eng",
+    eventId: "ev-4",
+    eventTitle: "Intellectual Property & Patent Claim Drafting Masterclass",
+    registrationDate: "2026-09-15",
+    status: "Registered",
+    semester: "7th Sem",
+    notes: "Patent filing consultation request",
+  },
+  {
+    id: "reg-008",
+    ticketId: "GUI-2026-REG-1056",
+    studentName: "Harshil Joshi",
+    enrollmentNo: "23BT03022",
+    email: "harshil.j@gsfcuniversity.ac.in",
+    phone: "+91 98980 44556",
+    department: "Biotechnology",
+    eventId: "ev-4",
+    eventTitle: "Intellectual Property & Patent Claim Drafting Masterclass",
+    registrationDate: "2026-09-18",
+    status: "Cancelled",
+    semester: "5th Sem",
+    notes: "Schedule conflict",
+  },
+];
+
 // STORAGE KEYS
 const STORAGE_IDEAS_KEY = "guiitar_ideas_data_v1";
 const STORAGE_CATEGORIES_KEY = "guiitar_categories_data_v1";
 const STORAGE_STARTUPS_KEY = "guiitar_startups_data_v1";
 const STORAGE_EVENTS_KEY = "guiitar_events_data_v1";
+const STORAGE_REGISTRATIONS_KEY = "guiitar_registrations_data_v1";
 const STORAGE_MENTORS_KEY = "guiitar_mentors_data_v1";
 const STORAGE_PROGRAMS_KEY = "guiitar_programs_data_v1";
 const STORAGE_FUNDING_KEY = "guiitar_funding_data_v1";
@@ -1818,6 +1959,128 @@ export class AdminDataStore {
     // Asynchronously delete from Neon Postgres
     NeonClient.deleteEvent(id).catch((err) =>
       console.warn("Neon async deleteEvent error:", err)
+    );
+    return true;
+  }
+
+  // ================= 4b. STUDENT REGISTRATIONS CRUD =================
+  static getRegistrations(): RegistrationItem[] {
+    return this.getStored<RegistrationItem[]>(STORAGE_REGISTRATIONS_KEY, INITIAL_REGISTRATIONS);
+  }
+
+  static getRegistrationById(id: string): RegistrationItem | undefined {
+    return this.getRegistrations().find((r) => r.id === id || r.ticketId === id);
+  }
+
+  static saveRegistration(
+    reg: Partial<RegistrationItem> & { studentName: string; email: string; eventTitle: string },
+  ): RegistrationItem {
+    const list = this.getRegistrations();
+    const existingIndex = list.findIndex((r) => r.id === reg.id);
+    let saved: RegistrationItem;
+
+    if (existingIndex >= 0) {
+      saved = {
+        ...list[existingIndex],
+        ...reg,
+      };
+      list[existingIndex] = saved;
+      this.addAuditLog(
+        "Admin",
+        "Updated Student Registration",
+        `${saved.studentName} (${saved.ticketId})`,
+        "Registration",
+        `Event: ${saved.eventTitle} | Status: ${saved.status}`,
+      );
+    } else {
+      const now = new Date();
+      const ticketId =
+        reg.ticketId ||
+        `GUI-${now.getFullYear()}-REG-${Math.floor(1000 + Math.random() * 9000)}`;
+      saved = {
+        id: reg.id || `reg-${Date.now()}`,
+        ticketId,
+        studentName: reg.studentName,
+        enrollmentNo: reg.enrollmentNo || "N/A",
+        email: reg.email,
+        phone: reg.phone || "",
+        department: reg.department || "Computer Science & Eng",
+        eventId: reg.eventId || "",
+        eventTitle: reg.eventTitle,
+        registrationDate: reg.registrationDate || now.toISOString().split("T")[0],
+        status: reg.status || "Registered",
+        semester: reg.semester || "6th Sem",
+        notes: reg.notes || "",
+        createdAt: new Date().toISOString(),
+      };
+      list.unshift(saved);
+      this.addNotification({
+        title: "New Student Event Registration",
+        message: `${saved.studentName} registered for ${saved.eventTitle}.`,
+        type: "event",
+        link: "/admin/registrations",
+      });
+      this.addAuditLog(
+        "Admin",
+        "Created Student Registration",
+        `${saved.studentName} (${saved.ticketId})`,
+        "Registration",
+        `Event: ${saved.eventTitle}`,
+      );
+    }
+
+    this.setStored(STORAGE_REGISTRATIONS_KEY, list);
+    // Asynchronously sync to Neon Postgres
+    NeonClient.saveRegistration(saved).catch((err) =>
+      console.warn("Neon async saveRegistration error:", err),
+    );
+    return saved;
+  }
+
+  static updateRegistrationStatus(
+    id: string,
+    status: "Registered" | "Attended" | "Cancelled" | "Waitlisted",
+  ): boolean {
+    const list = this.getRegistrations();
+    const item = list.find((r) => r.id === id);
+    if (!item) return false;
+    item.status = status;
+    this.setStored(STORAGE_REGISTRATIONS_KEY, list);
+    this.addAuditLog(
+      "Admin",
+      "Updated Registration Attendance",
+      `${item.studentName} (${item.ticketId})`,
+      "Registration",
+      `New Status: ${status}`,
+    );
+    NeonClient.updateRegistrationStatus(id, status).catch((err) =>
+      console.warn("Neon async updateRegistrationStatus error:", err),
+    );
+    return true;
+  }
+
+  static setRegistrations(regs: RegistrationItem[]): void {
+    this.setStored(STORAGE_REGISTRATIONS_KEY, regs);
+  }
+
+  static deleteRegistration(id: string): boolean {
+    const list = this.getRegistrations();
+    const item = list.find((r) => r.id === id);
+    if (!item) return false;
+    this.setStored(
+      STORAGE_REGISTRATIONS_KEY,
+      list.filter((r) => r.id !== id),
+    );
+    this.addAuditLog(
+      "Admin",
+      "Deleted Student Registration",
+      `${item.studentName} (${item.ticketId})`,
+      "Registration",
+      `Event: ${item.eventTitle}`,
+    );
+    // Asynchronously delete from Neon Postgres
+    NeonClient.deleteRegistration(id).catch((err) =>
+      console.warn("Neon async deleteRegistration error:", err),
     );
     return true;
   }
@@ -2389,6 +2652,7 @@ export class AdminDataStore {
     const ideas = this.getIdeas();
     const startups = this.getStartups();
     const events = this.getEvents();
+    const registrations = this.getRegistrations();
     const mentors = this.getMentors();
     const resources = this.getResources();
     const applications = this.getApplications();
@@ -2409,6 +2673,8 @@ export class AdminDataStore {
       upcomingEvents: events.filter(
         (e) => e.isUpcoming || e.status === "Upcoming" || e.status === "Registration Open",
       ).length,
+      totalRegistrations: registrations.length,
+      attendedRegistrations: registrations.filter((r) => r.status === "Attended").length,
       totalMentors: mentors.length,
       totalResources: resources.length,
       totalApplications: applications.length,
@@ -2418,5 +2684,33 @@ export class AdminDataStore {
       totalFundingSchemes: funding.length,
       totalGrantsDisbursed: "₹30L+",
     };
+  }
+
+  // ================= 17. NEON DATABASE BIDIRECTIONAL SYNC =================
+  static async syncFromNeon(): Promise<void> {
+    try {
+      const [events, ideas, startups, registrations] = await Promise.all([
+        NeonClient.getEvents(),
+        NeonClient.getIdeas(),
+        NeonClient.getStartups(),
+        NeonClient.getRegistrations(),
+      ]);
+
+      if (events && events.length > 0) {
+        this.setEvents(events);
+      }
+      if (ideas && ideas.length > 0) {
+        this.setIdeas(ideas);
+      }
+      if (startups && startups.length > 0) {
+        this.setStartups(startups);
+      }
+      if (registrations && registrations.length > 0) {
+        this.setRegistrations(registrations);
+      }
+      window.dispatchEvent(new Event("guiitar_store_update"));
+    } catch (err) {
+      console.warn("Neon bidirectional sync warning:", err);
+    }
   }
 }

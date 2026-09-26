@@ -30,6 +30,8 @@ import {
   CheckCircle2,
   AlertCircle,
   FileSpreadsheet,
+  GraduationCap,
+  Ticket,
 } from "lucide-react";
 import { useAuth } from "@/lib/authStore";
 import { AdminDataStore, type AdminNotification } from "@/lib/adminStore";
@@ -74,6 +76,7 @@ export function AdminLayout({
   useEffect(() => {
     const loadNotifs = () => setNotifications(AdminDataStore.getNotifications());
     loadNotifs();
+    AdminDataStore.syncFromNeon();
     window.addEventListener("guiitar_store_update", loadNotifs);
     return () => window.removeEventListener("guiitar_store_update", loadNotifs);
   }, []);
@@ -105,6 +108,7 @@ export function AdminLayout({
       title: "ECOSYSTEM & OPS",
       items: [
         { label: "Events & Workshops", icon: Calendar, href: "/admin/events" },
+        { label: "Student Registrations", icon: GraduationCap, href: "/admin/registrations", badge: "Neon DB" },
         { label: "Mentor Advisory", icon: Users, href: "/admin/mentors" },
         { label: "Programs & Cohorts", icon: Briefcase, href: "/admin/programs" },
         { label: "Funding & Grants", icon: Banknote, href: "/admin/funding" },
