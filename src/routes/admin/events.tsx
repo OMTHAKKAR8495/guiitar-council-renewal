@@ -20,6 +20,11 @@ import { NeonClient } from "@/lib/neonClient";
 function toISODateString(str: string): string {
   if (!str) return "";
   if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
+  const slashMatch = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (slashMatch) {
+    const [, d, m, y] = slashMatch;
+    return `${y}-${m.padStart(2, "0")}-${d.padStart(2, "0")}`;
+  }
   const parsed = Date.parse(str);
   if (isNaN(parsed)) return "";
   const d = new Date(parsed);
@@ -474,77 +479,48 @@ export function AdminEventsPage() {
                   >
                     Event Date *
                   </label>
-                  <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-                    <input
-                      type="text"
-                      required
-                      value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      placeholder="e.g., November 28, 2026"
+                  <input
+                    type="date"
+                    required
+                    value={toISODateString(formData.date)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setFormData({
+                        ...formData,
+                        date: val ? formatReadableDate(val) : "",
+                      });
+                    }}
+                    onClick={(e) => {
+                      try {
+                        (e.target as any).showPicker?.();
+                      } catch {}
+                    }}
+                    style={{
+                      width: "100%",
+                      padding: "10px 14px",
+                      borderRadius: "8px",
+                      border: "1px solid var(--border, #cbd5e1)",
+                      background: "var(--card, #ffffff)",
+                      color: "var(--foreground, #0f172a)",
+                      fontSize: "14px",
+                      boxSizing: "border-box",
+                      cursor: "pointer",
+                      fontFamily: "inherit",
+                    }}
+                  />
+                  {formData.date && (
+                    <span
                       style={{
-                        width: "100%",
-                        padding: "10px 42px 10px 14px",
-                        borderRadius: "8px",
-                        border: "1px solid var(--border, #cbd5e1)",
-                        background: "var(--card, #ffffff)",
-                        color: "var(--foreground, #0f172a)",
-                        fontSize: "14px",
-                        boxSizing: "border-box",
-                      }}
-                    />
-                    <button
-                      type="button"
-                      title="Select date from calendar"
-                      onClick={() => {
-                        if (datePickerRef.current) {
-                          if (typeof datePickerRef.current.showPicker === "function") {
-                            datePickerRef.current.showPicker();
-                          } else {
-                            datePickerRef.current.focus();
-                          }
-                        }
-                      }}
-                      style={{
-                        position: "absolute",
-                        right: "6px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        background: "transparent",
-                        border: "none",
-                        cursor: "pointer",
+                        display: "block",
+                        fontSize: "12px",
                         color: "var(--primary, #2563eb)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        padding: "6px 8px",
-                        borderRadius: "6px",
+                        marginTop: "4px",
+                        fontWeight: 600,
                       }}
                     >
-                      <Calendar className="w-4 h-4" />
-                    </button>
-                    <input
-                      type="date"
-                      ref={datePickerRef}
-                      value={toISODateString(formData.date)}
-                      onChange={(e) => {
-                        if (e.target.value) {
-                          setFormData({ ...formData, date: formatReadableDate(e.target.value) });
-                        }
-                      }}
-                      style={{
-                        position: "absolute",
-                        right: "12px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        opacity: 0,
-                        width: "20px",
-                        height: "20px",
-                        pointerEvents: "none",
-                      }}
-                      tabIndex={-1}
-                      aria-hidden="true"
-                    />
-                  </div>
+                      Selected: {formData.date}
+                    </span>
+                  )}
                 </div>
 
                 <div>
