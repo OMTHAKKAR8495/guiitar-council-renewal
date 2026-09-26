@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { AdminDataStore, type EventItem } from "@/lib/adminStore";
+import { NeonClient } from "@/lib/neonClient";
 
 function toISODateString(str: string): string {
   if (!str) return "";
@@ -60,6 +61,12 @@ export function AdminEventsPage() {
 
   useEffect(() => {
     loadEvents();
+    NeonClient.getEvents().then((remoteEvents) => {
+      if (remoteEvents && remoteEvents.length > 0) {
+        setEvents(remoteEvents);
+        AdminDataStore.setEvents(remoteEvents);
+      }
+    });
     const handleUpdate = () => loadEvents();
     window.addEventListener("guiitar_store_update", handleUpdate);
     return () => window.removeEventListener("guiitar_store_update", handleUpdate);
@@ -112,7 +119,7 @@ export function AdminEventsPage() {
     setModalOpen(true);
   };
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.title) return;
 
@@ -137,7 +144,7 @@ export function AdminEventsPage() {
       isUpcoming: formData.status === "Registration Open" || formData.status === "Upcoming",
     };
 
-    AdminDataStore.saveEvent(eventPayload);
+    const saved = AdminDataStore.saveEvent(eventPayload);
     loadEvents();
 
     const titleSaved = formData.title;
@@ -145,15 +152,28 @@ export function AdminEventsPage() {
     setEditingId(null);
     setFormData(defaultForm);
 
-    setToast(editingId ? `Updated event "${titleSaved}"` : `Published event "${titleSaved}"`);
+    setToast(editingId ? `Updating "${titleSaved}" in Neon DB...` : `Publishing "${titleSaved}" to Neon DB...`);
+
+    try {
+      await NeonClient.saveEvent({ ...eventPayload, id: saved.id });
+      setToast(editingId ? `✓ Updated "${titleSaved}" in Neon Database` : `✓ Published "${titleSaved}" in Neon Database`);
+    } catch (err) {
+      console.error("Neon DB sync error:", err);
+    }
     setTimeout(() => setToast(null), 3500);
   };
 
-  const handleDelete = (id: string, title: string) => {
+  const handleDelete = async (id: string, title: string) => {
     if (window.confirm(`Are you sure you want to delete event "${title}"?`)) {
       AdminDataStore.deleteEvent(id);
       loadEvents();
-      setToast(`Deleted event "${title}"`);
+      setToast(`Deleting "${title}" from Neon DB...`);
+      try {
+        await NeonClient.deleteEvent(id);
+        setToast(`✓ Deleted event "${title}" from Neon Database`);
+      } catch (err) {
+        console.error("Neon DB delete error:", err);
+      }
       setTimeout(() => setToast(null), 3500);
     }
   };

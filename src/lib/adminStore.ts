@@ -1739,6 +1739,10 @@ export class AdminDataStore {
     return saved;
   }
 
+  static setEvents(events: EventItem[]): void {
+    this.setStored(STORAGE_EVENTS_KEY, events);
+  }
+
   static deleteEvent(id: string): boolean {
     const events = this.getEvents();
     const item = events.find((e) => e.id === id);

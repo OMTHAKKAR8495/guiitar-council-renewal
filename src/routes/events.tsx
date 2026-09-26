@@ -16,6 +16,7 @@ import { PageHero, SectionTitle, ButtonLink } from "@/components/site";
 
 import { useEffect } from "react";
 import { AdminDataStore, type EventItem } from "@/lib/adminStore";
+import { NeonClient } from "@/lib/neonClient";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -42,7 +43,9 @@ export const Route = createFileRoute("/events")({
 function Events() {
   const [tab, setTab] = useState<"Upcoming" | "Past">("Upcoming");
   const [registered, setRegistered] = useState<string | null>(null);
-  const [eventsList, setEventsList] = useState<EventItem[]>([]);
+  const [eventsList, setEventsList] = useState<EventItem[]>(() =>
+    typeof window !== "undefined" ? AdminDataStore.getEvents() : [],
+  );
 
   const loadEvents = () => {
     setEventsList(AdminDataStore.getEvents());
@@ -50,6 +53,12 @@ function Events() {
 
   useEffect(() => {
     loadEvents();
+    NeonClient.getEvents().then((remoteEvents) => {
+      if (remoteEvents && remoteEvents.length > 0) {
+        setEventsList(remoteEvents);
+        AdminDataStore.setEvents(remoteEvents);
+      }
+    });
     const handleUpdate = () => loadEvents();
     window.addEventListener("guiitar_store_update", handleUpdate);
     return () => window.removeEventListener("guiitar_store_update", handleUpdate);
