@@ -144,30 +144,30 @@ select {
 }
 
 .page-background-watermark img {
-  width: min(850px, 70vw);
-  max-width: 850px;
-  opacity: 0.095;
+  width: min(900px, 75vw);
+  max-width: 900px;
+  opacity: 0.18;
   object-fit: contain;
   user-select: none;
   pointer-events: none;
   transform: translateY(-2%);
   transition: opacity 0.3s ease;
-  filter: contrast(1.08);
+  filter: contrast(1.15);
 }
 
 @media (max-width: 1024px) {
   .page-background-watermark img {
-    width: min(650px, 75vw);
-    max-width: 650px;
-    opacity: 0.085;
+    width: min(700px, 80vw);
+    max-width: 700px;
+    opacity: 0.16;
   }
 }
 
 @media (max-width: 768px) {
   .page-background-watermark img {
-    width: 88vw;
-    max-width: 460px;
-    opacity: 0.075;
+    width: 90vw;
+    max-width: 500px;
+    opacity: 0.14;
   }
 }
 
@@ -177,9 +177,9 @@ select {
 }
 
 .dark .page-background-watermark img {
-  opacity: 0.09;
+  opacity: 0.17;
   mix-blend-mode: screen;
-  filter: brightness(1.2) contrast(1.05);
+  filter: brightness(1.25) contrast(1.1);
 }
 
 /* ==========================================================================
@@ -200,16 +200,16 @@ select {
 }
 
 .hero-watermark-img {
-  width: 780px;
-  max-width: 55vw;
+  width: 800px;
+  max-width: 58vw;
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: contain;
-  opacity: 0.14;
+  opacity: 0.22;
   pointer-events: none;
   user-select: none;
   display: block;
-  filter: drop-shadow(0 0 35px rgba(59, 130, 246, 0.2));
+  filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.25));
 }
 
 @media (max-width: 1200px) {
@@ -217,9 +217,9 @@ select {
     right: 2%;
   }
   .hero-watermark-img {
-    width: 700px;
-    max-width: 52vw;
-    opacity: 0.13;
+    width: 720px;
+    max-width: 54vw;
+    opacity: 0.19;
   }
 }
 
@@ -231,9 +231,9 @@ select {
     transform: translateX(50%);
   }
   .hero-watermark-img {
-    width: 560px;
-    max-width: 78vw;
-    opacity: 0.11;
+    width: 580px;
+    max-width: 80vw;
+    opacity: 0.16;
   }
 }
 
@@ -242,11 +242,12 @@ select {
     bottom: 20px;
   }
   .hero-watermark-img {
-    width: 380px;
-    max-width: 88vw;
-    opacity: 0.10;
+    width: 400px;
+    max-width: 90vw;
+    opacity: 0.15;
   }
 }
+
 
 
 /* TOP ANNOUNCEMENT BAR */
@@ -876,7 +877,9 @@ section {
 }
 
 .section-muted {
-  background: #f8fafc;
+  background: rgba(248, 250, 252, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -1499,8 +1502,10 @@ section {
 }
 
 .pathway-step {
-  background: #ffffff;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   border-radius: var(--radius);
   padding: 24px 20px;
   box-shadow: var(--shadow-sm);
@@ -1514,6 +1519,7 @@ section {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
   border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .pathway-num {
@@ -1734,8 +1740,10 @@ section {
 
 /* STARTUP SHOWCASE CARDS */
 .startup-card {
-  background: #ffffff;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   border-radius: var(--radius);
   padding: 28px;
   display: flex;
@@ -1748,6 +1756,7 @@ section {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
   border-color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .startup-header {
@@ -1786,8 +1795,10 @@ section {
 
 /* LEADERSHIP & TESTIMONIALS */
 .leader-card {
-  background: #ffffff;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   border-radius: var(--radius-lg);
   padding: 36px 32px;
   box-shadow: var(--shadow-md);
@@ -1800,6 +1811,7 @@ section {
 .leader-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .leader-quote-mark {
@@ -1906,8 +1918,10 @@ section {
 }
 
 .team-card {
-  background: #ffffff;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   border-radius: var(--radius);
   padding: 32px 20px;
   text-align: center;
@@ -1919,6 +1933,7 @@ section {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
   border-color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .team-card .avatar {
@@ -1954,7 +1969,7 @@ section {
   height: 36px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  background: #f8fafc;
+  background: rgba(248, 250, 252, 0.8);
   display: grid;
   place-items: center;
   color: #64748b;
@@ -1974,7 +1989,9 @@ section {
   width: 48px;
   border-radius: 50%;
   border: 1px solid var(--border);
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -1993,10 +2010,12 @@ section {
 .infra-card {
   display: grid;
   grid-template-columns: 200px 1fr;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.74);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
 }
@@ -2005,6 +2024,7 @@ section {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
   border-color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .infra-badge-cover {
@@ -2205,9 +2225,11 @@ section {
   gap: 20px;
   align-items: center;
   padding: 24px 28px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   border-radius: var(--radius);
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.74);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   margin: 14px 0;
   box-shadow: var(--shadow-sm);
   transition: all 0.2s ease;
@@ -2217,6 +2239,7 @@ section {
   border-color: #cbd5e1;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .resource-main {
@@ -2252,8 +2275,10 @@ section {
 
 /* CONTACT & FORMS */
 .form-card {
-  background: #ffffff;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   border-radius: var(--radius-lg);
   padding: 36px;
   box-shadow: var(--shadow-md);
@@ -3451,7 +3476,9 @@ section {
 }
 
 .dark .section-muted {
-  background: #0b101c;
+  background: rgba(11, 16, 28, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-color: var(--border);
 }
 
@@ -3474,29 +3501,40 @@ section {
 }
 
 .dark .thrust-item {
-  background: var(--card);
+  background: rgba(17, 24, 39, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-color: var(--border);
   color: var(--foreground);
 }
 
 .dark .thrust-item:hover {
-  background: var(--card-hover);
+  background: rgba(22, 32, 50, 0.88);
   border-color: var(--primary);
 }
 
 .dark .partner-box,
 .dark .step,
+.dark .pathway-step,
+.dark .leader-card,
+.dark .team-card,
+.dark .infra-card,
 .dark .resource-card,
-.dark .startup-card {
-  background: var(--card);
-  border-color: var(--border);
+.dark .startup-card,
+.dark .form-card {
+  background: rgba(17, 24, 39, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: rgba(255, 255, 255, 0.1);
   color: var(--foreground);
 }
 
 .dark .partner-box b,
 .dark .step h3,
 .dark .resource-main h3,
-.dark .startup-card h3 {
+.dark .startup-card h3,
+.dark .leader-info h3,
+.dark .team-card h3 {
   color: var(--foreground);
 }
 
