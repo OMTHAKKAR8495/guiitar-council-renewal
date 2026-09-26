@@ -1687,10 +1687,25 @@ export class AdminDataStore {
     let saved: EventItem;
 
     if (existingIndex >= 0) {
-      saved = { ...events[existingIndex], ...event };
+      const prev = events[existingIndex];
+      const cap = event.capacity !== undefined ? event.capacity : prev.capacity;
+      const reg = event.registered !== undefined ? event.registered : prev.registered;
+      saved = {
+        ...prev,
+        ...event,
+        capacity: cap,
+        registered: reg,
+        seats: event.seats || `${Math.max(0, cap - reg)} Seats Available`,
+        isUpcoming:
+          event.isUpcoming !== undefined
+            ? event.isUpcoming
+            : event.status === "Registration Open" || event.status === "Upcoming",
+      };
       events[existingIndex] = saved;
       this.addAuditLog("Admin", "Updated Event", saved.title, "Event", `Date: ${saved.date}`);
     } else {
+      const cap = event.capacity || 50;
+      const reg = event.registered || 0;
       saved = {
         id: event.id || `ev-${Date.now()}`,
         title: event.title,
@@ -1699,11 +1714,14 @@ export class AdminDataStore {
         location: event.location || "GSFC University Campus",
         speaker: event.speaker || "GUIITAR Faculty & Experts",
         category: event.category || "Workshop",
-        capacity: event.capacity || 50,
-        registered: event.registered || 0,
-        status: event.status || "Upcoming",
-        isUpcoming: event.isUpcoming !== undefined ? event.isUpcoming : true,
-        seats: event.seats || `${event.capacity || 50} Seats Available`,
+        capacity: cap,
+        registered: reg,
+        status: event.status || "Registration Open",
+        isUpcoming:
+          event.isUpcoming !== undefined
+            ? event.isUpcoming
+            : event.status === "Registration Open" || event.status === "Upcoming",
+        seats: event.seats || `${Math.max(0, cap - reg)} Seats Available`,
         desc: event.desc || "",
         topics: event.topics || [],
       };
