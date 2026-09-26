@@ -628,9 +628,9 @@ export function HomePage() {
                   key={s.id}
                   onClick={() => setActiveStageId(s.id)}
                   style={{
-                    background: isActive ? "#1d4ed8" : "#ffffff",
-                    color: isActive ? "#ffffff" : "#334155",
-                    border: `1px solid ${isActive ? "#1d4ed8" : "#e2e8f0"}`,
+                    background: isActive ? "var(--primary)" : "var(--card)",
+                    color: isActive ? "#ffffff" : "var(--foreground)",
+                    border: `1px solid ${isActive ? "var(--primary)" : "var(--border)"}`,
                     borderRadius: "12px",
                     padding: "14px 10px",
                     textAlign: "center",
@@ -665,21 +665,13 @@ export function HomePage() {
           </div>
 
           {/* Active Stage Detailed Panel */}
-          <div
-            style={{
-              background: "#ffffff",
-              border: "1px solid #e2e8f0",
-              borderRadius: "20px",
-              boxShadow: "0 12px 36px -8px rgba(15, 23, 42, 0.08)",
-            }}
-            className="journey-detail-panel"
-          >
+          <div className="journey-detail-panel">
             <div>
               <div
                 style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}
               >
                 <span className="pill emerald">Stage {currentStage.step} of 08</span>
-                <span style={{ fontSize: "13px", fontWeight: 700, color: "#2563eb" }}>
+                <span style={{ fontSize: "13px", fontWeight: 700, color: "var(--primary)" }}>
                   {currentStage.name} PHASE
                 </span>
               </div>
@@ -689,7 +681,7 @@ export function HomePage() {
               </h3>
               <p
                 style={{
-                  color: "#475569",
+                  color: "var(--muted-foreground)",
                   fontSize: "16px",
                   lineHeight: 1.65,
                   marginBottom: "24px",
@@ -703,7 +695,6 @@ export function HomePage() {
                   style={{
                     fontSize: "15px",
                     fontWeight: 800,
-                    color: "#0f172a",
                     marginBottom: "10px",
                   }}
                 >
@@ -711,7 +702,7 @@ export function HomePage() {
                 </h4>
                 <ul
                   className="list"
-                  style={{ paddingLeft: "20px", fontSize: "14.5px", color: "#334155" }}
+                  style={{ paddingLeft: "20px", fontSize: "14.5px" }}
                 >
                   {currentStage.supportProvided.map((item) => (
                     <li key={item}>{item}</li>
@@ -725,19 +716,11 @@ export function HomePage() {
               </ButtonLink>
             </div>
 
-            <div
-              style={{
-                background: "#f8fafc",
-                border: "1px solid #e2e8f0",
-                borderRadius: "16px",
-                padding: "28px",
-              }}
-            >
+            <div>
               <h4
                 style={{
                   fontSize: "15px",
                   fontWeight: 800,
-                  color: "#0f172a",
                   marginBottom: "12px",
                 }}
               >
@@ -754,12 +737,12 @@ export function HomePage() {
                       fontSize: "11.5px",
                       fontWeight: 800,
                       textTransform: "uppercase",
-                      color: "#64748b",
+                      color: "var(--muted-foreground)",
                     }}
                   >
                     Eligibility
                   </span>
-                  <p style={{ margin: "2px 0 0", color: "#1e293b", fontWeight: 600 }}>
+                  <p style={{ margin: "2px 0 0", fontWeight: 600 }}>
                     {currentStage.eligible}
                   </p>
                 </div>
@@ -771,7 +754,7 @@ export function HomePage() {
                       fontSize: "11.5px",
                       fontWeight: 800,
                       textTransform: "uppercase",
-                      color: "#64748b",
+                      color: "var(--muted-foreground)",
                     }}
                   >
                     Key Programs
@@ -781,10 +764,10 @@ export function HomePage() {
                       <span
                         key={p}
                         style={{
-                          background: "#e0f2fe",
-                          color: "#0369a1",
-                          padding: "2px 8px",
-                          borderRadius: "4px",
+                          background: "var(--accent-glow, rgba(37, 99, 235, 0.1))",
+                          color: "var(--primary)",
+                          padding: "3px 9px",
+                          borderRadius: "6px",
                           fontSize: "12px",
                           fontWeight: 700,
                         }}
@@ -802,12 +785,12 @@ export function HomePage() {
                       fontSize: "11.5px",
                       fontWeight: 800,
                       textTransform: "uppercase",
-                      color: "#64748b",
+                      color: "var(--muted-foreground)",
                     }}
                   >
                     Key Resource
                   </span>
-                  <p style={{ margin: "2px 0 0", color: "#1e293b", fontWeight: 600 }}>
+                  <p style={{ margin: "2px 0 0", fontWeight: 600 }}>
                     {currentStage.resources}
                   </p>
                 </div>
@@ -866,37 +849,23 @@ export function HomePage() {
           </div>
 
           {/* Active Ecosystem Node Spotlight */}
-          <div
-            style={{
-              background: "#ffffff",
-              border: "1px solid #e2e8f0",
-              borderRadius: "16px",
-            }}
-            className="eco-spotlight-box"
-          >
+          <div className="eco-spotlight-box">
             <div>
               <span className="pill">{activeEcoNode.metrics}</span>
               <h3 style={{ fontSize: "26px", fontWeight: 800, margin: "12px 0 10px" }}>
                 {activeEcoNode.name} Ecosystem Support
               </h3>
-              <p style={{ color: "#475569", fontSize: "16px", lineHeight: 1.65, margin: 0 }}>
+              <p style={{ color: "var(--muted-foreground)", fontSize: "16px", lineHeight: 1.65, margin: 0 }}>
                 {activeEcoNode.description}
               </p>
             </div>
-            <div
-              style={{
-                background: "#f8fafc",
-                padding: "24px",
-                borderRadius: "12px",
-                border: "1px solid #e2e8f0",
-              }}
-            >
+            <div>
               <h4
                 style={{
                   fontSize: "14px",
                   fontWeight: 800,
                   textTransform: "uppercase",
-                  color: "#64748b",
+                  color: "var(--muted-foreground)",
                   marginBottom: "12px",
                 }}
               >
@@ -904,7 +873,7 @@ export function HomePage() {
               </h4>
               <ul
                 className="list"
-                style={{ paddingLeft: "18px", fontSize: "14px", color: "#1e293b" }}
+                style={{ paddingLeft: "18px", fontSize: "14px" }}
               >
                 {activeEcoNode.keyOfferings.map((k) => (
                   <li key={k}>{k}</li>
@@ -1395,14 +1364,7 @@ export function HomePage() {
           </div>
 
           {/* Active Lab Spotlight Showcase */}
-          <div
-            style={{
-              border: "1px solid #e2e8f0",
-              borderRadius: "20px",
-              boxShadow: "var(--shadow-md)",
-            }}
-            className="lab-showcase-split"
-          >
+          <div className="lab-showcase-split">
             <div>
               <div
                 style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "12px" }}
@@ -1417,14 +1379,14 @@ export function HomePage() {
                 {currentLab.name}
               </h3>
               <p
-                style={{ fontSize: "16px", fontWeight: 600, color: "#2563eb", margin: "0 0 16px" }}
+                style={{ fontSize: "16px", fontWeight: 600, color: "var(--primary)", margin: "0 0 16px" }}
               >
                 {currentLab.headline}
               </p>
 
               <p
                 style={{
-                  color: "#475569",
+                  color: "var(--muted-foreground)",
                   fontSize: "15px",
                   lineHeight: 1.65,
                   marginBottom: "24px",
@@ -1438,7 +1400,6 @@ export function HomePage() {
                   style={{
                     fontSize: "15px",
                     fontWeight: 800,
-                    color: "#0f172a",
                     marginBottom: "10px",
                   }}
                 >
@@ -1446,7 +1407,7 @@ export function HomePage() {
                 </h4>
                 <ul
                   className="list"
-                  style={{ paddingLeft: "20px", fontSize: "14.5px", color: "#334155" }}
+                  style={{ paddingLeft: "20px", fontSize: "14.5px" }}
                 >
                   {currentLab.equipment.map((eq) => (
                     <li key={eq}>{eq}</li>
@@ -1460,23 +1421,12 @@ export function HomePage() {
               </ButtonLink>
             </div>
 
-            <div
-              style={{
-                background: "#f8fafc",
-                border: "1px solid #e2e8f0",
-                borderRadius: "16px",
-                padding: "28px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
-            >
+            <div>
               <div>
                 <h4
                   style={{
                     fontSize: "15px",
                     fontWeight: 800,
-                    color: "#0f172a",
                     marginBottom: "12px",
                   }}
                 >
@@ -1487,7 +1437,6 @@ export function HomePage() {
                   style={{
                     paddingLeft: "18px",
                     fontSize: "14px",
-                    color: "#475569",
                     marginBottom: "24px",
                   }}
                 >
@@ -1499,10 +1448,10 @@ export function HomePage() {
 
               <div
                 style={{
-                  background: "#ffffff",
+                  background: "var(--card)",
                   padding: "16px",
                   borderRadius: "10px",
-                  border: "1px solid #e2e8f0",
+                  border: "1px solid var(--border)",
                 }}
               >
                 <span
@@ -1511,7 +1460,7 @@ export function HomePage() {
                     fontSize: "12px",
                     fontWeight: 800,
                     textTransform: "uppercase",
-                    color: "#64748b",
+                    color: "var(--muted-foreground)",
                   }}
                 >
                   Who Can Access:
@@ -1520,7 +1469,6 @@ export function HomePage() {
                   style={{
                     margin: "4px 0 0",
                     fontSize: "13.5px",
-                    color: "#0f172a",
                     fontWeight: 600,
                   }}
                 >

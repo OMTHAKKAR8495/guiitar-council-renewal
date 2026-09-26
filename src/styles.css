@@ -1019,6 +1019,14 @@ section {
   height: 100%;
 }
 
+.plain-card,
+.info-card,
+.feature-box {
+  padding: clamp(24px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+}
+
 .icon-box {
   width: 54px;
   height: 54px;
@@ -2653,29 +2661,60 @@ section {
 .journey-stepper-bar {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  gap: 8px;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin-bottom: 28px;
 }
 
-.journey-detail-panel {
+.journey-stepper-bar button {
+  border-radius: var(--radius);
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journey-stepper-bar button:hover {
+  transform: translateY(-2px);
+}
+
+.journey-detail-panel,
+.eco-spotlight-box,
+.lab-showcase-split,
+.program-dossier-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 40px;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(24px, 3.5vw, 44px);
   align-items: center;
+  padding: clamp(28px, 4vw, 44px) !important;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.journey-detail-panel > div:last-child,
+.eco-spotlight-box > div:last-child,
+.lab-showcase-split > div:last-child,
+.program-dossier-grid > div:last-child {
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(20px, 2.5vw, 30px);
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .eco-node-tabs {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.eco-spotlight-box {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 36px;
-  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
 }
 
 .funding-nav-grid {
@@ -2684,22 +2723,10 @@ section {
   gap: 24px;
 }
 
-.lab-showcase-split {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 40px;
-}
-
 .case-study-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-}
-
-.program-dossier-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 44px;
 }
 
 .eco-clusters-grid {

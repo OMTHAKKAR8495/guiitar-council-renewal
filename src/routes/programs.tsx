@@ -142,15 +142,7 @@ export function ProgramsPage() {
           </div>
 
           {/* ACTIVE PROGRAM DETAILED DOSSIER */}
-          <div
-            style={{
-              background: "#ffffff",
-              border: "1px solid #e2e8f0",
-              borderRadius: "24px",
-              boxShadow: "var(--shadow-md)",
-            }}
-            className="program-dossier-grid"
-          >
+          <div className="program-dossier-grid">
             <div>
               <span className="pill emerald" style={{ marginBottom: "12px" }}>
                 {activeProgram.badge}
@@ -160,7 +152,6 @@ export function ProgramsPage() {
                   fontSize: "clamp(24px, 4vw, 32px)",
                   fontWeight: 900,
                   margin: "8px 0 10px",
-                  color: "#0f172a",
                 }}
               >
                 {activeProgram.name}
@@ -169,7 +160,7 @@ export function ProgramsPage() {
                 style={{
                   fontSize: "16.5px",
                   fontWeight: 600,
-                  color: "#2563eb",
+                  color: "var(--primary)",
                   margin: "0 0 24px",
                   lineHeight: 1.5,
                 }}
@@ -183,7 +174,7 @@ export function ProgramsPage() {
                     fontSize: "15px",
                     fontWeight: 800,
                     textTransform: "uppercase",
-                    color: "#64748b",
+                    color: "var(--muted-foreground)",
                     letterSpacing: "0.04em",
                     marginBottom: "12px",
                   }}
@@ -192,7 +183,7 @@ export function ProgramsPage() {
                 </h4>
                 <ul
                   className="list"
-                  style={{ paddingLeft: "20px", fontSize: "15px", color: "#334155" }}
+                  style={{ paddingLeft: "20px", fontSize: "15px" }}
                 >
                   {activeProgram.whatYouReceive.map((item) => (
                     <li key={item} style={{ marginBottom: "8px" }}>
@@ -208,7 +199,7 @@ export function ProgramsPage() {
                     fontSize: "15px",
                     fontWeight: 800,
                     textTransform: "uppercase",
-                    color: "#64748b",
+                    color: "var(--muted-foreground)",
                     letterSpacing: "0.04em",
                     marginBottom: "12px",
                   }}
@@ -220,16 +211,15 @@ export function ProgramsPage() {
                     <div
                       key={step}
                       style={{
-                        background: "#f8fafc",
+                        background: "var(--card)",
                         padding: "10px 14px",
                         borderRadius: "8px",
-                        border: "1px solid #e2e8f0",
+                        border: "1px solid var(--border)",
                         fontSize: "13.5px",
                         fontWeight: 600,
-                        color: "#1e293b",
                       }}
                     >
-                      <span style={{ color: "#2563eb", fontWeight: 800, marginRight: "6px" }}>
+                      <span style={{ color: "var(--primary)", fontWeight: 800, marginRight: "6px" }}>
                         0{idx + 1}.
                       </span>{" "}
                       {step}
@@ -244,24 +234,14 @@ export function ProgramsPage() {
               </ButtonLink>
             </div>
 
-            <div
-              style={{
-                background: "#f8fafc",
-                border: "1px solid #e2e8f0",
-                borderRadius: "16px",
-                padding: "32px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
-            >
+            <div>
               <div>
                 <h4
                   style={{
                     fontSize: "14px",
                     fontWeight: 800,
                     textTransform: "uppercase",
-                    color: "#64748b",
+                    color: "var(--muted-foreground)",
                     marginBottom: "10px",
                   }}
                 >
@@ -270,7 +250,6 @@ export function ProgramsPage() {
                 <p
                   style={{
                     fontSize: "14.5px",
-                    color: "#0f172a",
                     fontWeight: 600,
                     lineHeight: 1.6,
                     marginBottom: "24px",
@@ -284,7 +263,7 @@ export function ProgramsPage() {
                     fontSize: "14px",
                     fontWeight: 800,
                     textTransform: "uppercase",
-                    color: "#64748b",
+                    color: "var(--muted-foreground)",
                     marginBottom: "8px",
                   }}
                 >
@@ -293,7 +272,7 @@ export function ProgramsPage() {
                 <p
                   style={{
                     fontSize: "14.5px",
-                    color: "#2563eb",
+                    color: "var(--primary)",
                     fontWeight: 700,
                     marginBottom: "24px",
                   }}
@@ -304,10 +283,10 @@ export function ProgramsPage() {
 
               <div
                 style={{
-                  background: "#ffffff",
+                  background: "var(--card)",
                   padding: "18px",
                   borderRadius: "12px",
-                  border: "1px solid #e2e8f0",
+                  border: "1px solid var(--border)",
                 }}
               >
                 <span
@@ -321,7 +300,7 @@ export function ProgramsPage() {
                 >
                   ✓ Non-Profit Institutional Commitment
                 </span>
-                <p style={{ fontSize: "13px", color: "#64748b", margin: 0 }}>
+                <p style={{ fontSize: "13px", color: "var(--muted-foreground)", margin: 0 }}>
                   Administered under GSFC University non-profit Section 8 governance with zero
                   equity dilution on student prototyping grants.
                 </p>

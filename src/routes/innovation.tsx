@@ -192,15 +192,7 @@ export function InnovationPage() {
             ))}
           </div>
 
-          <div
-            style={{
-              background: "#ffffff",
-              border: "1px solid #e2e8f0",
-              borderRadius: "20px",
-              boxShadow: "var(--shadow-md)",
-            }}
-            className="lab-showcase-split"
-          >
+          <div className="lab-showcase-split">
             <div>
               <div
                 style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "12px" }}
@@ -215,14 +207,14 @@ export function InnovationPage() {
                 {currentLab.name}
               </h3>
               <p
-                style={{ fontSize: "16px", fontWeight: 600, color: "#2563eb", margin: "0 0 16px" }}
+                style={{ fontSize: "16px", fontWeight: 600, color: "var(--primary)", margin: "0 0 16px" }}
               >
                 {currentLab.headline}
               </p>
 
               <p
                 style={{
-                  color: "#475569",
+                  color: "var(--muted-foreground)",
                   fontSize: "15px",
                   lineHeight: 1.65,
                   marginBottom: "24px",
@@ -236,7 +228,6 @@ export function InnovationPage() {
                   style={{
                     fontSize: "15px",
                     fontWeight: 800,
-                    color: "#0f172a",
                     marginBottom: "10px",
                   }}
                 >
@@ -244,7 +235,7 @@ export function InnovationPage() {
                 </h4>
                 <ul
                   className="list"
-                  style={{ paddingLeft: "20px", fontSize: "14.5px", color: "#334155" }}
+                  style={{ paddingLeft: "20px", fontSize: "14.5px" }}
                 >
                   {currentLab.equipment.map((eq) => (
                     <li key={eq}>{eq}</li>
@@ -258,23 +249,12 @@ export function InnovationPage() {
               </ButtonLink>
             </div>
 
-            <div
-              style={{
-                background: "#f8fafc",
-                border: "1px solid #e2e8f0",
-                borderRadius: "16px",
-                padding: "28px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
-            >
+            <div>
               <div>
                 <h4
                   style={{
                     fontSize: "15px",
                     fontWeight: 800,
-                    color: "#0f172a",
                     marginBottom: "12px",
                   }}
                 >
@@ -285,7 +265,6 @@ export function InnovationPage() {
                   style={{
                     paddingLeft: "18px",
                     fontSize: "14px",
-                    color: "#475569",
                     marginBottom: "24px",
                   }}
                 >
@@ -297,10 +276,10 @@ export function InnovationPage() {
 
               <div
                 style={{
-                  background: "#ffffff",
+                  background: "var(--card)",
                   padding: "16px",
                   borderRadius: "10px",
-                  border: "1px solid #e2e8f0",
+                  border: "1px solid var(--border)",
                 }}
               >
                 <span
@@ -309,7 +288,7 @@ export function InnovationPage() {
                     fontSize: "12px",
                     fontWeight: 800,
                     textTransform: "uppercase",
-                    color: "#64748b",
+                    color: "var(--muted-foreground)",
                   }}
                 >
                   Authorized Users:
@@ -318,7 +297,6 @@ export function InnovationPage() {
                   style={{
                     margin: "4px 0 0",
                     fontSize: "13.5px",
-                    color: "#0f172a",
                     fontWeight: 600,
                   }}
                 >
