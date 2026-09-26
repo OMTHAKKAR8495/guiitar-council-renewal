@@ -1,3 +1,5 @@
+import { NeonClient } from "./neonClient";
+
 export type IdeaStatus =
   "Draft" | "Pending Review" | "Under Review" | "Approved" | "Published" | "Rejected" | "Archived";
 
@@ -1444,6 +1446,28 @@ export class AdminDataStore {
     }
 
     this.setStored(STORAGE_IDEAS_KEY, ideas);
+    // Asynchronously sync to Neon Postgres
+    NeonClient.saveIdea({
+      id: savedItem.id,
+      refId: savedItem.refId,
+      slug: savedItem.slug,
+      title: savedItem.title,
+      innovator: savedItem.creatorName || "Innovator",
+      teamMembers: savedItem.teamMembers || [],
+      email: savedItem.creatorEmail || "innovator@gsfcuniversity.ac.in",
+      phone: savedItem.creatorPhone || "",
+      stage: savedItem.stage,
+      category: savedItem.category,
+      sector: savedItem.thrustArea,
+      desc: savedItem.detailedDescription || savedItem.shortDescription || savedItem.title,
+      problemStatement: savedItem.problemStatement,
+      solutionDesc: savedItem.proposedSolution,
+      novelty: savedItem.innovationUsp,
+      patentStatus: "Not Filed",
+      fundingRequired: "₹2.5 Lakhs",
+      trlLevel: "TRL-3",
+      status: savedItem.status,
+    }).catch((err) => console.warn("Neon async saveIdea error:", err));
     return savedItem;
   }
 
@@ -1486,6 +1510,21 @@ export class AdminDataStore {
       "Idea",
       reason || `Status set to ${status}`,
     );
+    NeonClient.saveIdea({
+      id: item.id,
+      refId: item.refId,
+      slug: item.slug,
+      title: item.title,
+      innovator: item.creatorName,
+      teamMembers: item.teamMembers,
+      email: item.creatorEmail,
+      phone: item.creatorPhone,
+      stage: item.stage,
+      category: item.category,
+      sector: item.thrustArea,
+      desc: item.detailedDescription || item.shortDescription,
+      status: item.status,
+    }).catch((err) => console.warn("Neon update status error:", err));
     return item;
   }
 
@@ -1538,6 +1577,9 @@ export class AdminDataStore {
       item.title,
       "Idea",
       `Ref ID: ${item.refId}`,
+    );
+    NeonClient.deleteIdea(id).catch((err) =>
+      console.warn("Neon deleteIdea error:", err)
     );
     return true;
   }
@@ -1657,6 +1699,20 @@ export class AdminDataStore {
     }
 
     this.setStored(STORAGE_STARTUPS_KEY, startups);
+    // Asynchronously sync to Neon Postgres
+    NeonClient.saveStartup({
+      id: saved.id,
+      name: saved.name,
+      founders: typeof saved.team === "string" ? [saved.team] : (saved.team as string[]) || ["Founder"],
+      domain: saved.industry || "DeepTech",
+      batch: "Cohort 2026",
+      fundingRaised: saved.fundingReceived || "Bootstrapped",
+      description: saved.description || "",
+      status: saved.status || "Incubated",
+      patents: saved.patents || 0,
+      valuation: saved.valuation || "Seed",
+      tags: saved.tags || [],
+    }).catch((err) => console.warn("Neon async saveStartup error:", err));
     return saved;
   }
 
@@ -1669,6 +1725,9 @@ export class AdminDataStore {
       startups.filter((s) => s.id !== id),
     );
     this.addAuditLog("Admin", "Deleted Startup Record", item.name, "Startup", "");
+    NeonClient.deleteStartup(id).catch((err) =>
+      console.warn("Neon deleteStartup error:", err)
+    );
     return true;
   }
 
@@ -1736,6 +1795,10 @@ export class AdminDataStore {
     }
 
     this.setStored(STORAGE_EVENTS_KEY, events);
+    // Asynchronously sync to Neon Postgres
+    NeonClient.saveEvent(saved).catch((err) =>
+      console.warn("Neon async saveEvent error:", err)
+    );
     return saved;
   }
 
@@ -1752,6 +1815,10 @@ export class AdminDataStore {
       events.filter((e) => e.id !== id),
     );
     this.addAuditLog("Admin", "Deleted Event", item.title, "Event", "");
+    // Asynchronously delete from Neon Postgres
+    NeonClient.deleteEvent(id).catch((err) =>
+      console.warn("Neon async deleteEvent error:", err)
+    );
     return true;
   }
 
