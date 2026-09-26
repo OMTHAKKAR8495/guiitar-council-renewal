@@ -33,7 +33,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/lib/authStore";
 import { AdminDataStore, type AdminNotification } from "@/lib/adminStore";
-import { GuiitarEmblem } from "../GuiitarBrand";
+import { GuiitarEmblem, StickyBackgroundWatermark } from "../GuiitarBrand";
 
 export interface AdminLayoutProps {
   children: ReactNode;
@@ -356,16 +356,21 @@ export function AdminLayout({
       style={{
         display: "flex",
         minHeight: "100vh",
-        background: "#f8fafc",
+        background: "transparent",
         color: "#0f172a",
         fontFamily: "var(--font-sans)",
+        position: "relative",
       }}
     >
+      <StickyBackgroundWatermark />
+
       {/* DESKTOP SIDEBAR */}
       <aside
         style={{
           width: sidebarCollapsed ? "80px" : "280px",
-          background: "#090d16",
+          background: "rgba(9, 13, 22, 0.94)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
           color: "#cbd5e1",
           borderRight: "1px solid rgba(255, 255, 255, 0.08)",
           display: "flex",
@@ -393,7 +398,9 @@ export function AdminLayout({
               left: 0,
               bottom: 0,
               width: "min(300px, 85vw)",
-              background: "#090d16",
+              background: "rgba(9, 13, 22, 0.96)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
               color: "#cbd5e1",
               zIndex: 100,
               display: "flex",
@@ -408,13 +415,24 @@ export function AdminLayout({
       )}
 
       {/* MAIN ADMIN WORKSPACE */}
-      <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
+      <div
+        style={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+          minWidth: 0,
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         {/* TOP BAR */}
         <header
           style={{
             height: "68px",
-            background: "#ffffff",
-            borderBottom: "1px solid #e2e8f0",
+            background: "rgba(255, 255, 255, 0.78)",
+            backdropFilter: "blur(14px)",
+            WebkitBackdropFilter: "blur(14px)",
+            borderBottom: "1px solid rgba(226, 232, 240, 0.85)",
             padding: "0 16px",
             display: "flex",
             alignItems: "center",
@@ -763,8 +781,10 @@ export function AdminLayout({
         {/* WORKSPACE HEADER */}
         <div
           style={{
-            background: "#ffffff",
-            borderBottom: "1px solid #e2e8f0",
+            background: "rgba(255, 255, 255, 0.72)",
+            backdropFilter: "blur(14px)",
+            WebkitBackdropFilter: "blur(14px)",
+            borderBottom: "1px solid rgba(226, 232, 240, 0.85)",
             padding: "20px 24px",
             display: "flex",
             justifyContent: "space-between",

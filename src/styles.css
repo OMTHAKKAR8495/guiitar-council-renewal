@@ -3638,5 +3638,61 @@ section {
 }
 
 .dark .admin-table tbody tr:hover td {
-  background: #162032;
+  background: rgba(22, 32, 50, 0.7);
 }
+
+/* ==========================================================================
+   ADMIN WORKSPACE TRANSPARENCY & GLASSMORPHISM
+   ========================================================================== */
+.admin-main .plain-card,
+.admin-main .admin-charts-grid > div,
+.admin-main .admin-charts-grid-2 > div,
+.admin-main .admin-charts-grid-3 > div,
+.admin-main .admin-dashboard-split > div,
+.admin-main .admin-table-container,
+.admin-main div[style*="background: #ffffff"],
+.admin-main div[style*="background:#ffffff"],
+.admin-main div[style*="background: rgb(255, 255, 255)"],
+.admin-main div[style*="background: white"],
+.admin-main div[style*="background:white"],
+.admin-main section[style*="background: #ffffff"],
+.admin-main section[style*="background:#ffffff"],
+.admin-main section[style*="background: white"] {
+  background: rgba(255, 255, 255, 0.74) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-color: rgba(226, 232, 240, 0.85) !important;
+}
+
+.admin-table thead th {
+  background: rgba(248, 250, 252, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.dark .admin-main .plain-card,
+.dark .admin-main .admin-charts-grid > div,
+.dark .admin-main .admin-charts-grid-2 > div,
+.dark .admin-main .admin-charts-grid-3 > div,
+.dark .admin-main .admin-dashboard-split > div,
+.dark .admin-main .admin-table-container,
+.dark .admin-main div[style*="background: #ffffff"],
+.dark .admin-main div[style*="background:#ffffff"],
+.dark .admin-main div[style*="background: rgb(255, 255, 255)"],
+.dark .admin-main div[style*="background: white"],
+.dark .admin-main div[style*="background:white"],
+.dark .admin-main section[style*="background: #ffffff"],
+.dark .admin-main section[style*="background:#ffffff"],
+.dark .admin-main section[style*="background: white"] {
+  background: rgba(17, 24, 39, 0.72) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .admin-table thead th {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
