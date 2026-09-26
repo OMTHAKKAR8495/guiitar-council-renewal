@@ -3,7 +3,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 const NEON_DB_URL =
   process.env.DATABASE_URL ||
-  "postgresql://neondb_owner:npg_kLqQz3DsX1rc@ep-twilight-brook-b4c0f74u-pooler.c-6.us-east-2.aws.neon.tech/neondb?channel_binding=require&sslmode=require";
+  "postgresql://neondb_owner:npg_6xstyEme5PMN@ep-twilight-brook-b4c0f74u-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
 
 export default defineConfig({
   define: {
