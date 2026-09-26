@@ -1,13 +1,27 @@
 import { neon } from "@neondatabase/serverless";
 import type { EventItem, IdeaItem, StartupItem, ApplicationItem, MentorItem } from "./adminStore";
 
-const NEON_DB_URL =
-  (typeof process !== "undefined" && process.env?.DATABASE_URL) ||
+export const NEON_CONNECTION_STRING =
   "postgresql://neondb_owner:npg_kLqQz3DsX1rc@ep-twilight-brook-b4c0f74u-pooler.c-6.us-east-2.aws.neon.tech/neondb?channel_binding=require&sslmode=require";
+
+function getConnectionString(): string {
+  try {
+    if (typeof import.meta !== "undefined" && (import.meta as any).env?.VITE_DATABASE_URL) {
+      return (import.meta as any).env.VITE_DATABASE_URL;
+    }
+  } catch {}
+  try {
+    if (typeof process !== "undefined" && process.env?.DATABASE_URL) {
+      return process.env.DATABASE_URL;
+    }
+  } catch {}
+  return NEON_CONNECTION_STRING;
+}
 
 function getSql() {
   try {
-    return neon(NEON_DB_URL);
+    const url = getConnectionString();
+    return neon(url);
   } catch (err) {
     console.error("Failed to initialize Neon SQL client:", err);
     return null;
