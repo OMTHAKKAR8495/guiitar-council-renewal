@@ -387,19 +387,30 @@ export function PageHero({
 export function Header() {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+  const [topBarDropdownOpen, setTopBarDropdownOpen] = useState(false);
   const path = useRouterState({ select: (s) => s.location.pathname });
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Close mega menu on route change or click outside
+  const toggleCategory = (label: string) => {
+    setExpandedCategories((prev) => ({
+      ...prev,
+      [label]: !prev[label],
+    }));
+  };
+
+  // Close menus on route change or click outside
   useEffect(() => {
     setActiveMenu(null);
     setOpen(false);
+    setTopBarDropdownOpen(false);
   }, [path]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
         setActiveMenu(null);
+        setTopBarDropdownOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -413,10 +424,15 @@ export function Header() {
         <div className="container top-bar-content">
           <div className="top-bar-tag">
             <span className="top-bar-pill">GSFC University</span>
-            <span>
+            <span className="top-bar-text-desktop">
               Section 8 Not-For-Profit Incubation Center | SSIP 2.0 & Govt. of Gujarat Approved
             </span>
+            <span className="top-bar-text-mobile">
+              Section 8 Incubation Center | Govt. Approved
+            </span>
           </div>
+
+          {/* Desktop Top Links */}
           <div className="top-bar-links">
             <Link
               to="/impact"
@@ -435,7 +451,69 @@ export function Header() {
               <span>+91 (0265) 3093750</span>
             </a>
           </div>
+
+          {/* Mobile Top Bar Dropdown Trigger */}
+          <button
+            type="button"
+            className="top-bar-mobile-toggle"
+            onClick={() => setTopBarDropdownOpen((prev) => !prev)}
+            aria-label="Toggle contact and info dropdown"
+            aria-expanded={topBarDropdownOpen}
+          >
+            <span className="top-bar-mobile-toggle-dot" />
+            <span>Info & Contacts</span>
+            <ChevronDown
+              className="w-3.5 h-3.5 transition-transform"
+              style={{
+                transform: topBarDropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+            />
+          </button>
         </div>
+
+        {/* Mobile Top Bar Dropdown Panel */}
+        {topBarDropdownOpen && (
+          <div className="top-bar-dropdown-panel">
+            <div className="container top-bar-dropdown-content">
+              <div className="top-bar-dropdown-header">
+                <span className="top-bar-pill">SSIP 2.0 & Govt. Approved</span>
+                <span style={{ fontSize: "12px", color: "#94a3b8" }}>
+                  GSFC University Incubation Hub
+                </span>
+              </div>
+              <div className="top-bar-dropdown-grid">
+                <Link
+                  to="/impact"
+                  onClick={() => setTopBarDropdownOpen(false)}
+                  className="top-bar-dropdown-card top-bar-dropdown-impact"
+                >
+                  <Sparkles className="w-4 h-4 text-blue-400" />
+                  <div>
+                    <strong>Live Impact Data</strong>
+                    <p>83+ ventures, ₹2.8Cr+ funded</p>
+                  </div>
+                </Link>
+                <a
+                  href="mailto:guiitar@gsfcuniversity.ac.in"
+                  className="top-bar-dropdown-card"
+                >
+                  <Mail className="w-4 h-4 text-emerald-400" />
+                  <div>
+                    <strong>guiitar@gsfcuniversity.ac.in</strong>
+                    <p>Direct incubation queries</p>
+                  </div>
+                </a>
+                <a href="tel:+912653093750" className="top-bar-dropdown-card">
+                  <Phone className="w-4 h-4 text-amber-400" />
+                  <div>
+                    <strong>+91 (0265) 3093750</strong>
+                    <p>Mon - Fri, 9:00 AM - 5:30 PM</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Main Sticky Navbar */}
@@ -730,170 +808,245 @@ export function Header() {
               onClick={() => setOpen(false)}
             />
             <nav className="mobile-nav">
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  paddingBottom: "8px",
-                  borderBottom: "1px solid var(--border)",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: 800,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    color: "var(--muted-foreground)",
-                  }}
-                >
-                  Navigation Menu
-                </span>
+              {/* Drawer Top Header Bar */}
+              <div className="mobile-nav-header">
+                <div>
+                  <span className="mobile-nav-heading">Navigation Menu</span>
+                  <p className="mobile-nav-subheading">GSFC University Incubation Hub</p>
+                </div>
                 <Link
                   to="/apply"
                   onClick={() => setOpen(false)}
-                  style={{
-                    fontSize: "12.5px",
-                    fontWeight: 700,
-                    color: "var(--primary)",
-                    textDecoration: "none",
-                  }}
+                  className="mobile-nav-apply-pill"
                 >
-                  Apply for Incubation →
+                  <span>Apply Now</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+              {/* Main Accordion Dropdown List */}
+              <div className="mobile-nav-list">
+                {/* Home Link */}
                 <Link
                   to="/"
                   onClick={() => setOpen(false)}
-                  className={path === "/" ? "active" : ""}
+                  className={`mobile-nav-direct-link ${path === "/" ? "active" : ""}`}
                 >
-                  <span>Home</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div className="mobile-nav-icon-wrap">
+                      <Sparkles className="w-4 h-4" />
+                    </div>
+                    <span>Home</span>
+                  </div>
                   <ArrowRight className="w-4 h-4 opacity-40" />
                 </Link>
-                <Link
-                  to="/about"
-                  onClick={() => setOpen(false)}
-                  className={path.startsWith("/about") ? "active" : ""}
-                >
-                  <span>About GUIITAR</span>
-                  <ArrowRight className="w-4 h-4 opacity-40" />
-                </Link>
-                <Link
-                  to="/programs"
-                  onClick={() => setOpen(false)}
-                  className={path.startsWith("/programs") ? "active" : ""}
-                >
-                  <span>Programs & Incubation</span>
-                  <ArrowRight className="w-4 h-4 opacity-40" />
-                </Link>
-                <Link
-                  to="/innovation"
-                  onClick={() => setOpen(false)}
-                  className={path.startsWith("/innovation") ? "active" : ""}
-                >
-                  <span>Innovation & Labs</span>
-                  <ArrowRight className="w-4 h-4 opacity-40" />
-                </Link>
-                <Link
-                  to="/startups"
-                  onClick={() => setOpen(false)}
-                  className={path.startsWith("/startups") ? "active" : ""}
-                >
-                  <span>Startup Directory</span>
-                  <ArrowRight className="w-4 h-4 opacity-40" />
-                </Link>
-                <Link
-                  to="/funding"
-                  onClick={() => setOpen(false)}
-                  className={path.startsWith("/funding") ? "active" : ""}
-                >
-                  <span>Funding & Grants Navigator</span>
-                  <ArrowRight className="w-4 h-4 opacity-40" />
-                </Link>
-                <Link
-                  to="/ecosystem"
-                  onClick={() => setOpen(false)}
-                  className={path.startsWith("/ecosystem") ? "active" : ""}
-                >
-                  <span>Ecosystem & Mentors</span>
-                  <ArrowRight className="w-4 h-4 opacity-40" />
-                </Link>
+
+                {/* Dropdown Accordion Categories */}
+                {MEGA_MENU.map((cat) => {
+                  const Icon = cat.icon;
+                  const isExpanded = !!expandedCategories[cat.label];
+                  const isCatActive = cat.to === "/" ? path === "/" : path.startsWith(cat.to);
+
+                  return (
+                    <div key={cat.label} className="mobile-nav-accordion-item">
+                      <button
+                        type="button"
+                        className={`mobile-nav-accordion-trigger ${isCatActive ? "active" : ""} ${
+                          isExpanded ? "expanded" : ""
+                        }`}
+                        onClick={() => toggleCategory(cat.label)}
+                        aria-expanded={isExpanded}
+                      >
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                          <div className="mobile-nav-icon-wrap">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <span className="mobile-nav-category-title">{cat.label}</span>
+                          <span className="mobile-nav-item-count">{cat.items.length}</span>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                          <ChevronDown
+                            className="w-4 h-4 transition-transform text-slate-400"
+                            style={{
+                              transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+                              color: isExpanded ? "var(--primary)" : undefined,
+                            }}
+                          />
+                        </div>
+                      </button>
+
+                      {/* Dropdown Content */}
+                      {isExpanded && (
+                        <div className="mobile-nav-dropdown-body">
+                          {/* Top Overview Link */}
+                          <Link
+                            to={cat.to}
+                            onClick={() => setOpen(false)}
+                            className="mobile-nav-overview-link"
+                          >
+                            <span>{cat.label} Overview & Hub</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </Link>
+
+                          {/* Submenu Items */}
+                          <div className="mobile-nav-subitems">
+                            {cat.items.map((item) => {
+                              const isItemActive = path === item.to;
+                              return (
+                                <Link
+                                  key={item.title}
+                                  to={item.to}
+                                  onClick={() => setOpen(false)}
+                                  className={`mobile-nav-subitem-link ${
+                                    isItemActive ? "active" : ""
+                                  }`}
+                                >
+                                  <div style={{ flexGrow: 1 }}>
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "6px",
+                                        flexWrap: "wrap",
+                                      }}
+                                    >
+                                      <span className="mobile-nav-subitem-title">
+                                        {item.title}
+                                      </span>
+                                      {item.badge && (
+                                        <span className="mobile-nav-badge">{item.badge}</span>
+                                      )}
+                                    </div>
+                                    <p className="mobile-nav-subitem-desc">{item.desc}</p>
+                                  </div>
+                                  <ArrowRight className="w-3.5 h-3.5 opacity-30 flex-shrink-0 mt-1" />
+                                </Link>
+                              );
+                            })}
+                          </div>
+
+                          {/* Featured Card if available */}
+                          {cat.featured && (
+                            <div className="mobile-nav-featured-box">
+                              <span className="mobile-nav-featured-tag">Highlight</span>
+                              <h5 className="mobile-nav-featured-title">{cat.featured.title}</h5>
+                              <p className="mobile-nav-featured-desc">{cat.featured.desc}</p>
+                              <Link
+                                to={cat.featured.to}
+                                onClick={() => setOpen(false)}
+                                className="mobile-nav-featured-cta"
+                              >
+                                <span>{cat.featured.cta}</span>
+                                <ArrowRight className="w-3.5 h-3.5" />
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+
+                {/* Direct Single Pages */}
+                <div className="mobile-nav-divider">
+                  <span>Direct Portals</span>
+                </div>
+
                 <Link
                   to="/events"
                   onClick={() => setOpen(false)}
-                  className={path.startsWith("/events") ? "active" : ""}
+                  className={`mobile-nav-direct-link ${path.startsWith("/events") ? "active" : ""}`}
                 >
-                  <span>Workshops & Events</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div className="mobile-nav-icon-wrap">
+                      <CalendarDays className="w-4 h-4" />
+                    </div>
+                    <span>Workshops & Events</span>
+                  </div>
                   <ArrowRight className="w-4 h-4 opacity-40" />
                 </Link>
+
                 <Link
                   to="/partner"
                   onClick={() => setOpen(false)}
-                  className={path.startsWith("/partner") ? "active" : ""}
+                  className={`mobile-nav-direct-link ${
+                    path.startsWith("/partner") ? "active" : ""
+                  }`}
                 >
-                  <span>Partner With Us</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div className="mobile-nav-icon-wrap">
+                      <Network className="w-4 h-4" />
+                    </div>
+                    <span>Partner With Us</span>
+                  </div>
                   <ArrowRight className="w-4 h-4 opacity-40" />
                 </Link>
-                <Link
-                  to="/resources"
-                  onClick={() => setOpen(false)}
-                  className={path.startsWith("/resources") ? "active" : ""}
-                >
-                  <span>Resource Library</span>
-                  <ArrowRight className="w-4 h-4 opacity-40" />
-                </Link>
+
                 <Link
                   to="/impact"
                   onClick={() => setOpen(false)}
-                  className={path.startsWith("/impact") ? "active" : ""}
+                  className={`mobile-nav-direct-link ${path.startsWith("/impact") ? "active" : ""}`}
                 >
-                  <span>Impact Dashboard</span>
-                  <ArrowRight className="w-4 h-4 opacity-40" />
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div className="mobile-nav-icon-wrap" style={{ color: "#2563eb" }}>
+                      <Sparkles className="w-4 h-4" />
+                    </div>
+                    <span>Live Impact Dashboard</span>
+                  </div>
+                  <span className="mobile-nav-badge" style={{ background: "#eff6ff", color: "#2563eb" }}>
+                    Live Data
+                  </span>
                 </Link>
+
                 <Link
                   to="/faq"
                   onClick={() => setOpen(false)}
-                  className={path.startsWith("/faq") ? "active" : ""}
+                  className={`mobile-nav-direct-link ${path.startsWith("/faq") ? "active" : ""}`}
                 >
-                  <span>Help Center & FAQs</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div className="mobile-nav-icon-wrap">
+                      <HelpCircle className="w-4 h-4" />
+                    </div>
+                    <span>Help Center & FAQs</span>
+                  </div>
                   <ArrowRight className="w-4 h-4 opacity-40" />
                 </Link>
+
                 <Link
                   to="/contact"
                   onClick={() => setOpen(false)}
-                  className={path.startsWith("/contact") ? "active" : ""}
+                  className={`mobile-nav-direct-link ${
+                    path.startsWith("/contact") ? "active" : ""
+                  }`}
                 >
-                  <span>Contact Us</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div className="mobile-nav-icon-wrap">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <span>Contact & Location</span>
+                  </div>
                   <ArrowRight className="w-4 h-4 opacity-40" />
                 </Link>
               </div>
 
-              <div
-                style={{
-                  marginTop: "12px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "12px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "10px 14px",
-                    background: "var(--muted)",
-                    borderRadius: "10px",
-                    border: "1px solid var(--border)",
-                  }}
-                >
+              {/* Mobile Drawer Footer with Theme & Actions */}
+              <div className="mobile-nav-footer">
+                <div className="mobile-nav-theme-row">
                   <span style={{ fontSize: "13px", fontWeight: 700, color: "var(--foreground)" }}>
                     Theme Mode
                   </span>
                   <ThemeToggle variant="segmented" />
+                </div>
+
+                <div className="mobile-nav-quick-contacts">
+                  <a href="tel:+912653093750" className="mobile-nav-contact-btn">
+                    <Phone className="w-3.5 h-3.5 text-amber-500" />
+                    <span>+91 265 3093750</span>
+                  </a>
+                  <a href="mailto:guiitar@gsfcuniversity.ac.in" className="mobile-nav-contact-btn">
+                    <Mail className="w-3.5 h-3.5 text-emerald-500" />
+                    <span>guiitar@gsfcuniversity.ac.in</span>
+                  </a>
                 </div>
 
                 <Link
