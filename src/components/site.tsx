@@ -406,6 +406,18 @@ export function Header() {
     setTopBarDropdownOpen(false);
   }, [path]);
 
+  // Lock body scroll when mobile navigation drawer is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -462,12 +474,11 @@ export function Header() {
           >
             <span className="top-bar-mobile-toggle-dot" />
             <span>Info & Contacts</span>
-            <ChevronDown
-              className="w-3.5 h-3.5 transition-transform"
-              style={{
-                transform: topBarDropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
-              }}
-            />
+            {topBarDropdownOpen ? (
+              <X className="w-3.5 h-3.5 text-blue-400" />
+            ) : (
+              <ChevronDown className="w-3.5 h-3.5 transition-transform" />
+            )}
           </button>
         </div>
 
@@ -476,10 +487,20 @@ export function Header() {
           <div className="top-bar-dropdown-panel">
             <div className="container top-bar-dropdown-content">
               <div className="top-bar-dropdown-header">
-                <span className="top-bar-pill">SSIP 2.0 & Govt. Approved</span>
-                <span style={{ fontSize: "12px", color: "#94a3b8" }}>
-                  GSFC University Incubation Hub
-                </span>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <span className="top-bar-pill">SSIP 2.0 & Govt. Approved</span>
+                  <span style={{ fontSize: "12px", color: "#94a3b8" }}>
+                    GSFC University Incubation Hub
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  className="top-bar-dropdown-close-btn"
+                  onClick={() => setTopBarDropdownOpen(false)}
+                  aria-label="Close contacts popup"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               </div>
               <div className="top-bar-dropdown-grid">
                 <Link
@@ -727,17 +748,7 @@ export function Header() {
           <div className="nav-actions">
             <Link
               to="/events"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "4px",
-                fontSize: "14px",
-                fontWeight: 600,
-                color: path.startsWith("/events") ? "var(--primary)" : "#475569",
-                textDecoration: "none",
-                padding: "6px 10px",
-              }}
-              className="hidden xl:inline-flex"
+              className={`nav-action-link nav-action-link-xl ${path.startsWith("/events") ? "active" : ""}`}
             >
               <CalendarDays className="w-4 h-4" />
               <span>Events</span>
@@ -745,17 +756,7 @@ export function Header() {
 
             <Link
               to="/faq"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "4px",
-                fontSize: "14px",
-                fontWeight: 600,
-                color: path.startsWith("/faq") ? "var(--primary)" : "#475569",
-                textDecoration: "none",
-                padding: "6px 10px",
-              }}
-              className="hidden xl:inline-flex"
+              className={`nav-action-link nav-action-link-xl ${path.startsWith("/faq") ? "active" : ""}`}
             >
               <HelpCircle className="w-4 h-4" />
               <span>FAQ</span>
@@ -763,17 +764,7 @@ export function Header() {
 
             <Link
               to="/contact"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "4px",
-                fontSize: "14px",
-                fontWeight: 600,
-                color: path.startsWith("/contact") ? "var(--primary)" : "var(--foreground)",
-                textDecoration: "none",
-                padding: "6px 10px",
-              }}
-              className="hidden lg:inline-flex"
+              className={`nav-action-link nav-action-link-lg ${path.startsWith("/contact") ? "active" : ""}`}
             >
               <span>Contact</span>
             </Link>
@@ -781,17 +772,17 @@ export function Header() {
             <ThemeToggle variant="dropdown" />
 
             <Link
-              className="btn btn-primary btn-sm hidden sm:inline-flex"
+              className="btn btn-primary btn-sm nav-action-btn-sm"
               to="/apply"
-              style={{ padding: "0 18px" }}
             >
               <span>Apply Now</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
 
             <button
-              className="menu-button"
-              aria-label="Toggle navigation"
+              className={`menu-button ${open ? "active" : ""}`}
+              aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={open}
               onClick={() => setOpen(!open)}
             >
               {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -804,24 +795,35 @@ export function Header() {
           <>
             <div
               className="admin-mobile-overlay"
-              style={{ top: "72px" }}
+              style={{ top: "70px" }}
               onClick={() => setOpen(false)}
+              aria-hidden="true"
             />
-            <nav className="mobile-nav">
-              {/* Drawer Top Header Bar */}
+            <nav className="mobile-nav" aria-label="Mobile Navigation">
+              {/* Drawer Top Header Bar with Close Cross */}
               <div className="mobile-nav-header">
-                <div>
-                  <span className="mobile-nav-heading">Navigation Menu</span>
+                <div className="mobile-nav-brand">
+                  <span className="mobile-nav-heading">GUIITAR Council</span>
                   <p className="mobile-nav-subheading">GSFC University Incubation Hub</p>
                 </div>
-                <Link
-                  to="/apply"
-                  onClick={() => setOpen(false)}
-                  className="mobile-nav-apply-pill"
-                >
-                  <span>Apply Now</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                <div className="mobile-nav-header-actions">
+                  <Link
+                    to="/apply"
+                    onClick={() => setOpen(false)}
+                    className="mobile-nav-apply-pill"
+                  >
+                    <span>Apply</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <button
+                    type="button"
+                    className="mobile-nav-close-btn"
+                    onClick={() => setOpen(false)}
+                    aria-label="Close navigation menu"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
 
               {/* Main Accordion Dropdown List */}
@@ -953,6 +955,22 @@ export function Header() {
                 </div>
 
                 <Link
+                  to="/apply"
+                  onClick={() => setOpen(false)}
+                  className={`mobile-nav-direct-link ${path.startsWith("/apply") ? "active" : ""}`}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div className="mobile-nav-icon-wrap" style={{ color: "var(--primary)" }}>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                    <span>Apply for Incubation & Grants</span>
+                  </div>
+                  <span className="mobile-nav-badge" style={{ background: "rgba(37, 99, 235, 0.1)", color: "var(--primary)" }}>
+                    Portal
+                  </span>
+                </Link>
+
+                <Link
                   to="/events"
                   onClick={() => setOpen(false)}
                   className={`mobile-nav-direct-link ${path.startsWith("/events") ? "active" : ""}`}
@@ -1029,7 +1047,7 @@ export function Header() {
                 </Link>
               </div>
 
-              {/* Mobile Drawer Footer with Theme & Actions */}
+              {/* Mobile Drawer Footer with Theme, Contacts & Close */}
               <div className="mobile-nav-footer">
                 <div className="mobile-nav-theme-row">
                   <span style={{ fontSize: "13px", fontWeight: 700, color: "var(--foreground)" }}>
@@ -1041,7 +1059,7 @@ export function Header() {
                 <div className="mobile-nav-quick-contacts">
                   <a href="tel:+912653093750" className="mobile-nav-contact-btn">
                     <Phone className="w-3.5 h-3.5 text-amber-500" />
-                    <span>+91 265 3093750</span>
+                    <span>+91 (0265) 3093750</span>
                   </a>
                   <a href="mailto:guiitar@gsfcuniversity.ac.in" className="mobile-nav-contact-btn">
                     <Mail className="w-3.5 h-3.5 text-emerald-500" />
@@ -1049,15 +1067,14 @@ export function Header() {
                   </a>
                 </div>
 
-                <Link
-                  to="/apply"
+                <button
+                  type="button"
+                  className="mobile-nav-bottom-close-btn"
                   onClick={() => setOpen(false)}
-                  className="btn btn-primary btn-lg"
-                  style={{ width: "100%", justifyContent: "center" }}
                 >
-                  <span>Unified Application Portal</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                  <X className="w-4 h-4" />
+                  <span>Close Menu</span>
+                </button>
               </div>
             </nav>
           </>
