@@ -1,6 +1,7 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "guiitar-council-renewal",
   "private": true,
+  "license": "MIT",
   "sideEffects": false,
   "type": "module",
   "scripts": {
