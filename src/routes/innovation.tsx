@@ -70,7 +70,7 @@ const thrust = [
 export function InnovationPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeLabId, setActiveLabId] = useState("param-shavak");
+  const [activeLabId, setActiveLabId] = useState("makers-lab");
   const [publishedIdeas, setPublishedIdeas] = useState<IdeaItem[]>([]);
 
   const reloadPublished = () => {
@@ -324,6 +324,43 @@ export function InnovationPage() {
                 >
                   {currentLab.whoCanAccess}
                 </p>
+
+                {currentLab.sources && currentLab.sources.length > 0 && (
+                  <div
+                    style={{
+                      marginTop: "12px",
+                      paddingTop: "10px",
+                      borderTop: "1px dashed #e2e8f0",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <span style={{ fontSize: "11px", fontWeight: 700, color: "#64748b" }}>
+                      Verified Sources:
+                    </span>
+                    {currentLab.sources.map((src, idx) => (
+                      <a
+                        key={src.url}
+                        href={src.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "3px",
+                          fontSize: "11.5px",
+                          fontWeight: 700,
+                          color: "#2563eb",
+                          textDecoration: "underline",
+                        }}
+                      >
+                        <span>[{idx + 1}] {src.title}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>

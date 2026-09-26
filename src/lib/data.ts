@@ -522,41 +522,149 @@ export interface LabFacility {
   id: string;
   name: string;
   zone:
-    | "AI / Computing"
-    | "Drone & Aerospace"
     | "Prototype Zone"
-    | "IoT & Electronics"
-    | "Collaboration Hub";
+    | "AI / Computing"
+    | "Collaboration Hub"
+    | "IPR & Legal"
+    | "Drone & Aerospace"
+    | "IoT & Electronics";
   headline: string;
   description: string;
   equipment: string[];
   useCases: string[];
   whoCanAccess: string;
   imageAlt: string;
+  sources?: { title: string; url: string }[];
 }
 
 export const LAB_FACILITIES: LabFacility[] = [
   {
+    id: "makers-lab",
+    name: "Maker Lab / Prototyping Lab",
+    zone: "Prototype Zone",
+    headline: "Product Development, Testing & Proof of Concept (PoC) Creation",
+    description:
+      "A spacious facility designed for product development, testing, and creating proofs of concept (PoC). It is equipped with advanced equipment such as 3D Printers (FDM and SLA), Laser Cutting Machines, and Vinyl Cutting Machines.",
+    equipment: [
+      "Industrial 3D Printers (FDM and High-Resolution SLA Systems)",
+      "High-Precision Laser Cutting & Engraving Machines",
+      "Digital Vinyl Cutting Machines & Precision Contour Plotters",
+      "Rapid PCB Fabrication & Electronics Assembly Workstations",
+      "Mechanical Prototyping Tools, Bench Drills & Finishing Kits",
+    ],
+    useCases: [
+      "Rapid physical prototyping and Proof of Concept (PoC) fabrication",
+      "Custom enclosure, chassis, and mechanical mounting manufacturing",
+      "High-accuracy SLA resin casting and precision component testing",
+      "Iterative product validation and physical design refinements",
+    ],
+    whoCanAccess:
+      "All registered GUIITAR incubatees, SSIP 2.0 grant recipients, student innovators, and faculty researchers.",
+    imageAlt: "Maker Lab Prototyping Workshop at GUIITAR Council GSFC University",
+    sources: [
+      {
+        title: "GUIITAR Infrastructure",
+        url: "https://www.guiitarstartupcouncil.org/guiitarcouncil-infrastructure",
+      },
+      {
+        title: "Co-Working & Prototyping Space",
+        url: "https://www.guiitarstartupcouncil.org/guiitarcouncil-coworkingspace",
+      },
+      {
+        title: "3D Printing Innovation",
+        url: "https://www.facebook.com/gsfcuniversity/posts/-shaping-the-future-of-innovation-with-3d-printing-guiitar-council-gsfc-universi/1516794640494735/",
+      },
+    ],
+  },
+  {
     id: "param-shavak",
     name: "Super Computer Lab (Param Shavak DL)",
     zone: "AI / Computing",
-    headline: "High-Performance Deep Learning GPU Cluster",
+    headline: "High-Performance GPU System for AI, ML & Deep Learning",
     description:
-      "An advanced supercomputing setup outfitted with the Param Shavak Deep Learning GPU system, built to accelerate compute-intensive simulations, neural network training, and computer vision pipelines.",
+      "Houses a Param Shavak DL GPU System dedicated to training and research in advanced fields like Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning.",
     equipment: [
-      "Param Shavak GPU Deep Learning System",
-      "High-bandwidth CUDA computing nodes",
-      "TensorFlow, PyTorch, Caffe, OpenCV pre-configured environments",
-      "Gigabit dedicated research LAN connection",
+      "Param Shavak Deep Learning (DL) GPU Supercomputing System",
+      "High-Throughput Multi-GPU Architecture for Massively Parallel Compute",
+      "Pre-configured AI/ML Toolchains (PyTorch, TensorFlow, Caffe, OpenCV, CUDA)",
+      "Dedicated Gigabit Research Network with High-Speed Storage Subsystem",
     ],
     useCases: [
-      "Training large-scale deep learning and transformer vision models",
-      "Computational fluid dynamics (CFD) and chemical process simulation",
-      "Bioinformatics genome sequencing and molecular modeling",
+      "Training complex deep neural networks, computer vision, and transformer models",
+      "Computational fluid dynamics (CFD), chemical modeling, and process simulations",
+      "Bioinformatics genomics analysis and high-throughput data processing",
+      "Generative AI model experimentation and predictive industrial analytics",
     ],
     whoCanAccess:
-      "Incubated startups, student innovators, and faculty researchers with approved compute proposals.",
+      "Incubated AI/ML startups, data science scholars, student researchers, and faculty members.",
     imageAlt: "Param Shavak Supercomputer Lab at GSFC University",
+    sources: [
+      {
+        title: "GUIITAR Infrastructure",
+        url: "https://www.guiitarstartupcouncil.org/guiitarcouncil-infrastructure",
+      },
+    ],
+  },
+  {
+    id: "coworking-brainstorming",
+    name: "Co-Working Space & Brainstorming Rooms",
+    zone: "Collaboration Hub",
+    headline: "Peer Learning, Collaboration, Brainstorming & Product Demonstrations",
+    description:
+      "Spaces tailored for peer learning, collaboration, group brainstorming, and product demonstrations.",
+    equipment: [
+      "Ergonomic Dedicated Founder Workstations & Flex Hot-Desking Desks",
+      "Acoustically Treated Brainstorming Rooms with Full-Wall Glass Whiteboards",
+      "High-Speed Commercial Fiber Internet & 24/7 Redundant Power Backup",
+      "12-Seater Executive Conference Suite with 4K Interactive Presentation Display",
+      "Private Founder Call Cabins and Collaboration Lounge Areas",
+    ],
+    useCases: [
+      "Peer learning cohorts and cross-disciplinary startup collaboration",
+      "Group ideation sprints, product roadmap architecture, and brainstorming",
+      "Interactive product demonstrations, investor pitches, and stakeholder reviews",
+      "Daily venture operations, agile standups, and customer discovery sessions",
+    ],
+    whoCanAccess:
+      "Officially incubated startups, pre-incubation cohort founders, and student venture teams.",
+    imageAlt: "Co-Working Space & Brainstorming Rooms at GUIITAR Council",
+    sources: [
+      {
+        title: "GUIITAR Co-Working Space",
+        url: "https://www.guiitarstartupcouncil.org/guiitarcouncil-coworkingspace",
+      },
+    ],
+  },
+  {
+    id: "ipr-centre",
+    name: "Intellectual Property Rights (IPR) Centre",
+    zone: "IPR & Legal",
+    headline: "Patents, Copyrights, Trademarks & Industrial Designs Registration",
+    description:
+      "A specialized branch assisting students and startups with registering patents, copyrights, trademarks, and industrial designs.",
+    equipment: [
+      "Comprehensive Global Patentability & Prior-Art Search Databases",
+      "Empanelled Patent Attorneys & Legal IPR Advisory Specialists",
+      "Government Statutory Fee & Drafting Grant Support (Up to ₹1.5 Lakhs per Filing)",
+      "Fast-Track Application Gateway for Provisional & Complete Patent Specifications",
+      "Dedicated Helpdesk for Copyrights, Trademarks & Industrial Design Filings",
+    ],
+    useCases: [
+      "Prior-art assessment and novelty screening for laboratory discoveries",
+      "Drafting and filing provisional and complete patent applications",
+      "Registering software algorithms, UI blueprints, and research copyrights",
+      "Securing trademarks for startup brand identities and product trademarks",
+      "Registering industrial designs for hardware enclosures and device aesthetics",
+    ],
+    whoCanAccess:
+      "All GSFC University student innovators, incubated startup founders, and faculty inventors.",
+    imageAlt: "Intellectual Property Rights (IPR) Centre at GUIITAR Council",
+    sources: [
+      {
+        title: "GUIITAR IPR Centre",
+        url: "https://www.guiitarstartupcouncil.org/guiitarcouncil-ipr",
+      },
+    ],
   },
   {
     id: "drone-lab",
@@ -581,28 +689,6 @@ export const LAB_FACILITIES: LabFacility[] = [
     imageAlt: "Advanced Drone Lab at GUIITAR Council",
   },
   {
-    id: "makers-lab",
-    name: "Makers & 3D Prototyping Lab",
-    zone: "Prototype Zone",
-    headline: "Precision Subtractive & Additive Rapid Fabrication",
-    description:
-      "Spacious prototyping workshop equipped with high-precision laser cutters, industrial-grade 3D printers, and mechanical finishing tools to build functional prototypes in hours.",
-    equipment: [
-      "High-precision CO2 Laser Cutting & Engraving Machine",
-      "Multiple FDM & High-Resolution Resin 3D Printers",
-      "Vinyl Cutting & PCB Prototyping Workstations",
-      "Mechanical drill presses, bench grinders & hand toolkits",
-    ],
-    useCases: [
-      "Rapid prototype chassis, enclosures, and mechanical fixtures",
-      "Custom acrylic and wooden test jigs and PoC models",
-      "Precision silicone mold patterns for rapid casting",
-    ],
-    whoCanAccess:
-      "All registered GUIITAR incubatees, SSIP 2.0 grant holders, and student innovators.",
-    imageAlt: "Makers Lab 3D Prototyping at GSFC University",
-  },
-  {
     id: "design-iot-lab",
     name: "Design & IoT Tinkering Lab",
     zone: "IoT & Electronics",
@@ -622,27 +708,6 @@ export const LAB_FACILITIES: LabFacility[] = [
     ],
     whoCanAccess: "Electronics innovators, IoT startup founders, and engineering researchers.",
     imageAlt: "Design IoT Tinkering Lab at GUIITAR Council",
-  },
-  {
-    id: "anviksha-coworking",
-    name: "Anviksha Co-Working Suites",
-    zone: "Collaboration Hub",
-    headline: "Modern Furnished Startup Workstations & Meeting Rooms",
-    description:
-      "A collaborative, ergonomic work environment on the 2nd Floor of Anviksha Building, providing quiet dedicated desk pods, private discussion cabins, and high-speed Wi-Fi.",
-    equipment: [
-      "Ergonomic dedicated founder workstations",
-      "High-speed commercial fiber Wi-Fi & power backup",
-      "12-seater Conference Room with 4K interactive presentation panel",
-      "Private call booths and brainstorming whiteboard zones",
-    ],
-    useCases: [
-      "Daily startup venture operations and sprint planning",
-      "Client meetings, investor pitch rehearsals & team standups",
-      "Recruitment interviews and administrative compliance work",
-    ],
-    whoCanAccess: "Officially incubated startups and pre-incubation cohort founders.",
-    imageAlt: "Anviksha Co-working Space at GSFC University",
   },
   {
     id: "surjan-arena",
@@ -665,6 +730,7 @@ export const LAB_FACILITIES: LabFacility[] = [
     imageAlt: "Surjan Open Arena GSFC University",
   },
 ];
+
 
 export interface MentorItem {
   id: string;

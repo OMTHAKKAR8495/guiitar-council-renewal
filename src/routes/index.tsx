@@ -128,7 +128,7 @@ export function HomePage() {
   }, [navRole, navStage, navNeed]);
 
   // 5. Virtual Spaces Active Facility
-  const [activeLabId, setActiveLabId] = useState("param-shavak");
+  const [activeLabId, setActiveLabId] = useState("makers-lab");
   const currentLab = useMemo(
     () => LAB_FACILITIES.find((l) => l.id === activeLabId) || LAB_FACILITIES[0],
     [activeLabId],
@@ -1526,6 +1526,43 @@ export function HomePage() {
                 >
                   {currentLab.whoCanAccess}
                 </p>
+
+                {currentLab.sources && currentLab.sources.length > 0 && (
+                  <div
+                    style={{
+                      marginTop: "12px",
+                      paddingTop: "10px",
+                      borderTop: "1px dashed #e2e8f0",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <span style={{ fontSize: "11px", fontWeight: 700, color: "#64748b" }}>
+                      Verified Sources:
+                    </span>
+                    {currentLab.sources.map((src, idx) => (
+                      <a
+                        key={src.url}
+                        href={src.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "3px",
+                          fontSize: "11.5px",
+                          fontWeight: 700,
+                          color: "#2563eb",
+                          textDecoration: "underline",
+                        }}
+                      >
+                        <span>[{idx + 1}] {src.title}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
