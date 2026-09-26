@@ -16,8 +16,7 @@ if (!dbUrl) {
 }
 
 if (!dbUrl) {
-  console.error("ERROR: No DATABASE_URL found in environment or .env.local");
-  process.exit(1);
+  dbUrl = "postgresql://neondb_owner:npg_6xstyEme5PMN@ep-twilight-brook-b4c0f74u-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
 }
 
 const sql = neon(dbUrl);
@@ -172,6 +171,20 @@ async function seed() {
       pitch_summary: "Micro-hydro turbines retrofitted into industrial drainage channels to generate local sensor power.",
       team_size: 3,
       notes: "Awaiting initial document review."
+    },
+    {
+      id: "app-105",
+      project_name: "ChemDetect Wearable Gas Sensor",
+      applicant_name: "Vikram Malhotra",
+      email: "vikram.m@gsfcuniversity.ac.in",
+      phone: "+91 98765 43210",
+      track: "SSIP 2.0 Prototyping Grant",
+      stage: "TRL-4 Prototype",
+      status: "Shortlisted",
+      submitted_date: "2026-09-25",
+      pitch_summary: "Wearable sensor band alerting chemical plant technicians to VOCs and ammonia leaks in under 3 seconds.",
+      team_size: 2,
+      notes: "Reviewed by Safety Department mentors."
     }
   ];
 
@@ -238,6 +251,34 @@ async function seed() {
       patents: 1,
       valuation: "₹5.0 Cr",
       tags: ["Hydro", "IoT", "CleanEnergy"]
+    },
+    {
+      id: "stu-4",
+      name: "MediSense Diagnostics",
+      founders: ["Pooja Sharma", "Dr. A. K. Varma"],
+      domain: "HealthTech & Biosensors",
+      batch: "Cohort 2026",
+      funding_raised: "₹2.5 Lakhs",
+      description: "Point-of-care microfluidic diagnostic strips for rapid blood urea and electrolyte profiling.",
+      website_url: "https://medisense.example.com",
+      status: "Incubated",
+      patents: 1,
+      valuation: "₹2.2 Cr",
+      tags: ["HealthTech", "Microfluidics", "Biosensors"]
+    },
+    {
+      id: "stu-5",
+      name: "AgriDrone Robotics",
+      founders: ["Yashwardhan Rana", "Siddharth Jani"],
+      domain: "AgriTech & Robotics",
+      batch: "Cohort 2025",
+      funding_raised: "₹7.5 Lakhs",
+      description: "Precision automated agricultural spraying drones reducing pesticide runoff by 60%.",
+      website_url: "https://agridrone.example.com",
+      status: "Incubated",
+      patents: 1,
+      valuation: "₹4.0 Cr",
+      tags: ["AgriTech", "Robotics", "Drones"]
     }
   ];
 
@@ -306,6 +347,50 @@ async function seed() {
       trl_level: "TRL-6",
       status: "Published",
       views: 215
+    },
+    {
+      id: "idea-3",
+      ref_id: "GUI-IDEA-2026-0003",
+      slug: "agrisense-hyperspectral-sensor",
+      title: "AgriSense Hyperspectral Soil Nutrient Sensor",
+      innovator: "Karan Desai",
+      team_members: ["Ritu Trivedi", "Siddharth Bhatt"],
+      email: "karan.desai@gsfcuniversity.ac.in",
+      phone: "+91 99090 77889",
+      stage: "TRL-4 Prototype",
+      category: "AgriTech",
+      sector: "Agriculture & Sensors",
+      desc: "In-situ spectroscopy probe providing N-P-K soil concentration readouts in under 60 seconds with GPS mapping.",
+      problem_statement: "Lab soil testing takes weeks and delays critical sowing decisions.",
+      solution_desc: "Near-infrared reflectance sensor paired with machine learning calibration model.",
+      novelty: "Compact optical design reducing equipment costs by 85%.",
+      patent_status: "Under Review",
+      funding_required: "₹2.5 Lakhs",
+      trl_level: "TRL-4",
+      status: "Published",
+      views: 180
+    },
+    {
+      id: "idea-4",
+      ref_id: "GUI-IDEA-2026-0004",
+      slug: "chemsafe-leak-telemetry",
+      title: "ChemSafe Industrial Pipeline Telemetry Node",
+      innovator: "Vikram Malhotra",
+      team_members: ["Devendra Dave"],
+      email: "vikram.m@gsfcuniversity.ac.in",
+      phone: "+91 98765 43210",
+      stage: "MVP",
+      category: "IoT & Industrial Safety",
+      sector: "Petrochemicals",
+      desc: "Zero-power LoRaWAN sensor nodes that clamp directly onto industrial pipeline joints to detect volatile organic compound leaks.",
+      problem_statement: "Fugitive emissions in chemical corridors are difficult to pinpoint without dense sensor grids.",
+      solution_desc: "Energy-harvesting gas telemetry devices transmitting over 15km range.",
+      novelty: "Piezo-electric vibration harvesting circuit.",
+      patent_status: "Filed",
+      funding_required: "₹3.0 Lakhs",
+      trl_level: "TRL-5",
+      status: "Published",
+      views: 95
     }
   ];
 
@@ -353,34 +438,46 @@ async function seed() {
     },
     {
       id: "men-2",
-      name: "Dr. Bhoomi Shah",
-      designation: "IPR Attorney & Patent Coordinator",
-      domain: "Legal & IPR",
-      organization: "GUIITAR Council IPR Centre",
-      experience: "12+ Years",
-      expertise: ["Patent Drafting", "Freedom to Operate", "Trademark Law"],
-      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80",
-      email: "ipr@guiitar.org",
+      name: "Dr. Mihir Trivedi",
+      designation: "Director of Research & Innovation",
+      domain: "Supercomputing & High Performance Systems",
+      organization: "Param Shavak Supercomputer Hub",
+      experience: "18+ Years",
+      expertise: ["Parallel Architecture", "AI Acceleration", "Grant Governance"],
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80",
+      email: "mihir.trivedi@gsfcuniversity.ac.in",
       status: "Active"
     },
     {
       id: "men-3",
-      name: "KiranKumar Parmar",
-      designation: "Incubation Manager & Ecosystem Lead",
-      domain: "Startup Incubation",
-      organization: "GUIITAR Council",
-      experience: "8+ Years",
-      expertise: ["SSIP 2.0 Grants", "Pitch Coaching", "Prototype Scaling"],
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80",
-      email: "admin@guiitar.org",
+      name: "Dr. Bhoomi Shah",
+      designation: "Lead IP Counsel & Patent Attorney",
+      domain: "Intellectual Property Rights & Patent Drafting",
+      organization: "GUIITAR Legal & IPR Cell",
+      experience: "14+ Years",
+      expertise: ["Patent Search", "Provisional Filings", "Technology Licensing"],
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80",
+      email: "bhoomi.shah@gsfcuniversity.ac.in",
+      status: "Active"
+    },
+    {
+      id: "men-4",
+      name: "Mr. Kiran Parmar",
+      designation: "Head of Incubation & Industry Partnerships",
+      domain: "Industrial Scale & Funding",
+      organization: "GSFC Ltd. Corporate Relations",
+      experience: "20+ Years",
+      expertise: ["Corporate Venturing", "Chemical Engineering Scale", "SSIP 2.0"],
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80",
+      email: "kiran.parmar@gsfcuniversity.ac.in",
       status: "Active"
     }
   ];
 
-  for (const men of mentors) {
+  for (const m of mentors) {
     await sql`
       INSERT INTO mentors (id, name, designation, domain, organization, experience, expertise, avatar, email, status)
-      VALUES (${men.id}, ${men.name}, ${men.designation}, ${men.domain}, ${men.organization}, ${men.experience}, ${men.expertise}, ${men.avatar}, ${men.email}, ${men.status})
+      VALUES (${m.id}, ${m.name}, ${m.designation}, ${m.domain}, ${m.organization}, ${m.experience}, ${m.expertise}, ${m.avatar}, ${m.email}, ${m.status})
       ON CONFLICT (id) DO UPDATE SET
         name = EXCLUDED.name,
         designation = EXCLUDED.designation,
@@ -399,26 +496,53 @@ async function seed() {
   const programs = [
     {
       id: "prog-1",
-      name: "SSIP 2.0 Student PoC & Prototyping Track",
-      tagline: "Govt. of Gujarat innovation grant support for working proofs-of-concept.",
+      name: "SSIP 2.0 Prototyping Grant Track",
+      tagline: "Govt of Gujarat Non-Dilutive Financial Grant up to ₹2.50 Lakhs",
       duration: "6 Months",
-      grant_support: "Up to ₹2.50 Lakhs",
-      target_cohort: "Undergraduate, Postgraduate & PhD Students",
-      description: "Comprehensive grant disbursement for bill-of-materials, maker lab fabrication, testing benches, and industrial validation.",
-      features: ["Up to ₹2.50 Lakhs grant per team", "3D Printing & Laser lab access", "Param Shavak supercomputer access", "Mentorship from GSFC chemical & industrial leaders"],
-      eligibility: ["Currently enrolled students or alumni within 5 years", "Technical proof of concept or novel innovation", "Team of 2-5 members"],
+      grant_support: "Up to ₹2,50,000",
+      target_cohort: "Students, Diploma, UG, PG, PhD Researchers & Alumni (up to 35 yrs)",
+      description: "Comprehensive financial grant and lab access pathway under the Gujarat Student Startup & Innovation Policy 2.0.",
+      features: [
+        "100% non-dilutive grant disbursed on milestone validation",
+        "Free rapid prototyping access across all 6 verified labs",
+        "Dedicated faculty guides and domain specialist mentors",
+        "Zero equity charge & complete founder IP retention"
+      ],
+      eligibility: ["Current GSFC University students", "Alumni within 5 years of graduation", "School students (grades 9-12)"],
       status: "Active"
     },
     {
       id: "prog-2",
-      name: "DeepTech Incubation & Commercial Acceleration",
-      tagline: "Full-scale company incorporation and seed fund acceleration.",
+      name: "GUIITAR DeepTech Acceleration Cohort",
+      tagline: "Industrial Prototyping, Pilot Validation & Pre-Seed Readiness",
       duration: "12 Months",
-      grant_support: "Co-working + Seed Connect",
-      target_cohort: "Early-stage founders with validated MVPs",
-      description: "High-touch incubation offering dedicated dedicated workbenches, IPR claim filing, compliance clearance, and angel demo day pitches.",
-      features: ["24/7 dedicated Anviksha co-working suite", "100% patent filing fee reimbursement", "Direct connection to GSFC Limited industrial trials", "Investor pitch days"],
-      eligibility: ["Incorporated startup or ready to incorporate", "Working MVP with customer traction or field trials", "Commitment to full-time venture development"],
+      grant_support: "Up to ₹5,00,000 + Lab Compute",
+      target_cohort: "Validated PoC prototypes ready for industrial pilot trials",
+      description: "Incubation program linking student founders directly with GSFC Ltd. chemical and manufacturing plant testbeds.",
+      features: [
+        "Dedicated physical workstation at Anviksha Hub",
+        "Param Shavak Supercomputer GPU allocation for AI compute",
+        "Direct pilot trials across GSFC Ltd. chemical & fertilizer plants",
+        "IPR patent drafting cost reimbursement up to ₹75,000"
+      ],
+      eligibility: ["TRL-4+ working prototype", "Incorporated or in-process Pvt Ltd", "Recommendation from Faculty Mentor"],
+      status: "Active"
+    },
+    {
+      id: "prog-3",
+      name: "E-Club Student Wing Ideation Clinic",
+      tagline: "Pre-Incubation Masterclasses & Design Thinking Sprints",
+      duration: "3 Months",
+      grant_support: "Ideation Seed Grants up to ₹25,000",
+      target_cohort: "Undergraduate & postgraduate students with early concepts",
+      description: "Weekend hackathons, problem statement dissection clinics, and design sprints to formulate venture proposals.",
+      features: [
+        "Weekly brainstorm clinics and pitch deck workshops",
+        "Hands-on CAD modeling and 3D printing lab access",
+        "Peer founder networks and hackathon mentorship",
+        "Fast-track gateway to SSIP 2.0 prototyping grant screening"
+      ],
+      eligibility: ["Open to all university students", "No prior startup experience required"],
       status: "Active"
     }
   ];
@@ -441,10 +565,55 @@ async function seed() {
   }
   console.log("✓ Seeded programs");
 
-  console.log("\nALL TABLES SUCCESSFULLY POPULATED WITH INITIAL DATA!");
+  // 7. Audit logs
+  const auditLogs = [
+    {
+      id: "log-1",
+      admin_name: "KiranKumar Parmar",
+      action: "Created Event",
+      target_record: "demo guitar data",
+      record_type: "Event",
+      details: "Date: 27/12/2026"
+    },
+    {
+      id: "log-2",
+      admin_name: "Admin User",
+      action: "Approved Application",
+      target_record: "PolyBio Biodegradable Industrial Packaging",
+      record_type: "Application",
+      details: "Assigned to Chemical Lab Cohort"
+    },
+    {
+      id: "log-3",
+      admin_name: "Admin User",
+      action: "Registered Startup",
+      target_record: "AeroShield Innovations",
+      record_type: "Startup",
+      details: "Funding: ₹2.5 Lakhs (SSIP Grant)"
+    },
+    {
+      id: "log-4",
+      admin_name: "Admin User",
+      action: "Published Innovation Record",
+      target_record: "AeroShield Autonomous Industrial Drone Inspection",
+      record_type: "Idea",
+      details: "Ref ID: GUI-IDEA-2026-0001"
+    }
+  ];
+
+  for (const log of auditLogs) {
+    await sql`
+      INSERT INTO audit_logs (id, admin_name, action, target_record, record_type, details)
+      VALUES (${log.id}, ${log.admin_name}, ${log.action}, ${log.target_record}, ${log.record_type}, ${log.details})
+      ON CONFLICT (id) DO NOTHING;
+    `;
+  }
+  console.log("✓ Seeded audit_logs");
+
+  console.log("\nALL TABLES FULLY POPULATED WITH INITIAL DATA!");
 }
 
-seed().catch((err) => {
-  console.error("Seeding failed:", err);
+seed().catch(err => {
+  console.error("Seeding error:", err);
   process.exit(1);
 });
