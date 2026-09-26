@@ -144,31 +144,30 @@ select {
 }
 
 .page-background-watermark img {
-  width: min(800px, 65vw);
-  max-width: 800px;
-  opacity: 0.032;
-  mix-blend-mode: multiply;
+  width: min(850px, 70vw);
+  max-width: 850px;
+  opacity: 0.095;
   object-fit: contain;
   user-select: none;
   pointer-events: none;
   transform: translateY(-2%);
   transition: opacity 0.3s ease;
-  filter: contrast(0.95);
+  filter: contrast(1.08);
 }
 
 @media (max-width: 1024px) {
   .page-background-watermark img {
-    width: min(600px, 70vw);
-    max-width: 600px;
-    opacity: 0.028;
+    width: min(650px, 75vw);
+    max-width: 650px;
+    opacity: 0.085;
   }
 }
 
 @media (max-width: 768px) {
   .page-background-watermark img {
-    width: 85vw;
-    max-width: 420px;
-    opacity: 0.022;
+    width: 88vw;
+    max-width: 460px;
+    opacity: 0.075;
   }
 }
 
@@ -178,9 +177,9 @@ select {
 }
 
 .dark .page-background-watermark img {
-  opacity: 0.025;
+  opacity: 0.09;
   mix-blend-mode: screen;
-  filter: brightness(1.2) contrast(0.9);
+  filter: brightness(1.2) contrast(1.05);
 }
 
 /* ==========================================================================
@@ -201,15 +200,16 @@ select {
 }
 
 .hero-watermark-img {
-  width: 750px;
-  max-width: 52vw;
+  width: 780px;
+  max-width: 55vw;
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: contain;
-  opacity: 0.06;
+  opacity: 0.14;
   pointer-events: none;
   user-select: none;
   display: block;
+  filter: drop-shadow(0 0 35px rgba(59, 130, 246, 0.2));
 }
 
 @media (max-width: 1200px) {
@@ -217,9 +217,9 @@ select {
     right: 2%;
   }
   .hero-watermark-img {
-    width: 680px;
-    max-width: 50vw;
-    opacity: 0.06;
+    width: 700px;
+    max-width: 52vw;
+    opacity: 0.13;
   }
 }
 
@@ -231,9 +231,9 @@ select {
     transform: translateX(50%);
   }
   .hero-watermark-img {
-    width: 540px;
-    max-width: 75vw;
-    opacity: 0.05;
+    width: 560px;
+    max-width: 78vw;
+    opacity: 0.11;
   }
 }
 
@@ -242,11 +242,12 @@ select {
     bottom: 20px;
   }
   .hero-watermark-img {
-    width: 360px;
-    max-width: 85vw;
-    opacity: 0.04;
+    width: 380px;
+    max-width: 88vw;
+    opacity: 0.10;
   }
 }
+
 
 /* TOP ANNOUNCEMENT BAR */
 .top-bar {
