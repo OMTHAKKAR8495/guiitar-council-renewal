@@ -1455,10 +1455,11 @@ const STORAGE_AUDIT_KEY = "guiitar_audit_data_v1";
 export class AdminDataStore {
   private static getStored<T>(key: string, defaultVal: T): T {
     if (typeof window === "undefined") return defaultVal;
-    const stored = localStorage.getItem(key);
-    if (!stored) return defaultVal;
     try {
-      return JSON.parse(stored);
+      const stored = localStorage.getItem(key);
+      if (!stored) return defaultVal;
+      const parsed = JSON.parse(stored);
+      return parsed !== null && parsed !== undefined ? parsed : defaultVal;
     } catch {
       return defaultVal;
     }
@@ -1466,8 +1467,14 @@ export class AdminDataStore {
 
   private static setStored<T>(key: string, val: T): void {
     if (typeof window === "undefined") return;
-    localStorage.setItem(key, JSON.stringify(val));
-    window.dispatchEvent(new Event("guiitar_store_update"));
+    try {
+      localStorage.setItem(key, JSON.stringify(val));
+    } catch (err) {
+      console.warn(`AdminDataStore storage write warning for key "${key}":`, err);
+    }
+    try {
+      window.dispatchEvent(new Event("guiitar_store_update"));
+    } catch {}
   }
 
   // ================= 1. IDEAS CRUD =================
@@ -2689,26 +2696,30 @@ export class AdminDataStore {
   // ================= 17. NEON DATABASE BIDIRECTIONAL SYNC =================
   static async syncFromNeon(): Promise<void> {
     try {
-      const [events, ideas, startups, registrations] = await Promise.all([
+      const results = await Promise.allSettled([
         NeonClient.getEvents(),
         NeonClient.getIdeas(),
         NeonClient.getStartups(),
         NeonClient.getRegistrations(),
       ]);
 
-      if (events && events.length > 0) {
-        this.setEvents(events);
+      const [eventsRes, ideasRes, startupsRes, regRes] = results;
+
+      if (eventsRes.status === "fulfilled" && Array.isArray(eventsRes.value) && eventsRes.value.length > 0) {
+        this.setEvents(eventsRes.value);
       }
-      if (ideas && ideas.length > 0) {
-        this.setIdeas(ideas);
+      if (ideasRes.status === "fulfilled" && Array.isArray(ideasRes.value) && ideasRes.value.length > 0) {
+        this.setIdeas(ideasRes.value);
       }
-      if (startups && startups.length > 0) {
-        this.setStartups(startups);
+      if (startupsRes.status === "fulfilled" && Array.isArray(startupsRes.value) && startupsRes.value.length > 0) {
+        this.setStartups(startupsRes.value);
       }
-      if (registrations && registrations.length > 0) {
-        this.setRegistrations(registrations);
+      if (regRes.status === "fulfilled" && Array.isArray(regRes.value) && regRes.value.length > 0) {
+        this.setRegistrations(regRes.value);
       }
-      window.dispatchEvent(new Event("guiitar_store_update"));
+      try {
+        window.dispatchEvent(new Event("guiitar_store_update"));
+      } catch {}
     } catch (err) {
       console.warn("Neon bidirectional sync warning:", err);
     }

@@ -59,15 +59,45 @@ const defaultFundingFaqs = [
   },
 ];
 
+const fallbackFundedProjects = [
+  {
+    title: "Ayurtrix Botanical Extraction",
+    amount: "₹2,50,000 (SSIP 2.0)",
+    category: "Biotechnology",
+    desc: "Chromatographic standardization of Ayurvedic botanicals with clinical consistency.",
+    impact: "Functional MVP & Bioactive extraction protocol verified.",
+  },
+  {
+    title: "Bacterial Chroma Bio-pigments",
+    amount: "₹1,70,000 (SSIP 2.0)",
+    category: "CleanTech",
+    desc: "Microbial synthesis of sustainable textile colorants replacing chemical dyes.",
+    impact: "Pilot trials with local fabric mills and zero-toxic effluent.",
+  },
+  {
+    title: "Bio-Lastic Compostable Polymers",
+    amount: "₹1,00,000 (SSIP 2.0)",
+    category: "Circular Materials",
+    desc: "Upcycling temple floral waste into 100% home-compostable film packaging.",
+    impact: "500kg floral waste diverted and PoC mulch films fabricated.",
+  },
+];
+
 function Funding() {
-  const [userRole, setUserRole] = useState<"student" | "startup" | "ipr">("student");
   const [storeSchemes, setStoreSchemes] = useState<FundingScheme[]>([]);
   const [fundedIdeas, setFundedIdeas] = useState<any[]>([]);
 
   const loadData = () => {
-    setStoreSchemes(AdminDataStore.getFundingSchemes());
-    const ideas = AdminDataStore.getPublishedIdeas();
-    setFundedIdeas(ideas.filter((i) => i.fundingSanctioned));
+    try {
+      const schemes = AdminDataStore.getFundingSchemes();
+      setStoreSchemes(Array.isArray(schemes) ? schemes : []);
+      const ideas = AdminDataStore.getPublishedIdeas();
+      if (Array.isArray(ideas)) {
+        setFundedIdeas(ideas.filter((i) => i && i.fundingSanctioned));
+      }
+    } catch (err) {
+      console.warn("Funding loadData warning:", err);
+    }
   };
 
   useEffect(() => {
@@ -78,11 +108,12 @@ function Funding() {
   }, []);
 
   const programs = useMemo(() => {
-    return storeSchemes.map((s) => ({
-      title: s.title,
-      badge: s.type,
-      amount: s.maxGrant,
-      desc: s.description,
+    const list = Array.isArray(storeSchemes) && storeSchemes.length > 0 ? storeSchemes : [];
+    return list.map((s) => ({
+      title: s.title || "Funding Scheme",
+      badge: s.type || "Grant",
+      amount: s.maxGrant || "Grant Support",
+      desc: s.description || "",
       covered: [
         "Raw materials, fabrication costs & testing analysis charges",
         "Direct lab instrumentation and third-party consumable services",
@@ -102,13 +133,16 @@ function Funding() {
   }, [storeSchemes]);
 
   const fundedProjects = useMemo(() => {
-    return fundedIdeas.map((i) => ({
-      title: i.title,
-      amount: i.fundingSanctioned,
-      category: i.category,
-      desc: i.shortDescription || i.detailedDescription,
-      impact: i.expectedImpact || "Validated PoC and prototyping progress.",
-    }));
+    if (Array.isArray(fundedIdeas) && fundedIdeas.length > 0) {
+      return fundedIdeas.map((i) => ({
+        title: i.title || "Innovator Project",
+        amount: i.fundingSanctioned || "₹2.5 Lakhs (SSIP 2.0)",
+        category: i.category || "Technology",
+        desc: i.shortDescription || i.detailedDescription || "",
+        impact: i.expectedImpact || "Validated PoC and prototyping progress.",
+      }));
+    }
+    return fallbackFundedProjects;
   }, [fundedIdeas]);
 
   const fundingFaqs = defaultFundingFaqs;
