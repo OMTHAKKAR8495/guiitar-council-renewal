@@ -388,7 +388,6 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
-  const [topBarDropdownOpen, setTopBarDropdownOpen] = useState(false);
   const path = useRouterState({ select: (s) => s.location.pathname });
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -403,7 +402,6 @@ export function Header() {
   useEffect(() => {
     setActiveMenu(null);
     setOpen(false);
-    setTopBarDropdownOpen(false);
   }, [path]);
 
   // Lock body scroll when mobile navigation drawer is open
@@ -422,7 +420,6 @@ export function Header() {
     function handleClickOutside(e: MouseEvent) {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
         setActiveMenu(null);
-        setTopBarDropdownOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -431,112 +428,6 @@ export function Header() {
 
   return (
     <div ref={navRef} style={{ position: "sticky", top: 0, zIndex: 60 }}>
-      {/* Top Announcement Bar */}
-      <div className="top-bar">
-        <div className="container top-bar-content">
-          <div className="top-bar-tag">
-            <span className="top-bar-pill">GSFC University</span>
-            <span className="top-bar-text-desktop">
-              Section 8 Not-For-Profit Incubation Center | SSIP 2.0 & Govt. of Gujarat Approved
-            </span>
-            <span className="top-bar-text-mobile">
-              Section 8 Incubation Center | Govt. Approved
-            </span>
-          </div>
-
-          {/* Desktop Top Links */}
-          <div className="top-bar-links">
-            <Link
-              to="/impact"
-              className="top-bar-link"
-              style={{ color: "#60a5fa", fontWeight: 600 }}
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Live Impact Data</span>
-            </Link>
-            <a href="mailto:guiitar@gsfcuniversity.ac.in" className="top-bar-link">
-              <Mail className="w-3.5 h-3.5" />
-              <span>guiitar@gsfcuniversity.ac.in</span>
-            </a>
-            <a href="tel:+912653093750" className="top-bar-link">
-              <Phone className="w-3.5 h-3.5" />
-              <span>+91 (0265) 3093750</span>
-            </a>
-          </div>
-
-          {/* Mobile Top Bar Dropdown Trigger */}
-          <button
-            type="button"
-            className="top-bar-mobile-toggle"
-            onClick={() => setTopBarDropdownOpen((prev) => !prev)}
-            aria-label="Toggle contact and info dropdown"
-            aria-expanded={topBarDropdownOpen}
-          >
-            <span className="top-bar-mobile-toggle-dot" />
-            <span>Info & Contacts</span>
-            {topBarDropdownOpen ? (
-              <X className="w-3.5 h-3.5 text-blue-400" />
-            ) : (
-              <ChevronDown className="w-3.5 h-3.5 transition-transform" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Top Bar Dropdown Panel */}
-        {topBarDropdownOpen && (
-          <div className="top-bar-dropdown-panel">
-            <div className="container top-bar-dropdown-content">
-              <div className="top-bar-dropdown-header">
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <span className="top-bar-pill">SSIP 2.0 & Govt. Approved</span>
-                  <span style={{ fontSize: "12px", color: "#94a3b8" }}>
-                    GSFC University Incubation Hub
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  className="top-bar-dropdown-close-btn"
-                  onClick={() => setTopBarDropdownOpen(false)}
-                  aria-label="Close contacts popup"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="top-bar-dropdown-grid">
-                <Link
-                  to="/impact"
-                  onClick={() => setTopBarDropdownOpen(false)}
-                  className="top-bar-dropdown-card top-bar-dropdown-impact"
-                >
-                  <Sparkles className="w-4 h-4 text-blue-400" />
-                  <div>
-                    <strong>Live Impact Data</strong>
-                    <p>83+ ventures, ₹2.8Cr+ funded</p>
-                  </div>
-                </Link>
-                <a
-                  href="mailto:guiitar@gsfcuniversity.ac.in"
-                  className="top-bar-dropdown-card"
-                >
-                  <Mail className="w-4 h-4 text-emerald-400" />
-                  <div>
-                    <strong>guiitar@gsfcuniversity.ac.in</strong>
-                    <p>Direct incubation queries</p>
-                  </div>
-                </a>
-                <a href="tel:+912653093750" className="top-bar-dropdown-card">
-                  <Phone className="w-4 h-4 text-amber-400" />
-                  <div>
-                    <strong>+91 (0265) 3093750</strong>
-                    <p>Mon - Fri, 9:00 AM - 5:30 PM</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
       {/* Main Sticky Navbar */}
       <header className="header">
         <div className="container nav-wrap">
