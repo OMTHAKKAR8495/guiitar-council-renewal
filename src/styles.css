@@ -28,27 +28,27 @@
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
-  --card: #ffffff;
-  --card-hover: #ffffff;
+  --card: rgba(255, 255, 255, 0.60);
+  --card-hover: rgba(255, 255, 255, 0.80);
   --primary: #2563eb;
   --primary-hover: #1d4ed8;
   --primary-dark: #0f172a;
   --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
-  --muted: #f8fafc;
+  --muted: rgba(248, 250, 252, 0.40);
   --muted-darker: #f1f5f9;
   --muted-foreground: #64748b;
   --accent: #f59e0b;
   --accent-blue: #0ea5e9;
   --accent-emerald: #10b981;
-  --border: #e2e8f0;
+  --border: rgba(226, 232, 240, 0.85);
   --border-light: #f1f5f9;
   --radius-sm: 8px;
   --radius: 12px;
   --radius-lg: 18px;
   --radius-full: 9999px;
   --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 4px 16px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 16px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
   --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
   --shadow-xl: 0 20px 40px -8px rgba(15, 23, 42, 0.12), 0 8px 16px -4px rgba(15, 23, 42, 0.04);
   --shadow-glow: 0 0 25px rgba(37, 99, 235, 0.25);
@@ -59,8 +59,8 @@ html.dark,
 .dark {
   --background: #090d16;
   --foreground: #f8fafc;
-  --card: #111827;
-  --card-hover: #162032;
+  --card: rgba(17, 24, 39, 0.55);
+  --card-hover: rgba(22, 32, 50, 0.75);
   --primary: #3b82f6;
   --primary-hover: #60a5fa;
   --primary-dark: #1e293b;
@@ -144,30 +144,30 @@ select {
 }
 
 .page-background-watermark img {
-  width: min(900px, 75vw);
-  max-width: 900px;
-  opacity: 0.18;
+  width: min(920px, 78vw);
+  max-width: 920px;
+  opacity: 0.32;
   object-fit: contain;
   user-select: none;
   pointer-events: none;
   transform: translateY(-2%);
   transition: opacity 0.3s ease;
-  filter: contrast(1.15);
+  filter: contrast(1.15) saturate(1.1);
 }
 
 @media (max-width: 1024px) {
   .page-background-watermark img {
-    width: min(700px, 80vw);
-    max-width: 700px;
-    opacity: 0.16;
+    width: min(720px, 82vw);
+    max-width: 720px;
+    opacity: 0.28;
   }
 }
 
 @media (max-width: 768px) {
   .page-background-watermark img {
-    width: 90vw;
-    max-width: 500px;
-    opacity: 0.14;
+    width: 92vw;
+    max-width: 520px;
+    opacity: 0.24;
   }
 }
 
@@ -177,9 +177,9 @@ select {
 }
 
 .dark .page-background-watermark img {
-  opacity: 0.17;
+  opacity: 0.28;
   mix-blend-mode: screen;
-  filter: brightness(1.25) contrast(1.1);
+  filter: brightness(1.35) contrast(1.15);
 }
 
 /* ==========================================================================
@@ -877,11 +877,16 @@ section {
 }
 
 .section-muted {
-  background: rgba(248, 250, 252, 0.62);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  background: rgba(248, 250, 252, 0.32);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.dark .section-muted {
+  background: rgba(15, 23, 42, 0.32);
+  border-color: rgba(30, 41, 59, 0.6);
 }
 
 .section-dark {
@@ -992,11 +997,18 @@ section {
 .funding-card,
 .plain-card,
 .info-card,
-.feature-box {
+.feature-box,
+.facility-card,
+.stat-box,
+.step-card,
+.pathway-card,
+.pathway-step {
   background: var(--card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
@@ -1006,10 +1018,16 @@ section {
 .funding-card:hover,
 .plain-card:hover,
 .info-card:hover,
-.feature-box:hover {
+.feature-box:hover,
+.facility-card:hover,
+.stat-box:hover,
+.step-card:hover,
+.pathway-card:hover,
+.pathway-step:hover {
+  background: var(--card-hover);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: #cbd5e1;
+  box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.09);
+  border-color: rgba(148, 163, 184, 0.6);
 }
 
 .icon-card {
