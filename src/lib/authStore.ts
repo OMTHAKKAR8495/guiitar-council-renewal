@@ -46,9 +46,10 @@ export function setStoredSession(user: AdminUser | null) {
 }
 
 export function useAuth() {
-  const [user, setUser] = useState<AdminUser | null>(getStoredSession());
+  const [user, setUser] = useState<AdminUser | null>(null);
 
   useEffect(() => {
+    setUser(getStoredSession());
     const handleStorage = () => {
       setUser(getStoredSession());
     };

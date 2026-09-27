@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Lock, Mail, ArrowRight, ShieldCheck, CheckCircle2, AlertCircle } from "lucide-react";
 import { useAuth } from "@/lib/authStore";
 import { GuiitarEmblem } from "@/components/GuiitarBrand";
@@ -24,25 +24,30 @@ export function AdminLoginPage() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // If already authenticated, redirect
-  if (isAuthenticated) {
-    navigate({ to: "/admin/dashboard" });
-  }
+  // If already authenticated, redirect safely via useEffect
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate({ to: "/admin/dashboard" });
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSignIn = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
-    setTimeout(() => {
-      const res = login(email, password);
-      setIsLoading(false);
+    try {
+      const res = login(email.trim(), password);
       if (res.success) {
         navigate({ to: "/admin/dashboard" });
       } else {
+        setIsLoading(false);
         setError(res.error || "Authentication failed.");
       }
-    }, 400);
+    } catch (err: any) {
+      setIsLoading(false);
+      setError(err?.message || "Authentication failed. Please try again.");
+    }
   };
 
   return (
