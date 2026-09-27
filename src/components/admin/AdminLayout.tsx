@@ -33,7 +33,7 @@ import {
   GraduationCap,
   Ticket,
 } from "lucide-react";
-import { useAuth } from "@/lib/authStore";
+import { useAuth, getStoredSession } from "@/lib/authStore";
 import { AdminDataStore, type AdminNotification } from "@/lib/adminStore";
 import { GuiitarEmblem, StickyBackgroundWatermark } from "../GuiitarBrand";
 
@@ -64,7 +64,7 @@ export function AdminLayout({
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (typeof window !== "undefined" && !getStoredSession()) {
       navigate({ to: "/admin/login" });
     }
   }, [isAuthenticated, navigate]);

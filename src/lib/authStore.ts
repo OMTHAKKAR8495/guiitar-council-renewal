@@ -46,33 +46,49 @@ export function setStoredSession(user: AdminUser | null) {
 }
 
 export function useAuth() {
-  const [user, setUser] = useState<AdminUser | null>(null);
+  const [user, setUser] = useState<AdminUser | null>(() => getStoredSession());
 
   useEffect(() => {
-    setUser(getStoredSession());
-    const handleStorage = () => {
+    const syncSession = () => {
       setUser(getStoredSession());
     };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
+    syncSession();
+    window.addEventListener("storage", syncSession);
+    window.addEventListener("guiitar_auth_update", syncSession);
+    return () => {
+      window.removeEventListener("storage", syncSession);
+      window.removeEventListener("guiitar_auth_update", syncSession);
+    };
   }, []);
 
   const login = (email: string, pass: string): { success: boolean; error?: string } => {
-    // Valid administrative demo credentials
+    const cleanEmail = email.trim().toLowerCase();
+    // Valid administrative credentials
     if (
-      (email === "admin@guiitar.org" && pass === "guiitar2026") ||
-      (email === "provost@gsfcuniversity.ac.in" && pass === "admin123") ||
-      (email === "demo@guiitar.org" && pass === "demo123")
+      (cleanEmail === "admin@guiitar.org" && pass === "guiitar2026") ||
+      (cleanEmail === "provost@gsfcuniversity.ac.in" && pass === "admin123") ||
+      (cleanEmail === "demo@guiitar.org" && pass === "demo123") ||
+      (cleanEmail === "kirankumar.parmar@gsfcuni.edu.in" && pass === "guiitar2026") ||
+      (cleanEmail === "mihir.trivedi@gsfcuni.edu.in" && pass === "guiitar2026")
     ) {
       const activeUser: AdminUser = {
         ...DEFAULT_ADMIN,
-        email,
-        name: email.includes("provost") ? "Prof. G. R. Sinha" : "KiranKumar Parmar",
-        role: email.includes("provost") ? "Super Admin" : "Innovation Manager",
+        email: cleanEmail,
+        name: cleanEmail.includes("provost")
+          ? "Prof. G. R. Sinha"
+          : cleanEmail.includes("trivedi")
+          ? "Dr. Mihir Trivedi"
+          : "KiranKumar Parmar",
+        role: cleanEmail.includes("provost") || cleanEmail.includes("admin@")
+          ? "Super Admin"
+          : "Innovation Manager",
         lastLogin: new Date().toISOString(),
       };
       setUser(activeUser);
       setStoredSession(activeUser);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("guiitar_auth_update"));
+      }
       return { success: true };
     }
     return { success: false, error: "Invalid email or password. Please check your credentials." };
@@ -81,6 +97,9 @@ export function useAuth() {
   const logout = () => {
     setUser(null);
     setStoredSession(null);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("guiitar_auth_update"));
+    }
   };
 
   return {
