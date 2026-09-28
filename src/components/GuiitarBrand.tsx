@@ -55,56 +55,56 @@ export function GuiitarEmblem({ className = "w-10 h-10", ...props }: SVGProps<SV
   );
 }
 
-export function GuiitarFullLogo({ className = "h-12", ...props }: SVGProps<SVGSVGElement>) {
+export function GuiitarFullLogo({ className = "h-11 w-auto", style, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 320 80"
+      viewBox="0 0 310 76"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={{ display: "block", height: "44px", width: "auto", minWidth: "175px", ...style }}
       {...props}
     >
       {/* Hexagon icon */}
-      <g transform="translate(0, 0)">
+      <g transform="translate(4, 3)">
         {/* Outer Hexagon Frame */}
         <path
-          d="M24 10 L60 10 L78 40 L60 70 L24 70 L6 40 Z"
+          d="M24 6 L58 6 L75 35 L58 64 L24 64 L7 35 Z"
           fill="none"
-          stroke="#EA580C"
+          stroke="#E25822"
           strokeWidth="8"
           strokeLinejoin="round"
         />
         {/* Top Green Accent */}
-        <path d="M23 18 L61 18 L51 30 L33 30 Z" fill="#65A30D" />
+        <path d="M24 14 L58 14 L48 26 L34 26 Z" fill="#65A30D" />
         {/* Yellow Liquid Base */}
-        <path d="M20 40 L33 30 L51 30 L64 40 L56 62 L28 62 Z" fill="#EAB308" />
+        <path d="M20 35 L34 26 L48 26 L62 35 L54 56 L28 56 Z" fill="#EAB308" />
         {/* Bubbles */}
-        <circle cx="34" cy="35" r="1.8" fill="#CA8A04" />
-        <circle cx="40" cy="32" r="1.3" fill="#CA8A04" />
-        <circle cx="46" cy="36" r="2" fill="#CA8A04" />
+        <circle cx="34" cy="31" r="1.8" fill="#CA8A04" />
+        <circle cx="41" cy="28" r="1.4" fill="#CA8A04" />
+        <circle cx="47" cy="33" r="2" fill="#CA8A04" />
         {/* Orange right wing */}
-        <path d="M44 40 L70 40 L70 62 L44 62 Z" fill="#EA580C" />
+        <path d="M42 35 L68 35 L68 56 L42 56 Z" fill="#E25822" />
       </g>
 
-      {/* Divider */}
+      {/* Vertical Divider */}
       <line
-        x1="90"
-        y1="12"
-        x2="90"
-        y2="68"
-        stroke="currentColor"
+        x1="92"
+        y1="10"
+        x2="92"
+        y2="62"
+        stroke="#94A3B8"
         strokeWidth="2"
-        className="text-slate-300 dark:text-slate-700"
       />
 
       {/* Text: GUIITAR */}
       <text
-        x="104"
-        y="38"
-        fontFamily="'Outfit', 'Plus Jakarta Sans', sans-serif"
-        fontSize="32"
+        x="106"
+        y="35"
+        fontFamily="'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif"
+        fontSize="30"
         fontWeight="800"
-        className="fill-[#1E3A8A] dark:fill-[#60A5FA]"
+        fill="#1E3A8A"
         letterSpacing="0.04em"
       >
         GUIITAR
@@ -112,12 +112,12 @@ export function GuiitarFullLogo({ className = "h-12", ...props }: SVGProps<SVGSV
 
       {/* Text: COUNCIL */}
       <text
-        x="105"
-        y="62"
-        fontFamily="'Outfit', 'Plus Jakarta Sans', sans-serif"
-        fontSize="21"
+        x="107"
+        y="58"
+        fontFamily="'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif"
+        fontSize="19"
         fontWeight="800"
-        className="fill-[#334155] dark:fill-[#E2E8F0]"
+        fill="#334155"
         letterSpacing="0.22em"
       >
         COUNCIL
@@ -129,4 +129,5 @@ export function GuiitarFullLogo({ className = "h-12", ...props }: SVGProps<SVGSV
 export function StickyBackgroundWatermark() {
   return null;
 }
+
 

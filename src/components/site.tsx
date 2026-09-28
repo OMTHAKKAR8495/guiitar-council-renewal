@@ -25,6 +25,7 @@ import {
   Layers,
   Award,
   CheckCircle2,
+  Lock,
 } from "lucide-react";
 import { GuiitarFullLogo, StickyBackgroundWatermark, GuiitarEmblem } from "./GuiitarBrand";
 import { ThemeToggle } from "@/lib/theme";
@@ -432,11 +433,7 @@ export function Header() {
       <header className="header">
         <div className="container nav-wrap">
           <Link to="/" aria-label="GUIITAR Council home" className="logo-container">
-            <img
-              src="/guiitar-council-logo.png"
-              alt="GUIITAR Council Logo"
-              style={{ height: "46px", width: "auto", objectFit: "contain", display: "block" }}
-            />
+            <GuiitarFullLogo style={{ height: "44px", width: "auto" }} />
           </Link>
 
           {/* Desktop Mega-Menu Navigation */}
@@ -667,6 +664,26 @@ export function Header() {
             <ThemeToggle variant="dropdown" />
 
             <Link
+              to="/admin/login"
+              className="btn btn-outline btn-sm nav-action-btn-sm"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                borderColor: "#bfdbfe",
+                background: "#eff6ff",
+                color: "#1e40af",
+                fontWeight: 700,
+                fontSize: "13px",
+                textDecoration: "none",
+              }}
+              title="Sign in to GUIITAR Admin Platform"
+            >
+              <Lock className="w-3.5 h-3.5 text-blue-600" />
+              <span>GUIITAR Login</span>
+            </Link>
+
+            <Link
               className="btn btn-primary btn-sm nav-action-btn-sm"
               to="/apply"
             >
@@ -702,6 +719,15 @@ export function Header() {
                   <p className="mobile-nav-subheading">GSFC University Incubation Hub</p>
                 </div>
                 <div className="mobile-nav-header-actions">
+                  <Link
+                    to="/admin/login"
+                    onClick={() => setOpen(false)}
+                    className="mobile-nav-apply-pill"
+                    style={{ background: "#eff6ff", color: "#1e40af", border: "1px solid #bfdbfe" }}
+                  >
+                    <Lock className="w-3 h-3" />
+                    <span>Login</span>
+                  </Link>
                   <Link
                     to="/apply"
                     onClick={() => setOpen(false)}
