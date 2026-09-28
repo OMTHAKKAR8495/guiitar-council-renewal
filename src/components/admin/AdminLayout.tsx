@@ -182,15 +182,29 @@ export function AdminLayout({
             textDecoration: "none",
             color: "#ffffff",
           }}
+          title="GUIITAR Admin Dashboard"
         >
-          <GuiitarEmblem className="w-8 h-8 flex-none" />
+          <img
+            src="/guiitar-council-logo.png"
+            alt="GUIITAR Council Logo"
+            style={{
+              height: "36px",
+              width: "auto",
+              objectFit: "contain",
+              borderRadius: "6px",
+              background: "#ffffff",
+              padding: "2px 4px",
+              flexShrink: 0,
+            }}
+          />
           {(!sidebarCollapsed || isMobile) && (
             <div style={{ lineHeight: 1.1 }}>
               <strong
                 style={{
-                  fontSize: "16px",
+                  fontSize: "15px",
                   fontFamily: "var(--font-heading)",
                   letterSpacing: "0.04em",
+                  color: "#ffffff",
                 }}
               >
                 GUIITAR
@@ -201,10 +215,10 @@ export function AdminLayout({
                   display: "block",
                   color: "#38bdf8",
                   fontWeight: 800,
-                  letterSpacing: "0.2em",
+                  letterSpacing: "0.18em",
                 }}
               >
-                ADMIN PLATFORM
+                ADMIN DASHBOARD
               </span>
             </div>
           )}

@@ -432,7 +432,11 @@ export function Header() {
       <header className="header">
         <div className="container nav-wrap">
           <Link to="/" aria-label="GUIITAR Council home" className="logo-container">
-            <GuiitarFullLogo style={{ height: "46px", width: "auto" }} />
+            <img
+              src="/guiitar-council-logo.png"
+              alt="GUIITAR Council Logo"
+              style={{ height: "46px", width: "auto", objectFit: "contain", display: "block" }}
+            />
           </Link>
 
           {/* Desktop Mega-Menu Navigation */}

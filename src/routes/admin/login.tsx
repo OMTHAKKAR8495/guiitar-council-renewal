@@ -77,7 +77,17 @@ export function AdminLoginPage() {
       >
         {/* Header Branding */}
         <div style={{ textAlign: "center", marginBottom: "28px" }}>
-          <GuiitarEmblem className="w-14 h-14 mx-auto mb-3" />
+          <img
+            src="/guiitar-council-logo.png"
+            alt="GUIITAR Council Logo"
+            style={{
+              height: "56px",
+              width: "auto",
+              objectFit: "contain",
+              margin: "0 auto 12px",
+              display: "block",
+            }}
+          />
           <h1 style={{ fontSize: "24px", fontWeight: 900, margin: 0, color: "#0f172a" }}>
             GUIITAR Admin Portal
           </h1>

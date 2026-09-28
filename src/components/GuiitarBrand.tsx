@@ -1,4 +1,25 @@
-import { type SVGProps } from "react";
+import { type SVGProps, type ImgHTMLAttributes } from "react";
+
+export function GuiitarLogo({
+  className = "h-10 w-auto",
+  alt = "GUIITAR Council",
+  style,
+  ...props
+}: ImgHTMLAttributes<HTMLImageElement>) {
+  return (
+    <img
+      src="/guiitar-council-logo.png"
+      alt={alt}
+      className={className}
+      style={{
+        objectFit: "contain",
+        display: "inline-block",
+        ...style,
+      }}
+      {...props}
+    />
+  );
+}
 
 export function GuiitarEmblem({ className = "w-10 h-10", ...props }: SVGProps<SVGSVGElement>) {
   return (
@@ -118,3 +139,4 @@ export function StickyBackgroundWatermark() {
     </div>
   );
 }
+
