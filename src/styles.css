@@ -3916,4 +3916,63 @@ section {
   -webkit-backdrop-filter: blur(8px);
 }
 
+/* ==========================================================================
+   PRINT COLOR ADJUSTMENT & PRINTABLE DOCUMENT STYLES
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm;
+  }
+
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  /* Hide navigation, sidebar, headers, backdrop watermarks during print */
+  .admin-sidebar,
+  .admin-mobile-overlay,
+  .admin-mobile-header-toggle,
+  .page-background-watermark,
+  .no-print,
+  nav,
+  header.header,
+  footer.footer,
+  aside,
+  header {
+    display: none !important;
+  }
+
+  .admin-workspace-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .admin-main {
+    padding: 0 !important;
+  }
+
+  /* Color Print Document specifics */
+  #printable-color-sheet {
+    display: block !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+}
+
+@media screen {
+  .print-only {
+    display: none !important;
+  }
+}
+
 
