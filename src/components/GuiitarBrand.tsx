@@ -127,16 +127,6 @@ export function GuiitarFullLogo({ className = "h-12", ...props }: SVGProps<SVGSV
 }
 
 export function StickyBackgroundWatermark() {
-  return (
-    <div className="page-background-watermark" aria-hidden="true">
-      <img
-        src="/guiitar-council-logo.png"
-        alt=""
-        loading="eager"
-        decoding="async"
-        draggable={false}
-      />
-    </div>
-  );
+  return null;
 }
 

@@ -186,18 +186,6 @@ export function HomePage() {
           }}
         />
 
-        {/* GUIITAR Council Institutional Watermark (Center-Right behind Innovation Journey graphic) */}
-        <div className="hero-watermark-bg" aria-hidden="true">
-          <img
-            src="/guiitar-council-logo.png"
-            alt=""
-            loading="eager"
-            decoding="async"
-            draggable={false}
-            className="hero-watermark-img"
-          />
-        </div>
-
         <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <div className="hero-grid-split">
             {/* Left Hero Content */}

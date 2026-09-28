@@ -1143,7 +1143,6 @@ export function Footer() {
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <StickyBackgroundWatermark />
       <Header />
       <main className="page-content" style={{ position: "relative", zIndex: 1, minHeight: "80vh" }}>
         {children}

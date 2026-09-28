@@ -129,123 +129,15 @@ select {
   margin-inline: auto;
 }
 
-/* ==========================================================================
-   GUIITAR COUNCIL INSTITUTIONAL WATERMARK BACKGROUND
-   ========================================================================== */
-.page-background-watermark {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.page-background-watermark img {
-  width: min(960px, 80vw);
-  max-width: 960px;
-  opacity: 0.44;
-  object-fit: contain;
-  user-select: none;
-  pointer-events: none;
-  transform: translateY(-2%);
-  transition: opacity 0.3s ease;
-  filter: contrast(1.2) saturate(1.2);
-}
-
-@media (max-width: 1024px) {
-  .page-background-watermark img {
-    width: min(740px, 84vw);
-    max-width: 740px;
-    opacity: 0.38;
-  }
-}
-
-@media (max-width: 768px) {
-  .page-background-watermark img {
-    width: 94vw;
-    max-width: 540px;
-    opacity: 0.32;
-  }
+.page-background-watermark,
+.hero-watermark-bg,
+.hero-watermark-img {
+  display: none !important;
 }
 
 .page-content {
   position: relative;
   z-index: 1;
-}
-
-.dark .page-background-watermark img {
-  opacity: 0.36;
-  mix-blend-mode: screen;
-  filter: brightness(1.4) contrast(1.2);
-}
-
-/* ==========================================================================
-   HOMEPAGE HERO INSTITUTIONAL WATERMARK
-   ========================================================================== */
-.hero-watermark-bg {
-  position: absolute;
-  top: 50%;
-  right: 5%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  user-select: none;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-}
-
-.hero-watermark-img {
-  width: 800px;
-  max-width: 58vw;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  opacity: 0.22;
-  pointer-events: none;
-  user-select: none;
-  display: block;
-  filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.25));
-}
-
-@media (max-width: 1200px) {
-  .hero-watermark-bg {
-    right: 2%;
-  }
-  .hero-watermark-img {
-    width: 720px;
-    max-width: 54vw;
-    opacity: 0.19;
-  }
-}
-
-@media (max-width: 900px) {
-  .hero-watermark-bg {
-    top: auto;
-    bottom: 30px;
-    right: 50%;
-    transform: translateX(50%);
-  }
-  .hero-watermark-img {
-    width: 580px;
-    max-width: 80vw;
-    opacity: 0.16;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero-watermark-bg {
-    bottom: 20px;
-  }
-  .hero-watermark-img {
-    width: 400px;
-    max-width: 90vw;
-    opacity: 0.15;
-  }
 }
 
 
@@ -3862,58 +3754,20 @@ section {
 }
 
 /* ==========================================================================
-   ADMIN WORKSPACE TRANSPARENCY & GLASSMORPHISM
+   ADMIN WORKSPACE CLEAN SOLID CARDS & SURFACES
    ========================================================================== */
 .admin-main .plain-card,
 .admin-main .admin-charts-grid > div,
 .admin-main .admin-charts-grid-2 > div,
 .admin-main .admin-charts-grid-3 > div,
 .admin-main .admin-dashboard-split > div,
-.admin-main .admin-table-container,
-.admin-main div[style*="background: #ffffff"],
-.admin-main div[style*="background:#ffffff"],
-.admin-main div[style*="background: rgb(255, 255, 255)"],
-.admin-main div[style*="background: white"],
-.admin-main div[style*="background:white"],
-.admin-main section[style*="background: #ffffff"],
-.admin-main section[style*="background:#ffffff"],
-.admin-main section[style*="background: white"] {
-  background: rgba(255, 255, 255, 0.74) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  border-color: rgba(226, 232, 240, 0.85) !important;
+.admin-main .admin-table-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
 }
 
 .admin-table thead th {
-  background: rgba(248, 250, 252, 0.78);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.dark .admin-main .plain-card,
-.dark .admin-main .admin-charts-grid > div,
-.dark .admin-main .admin-charts-grid-2 > div,
-.dark .admin-main .admin-charts-grid-3 > div,
-.dark .admin-main .admin-dashboard-split > div,
-.dark .admin-main .admin-table-container,
-.dark .admin-main div[style*="background: #ffffff"],
-.dark .admin-main div[style*="background:#ffffff"],
-.dark .admin-main div[style*="background: rgb(255, 255, 255)"],
-.dark .admin-main div[style*="background: white"],
-.dark .admin-main div[style*="background:white"],
-.dark .admin-main section[style*="background: #ffffff"],
-.dark .admin-main section[style*="background:#ffffff"],
-.dark .admin-main section[style*="background: white"] {
-  background: rgba(17, 24, 39, 0.72) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-.dark .admin-table thead th {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: #f8fafc;
 }
 
 /* ==========================================================================

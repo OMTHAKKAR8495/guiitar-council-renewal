@@ -386,14 +386,12 @@ export function AdminLayout({
       style={{
         display: "flex",
         minHeight: "100vh",
-        background: "transparent",
+        background: "#f8fafc",
         color: "#0f172a",
         fontFamily: "var(--font-sans)",
         position: "relative",
       }}
     >
-      <StickyBackgroundWatermark />
-
       {/* DESKTOP SIDEBAR */}
       <aside
         style={{
