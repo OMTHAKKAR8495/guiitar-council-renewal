@@ -23,6 +23,7 @@ import {
   Eye,
   AlertCircle,
   Printer,
+  FileText,
 } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import {
@@ -31,6 +32,20 @@ import {
   type EventItem,
 } from "@/lib/adminStore";
 import { NeonClient } from "@/lib/neonClient";
+
+const formatDateTime = (date = new Date()) => {
+  try {
+    return date.toLocaleString("en-IN", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch {
+    return new Date().toISOString().split("T")[0];
+  }
+};
 
 export const Route = createFileRoute("/admin/registrations")({
   component: AdminRegistrationsPage,
@@ -309,7 +324,7 @@ export function AdminRegistrationsPage() {
       const attendedCount = filteredRegistrations.filter((r) => r.status === "Attended").length;
       const registeredCount = filteredRegistrations.filter((r) => r.status === "Registered").length;
       const attendancePct = totalEnrolled > 0 ? Math.round((attendedCount / totalEnrolled) * 100) : 0;
-      const nowStr = new Date().toLocaleDateString("en-IN", { dateStyle: "medium", timeStyle: "short" });
+      const nowStr = formatDateTime();
       const eventScope = selectedEvent === "all" ? "All Events & Workshops" : selectedEvent;
 
       const rowsHtml = filteredRegistrations
@@ -585,10 +600,10 @@ export function AdminRegistrationsPage() {
               color: "#2563eb",
               fontWeight: 600,
             }}
-            title="Print full attendance roster with colors & signature boxes"
+            title="Download / Print attendance roster in PDF"
           >
-            <Printer className="w-3.5 h-3.5" />
-            <span>Print in Color</span>
+            <FileText className="w-3.5 h-3.5" />
+            <span>Download in PDF</span>
           </button>
 
           <button
@@ -1066,10 +1081,10 @@ export function AdminRegistrationsPage() {
               color: "#1e40af",
               fontWeight: 600,
             }}
-            title="Print the complete attendance sheet in color"
+            title="Download attendance roster in PDF"
           >
-            <Printer className="w-3.5 h-3.5" />
-            <span>Print Attendance Sheet (Color)</span>
+            <FileText className="w-3.5 h-3.5" />
+            <span>Download Attendance PDF</span>
           </button>
         </div>
 
@@ -1273,11 +1288,11 @@ export function AdminRegistrationsPage() {
 
                           <button
                             onClick={() => handlePrintSingleTicket(r)}
-                            title="Print Student Entry Pass in Color"
+                            title="Download Student Entry Pass in PDF"
                             className="btn btn-outline btn-sm"
                             style={{ padding: "5px 8px", color: "#2563eb", borderColor: "#bfdbfe" }}
                           >
-                            <Printer className="w-3.5 h-3.5" />
+                            <FileText className="w-3.5 h-3.5" />
                           </button>
 
                           <button
@@ -1731,8 +1746,8 @@ export function AdminRegistrationsPage() {
                 className="btn btn-outline btn-sm"
                 style={{ display: "flex", alignItems: "center", gap: "6px", borderColor: "#2563eb", color: "#2563eb", fontWeight: 600 }}
               >
-                <Printer className="w-4 h-4" />
-                <span>Print Pass (Color)</span>
+                <FileText className="w-4 h-4" />
+                <span>Download Pass (PDF)</span>
               </button>
               <button
                 type="button"
@@ -1802,23 +1817,12 @@ export function AdminRegistrationsPage() {
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                 <button
                   type="button"
-                  onClick={handleDownloadHTMLDocument}
-                  className="btn btn-outline btn-sm"
-                  style={{ display: "flex", alignItems: "center", gap: "6px", background: "#ffffff", fontSize: "12.5px" }}
-                  title="Download self-contained offline HTML file"
-                >
-                  <Download className="w-3.5 h-3.5 text-slate-600" />
-                  <span>Download HTML</span>
-                </button>
-
-                <button
-                  type="button"
                   onClick={handleDirectBrowserPrint}
                   className="btn btn-primary btn-sm"
                   style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12.5px" }}
                 >
-                  <Printer className="w-3.5 h-3.5" />
-                  <span>Print Now / Save PDF</span>
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Download in PDF</span>
                 </button>
 
                 <button
@@ -1873,7 +1877,7 @@ export function AdminRegistrationsPage() {
                         </div>
                       </div>
                       <div style={{ textAlign: "right", fontSize: "11px", color: "#64748b" }}>
-                        <div><strong>Generated:</strong> {new Date().toLocaleDateString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</div>
+                        <div><strong>Generated:</strong> {formatDateTime()}</div>
                         <div><strong>Scope:</strong> {selectedEvent === "all" ? "All Events & Workshops" : selectedEvent}</div>
                         <div><strong>Total Records:</strong> {filteredRegistrations.length}</div>
                       </div>
@@ -2041,7 +2045,7 @@ export function AdminRegistrationsPage() {
               }}
             >
               <span style={{ fontSize: "12px", color: "#64748b" }}>
-                Tip: In browser print dialog, ensure <strong>"Background graphics"</strong> is checked for vivid colors.
+                Select <strong>"Save as PDF"</strong> in the destination menu to download your color document.
               </span>
               <div style={{ display: "flex", gap: "10px" }}>
                 <button
@@ -2057,8 +2061,8 @@ export function AdminRegistrationsPage() {
                   className="btn btn-primary btn-sm"
                   style={{ display: "flex", alignItems: "center", gap: "6px" }}
                 >
-                  <Printer className="w-3.5 h-3.5" />
-                  <span>Print Document</span>
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Download in PDF</span>
                 </button>
               </div>
             </div>
@@ -2085,7 +2089,7 @@ export function AdminRegistrationsPage() {
                 </div>
               </div>
               <div style={{ textAlign: "right", fontSize: "11px", color: "#64748b" }}>
-                <div><strong>Generated:</strong> {new Date().toLocaleDateString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</div>
+                <div><strong>Generated:</strong> {formatDateTime()}</div>
                 <div><strong>Scope:</strong> {selectedEvent === "all" ? "All Events & Workshops" : selectedEvent}</div>
                 <div><strong>Total Records:</strong> {filteredRegistrations.length}</div>
               </div>
