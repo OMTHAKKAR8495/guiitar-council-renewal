@@ -279,18 +279,270 @@ export function AdminRegistrationsPage() {
     document.body.removeChild(link);
   };
 
+  const printHTML = (content: string, title = "GUIITAR Council Document") => {
+    const iframe = document.createElement("iframe");
+    iframe.style.position = "fixed";
+    iframe.style.right = "0";
+    iframe.style.bottom = "0";
+    iframe.style.width = "0";
+    iframe.style.height = "0";
+    iframe.style.border = "0";
+    iframe.style.visibility = "hidden";
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentWindow?.document;
+    if (!doc) {
+      window.print();
+      return;
+    }
+
+    doc.open();
+    doc.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>${title}</title>
+          <style>
+            @page { size: A4 portrait; margin: 10mm 12mm; }
+            *, *::before, *::after {
+              box-sizing: border-box;
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+              color-adjust: exact !important;
+            }
+            body {
+              margin: 0;
+              padding: 0;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+              color: #0f172a;
+              background: #ffffff;
+              font-size: 11px;
+              line-height: 1.4;
+            }
+          </style>
+        </head>
+        <body>
+          ${content}
+        </body>
+      </html>
+    `);
+    doc.close();
+
+    setTimeout(() => {
+      try {
+        iframe.contentWindow?.focus();
+        iframe.contentWindow?.print();
+      } catch (err) {
+        console.error("Print iframe error, fallback to window.print:", err);
+        window.print();
+      } finally {
+        setTimeout(() => {
+          if (document.body.contains(iframe)) {
+            document.body.removeChild(iframe);
+          }
+        }, 1500);
+      }
+    }, 200);
+  };
+
   const handlePrintColorRoster = () => {
     setPrintTarget("all");
-    setTimeout(() => {
-      window.print();
-    }, 120);
+    const totalEnrolled = filteredRegistrations.length;
+    const attendedCount = filteredRegistrations.filter((r) => r.status === "Attended").length;
+    const registeredCount = filteredRegistrations.filter((r) => r.status === "Registered").length;
+    const attendancePct = totalEnrolled > 0 ? Math.round((attendedCount / totalEnrolled) * 100) : 0;
+    const nowStr = new Date().toLocaleDateString("en-IN", { dateStyle: "medium", timeStyle: "short" });
+    const eventScope = selectedEvent === "all" ? "All Events & Workshops" : selectedEvent;
+
+    const rowsHtml = filteredRegistrations
+      .map((r, idx) => {
+        const statusBg = r.status === "Attended" ? "#ecfdf5" : r.status === "Registered" ? "#eff6ff" : r.status === "Waitlisted" ? "#fef3c7" : "#fef2f2";
+        const statusColor = r.status === "Attended" ? "#065f46" : r.status === "Registered" ? "#1e40af" : r.status === "Waitlisted" ? "#92400e" : "#991b1b";
+        const statusBorder = r.status === "Attended" ? "#a7f3d0" : r.status === "Registered" ? "#bfdbfe" : r.status === "Waitlisted" ? "#fde68a" : "#fecaca";
+
+        return `
+          <tr style="background: ${idx % 2 === 0 ? "#ffffff" : "#f8fafc"}">
+            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; font-weight: 700; text-align: center;">${idx + 1}</td>
+            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; font-family: monospace; font-weight: 700; color: #2563eb;">${r.ticketId}</td>
+            <td style="padding: 6px 8px; border: 1px solid #cbd5e1;">
+              <strong>${r.studentName}</strong>
+              <div style="font-size: 10px; color: #64748b;">${r.email}</div>
+            </td>
+            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; font-weight: 600;">${r.enrollmentNo || "N/A"}</td>
+            <td style="padding: 6px 8px; border: 1px solid #cbd5e1;">${r.department} (${r.semester || "UG"})</td>
+            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; max-width: 180px;">${r.eventTitle}</td>
+            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; text-align: center;">
+              <span style="display: inline-block; background: ${statusBg}; color: ${statusColor}; border: 1px solid ${statusBorder}; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 10px;">
+                ${r.status}
+              </span>
+            </td>
+            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; text-align: center;">
+              <div style="height: 18px; border-bottom: 1px dotted #94a3b8; width: 70px; margin: 0 auto;"></div>
+            </td>
+          </tr>
+        `;
+      })
+      .join("");
+
+    const html = `
+      <div style="padding: 16px; color: #0f172a;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #2563eb; padding-bottom: 12px; margin-bottom: 16px;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <img src="/guiitar-council-logo.png" alt="GUIITAR Council" style="height: 48px; width: auto; object-fit: contain;" />
+            <div>
+              <h1 style="font-size: 18px; font-weight: 800; margin: 0; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.5px;">
+                GUIITAR COUNCIL — GSFC UNIVERSITY
+              </h1>
+              <p style="font-size: 12px; color: #475569; margin: 2px 0 0; font-weight: 600;">
+                Official Student Workshop & Masterclass Attendance Roster
+              </p>
+            </div>
+          </div>
+          <div style="text-align: right; font-size: 11px; color: #64748b;">
+            <div><strong>Generated:</strong> ${nowStr}</div>
+            <div><strong>Scope:</strong> ${eventScope}</div>
+            <div><strong>Total Records:</strong> ${totalEnrolled}</div>
+          </div>
+        </div>
+
+        <!-- Summary Highlights -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;">
+          <div style="border: 1px solid #bfdbfe; background: #eff6ff; padding: 8px 12px; border-radius: 8px;">
+            <span style="font-size: 10px; color: #1e40af; font-weight: 700; text-transform: uppercase;">Total Enrolled</span>
+            <div style="font-size: 16px; font-weight: 800; color: #1e3a8a;">${totalEnrolled}</div>
+          </div>
+          <div style="border: 1px solid #a7f3d0; background: #ecfdf5; padding: 8px 12px; border-radius: 8px;">
+            <span style="font-size: 10px; color: #065f46; font-weight: 700; text-transform: uppercase;">Verified Attended</span>
+            <div style="font-size: 16px; font-weight: 800; color: #047857;">${attendedCount}</div>
+          </div>
+          <div style="border: 1px solid #fde68a; background: #fef3c7; padding: 8px 12px; border-radius: 8px;">
+            <span style="font-size: 10px; color: #92400e; font-weight: 700; text-transform: uppercase;">Upcoming / Registered</span>
+            <div style="font-size: 16px; font-weight: 800; color: #b45309;">${registeredCount}</div>
+          </div>
+          <div style="border: 1px solid #e2e8f0; background: #f8fafc; padding: 8px 12px; border-radius: 8px;">
+            <span style="font-size: 10px; color: #475569; font-weight: 700; text-transform: uppercase;">Attendance Rate</span>
+            <div style="font-size: 16px; font-weight: 800; color: #0f172a;">${attendancePct}%</div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 24px;">
+          <thead>
+            <tr style="background: #1e3a8a; color: #ffffff; text-align: left;">
+              <th style="padding: 7px 8px; border: 1px solid #1e3a8a; text-align: center; width: 30px;">#</th>
+              <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Ticket ID</th>
+              <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Student Name</th>
+              <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Enrollment No</th>
+              <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Department & Sem</th>
+              <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Workshop / Event</th>
+              <th style="padding: 7px 8px; border: 1px solid #1e3a8a; text-align: center;">Status</th>
+              <th style="padding: 7px 8px; border: 1px solid #1e3a8a; text-align: center; width: 90px;">Student Sign</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsHtml}
+          </tbody>
+        </table>
+
+        <!-- Signatures -->
+        <div style="display: flex; justify-content: space-between; margin-top: 24px; padding-top: 12px;">
+          <div style="text-align: center; width: 190px;">
+            <div style="border-bottom: 1px solid #0f172a; height: 32px; margin-bottom: 6px;"></div>
+            <strong style="font-size: 11px; color: #0f172a;">Event Coordinator / Mentor</strong>
+          </div>
+          <div style="text-align: center; width: 190px;">
+            <div style="border-bottom: 1px solid #0f172a; height: 32px; margin-bottom: 6px;"></div>
+            <strong style="font-size: 11px; color: #0f172a;">GUIITAR Council Official Seal</strong>
+          </div>
+        </div>
+      </div>
+    `;
+
+    printHTML(html, "GUIITAR_Attendance_Roster");
   };
 
   const handlePrintSingleTicket = (item: RegistrationItem) => {
     setPrintTarget(item);
-    setTimeout(() => {
-      window.print();
-    }, 120);
+    const html = `
+      <div style="padding: 24px; max-width: 620px; margin: 0 auto; color: #0f172a;">
+        <div style="border: 2px solid #2563eb; border-radius: 14px; overflow: hidden; background: #ffffff;">
+          <!-- Header -->
+          <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: #ffffff; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <img src="/guiitar-council-logo.png" alt="GUIITAR" style="height: 38px; width: auto; background: #ffffff; padding: 3px 6px; border-radius: 6px;" />
+              <div>
+                <h2 style="font-size: 17px; font-weight: 800; margin: 0;">OFFICIAL WORKSHOP PASS</h2>
+                <p style="font-size: 11px; margin: 0; opacity: 0.9;">GUIITAR Council — GSFC University</p>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <span style="background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.4); padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">
+                ${item.status}
+              </span>
+              <div style="font-size: 13px; font-weight: 800; font-family: monospace; margin-top: 4px; letter-spacing: 0.5px;">
+                ${item.ticketId}
+              </div>
+            </div>
+          </div>
+
+          <!-- Body -->
+          <div style="padding: 18px 22px;">
+            <div style="margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+              <span style="font-size: 10.5px; color: #64748b; text-transform: uppercase; font-weight: 700;">Workshop / Event</span>
+              <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin: 2px 0 0;">${item.eventTitle}</h3>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; margin-bottom: 16px;">
+              <div>
+                <span style="color: #64748b; display: block; font-size: 10.5px;">Student Full Name</span>
+                <strong style="color: #0f172a; font-size: 13.5px;">${item.studentName}</strong>
+              </div>
+              <div>
+                <span style="color: #64748b; display: block; font-size: 10.5px;">Enrollment / Roll No</span>
+                <strong style="color: #0f172a; font-size: 13.5px;">${item.enrollmentNo || "N/A"}</strong>
+              </div>
+              <div>
+                <span style="color: #64748b; display: block; font-size: 10.5px;">Department & Semester</span>
+                <strong style="color: #0f172a;">${item.department} (${item.semester || "UG"})</strong>
+              </div>
+              <div>
+                <span style="color: #64748b; display: block; font-size: 10.5px;">Registration Date</span>
+                <strong style="color: #0f172a;">${item.registrationDate}</strong>
+              </div>
+              <div>
+                <span style="color: #64748b; display: block; font-size: 10.5px;">Student Email</span>
+                <strong style="color: #2563eb;">${item.email}</strong>
+              </div>
+              <div>
+                <span style="color: #64748b; display: block; font-size: 10.5px;">Phone Number</span>
+                <strong style="color: #0f172a;">${item.phone || "N/A"}</strong>
+              </div>
+            </div>
+
+            ${
+              item.notes
+                ? `<div style="background: #fffbeb; border: 1px solid #fef3c7; padding: 8px 12px; border-radius: 6px; font-size: 11px; margin-bottom: 14px;">
+                    <strong>Special Note:</strong> ${item.notes}
+                  </div>`
+                : ""
+            }
+
+            <!-- Verification -->
+            <div style="border-top: 2px dashed #cbd5e1; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <div style="font-size: 10px; color: #64748b; max-width: 340px;">
+                Present this physical or digital color pass at the GUIITAR Incubation Desk on arrival.
+              </div>
+              <div style="border: 1px solid #94a3b8; border-radius: 6px; padding: 5px 12px; font-size: 10.5px; font-weight: 700; color: #0f172a;">
+                Desk Verification Seal
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    printHTML(html, `Pass_${item.ticketId}`);
   };
 
   const clearAllFilters = () => {
