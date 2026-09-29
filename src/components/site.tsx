@@ -720,28 +720,6 @@ export function Header() {
             <ThemeToggle variant="dropdown" />
 
             <Link
-              to="/admin/login"
-              className="btn btn-outline btn-sm nav-action-btn-sm"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                borderColor: "#bfdbfe",
-                background: "#eff6ff",
-                color: "#1e40af",
-                fontWeight: 600,
-                fontSize: "13px",
-                padding: "6px 14px",
-                borderRadius: "9999px",
-                textDecoration: "none",
-              }}
-              title="Sign in to GUIITAR Admin Platform"
-            >
-              <Lock className="w-3.5 h-3.5 text-blue-600" />
-              <span>GUIITAR Login</span>
-            </Link>
-
-            <Link
               className="btn btn-primary btn-sm nav-action-btn-sm"
               to="/apply"
               style={{
