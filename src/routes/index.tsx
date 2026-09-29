@@ -29,6 +29,9 @@ import {
   CalendarDays,
   MapPin,
   Flame,
+  FileText,
+  Download,
+  ExternalLink,
 } from "lucide-react";
 import { ButtonLink, SectionTitle } from "@/components/site";
 import { GuiitarEmblem, GuiitarFullLogo } from "@/components/GuiitarBrand";
@@ -459,6 +462,277 @@ export function HomePage() {
                 </span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* OFFICIAL POLICY DOCUMENTS BANNER / CARDS */}
+      <section
+        style={{
+          background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)",
+          padding: "36px 0 20px",
+          borderBottom: "1px solid #e2e8f0",
+        }}
+      >
+        <div className="container">
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {/* STARTUP POLICY CARD */}
+            <div
+              style={{
+                background: "#ffffff",
+                border: "1px solid #e2e8f0",
+                borderRadius: "18px",
+                padding: "24px 28px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                gap: "16px",
+                boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)",
+                position: "relative",
+                overflow: "hidden",
+                transition: "all 0.2s ease",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: "4px",
+                  background: "linear-gradient(90deg, #2563eb, #38bdf8)",
+                }}
+              />
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "12px",
+                    marginBottom: "10px",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                      background: "rgba(37, 99, 235, 0.08)",
+                      color: "#2563eb",
+                      padding: "4px 10px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    Official Policy Document
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      color: "#64748b",
+                      background: "#f1f5f9",
+                      padding: "2px 8px",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    12 Pages • PDF
+                  </span>
+                </div>
+                <h3
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 800,
+                    color: "#0f172a",
+                    margin: "0 0 6px",
+                    lineHeight: "1.3",
+                  }}
+                >
+                  GUIITAR Startup Policy &amp; Procedures
+                </h3>
+                <p
+                  style={{
+                    fontSize: "13.5px",
+                    color: "#475569",
+                    margin: 0,
+                    lineHeight: "1.55",
+                  }}
+                >
+                  Standard Operating Procedures (SOP) governing eligibility, 4 incubation stages (Spark-up, Grooming, Incubation, Graduation), seed loan and funding norms.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  paddingTop: "12px",
+                  borderTop: "1px solid #f1f5f9",
+                }}
+              >
+                <a
+                  href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_a36d4d47e2e74717acd42bab3ced339e.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>View Startup Policy</span>
+                </a>
+                <a
+                  href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_a36d4d47e2e74717acd42bab3ced339e.pdf"
+                  download="GUIITAR_Startup_Policy.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download PDF</span>
+                </a>
+              </div>
+            </div>
+
+            {/* IPR POLICY CARD */}
+            <div
+              style={{
+                background: "#ffffff",
+                border: "1px solid #e2e8f0",
+                borderRadius: "18px",
+                padding: "24px 28px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                gap: "16px",
+                boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)",
+                position: "relative",
+                overflow: "hidden",
+                transition: "all 0.2s ease",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: "4px",
+                  background: "linear-gradient(90deg, #10b981, #06b6d4)",
+                }}
+              />
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "12px",
+                    marginBottom: "10px",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                      background: "rgba(16, 185, 129, 0.08)",
+                      color: "#059669",
+                      padding: "4px 10px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    GSFC University IPR Policy
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      color: "#64748b",
+                      background: "#f1f5f9",
+                      padding: "2px 8px",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    Version-01 • 46 Pages • PDF
+                  </span>
+                </div>
+                <h3
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 800,
+                    color: "#0f172a",
+                    margin: "0 0 6px",
+                    lineHeight: "1.3",
+                  }}
+                >
+                  Intellectual Property Rights (IPR) Policy
+                </h3>
+                <p
+                  style={{
+                    fontSize: "13.5px",
+                    color: "#475569",
+                    margin: 0,
+                    lineHeight: "1.55",
+                  }}
+                >
+                  Comprehensive university policy covering patents, designs, trademarks, and copyright with 70:30 revenue sharing in favor of innovators and IDF filing protocols.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  paddingTop: "12px",
+                  borderTop: "1px solid #f1f5f9",
+                }}
+              >
+                <a
+                  href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_87cd494308f14eae95f42e1ab0a01910.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#059669", borderColor: "#059669" }}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>View IPR Policy</span>
+                </a>
+                <a
+                  href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_87cd494308f14eae95f42e1ab0a01910.pdf"
+                  download="GSFCU_IPR_Policy.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download PDF</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
