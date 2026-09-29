@@ -22,6 +22,8 @@ import {
   ArrowRight,
   CheckCircle2,
   Quote,
+  Briefcase,
+  Building2,
 } from "lucide-react";
 import { PageHero, SectionTitle, ButtonLink } from "@/components/site";
 
@@ -47,28 +49,28 @@ export const Route = createFileRoute("/about")({
 });
 
 const objectives = [
-  "To establish, manage, and operate a world-class technology business incubator.",
-  "To promote student entrepreneurship and convert innovative proof-of-concepts into financially sustainable commercial enterprises.",
-  "To catalyze the incubation ecosystem through institutional, government, and corporate partnerships.",
-  "To manage technology transfer, applied research commercialization, and knowledge networks.",
-  "To offer structured mentoring services from experienced industry leaders and academicians.",
-  "To encourage socially beneficial ventures and advance Gujarat’s standing as an innovation hub.",
+  "To establish, manage and operate a business incubator.",
+  "To promote entrepreneurship and to incubate individuals, groups of individuals, and convert their efforts into enterprises by collaborating with similar institutions.",
+  "To catalyse the process of incubation.",
+  "To manage technology, applied research, knowledge networks, and human resource development.",
+  "To offer mentoring services to help with enterprise growth.",
+  "To encourage new ventures for the benefit of society and to undertake all related activities to achieve the GUIITAR Council's vision.",
 ];
 
 const thrust = [
-  ["Agriculture & Allied Fields", Leaf],
-  ["Artificial Intelligence & Robotics", Bot],
-  ["Biotechnology & Life Sciences", Dna],
-  ["Clean-Tech & Circular Economy", Leaf],
-  ["Cyber Security & Network Defense", ShieldCheck],
-  ["Renewable Energy & Power Systems", Zap],
-  ["Environmental Engineering Solutions", Leaf],
-  ["Healthcare & Biomedical Devices", HeartPulse],
-  ["Information & Communication Tech (ICT)", Wifi],
-  ["Internet of Things (IoT) & Embedded", Cpu],
-  ["Advanced Manufacturing & Materials", Factory],
-  ["Deep-Tech Services & Automation", Bot],
-  ["Water & Wastewater Treatment Tech", Droplets],
+  ["Agriculture and allied fields", Leaf],
+  ["Artificial Intelligence and Robotics", Bot],
+  ["Biotechnology", Dna],
+  ["Clean-Tech", Leaf],
+  ["Cyber Security", ShieldCheck],
+  ["Energy", Zap],
+  ["Environmental Challenges & Solutions", Leaf],
+  ["Healthcare", HeartPulse],
+  ["Information & Communication Technology (ICT)", Wifi],
+  ["Internet of Things (IoT)", Cpu],
+  ["Manufacturing", Factory],
+  ["Services", Briefcase],
+  ["Water (Drinking Water, Wastewater and Storm Water Utilities)", Droplets],
 ] as const;
 
 const teams: { [k: string]: [string, string, string?][] } = {
@@ -174,23 +176,78 @@ function About() {
     <>
       <PageHero
         badge="About GUIITAR Council"
-        title="Pioneering Innovation & Entrepreneurship"
-        text="GUIITAR Council is GSFC University's dedicated Section 8 non-profit incubation hub, empowering innovators to convert technological breakthroughs into market-ready ventures."
+        title="GU Incubation Innovation Technology and Applied Research"
+        text="GU Incubation Innovation Technology and Applied Research (GUIITAR) Council has been established by GSFC University (GSFCU) at Vadodara, dedicated to promoting and supporting creativity, innovation and the spirit of enterprise among young minds and innovators. GUIITAR Council is registered under section 8 of the Companies Act, 2013."
       />
+
+      {/* INSTITUTIONAL COMMITMENT & ECOSYSTEM CALLOUT */}
+      <section style={{ padding: "40px 0 0", background: "var(--background)" }}>
+        <div className="container">
+          <div
+            style={{
+              background: "linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%)",
+              borderRadius: "22px",
+              padding: "36px 32px",
+              color: "#ffffff",
+              boxShadow: "0 16px 36px -8px rgba(30, 64, 175, 0.25)",
+              display: "flex",
+              alignItems: "center",
+              gap: "24px",
+              flexWrap: "wrap",
+            }}
+          >
+            <div
+              style={{
+                width: "56px",
+                height: "56px",
+                borderRadius: "16px",
+                background: "rgba(255, 255, 255, 0.15)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#ffffff",
+                flexShrink: 0,
+              }}
+            >
+              <Building2 className="w-7 h-7" />
+            </div>
+            <div style={{ flex: "1 1 300px" }}>
+              <span
+                style={{
+                  fontSize: "11.5px",
+                  fontWeight: 800,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.06em",
+                  color: "#93c5fd",
+                  display: "block",
+                  marginBottom: "6px",
+                }}
+              >
+                Our Institutional Commitment
+              </span>
+              <p
+                style={{
+                  fontSize: "15.5px",
+                  lineHeight: "1.65",
+                  color: "#ffffff",
+                  margin: 0,
+                  fontWeight: 500,
+                }}
+              >
+                GUIITAR Council is committed to nurturing and developing startups through shared
+                resources, Infrastructure, cutting-edge laboratories, tailored mentorship, extended
+                networking and other standard services such as Co-working space, Equipment, Business
+                support, and Intellectual Property Protection.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* MISSION & VISION */}
       <section>
         <div className="container">
           <div className="grid-2">
-            <article className="mission-card">
-              <span className="section-badge">Our Purpose</span>
-              <h2>Our Mission</h2>
-              <p>
-                To produce inspiring success stories in technological innovations and high-growth
-                startups that make young minds confident, freestanding, and financially viable while
-                solving real societal challenges.
-              </p>
-            </article>
             <article className="mission-card vision">
               <span
                 className="section-badge"
@@ -198,11 +255,21 @@ function About() {
               >
                 Our Horizon
               </span>
-              <h2>Our Vision</h2>
+              <h2>VISION</h2>
               <p>
-                To nurture young innovators by providing a world-class platform to explore, build,
-                and showcase their potential, generating high added value with an unwavering focus
-                on sustainable technology transfer for industry and society.
+                To nurture young minds by providing a platform to explore and showcase their
+                potential, along with the generation of high added value, with a focus on innovation
+                as well as marketing of technologies for the betterment of the Scientific,
+                Engineering, Science &amp; Management Communities and the Society.
+              </p>
+            </article>
+
+            <article className="mission-card">
+              <span className="section-badge">Our Purpose</span>
+              <h2>MISSION</h2>
+              <p>
+                To produce success stories in innovations and startups that will make the young
+                minds confident, freestanding and financially viable.
               </p>
             </article>
           </div>
@@ -214,7 +281,7 @@ function About() {
         <div className="container">
           <SectionTitle
             badge="Strategic Goals"
-            title="Institutional Objectives"
+            title="OBJECTIVES"
             subtitle="The foundational pillars that guide our daily operations, incubation curriculum, and grant disbursement processes."
           />
           <div className="objective-list">
@@ -233,7 +300,7 @@ function About() {
         <div className="container">
           <SectionTitle
             badge="Focus Domains"
-            title="Key Thrust Areas"
+            title="THRUST AREA"
             subtitle="GUIITAR Council prioritizes interdisciplinary research and startup incubation across 13 high-impact sectors."
           />
           <div className="thrust-grid">
