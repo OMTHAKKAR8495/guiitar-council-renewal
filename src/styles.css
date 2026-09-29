@@ -3807,12 +3807,14 @@ section {
     color-adjust: exact !important;
   }
 
-  body {
+  html, body {
     background: #ffffff !important;
     color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  /* Hide navigation, sidebar, headers, backdrop watermarks during print */
+  /* Hide navigation, sidebar, headers, backdrops, modals during browser print */
   .admin-sidebar,
   .admin-mobile-overlay,
   .admin-mobile-header-toggle,
@@ -3822,7 +3824,11 @@ section {
   header.header,
   footer.footer,
   aside,
-  header {
+  header,
+  .admin-header,
+  .admin-content-card,
+  .modal-backdrop,
+  [role="dialog"] {
     display: none !important;
   }
 
@@ -3839,9 +3845,15 @@ section {
   /* Color Print Document specifics */
   #printable-color-sheet {
     display: block !important;
+    position: relative !important;
     width: 100% !important;
     background: #ffffff !important;
     color: #0f172a !important;
+    visibility: visible !important;
+  }
+
+  .print-only {
+    display: block !important;
   }
 }
 

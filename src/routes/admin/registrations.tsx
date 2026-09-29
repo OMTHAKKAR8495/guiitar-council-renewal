@@ -42,6 +42,7 @@ export function AdminRegistrationsPage() {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [printTarget, setPrintTarget] = useState<"all" | RegistrationItem | null>(null);
+  const [previewModalOpen, setPreviewModalOpen] = useState(false);
 
   // Filters state
   const [searchQuery, setSearchQuery] = useState("");
@@ -279,270 +280,255 @@ export function AdminRegistrationsPage() {
     document.body.removeChild(link);
   };
 
-  const printHTML = (content: string, title = "GUIITAR Council Document") => {
-    const iframe = document.createElement("iframe");
-    iframe.style.position = "fixed";
-    iframe.style.right = "0";
-    iframe.style.bottom = "0";
-    iframe.style.width = "0";
-    iframe.style.height = "0";
-    iframe.style.border = "0";
-    iframe.style.visibility = "hidden";
-    document.body.appendChild(iframe);
-
-    const doc = iframe.contentWindow?.document;
-    if (!doc) {
-      window.print();
-      return;
-    }
-
-    doc.open();
-    doc.write(`
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>${title}</title>
-          <style>
-            @page { size: A4 portrait; margin: 10mm 12mm; }
-            *, *::before, *::after {
-              box-sizing: border-box;
-              -webkit-print-color-adjust: exact !important;
-              print-color-adjust: exact !important;
-              color-adjust: exact !important;
-            }
-            body {
-              margin: 0;
-              padding: 0;
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-              color: #0f172a;
-              background: #ffffff;
-              font-size: 11px;
-              line-height: 1.4;
-            }
-          </style>
-        </head>
-        <body>
-          ${content}
-        </body>
-      </html>
-    `);
-    doc.close();
-
-    setTimeout(() => {
-      try {
-        iframe.contentWindow?.focus();
-        iframe.contentWindow?.print();
-      } catch (err) {
-        console.error("Print iframe error, fallback to window.print:", err);
-        window.print();
-      } finally {
-        setTimeout(() => {
-          if (document.body.contains(iframe)) {
-            document.body.removeChild(iframe);
-          }
-        }, 1500);
-      }
-    }, 200);
+  const handleOpenPrintPreview = (target: "all" | RegistrationItem) => {
+    setPrintTarget(target);
+    setPreviewModalOpen(true);
   };
 
   const handlePrintColorRoster = () => {
-    setPrintTarget("all");
-    const totalEnrolled = filteredRegistrations.length;
-    const attendedCount = filteredRegistrations.filter((r) => r.status === "Attended").length;
-    const registeredCount = filteredRegistrations.filter((r) => r.status === "Registered").length;
-    const attendancePct = totalEnrolled > 0 ? Math.round((attendedCount / totalEnrolled) * 100) : 0;
-    const nowStr = new Date().toLocaleDateString("en-IN", { dateStyle: "medium", timeStyle: "short" });
-    const eventScope = selectedEvent === "all" ? "All Events & Workshops" : selectedEvent;
-
-    const rowsHtml = filteredRegistrations
-      .map((r, idx) => {
-        const statusBg = r.status === "Attended" ? "#ecfdf5" : r.status === "Registered" ? "#eff6ff" : r.status === "Waitlisted" ? "#fef3c7" : "#fef2f2";
-        const statusColor = r.status === "Attended" ? "#065f46" : r.status === "Registered" ? "#1e40af" : r.status === "Waitlisted" ? "#92400e" : "#991b1b";
-        const statusBorder = r.status === "Attended" ? "#a7f3d0" : r.status === "Registered" ? "#bfdbfe" : r.status === "Waitlisted" ? "#fde68a" : "#fecaca";
-
-        return `
-          <tr style="background: ${idx % 2 === 0 ? "#ffffff" : "#f8fafc"}">
-            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; font-weight: 700; text-align: center;">${idx + 1}</td>
-            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; font-family: monospace; font-weight: 700; color: #2563eb;">${r.ticketId}</td>
-            <td style="padding: 6px 8px; border: 1px solid #cbd5e1;">
-              <strong>${r.studentName}</strong>
-              <div style="font-size: 10px; color: #64748b;">${r.email}</div>
-            </td>
-            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; font-weight: 600;">${r.enrollmentNo || "N/A"}</td>
-            <td style="padding: 6px 8px; border: 1px solid #cbd5e1;">${r.department} (${r.semester || "UG"})</td>
-            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; max-width: 180px;">${r.eventTitle}</td>
-            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; text-align: center;">
-              <span style="display: inline-block; background: ${statusBg}; color: ${statusColor}; border: 1px solid ${statusBorder}; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 10px;">
-                ${r.status}
-              </span>
-            </td>
-            <td style="padding: 6px 8px; border: 1px solid #cbd5e1; text-align: center;">
-              <div style="height: 18px; border-bottom: 1px dotted #94a3b8; width: 70px; margin: 0 auto;"></div>
-            </td>
-          </tr>
-        `;
-      })
-      .join("");
-
-    const html = `
-      <div style="padding: 16px; color: #0f172a;">
-        <!-- Header -->
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #2563eb; padding-bottom: 12px; margin-bottom: 16px;">
-          <div style="display: flex; align-items: center; gap: 14px;">
-            <img src="/guiitar-council-logo.png" alt="GUIITAR Council" style="height: 48px; width: auto; object-fit: contain;" />
-            <div>
-              <h1 style="font-size: 18px; font-weight: 800; margin: 0; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.5px;">
-                GUIITAR COUNCIL — GSFC UNIVERSITY
-              </h1>
-              <p style="font-size: 12px; color: #475569; margin: 2px 0 0; font-weight: 600;">
-                Official Student Workshop & Masterclass Attendance Roster
-              </p>
-            </div>
-          </div>
-          <div style="text-align: right; font-size: 11px; color: #64748b;">
-            <div><strong>Generated:</strong> ${nowStr}</div>
-            <div><strong>Scope:</strong> ${eventScope}</div>
-            <div><strong>Total Records:</strong> ${totalEnrolled}</div>
-          </div>
-        </div>
-
-        <!-- Summary Highlights -->
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;">
-          <div style="border: 1px solid #bfdbfe; background: #eff6ff; padding: 8px 12px; border-radius: 8px;">
-            <span style="font-size: 10px; color: #1e40af; font-weight: 700; text-transform: uppercase;">Total Enrolled</span>
-            <div style="font-size: 16px; font-weight: 800; color: #1e3a8a;">${totalEnrolled}</div>
-          </div>
-          <div style="border: 1px solid #a7f3d0; background: #ecfdf5; padding: 8px 12px; border-radius: 8px;">
-            <span style="font-size: 10px; color: #065f46; font-weight: 700; text-transform: uppercase;">Verified Attended</span>
-            <div style="font-size: 16px; font-weight: 800; color: #047857;">${attendedCount}</div>
-          </div>
-          <div style="border: 1px solid #fde68a; background: #fef3c7; padding: 8px 12px; border-radius: 8px;">
-            <span style="font-size: 10px; color: #92400e; font-weight: 700; text-transform: uppercase;">Upcoming / Registered</span>
-            <div style="font-size: 16px; font-weight: 800; color: #b45309;">${registeredCount}</div>
-          </div>
-          <div style="border: 1px solid #e2e8f0; background: #f8fafc; padding: 8px 12px; border-radius: 8px;">
-            <span style="font-size: 10px; color: #475569; font-weight: 700; text-transform: uppercase;">Attendance Rate</span>
-            <div style="font-size: 16px; font-weight: 800; color: #0f172a;">${attendancePct}%</div>
-          </div>
-        </div>
-
-        <!-- Table -->
-        <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 24px;">
-          <thead>
-            <tr style="background: #1e3a8a; color: #ffffff; text-align: left;">
-              <th style="padding: 7px 8px; border: 1px solid #1e3a8a; text-align: center; width: 30px;">#</th>
-              <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Ticket ID</th>
-              <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Student Name</th>
-              <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Enrollment No</th>
-              <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Department & Sem</th>
-              <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Workshop / Event</th>
-              <th style="padding: 7px 8px; border: 1px solid #1e3a8a; text-align: center;">Status</th>
-              <th style="padding: 7px 8px; border: 1px solid #1e3a8a; text-align: center; width: 90px;">Student Sign</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${rowsHtml}
-          </tbody>
-        </table>
-
-        <!-- Signatures -->
-        <div style="display: flex; justify-content: space-between; margin-top: 24px; padding-top: 12px;">
-          <div style="text-align: center; width: 190px;">
-            <div style="border-bottom: 1px solid #0f172a; height: 32px; margin-bottom: 6px;"></div>
-            <strong style="font-size: 11px; color: #0f172a;">Event Coordinator / Mentor</strong>
-          </div>
-          <div style="text-align: center; width: 190px;">
-            <div style="border-bottom: 1px solid #0f172a; height: 32px; margin-bottom: 6px;"></div>
-            <strong style="font-size: 11px; color: #0f172a;">GUIITAR Council Official Seal</strong>
-          </div>
-        </div>
-      </div>
-    `;
-
-    printHTML(html, "GUIITAR_Attendance_Roster");
+    handleOpenPrintPreview("all");
   };
 
   const handlePrintSingleTicket = (item: RegistrationItem) => {
-    setPrintTarget(item);
-    const html = `
-      <div style="padding: 24px; max-width: 620px; margin: 0 auto; color: #0f172a;">
-        <div style="border: 2px solid #2563eb; border-radius: 14px; overflow: hidden; background: #ffffff;">
-          <!-- Header -->
-          <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: #ffffff; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <img src="/guiitar-council-logo.png" alt="GUIITAR" style="height: 38px; width: auto; background: #ffffff; padding: 3px 6px; border-radius: 6px;" />
+    handleOpenPrintPreview(item);
+  };
+
+  const handleDirectBrowserPrint = () => {
+    window.print();
+  };
+
+  const handleDownloadHTMLDocument = () => {
+    if (!printTarget) return;
+
+    let contentHtml = "";
+    let docTitle = "GUIITAR_Council_Document";
+
+    if (printTarget === "all") {
+      docTitle = `GUIITAR_Attendance_Roster_${new Date().toISOString().split("T")[0]}`;
+      const totalEnrolled = filteredRegistrations.length;
+      const attendedCount = filteredRegistrations.filter((r) => r.status === "Attended").length;
+      const registeredCount = filteredRegistrations.filter((r) => r.status === "Registered").length;
+      const attendancePct = totalEnrolled > 0 ? Math.round((attendedCount / totalEnrolled) * 100) : 0;
+      const nowStr = new Date().toLocaleDateString("en-IN", { dateStyle: "medium", timeStyle: "short" });
+      const eventScope = selectedEvent === "all" ? "All Events & Workshops" : selectedEvent;
+
+      const rowsHtml = filteredRegistrations
+        .map((r, idx) => {
+          const statusBg = r.status === "Attended" ? "#ecfdf5" : r.status === "Registered" ? "#eff6ff" : r.status === "Waitlisted" ? "#fef3c7" : "#fef2f2";
+          const statusColor = r.status === "Attended" ? "#065f46" : r.status === "Registered" ? "#1e40af" : r.status === "Waitlisted" ? "#92400e" : "#991b1b";
+          const statusBorder = r.status === "Attended" ? "#a7f3d0" : r.status === "Registered" ? "#bfdbfe" : r.status === "Waitlisted" ? "#fde68a" : "#fecaca";
+
+          return `
+            <tr style="background: ${idx % 2 === 0 ? "#ffffff" : "#f8fafc"}">
+              <td style="padding: 6px 8px; border: 1px solid #cbd5e1; font-weight: 700; text-align: center;">${idx + 1}</td>
+              <td style="padding: 6px 8px; border: 1px solid #cbd5e1; font-family: monospace; font-weight: 700; color: #2563eb;">${r.ticketId}</td>
+              <td style="padding: 6px 8px; border: 1px solid #cbd5e1;">
+                <strong>${r.studentName}</strong>
+                <div style="font-size: 10px; color: #64748b;">${r.email}</div>
+              </td>
+              <td style="padding: 6px 8px; border: 1px solid #cbd5e1; font-weight: 600;">${r.enrollmentNo || "N/A"}</td>
+              <td style="padding: 6px 8px; border: 1px solid #cbd5e1;">${r.department} (${r.semester || "UG"})</td>
+              <td style="padding: 6px 8px; border: 1px solid #cbd5e1; max-width: 180px;">${r.eventTitle}</td>
+              <td style="padding: 6px 8px; border: 1px solid #cbd5e1; text-align: center;">
+                <span style="display: inline-block; background: ${statusBg}; color: ${statusColor}; border: 1px solid ${statusBorder}; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 10px;">
+                  ${r.status}
+                </span>
+              </td>
+              <td style="padding: 6px 8px; border: 1px solid #cbd5e1; text-align: center;">
+                <div style="height: 18px; border-bottom: 1px dotted #94a3b8; width: 70px; margin: 0 auto;"></div>
+              </td>
+            </tr>
+          `;
+        })
+        .join("");
+
+      contentHtml = `
+        <div style="padding: 20px; color: #0f172a; font-family: 'Inter', -apple-system, sans-serif;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #2563eb; padding-bottom: 14px; margin-bottom: 18px;">
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <img src="/guiitar-council-logo.png" alt="GUIITAR Council" style="height: 50px; width: auto; object-fit: contain;" />
               <div>
-                <h2 style="font-size: 17px; font-weight: 800; margin: 0;">OFFICIAL WORKSHOP PASS</h2>
-                <p style="font-size: 11px; margin: 0; opacity: 0.9;">GUIITAR Council — GSFC University</p>
+                <h1 style="font-size: 19px; font-weight: 800; margin: 0; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.5px;">
+                  GUIITAR COUNCIL — GSFC UNIVERSITY
+                </h1>
+                <p style="font-size: 12px; color: #475569; margin: 2px 0 0; font-weight: 600;">
+                  Official Student Workshop & Masterclass Attendance Roster
+                </p>
               </div>
             </div>
-            <div style="text-align: right;">
-              <span style="background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.4); padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">
-                ${item.status}
-              </span>
-              <div style="font-size: 13px; font-weight: 800; font-family: monospace; margin-top: 4px; letter-spacing: 0.5px;">
-                ${item.ticketId}
-              </div>
+            <div style="text-align: right; font-size: 11px; color: #64748b;">
+              <div><strong>Generated:</strong> ${nowStr}</div>
+              <div><strong>Scope:</strong> ${eventScope}</div>
+              <div><strong>Total Records:</strong> ${totalEnrolled}</div>
             </div>
           </div>
 
-          <!-- Body -->
-          <div style="padding: 18px 22px;">
-            <div style="margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
-              <span style="font-size: 10.5px; color: #64748b; text-transform: uppercase; font-weight: 700;">Workshop / Event</span>
-              <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin: 2px 0 0;">${item.eventTitle}</h3>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px;">
+            <div style="border: 1px solid #bfdbfe; background: #eff6ff; padding: 8px 12px; border-radius: 8px;">
+              <span style="font-size: 10px; color: #1e40af; font-weight: 700; text-transform: uppercase;">Total Enrolled</span>
+              <div style="font-size: 17px; font-weight: 800; color: #1e3a8a;">${totalEnrolled}</div>
+            </div>
+            <div style="border: 1px solid #a7f3d0; background: #ecfdf5; padding: 8px 12px; border-radius: 8px;">
+              <span style="font-size: 10px; color: #065f46; font-weight: 700; text-transform: uppercase;">Verified Attended</span>
+              <div style="font-size: 17px; font-weight: 800; color: #047857;">${attendedCount}</div>
+            </div>
+            <div style="border: 1px solid #fde68a; background: #fef3c7; padding: 8px 12px; border-radius: 8px;">
+              <span style="font-size: 10px; color: #92400e; font-weight: 700; text-transform: uppercase;">Upcoming / Registered</span>
+              <div style="font-size: 17px; font-weight: 800; color: #b45309;">${registeredCount}</div>
+            </div>
+            <div style="border: 1px solid #e2e8f0; background: #f8fafc; padding: 8px 12px; border-radius: 8px;">
+              <span style="font-size: 10px; color: #475569; font-weight: 700; text-transform: uppercase;">Attendance Rate</span>
+              <div style="font-size: 17px; font-weight: 800; color: #0f172a;">${attendancePct}%</div>
+            </div>
+          </div>
+
+          <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 24px;">
+            <thead>
+              <tr style="background: #1e3a8a; color: #ffffff; text-align: left;">
+                <th style="padding: 7px 8px; border: 1px solid #1e3a8a; text-align: center; width: 30px;">#</th>
+                <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Ticket ID</th>
+                <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Student Name</th>
+                <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Enrollment No</th>
+                <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Department & Sem</th>
+                <th style="padding: 7px 8px; border: 1px solid #1e3a8a;">Workshop / Event</th>
+                <th style="padding: 7px 8px; border: 1px solid #1e3a8a; text-align: center;">Status</th>
+                <th style="padding: 7px 8px; border: 1px solid #1e3a8a; text-align: center; width: 90px;">Student Sign</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsHtml}
+            </tbody>
+          </table>
+
+          <div style="display: flex; justify-content: space-between; margin-top: 24px; padding-top: 12px;">
+            <div style="text-align: center; width: 190px;">
+              <div style="border-bottom: 1px solid #0f172a; height: 32px; margin-bottom: 6px;"></div>
+              <strong style="font-size: 11px; color: #0f172a;">Event Coordinator / Mentor</strong>
+            </div>
+            <div style="text-align: center; width: 190px;">
+              <div style="border-bottom: 1px solid #0f172a; height: 32px; margin-bottom: 6px;"></div>
+              <strong style="font-size: 11px; color: #0f172a;">GUIITAR Council Official Seal</strong>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      const item = printTarget;
+      docTitle = `GUIITAR_Pass_${item.ticketId}`;
+      contentHtml = `
+        <div style="padding: 24px; max-width: 620px; margin: 0 auto; color: #0f172a; font-family: 'Inter', -apple-system, sans-serif;">
+          <div style="border: 2px solid #2563eb; border-radius: 14px; overflow: hidden; background: #ffffff;">
+            <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: #ffffff; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="/guiitar-council-logo.png" alt="GUIITAR" style="height: 40px; width: auto; background: #ffffff; padding: 3px 6px; border-radius: 6px;" />
+                <div>
+                  <h2 style="font-size: 17px; font-weight: 800; margin: 0;">OFFICIAL WORKSHOP PASS</h2>
+                  <p style="font-size: 11px; margin: 0; opacity: 0.9;">GUIITAR Council — GSFC University</p>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <span style="background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.4); padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;">
+                  ${item.status}
+                </span>
+                <div style="font-size: 13px; font-weight: 800; font-family: monospace; margin-top: 4px; letter-spacing: 0.5px;">
+                  ${item.ticketId}
+                </div>
+              </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; margin-bottom: 16px;">
-              <div>
-                <span style="color: #64748b; display: block; font-size: 10.5px;">Student Full Name</span>
-                <strong style="color: #0f172a; font-size: 13.5px;">${item.studentName}</strong>
+            <div style="padding: 18px 22px;">
+              <div style="margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+                <span style="font-size: 10.5px; color: #64748b; text-transform: uppercase; font-weight: 700;">Workshop / Event</span>
+                <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin: 2px 0 0;">${item.eventTitle}</h3>
               </div>
-              <div>
-                <span style="color: #64748b; display: block; font-size: 10.5px;">Enrollment / Roll No</span>
-                <strong style="color: #0f172a; font-size: 13.5px;">${item.enrollmentNo || "N/A"}</strong>
-              </div>
-              <div>
-                <span style="color: #64748b; display: block; font-size: 10.5px;">Department & Semester</span>
-                <strong style="color: #0f172a;">${item.department} (${item.semester || "UG"})</strong>
-              </div>
-              <div>
-                <span style="color: #64748b; display: block; font-size: 10.5px;">Registration Date</span>
-                <strong style="color: #0f172a;">${item.registrationDate}</strong>
-              </div>
-              <div>
-                <span style="color: #64748b; display: block; font-size: 10.5px;">Student Email</span>
-                <strong style="color: #2563eb;">${item.email}</strong>
-              </div>
-              <div>
-                <span style="color: #64748b; display: block; font-size: 10.5px;">Phone Number</span>
-                <strong style="color: #0f172a;">${item.phone || "N/A"}</strong>
-              </div>
-            </div>
 
-            ${
-              item.notes
-                ? `<div style="background: #fffbeb; border: 1px solid #fef3c7; padding: 8px 12px; border-radius: 6px; font-size: 11px; margin-bottom: 14px;">
-                    <strong>Special Note:</strong> ${item.notes}
-                  </div>`
-                : ""
-            }
-
-            <!-- Verification -->
-            <div style="border-top: 2px dashed #cbd5e1; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
-              <div style="font-size: 10px; color: #64748b; max-width: 340px;">
-                Present this physical or digital color pass at the GUIITAR Incubation Desk on arrival.
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; margin-bottom: 16px;">
+                <div>
+                  <span style="color: #64748b; display: block; font-size: 10.5px;">Student Full Name</span>
+                  <strong style="color: #0f172a; font-size: 13.5px;">${item.studentName}</strong>
+                </div>
+                <div>
+                  <span style="color: #64748b; display: block; font-size: 10.5px;">Enrollment / Roll No</span>
+                  <strong style="color: #0f172a; font-size: 13.5px;">${item.enrollmentNo || "N/A"}</strong>
+                </div>
+                <div>
+                  <span style="color: #64748b; display: block; font-size: 10.5px;">Department & Semester</span>
+                  <strong style="color: #0f172a;">${item.department} (${item.semester || "UG"})</strong>
+                </div>
+                <div>
+                  <span style="color: #64748b; display: block; font-size: 10.5px;">Registration Date</span>
+                  <strong style="color: #0f172a;">${item.registrationDate}</strong>
+                </div>
+                <div>
+                  <span style="color: #64748b; display: block; font-size: 10.5px;">Student Email</span>
+                  <strong style="color: #2563eb;">${item.email}</strong>
+                </div>
+                <div>
+                  <span style="color: #64748b; display: block; font-size: 10.5px;">Phone Number</span>
+                  <strong style="color: #0f172a;">${item.phone || "N/A"}</strong>
+                </div>
               </div>
-              <div style="border: 1px solid #94a3b8; border-radius: 6px; padding: 5px 12px; font-size: 10.5px; font-weight: 700; color: #0f172a;">
-                Desk Verification Seal
+
+              ${
+                item.notes
+                  ? `<div style="background: #fffbeb; border: 1px solid #fef3c7; padding: 8px 12px; border-radius: 6px; font-size: 11px; margin-bottom: 14px;">
+                      <strong>Special Note:</strong> ${item.notes}
+                    </div>`
+                  : ""
+              }
+
+              <div style="border-top: 2px dashed #cbd5e1; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 10px; color: #64748b; max-width: 340px;">
+                  Present this physical or digital color pass at the GUIITAR Incubation Desk on arrival.
+                </div>
+                <div style="border: 1px solid #94a3b8; border-radius: 6px; padding: 5px 12px; font-size: 10.5px; font-weight: 700; color: #0f172a;">
+                  Desk Verification Seal
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    `;
+      `;
+    }
 
-    printHTML(html, `Pass_${item.ticketId}`);
+    const fullHtml = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>${docTitle}</title>
+  <style>
+    @page { size: A4 portrait; margin: 10mm 12mm; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  ${contentHtml}
+</body>
+</html>`;
+
+    const blob = new Blob([fullHtml], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `${docTitle}.html`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   const clearAllFilters = () => {
@@ -1755,6 +1741,326 @@ export function AdminRegistrationsPage() {
               >
                 Close
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* INTERACTIVE PRINT PREVIEW MODAL */}
+      {previewModalOpen && printTarget && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(15, 23, 42, 0.7)",
+            backdropFilter: "blur(6px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 1100,
+            padding: "20px",
+          }}
+        >
+          <div
+            style={{
+              background: "#ffffff",
+              borderRadius: "16px",
+              maxWidth: "920px",
+              width: "100%",
+              maxHeight: "92vh",
+              display: "flex",
+              flexDirection: "column",
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.35)",
+              overflow: "hidden",
+            }}
+          >
+            {/* Modal Header */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "16px 22px",
+                borderBottom: "1px solid #e2e8f0",
+                background: "#f8fafc",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <div style={{ background: "#eff6ff", color: "#2563eb", padding: "8px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Printer className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 style={{ fontSize: "16px", fontWeight: 800, margin: 0, color: "#0f172a" }}>
+                    Print & Export Preview
+                  </h3>
+                  <p style={{ fontSize: "12px", color: "#64748b", margin: 0 }}>
+                    {printTarget === "all" ? "Full Workshop Attendance Roster (A4 Color)" : `Individual Pass: ${printTarget.studentName} (${printTarget.ticketId})`}
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <button
+                  type="button"
+                  onClick={handleDownloadHTMLDocument}
+                  className="btn btn-outline btn-sm"
+                  style={{ display: "flex", alignItems: "center", gap: "6px", background: "#ffffff", fontSize: "12.5px" }}
+                  title="Download self-contained offline HTML file"
+                >
+                  <Download className="w-3.5 h-3.5 text-slate-600" />
+                  <span>Download HTML</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleDirectBrowserPrint}
+                  className="btn btn-primary btn-sm"
+                  style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12.5px" }}
+                >
+                  <Printer className="w-3.5 h-3.5" />
+                  <span>Print Now / Save PDF</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setPreviewModalOpen(false)}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: "4px",
+                    color: "#64748b",
+                    borderRadius: "6px",
+                  }}
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Scrollable Document Preview */}
+            <div
+              style={{
+                flex: 1,
+                overflowY: "auto",
+                padding: "24px",
+                background: "#f1f5f9",
+              }}
+            >
+              <div
+                style={{
+                  background: "#ffffff",
+                  borderRadius: "12px",
+                  boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
+                  padding: "24px",
+                  maxWidth: printTarget === "all" ? "100%" : "640px",
+                  margin: "0 auto",
+                }}
+              >
+                {printTarget === "all" ? (
+                  /* Live Full Roster Preview */
+                  <div style={{ color: "#0f172a", fontFamily: "'Inter', -apple-system, sans-serif" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "3px solid #2563eb", paddingBottom: "14px", marginBottom: "18px" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                        <img src="/guiitar-council-logo.png" alt="GUIITAR Council" style={{ height: "50px", width: "auto", objectFit: "contain" }} />
+                        <div>
+                          <h1 style={{ fontSize: "18px", fontWeight: 800, margin: 0, color: "#1e3a8a", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                            GUIITAR COUNCIL — GSFC UNIVERSITY
+                          </h1>
+                          <p style={{ fontSize: "12px", color: "#475569", margin: "2px 0 0", fontWeight: 600 }}>
+                            Official Student Workshop & Masterclass Attendance Roster
+                          </p>
+                        </div>
+                      </div>
+                      <div style={{ textAlign: "right", fontSize: "11px", color: "#64748b" }}>
+                        <div><strong>Generated:</strong> {new Date().toLocaleDateString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</div>
+                        <div><strong>Scope:</strong> {selectedEvent === "all" ? "All Events & Workshops" : selectedEvent}</div>
+                        <div><strong>Total Records:</strong> {filteredRegistrations.length}</div>
+                      </div>
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", marginBottom: "18px" }}>
+                      <div style={{ border: "1px solid #bfdbfe", background: "#eff6ff", padding: "8px 12px", borderRadius: "8px" }}>
+                        <span style={{ fontSize: "10px", color: "#1e40af", fontWeight: 700, textTransform: "uppercase" }}>Total Enrolled</span>
+                        <div style={{ fontSize: "16px", fontWeight: 800, color: "#1e3a8a" }}>{filteredRegistrations.length}</div>
+                      </div>
+                      <div style={{ border: "1px solid #a7f3d0", background: "#ecfdf5", padding: "8px 12px", borderRadius: "8px" }}>
+                        <span style={{ fontSize: "10px", color: "#065f46", fontWeight: 700, textTransform: "uppercase" }}>Verified Attended</span>
+                        <div style={{ fontSize: "16px", fontWeight: 800, color: "#047857" }}>{filteredRegistrations.filter((r) => r.status === "Attended").length}</div>
+                      </div>
+                      <div style={{ border: "1px solid #fde68a", background: "#fef3c7", padding: "8px 12px", borderRadius: "8px" }}>
+                        <span style={{ fontSize: "10px", color: "#92400e", fontWeight: 700, textTransform: "uppercase" }}>Upcoming / Registered</span>
+                        <div style={{ fontSize: "16px", fontWeight: 800, color: "#b45309" }}>{filteredRegistrations.filter((r) => r.status === "Registered").length}</div>
+                      </div>
+                      <div style={{ border: "1px solid #e2e8f0", background: "#f8fafc", padding: "8px 12px", borderRadius: "8px" }}>
+                        <span style={{ fontSize: "10px", color: "#475569", fontWeight: 700, textTransform: "uppercase" }}>Attendance Rate</span>
+                        <div style={{ fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>{stats.attendanceRate}%</div>
+                      </div>
+                    </div>
+
+                    <div style={{ overflowX: "auto" }}>
+                      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "11px", marginBottom: "20px" }}>
+                        <thead>
+                          <tr style={{ background: "#1e3a8a", color: "#ffffff", textAlign: "left" }}>
+                            <th style={{ padding: "7px 8px", border: "1px solid #1e3a8a", textAlign: "center", width: "30px" }}>#</th>
+                            <th style={{ padding: "7px 8px", border: "1px solid #1e3a8a" }}>Ticket ID</th>
+                            <th style={{ padding: "7px 8px", border: "1px solid #1e3a8a" }}>Student Name</th>
+                            <th style={{ padding: "7px 8px", border: "1px solid #1e3a8a" }}>Enrollment No</th>
+                            <th style={{ padding: "7px 8px", border: "1px solid #1e3a8a" }}>Department & Sem</th>
+                            <th style={{ padding: "7px 8px", border: "1px solid #1e3a8a" }}>Workshop / Event</th>
+                            <th style={{ padding: "7px 8px", border: "1px solid #1e3a8a", textAlign: "center" }}>Status</th>
+                            <th style={{ padding: "7px 8px", border: "1px solid #1e3a8a", textAlign: "center", width: "90px" }}>Student Sign</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {filteredRegistrations.map((r, idx) => {
+                            const statusBg = r.status === "Attended" ? "#ecfdf5" : r.status === "Registered" ? "#eff6ff" : r.status === "Waitlisted" ? "#fef3c7" : "#fef2f2";
+                            const statusColor = r.status === "Attended" ? "#065f46" : r.status === "Registered" ? "#1e40af" : r.status === "Waitlisted" ? "#92400e" : "#991b1b";
+                            const statusBorder = r.status === "Attended" ? "#a7f3d0" : r.status === "Registered" ? "#bfdbfe" : r.status === "Waitlisted" ? "#fde68a" : "#fecaca";
+
+                            return (
+                              <tr key={r.id} style={{ background: idx % 2 === 0 ? "#ffffff" : "#f8fafc" }}>
+                                <td style={{ padding: "6px 8px", border: "1px solid #cbd5e1", fontWeight: 700, textAlign: "center" }}>{idx + 1}</td>
+                                <td style={{ padding: "6px 8px", border: "1px solid #cbd5e1", fontFamily: "monospace", fontWeight: 700, color: "#2563eb" }}>{r.ticketId}</td>
+                                <td style={{ padding: "6px 8px", border: "1px solid #cbd5e1" }}>
+                                  <strong>{r.studentName}</strong>
+                                  <div style={{ fontSize: "10px", color: "#64748b" }}>{r.email}</div>
+                                </td>
+                                <td style={{ padding: "6px 8px", border: "1px solid #cbd5e1", fontWeight: 600 }}>{r.enrollmentNo || "N/A"}</td>
+                                <td style={{ padding: "6px 8px", border: "1px solid #cbd5e1" }}>{r.department} ({r.semester || "UG"})</td>
+                                <td style={{ padding: "6px 8px", border: "1px solid #cbd5e1", maxWidth: "180px" }}>{r.eventTitle}</td>
+                                <td style={{ padding: "6px 8px", border: "1px solid #cbd5e1", textAlign: "center" }}>
+                                  <span style={{ display: "inline-block", background: statusBg, color: statusColor, border: `1px solid ${statusBorder}`, padding: "2px 6px", borderRadius: "4px", fontWeight: 700, fontSize: "10px" }}>
+                                    {r.status}
+                                  </span>
+                                </td>
+                                <td style={{ padding: "6px 8px", border: "1px solid #cbd5e1", textAlign: "center" }}>
+                                  <div style={{ height: "18px", borderBottom: "1px dotted #94a3b8", width: "70px", margin: "0 auto" }} />
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: "24px", paddingTop: "12px" }}>
+                      <div style={{ textAlign: "center", width: "190px" }}>
+                        <div style={{ borderBottom: "1px solid #0f172a", height: "32px", marginBottom: "6px" }} />
+                        <strong style={{ fontSize: "11px", color: "#0f172a" }}>Event Coordinator / Mentor</strong>
+                      </div>
+                      <div style={{ textAlign: "center", width: "190px" }}>
+                        <div style={{ borderBottom: "1px solid #0f172a", height: "32px", marginBottom: "6px" }} />
+                        <strong style={{ fontSize: "11px", color: "#0f172a" }}>GUIITAR Council Official Seal</strong>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  /* Live Single Pass Preview */
+                  <div style={{ border: "2px solid #2563eb", borderRadius: "14px", overflow: "hidden", background: "#ffffff", fontFamily: "'Inter', -apple-system, sans-serif" }}>
+                    <div style={{ background: "linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)", color: "#ffffff", padding: "18px 22px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                        <img src="/guiitar-council-logo.png" alt="GUIITAR" style={{ height: "40px", width: "auto", background: "#ffffff", padding: "3px 6px", borderRadius: "6px" }} />
+                        <div>
+                          <h2 style={{ fontSize: "17px", fontWeight: 800, margin: 0 }}>OFFICIAL WORKSHOP PASS</h2>
+                          <p style={{ fontSize: "11px", margin: 0, opacity: 0.9 }}>GUIITAR Council — GSFC University</p>
+                        </div>
+                      </div>
+                      <div style={{ textAlign: "right" }}>
+                        <span style={{ background: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.4)", padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
+                          {printTarget.status}
+                        </span>
+                        <div style={{ fontSize: "13px", fontWeight: 800, fontFamily: "monospace", marginTop: "4px", letterSpacing: "0.5px" }}>
+                          {printTarget.ticketId}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style={{ padding: "18px 22px" }}>
+                      <div style={{ marginBottom: "14px", borderBottom: "1px solid #e2e8f0", paddingBottom: "10px" }}>
+                        <span style={{ fontSize: "10.5px", color: "#64748b", textTransform: "uppercase", fontWeight: 700 }}>Workshop / Event</span>
+                        <h3 style={{ fontSize: "16px", fontWeight: 800, color: "#0f172a", margin: "2px 0 0" }}>{printTarget.eventTitle}</h3>
+                      </div>
+
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", fontSize: "12px", marginBottom: "16px" }}>
+                        <div>
+                          <span style={{ color: "#64748b", display: "block", fontSize: "10.5px" }}>Student Full Name</span>
+                          <strong style={{ color: "#0f172a", fontSize: "13.5px" }}>{printTarget.studentName}</strong>
+                        </div>
+                        <div>
+                          <span style={{ color: "#64748b", display: "block", fontSize: "10.5px" }}>Enrollment / Roll No</span>
+                          <strong style={{ color: "#0f172a", fontSize: "13.5px" }}>{printTarget.enrollmentNo || "N/A"}</strong>
+                        </div>
+                        <div>
+                          <span style={{ color: "#64748b", display: "block", fontSize: "10.5px" }}>Department & Semester</span>
+                          <strong style={{ color: "#0f172a" }}>{printTarget.department} ({printTarget.semester || "UG"})</strong>
+                        </div>
+                        <div>
+                          <span style={{ color: "#64748b", display: "block", fontSize: "10.5px" }}>Registration Date</span>
+                          <strong style={{ color: "#0f172a" }}>{printTarget.registrationDate}</strong>
+                        </div>
+                        <div>
+                          <span style={{ color: "#64748b", display: "block", fontSize: "10.5px" }}>Student Email</span>
+                          <strong style={{ color: "#2563eb" }}>{printTarget.email}</strong>
+                        </div>
+                        <div>
+                          <span style={{ color: "#64748b", display: "block", fontSize: "10.5px" }}>Phone Number</span>
+                          <strong style={{ color: "#0f172a" }}>{printTarget.phone || "N/A"}</strong>
+                        </div>
+                      </div>
+
+                      {printTarget.notes && (
+                        <div style={{ background: "#fffbeb", border: "1px solid #fef3c7", padding: "8px 12px", borderRadius: "6px", fontSize: "11px", marginBottom: "14px" }}>
+                          <strong>Special Note:</strong> {printTarget.notes}
+                        </div>
+                      )}
+
+                      <div style={{ borderTop: "2px dashed #cbd5e1", paddingTop: "12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <div style={{ fontSize: "10px", color: "#64748b", maxWidth: "340px" }}>
+                          Present this physical or digital color pass at the GUIITAR Incubation Desk on arrival.
+                        </div>
+                        <div style={{ border: "1px solid #94a3b8", borderRadius: "6px", padding: "5px 12px", fontSize: "10.5px", fontWeight: 700, color: "#0f172a" }}>
+                          Desk Verification Seal
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div
+              style={{
+                padding: "14px 22px",
+                borderTop: "1px solid #e2e8f0",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                background: "#f8fafc",
+              }}
+            >
+              <span style={{ fontSize: "12px", color: "#64748b" }}>
+                Tip: In browser print dialog, ensure <strong>"Background graphics"</strong> is checked for vivid colors.
+              </span>
+              <div style={{ display: "flex", gap: "10px" }}>
+                <button
+                  type="button"
+                  onClick={() => setPreviewModalOpen(false)}
+                  className="btn btn-outline btn-sm"
+                >
+                  Close Preview
+                </button>
+                <button
+                  type="button"
+                  onClick={handleDirectBrowserPrint}
+                  className="btn btn-primary btn-sm"
+                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                >
+                  <Printer className="w-3.5 h-3.5" />
+                  <span>Print Document</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
