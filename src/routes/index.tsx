@@ -603,6 +603,9 @@ export function HomePage() {
       {/* NEW SECTION A: PROGRAMS & SUPPORT (SSIP, IPR Centre, Nodal Institute) */}
       <ProgramsSupportSection />
 
+      {/* NEW SECTION B: TRANSPARENCY & PARTNERS (Annual Return PDF + Association & Linkages) */}
+      <TransparencyPartnersSection />
+
       {/* 4. THE INNOVATION JOURNEY ("From First Thought to Real-World Impact") */}
       <section>
         <div className="container">
@@ -2035,9 +2038,6 @@ export function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* NEW SECTION B: TRANSPARENCY & PARTNERS (Annual Return PDF + Association & Linkages) */}
-      <TransparencyPartnersSection />
 
       {/* 16. FINAL CTA BANNER */}
       <section className="section-blue cta">
