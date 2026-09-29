@@ -444,7 +444,7 @@ export function Header() {
       <header className="header">
         <div className="container nav-wrap">
           <Link to="/" aria-label="GUIITAR Council home" className="logo-container">
-            <GuiitarFullLogo style={{ height: "44px", width: "auto" }} />
+            <GuiitarFullLogo style={{ height: "48px", width: "auto" }} />
           </Link>
 
           {/* Desktop Mega-Menu Navigation */}
@@ -682,13 +682,22 @@ export function Header() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "5px",
-                fontSize: "13.5px",
+                gap: "6px",
+                fontSize: "13px",
                 fontWeight: 600,
-                padding: "6px 10px",
+                height: "36px",
+                padding: "0 14px",
+                borderRadius: "9999px",
+                border: "1px solid var(--border)",
+                background: path.startsWith("/events") ? "var(--secondary)" : "var(--surface)",
+                color: path.startsWith("/events") ? "var(--primary)" : "var(--foreground)",
+                textDecoration: "none",
+                transition: "all 0.2s ease",
+                whiteSpace: "nowrap",
+                boxShadow: "0 1px 2px rgba(0, 0, 0, 0.03)",
               }}
             >
-              <CalendarDays className="w-4 h-4" />
+              <CalendarDays className="w-3.5 h-3.5 text-blue-600" />
               <span>Events</span>
             </Link>
 
@@ -696,19 +705,23 @@ export function Header() {
               href="https://forms.gle/EM81FwAN5i4S3FmcA"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-outline btn-sm nav-action-btn-sm"
+              className="nav-action-btn-sm"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "6px",
-                borderColor: "#a7f3d0",
+                height: "36px",
+                padding: "0 14px",
+                borderRadius: "9999px",
+                border: "1px solid #a7f3d0",
                 background: "#ecfdf5",
                 color: "#047857",
                 fontWeight: 700,
                 fontSize: "13px",
-                padding: "6px 14px",
-                borderRadius: "9999px",
                 textDecoration: "none",
+                transition: "all 0.2s ease",
+                whiteSpace: "nowrap",
+                boxShadow: "0 1px 2px rgba(0, 0, 0, 0.03)",
               }}
               title="Book Prototyping Lab & Testing Facility Slots"
             >
@@ -726,10 +739,13 @@ export function Header() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "6px",
+                height: "36px",
                 fontWeight: 600,
                 fontSize: "13px",
-                padding: "6px 16px",
+                padding: "0 18px",
                 borderRadius: "9999px",
+                whiteSpace: "nowrap",
+                boxShadow: "0 2px 8px rgba(37, 99, 235, 0.25)",
               }}
             >
               <span>Apply Now</span>
