@@ -1,4 +1,4 @@
-import { FileText, Download, ExternalLink, Handshake, ShieldCheck, Building, Users } from "lucide-react";
+import { FileText, Download, ExternalLink, Handshake, ShieldCheck, Building } from "lucide-react";
 import { SectionTitle } from "./site";
 
 // PLACEHOLDER PARTNERS: Users can easily customize or add their official partner logos/names here
@@ -56,26 +56,21 @@ export const PLACEHOLDER_ASSOCIATIONS_LINKAGES: PartnerLinkageItem[] = [
   },
 ];
 
-export function TransparencyPartnersSection() {
+/**
+ * 1. Annual Return Statutory Compliance Section (Placed below Programs & Support)
+ */
+export function AnnualReturnSection() {
   return (
     <section
-      id="transparency-partners"
-      className="transparency-partners-section"
+      id="annual-return-compliance"
+      className="annual-return-section"
       style={{
-        padding: "80px 0",
+        padding: "60px 0 70px 0",
         background: "var(--background, #ffffff)",
         position: "relative",
       }}
     >
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        <SectionTitle
-          badge="Governance & Collaborations"
-          title="Transparency & Partners"
-          subtitle="Committed to rigorous non-profit governance, public statutory disclosures, and active industrial-academic alliances."
-          align="center"
-        />
-
-        {/* 1. STATUTORY COMPLIANCE & ANNUAL RETURN STRIP */}
         <div
           className="annual-return-card"
           style={{
@@ -89,7 +84,6 @@ export function TransparencyPartnersSection() {
             flexWrap: "wrap",
             gap: "20px",
             boxShadow: "0 10px 30px -5px rgba(15, 23, 42, 0.25)",
-            marginBottom: "48px",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "18px", maxWidth: "680px" }}>
@@ -186,176 +180,149 @@ export function TransparencyPartnersSection() {
             </a>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
 
-        {/* 2. ASSOCIATION & LINKAGES SUB-BLOCK */}
-        <div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              marginBottom: "24px",
-              flexWrap: "wrap",
-              gap: "12px",
-            }}
-          >
-            <div>
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  fontSize: "12px",
-                  fontWeight: 700,
-                  color: "#ea580c",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                  marginBottom: "4px",
-                }}
-              >
-                <Handshake className="w-4 h-4" />
-                <span>Collaborative Network</span>
-              </div>
-              <h3
-                style={{
-                  fontSize: "24px",
-                  fontWeight: 800,
-                  color: "var(--text-heading, #0f172a)",
-                  margin: 0,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                Association & Linkages
-              </h3>
-            </div>
-            <span
+/**
+ * 2. Association & Linkages Section (Original placement above final CTA/Partners area)
+ */
+export function AssociationLinkagesSection() {
+  return (
+    <section
+      id="association-linkages"
+      className="association-linkages-section"
+      style={{
+        padding: "80px 0",
+        background: "var(--background, #ffffff)",
+        position: "relative",
+      }}
+    >
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        <SectionTitle
+          badge="Collaborative Network"
+          title="Association & Linkages"
+          subtitle="Committed to rigorous non-profit governance and active industrial, academic, and government alliances."
+          align="center"
+        />
+
+        {/* PARTNER / LINKAGE GRID PLACEHOLDER */}
+        <div
+          className="association-linkages-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap: "20px",
+            marginTop: "32px",
+          }}
+        >
+          {PLACEHOLDER_ASSOCIATIONS_LINKAGES.map((partner) => (
+            <div
+              key={partner.id}
+              className="partner-linkage-card"
               style={{
-                fontSize: "12px",
-                color: "var(--text-muted, #64748b)",
-                background: "var(--card-bg-alt, #f1f5f9)",
-                padding: "6px 14px",
-                borderRadius: "9999px",
+                background: "var(--card-bg, #ffffff)",
+                borderRadius: "16px",
                 border: "1px solid var(--border-color, #e2e8f0)",
+                padding: "24px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
+                transition: "transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease",
               }}
             >
-              Industry • Academia • Government
-            </span>
-          </div>
-
-          {/* PARTNER / LINKAGE GRID PLACEHOLDER */}
-          <div
-            className="association-linkages-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: "20px",
-            }}
-          >
-            {PLACEHOLDER_ASSOCIATIONS_LINKAGES.map((partner) => (
-              <div
-                key={partner.id}
-                className="partner-linkage-card"
-                style={{
-                  background: "var(--card-bg, #ffffff)",
-                  borderRadius: "16px",
-                  border: "1px solid var(--border-color, #e2e8f0)",
-                  padding: "24px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
-                  transition: "transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease",
-                }}
-              >
-                <div>
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    marginBottom: "12px",
+                    gap: "8px",
+                  }}
+                >
                   <div
                     style={{
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "10px",
+                      background: "#f1f5f9",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "space-between",
-                      marginBottom: "12px",
-                      gap: "8px",
+                      justifyContent: "center",
+                      color: "#1e3a8a",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "10px",
-                        background: "#f1f5f9",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#1e3a8a",
-                      }}
-                    >
-                      <Building className="w-4 h-4" />
-                    </div>
-
-                    {partner.badge && (
-                      <span
-                        style={{
-                          fontSize: "10.5px",
-                          fontWeight: 700,
-                          padding: "3px 8px",
-                          borderRadius: "6px",
-                          background:
-                            partner.badge === "Placeholder"
-                              ? "#fef3c7"
-                              : "#eff6ff",
-                          color:
-                            partner.badge === "Placeholder"
-                              ? "#92400e"
-                              : "#1e40af",
-                          border: `1px solid ${
-                            partner.badge === "Placeholder" ? "#fde68a" : "#bfdbfe"
-                          }`,
-                        }}
-                      >
-                        {partner.badge}
-                      </span>
-                    )}
+                    <Building className="w-4 h-4" />
                   </div>
 
-                  <h4
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: 700,
-                      color: "var(--text-heading, #0f172a)",
-                      margin: "0 0 4px 0",
-                    }}
-                  >
-                    {partner.name}
-                  </h4>
-
-                  <span
-                    style={{
-                      display: "block",
-                      fontSize: "12px",
-                      color: "#ea580c",
-                      fontWeight: 600,
-                      marginBottom: "8px",
-                    }}
-                  >
-                    {partner.category}
-                  </span>
-
-                  <p
-                    style={{
-                      fontSize: "13px",
-                      color: "var(--text-muted, #475569)",
-                      margin: 0,
-                      lineHeight: "1.5",
-                    }}
-                  >
-                    {partner.description}
-                  </p>
+                  {partner.badge && (
+                    <span
+                      style={{
+                        fontSize: "10.5px",
+                        fontWeight: 700,
+                        padding: "3px 8px",
+                        borderRadius: "6px",
+                        background:
+                          partner.badge === "Placeholder"
+                            ? "#fef3c7"
+                            : "#eff6ff",
+                        color:
+                          partner.badge === "Placeholder"
+                            ? "#92400e"
+                            : "#1e40af",
+                        border: `1px solid ${
+                          partner.badge === "Placeholder" ? "#fde68a" : "#bfdbfe"
+                        }`,
+                      }}
+                    >
+                      {partner.badge}
+                    </span>
+                  )}
                 </div>
+
+                <h4
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: 700,
+                    color: "var(--text-heading, #0f172a)",
+                    margin: "0 0 4px 0",
+                  }}
+                >
+                  {partner.name}
+                </h4>
+
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: "12px",
+                    color: "#ea580c",
+                    fontWeight: 600,
+                    marginBottom: "8px",
+                  }}
+                >
+                  {partner.category}
+                </span>
+
+                <p
+                  style={{
+                    fontSize: "13px",
+                    color: "var(--text-muted, #475569)",
+                    margin: 0,
+                    lineHeight: "1.5",
+                  }}
+                >
+                  {partner.description}
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
+export const TransparencyPartnersSection = AssociationLinkagesSection;
