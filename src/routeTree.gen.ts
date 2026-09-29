@@ -22,6 +22,7 @@ import { Route as InnovationRouteImport } from './routes/innovation'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as SsipRouteImport } from './routes/ssip'
 import { Route as StartupsRouteImport } from './routes/startups'
 import { Route as SubmitIdeaRouteImport } from './routes/submit-idea'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
@@ -110,6 +111,11 @@ const ProgramsRoute = ProgramsRouteImport.update({
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SsipRoute = SsipRouteImport.update({
+  id: '/ssip',
+  path: '/ssip',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StartupsRoute = StartupsRouteImport.update({
@@ -247,6 +253,7 @@ export interface FileRoutesByFullPath {
   '/partner': typeof PartnerRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
+  '/ssip': typeof SsipRoute
   '/startups': typeof StartupsRoute
   '/submit-idea': typeof SubmitIdeaRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -286,6 +293,7 @@ export interface FileRoutesByTo {
   '/partner': typeof PartnerRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
+  '/ssip': typeof SsipRoute
   '/startups': typeof StartupsRoute
   '/submit-idea': typeof SubmitIdeaRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -326,6 +334,7 @@ export interface FileRoutesById {
   '/partner': typeof PartnerRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
+  '/ssip': typeof SsipRoute
   '/startups': typeof StartupsRoute
   '/submit-idea': typeof SubmitIdeaRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -367,6 +376,7 @@ export interface FileRouteTypes {
     | '/partner'
     | '/programs'
     | '/resources'
+    | '/ssip'
     | '/startups'
     | '/submit-idea'
     | '/admin/analytics'
@@ -406,6 +416,7 @@ export interface FileRouteTypes {
     | '/partner'
     | '/programs'
     | '/resources'
+    | '/ssip'
     | '/startups'
     | '/submit-idea'
     | '/admin/analytics'
@@ -445,6 +456,7 @@ export interface FileRouteTypes {
     | '/partner'
     | '/programs'
     | '/resources'
+    | '/ssip'
     | '/startups'
     | '/submit-idea'
     | '/admin/analytics'
@@ -485,6 +497,7 @@ export interface RootRouteChildren {
   PartnerRoute: typeof PartnerRoute
   ProgramsRoute: typeof ProgramsRoute
   ResourcesRoute: typeof ResourcesRoute
+  SsipRoute: typeof SsipRoute
   StartupsRoute: typeof StartupsRoute
   SubmitIdeaRoute: typeof SubmitIdeaRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
@@ -601,6 +614,13 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ssip': {
+      id: '/ssip'
+      path: '/ssip'
+      fullPath: '/ssip'
+      preLoaderRoute: typeof SsipRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/startups': {
@@ -800,6 +820,7 @@ const rootRouteChildren: RootRouteChildren = {
   PartnerRoute: PartnerRoute,
   ProgramsRoute: ProgramsRoute,
   ResourcesRoute: ResourcesRoute,
+  SsipRoute: SsipRoute,
   StartupsRoute: StartupsRoute,
   SubmitIdeaRoute: SubmitIdeaRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,

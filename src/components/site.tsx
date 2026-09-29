@@ -222,7 +222,7 @@ export const MEGA_MENU: MegaMenuCategory[] = [
       {
         title: "SSIP 2.0 Grant Scheme",
         desc: "Non-dilutive grants up to ₹2.5 Lakhs for students/alumni",
-        to: "/funding",
+        to: "/ssip",
       },
       {
         title: "Gujarat Industrial Policy 2020",
@@ -1099,7 +1099,7 @@ export function Footer() {
           <h3>Funding & IPR</h3>
           <div className="footer-links">
             <Link to="/funding">Funding Navigator</Link>
-            <Link to="/funding">SSIP 2.0 Grant</Link>
+            <Link to="/ssip">SSIP 2.0 Grant</Link>
             <Link to="/funding">Gujarat Policy 2020</Link>
             <Link to="/funding">IPR Support Grant</Link>
             <Link to="/apply">Submit Innovation</Link>

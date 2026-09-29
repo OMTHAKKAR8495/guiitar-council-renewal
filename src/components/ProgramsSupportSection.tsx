@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Sparkles, ArrowUpRight, ShieldCheck, Lightbulb, Building2 } from "lucide-react";
 import { SectionTitle } from "./site";
 
@@ -27,7 +28,7 @@ export const PROGRAMS_SUPPORT_DATA: ProgramSupportCard[] = [
       "Pre-incubation guidance from faculty & industry mentors",
     ],
     ctaText: "Explore SSIP Support",
-    ctaLink: "https://www.guiitarstartupcouncil.org/guiitarcouncil-ssip",
+    ctaLink: "/ssip",
     accentColor: "blue",
   },
   {
@@ -248,32 +249,61 @@ export function ProgramsSupportSection() {
 
                 {/* Button Action */}
                 <div style={{ marginTop: "auto" }}>
-                  <a
-                    href={prog.ctaLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary program-cta-btn"
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "8px",
-                      padding: "11px 16px",
-                      borderRadius: "12px",
-                      fontSize: "13px",
-                      fontWeight: 700,
-                      textAlign: "center",
-                      whiteSpace: "normal",
-                      wordBreak: "break-word",
-                      lineHeight: "1.35",
-                      minHeight: "46px",
-                      boxSizing: "border-box",
-                    }}
-                  >
-                    <span style={{ flex: "1 1 auto" }}>{prog.ctaText}</span>
-                    <ArrowUpRight className="w-4 h-4 flex-shrink-0" style={{ marginLeft: "2px" }} />
-                  </a>
+                  {prog.ctaLink.startsWith("/") ? (
+                    <Link
+                      to={prog.ctaLink}
+                      className="btn btn-primary program-cta-btn"
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "8px",
+                        padding: "11px 16px",
+                        borderRadius: "12px",
+                        fontSize: "13px",
+                        fontWeight: 700,
+                        textAlign: "center",
+                        whiteSpace: "normal",
+                        wordBreak: "break-word",
+                        lineHeight: "1.35",
+                        minHeight: "46px",
+                        boxSizing: "border-box",
+                        textDecoration: "none",
+                      }}
+                    >
+                      <span style={{ flex: "1 1 auto" }}>{prog.ctaText}</span>
+                      <ArrowUpRight className="w-4 h-4 flex-shrink-0" style={{ marginLeft: "2px" }} />
+                    </Link>
+                  ) : (
+                    <a
+                      href={prog.ctaLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary program-cta-btn"
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "8px",
+                        padding: "11px 16px",
+                        borderRadius: "12px",
+                        fontSize: "13px",
+                        fontWeight: 700,
+                        textAlign: "center",
+                        whiteSpace: "normal",
+                        wordBreak: "break-word",
+                        lineHeight: "1.35",
+                        minHeight: "46px",
+                        boxSizing: "border-box",
+                        textDecoration: "none",
+                      }}
+                    >
+                      <span style={{ flex: "1 1 auto" }}>{prog.ctaText}</span>
+                      <ArrowUpRight className="w-4 h-4 flex-shrink-0" style={{ marginLeft: "2px" }} />
+                    </a>
+                  )}
                 </div>
               </div>
             );
