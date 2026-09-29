@@ -1299,14 +1299,14 @@ export function SSIPPage() {
               href="https://forms.gle/NcBxPA97S1jvkxE17"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary"
+              className="btn btn-dark"
               style={{
-                background: "#ffffff",
-                color: "#1e3a8a",
-                fontWeight: 800,
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
+                padding: "12px 24px",
+                fontSize: "15px",
+                fontWeight: 800,
               }}
             >
               <span>Apply for SSIP 2.0 Grant</span>

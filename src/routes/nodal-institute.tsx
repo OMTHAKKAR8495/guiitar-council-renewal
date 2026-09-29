@@ -820,14 +820,14 @@ export function NodalInstitutePage() {
               href="https://bit.ly/guiitar"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary"
+              className="btn btn-dark"
               style={{
-                background: "#ffffff",
-                color: "#064e3b",
-                fontWeight: 800,
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
+                padding: "12px 24px",
+                fontSize: "15px",
+                fontWeight: 800,
               }}
             >
               <span>Apply for Nodal Support</span>
