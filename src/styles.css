@@ -3906,6 +3906,16 @@ section {
 }
 
 /* Programs & Support Section Styles */
+.program-cta-btn {
+  white-space: normal !important;
+  word-break: normal !important;
+  text-wrap: balance !important;
+  height: auto !important;
+  min-height: 46px !important;
+  padding: 10px 16px !important;
+  line-height: 1.35 !important;
+}
+
 .program-support-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 16px 32px -4px rgba(0, 0, 0, 0.08) !important;

@@ -247,25 +247,32 @@ export function ProgramsSupportSection() {
                 </div>
 
                 {/* Button Action */}
-                <div>
+                <div style={{ marginTop: "auto" }}>
                   <a
                     href={prog.ctaLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary"
+                    className="btn btn-primary program-cta-btn"
                     style={{
                       width: "100%",
+                      display: "flex",
+                      alignItems: "center",
                       justifyContent: "center",
                       gap: "8px",
-                      padding: "12px 18px",
+                      padding: "11px 16px",
                       borderRadius: "12px",
-                      fontSize: "13.5px",
+                      fontSize: "13px",
                       fontWeight: 700,
                       textAlign: "center",
+                      whiteSpace: "normal",
+                      wordBreak: "break-word",
+                      lineHeight: "1.35",
+                      minHeight: "46px",
+                      boxSizing: "border-box",
                     }}
                   >
-                    <span>{prog.ctaText}</span>
-                    <ArrowUpRight className="w-4 h-4 flex-shrink-0" />
+                    <span style={{ flex: "1 1 auto" }}>{prog.ctaText}</span>
+                    <ArrowUpRight className="w-4 h-4 flex-shrink-0" style={{ marginLeft: "2px" }} />
                   </a>
                 </div>
               </div>
