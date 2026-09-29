@@ -1411,10 +1411,18 @@ export function HomePage() {
                 </ul>
               </div>
 
-              <ButtonLink to="/contact" size="md">
-                <span>Request Lab Access / Book Facility</span>
-                <ArrowRight className="w-4 h-4" />
-              </ButtonLink>
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                <a
+                  href="https://forms.gle/EM81FwAN5i4S3FmcA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+                >
+                  <span>Book Lab / Request Access</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
 
             <div>

@@ -26,6 +26,8 @@ import {
   Award,
   CheckCircle2,
   Lock,
+  FlaskConical,
+  ExternalLink,
 } from "lucide-react";
 import { GuiitarFullLogo, StickyBackgroundWatermark, GuiitarEmblem } from "./GuiitarBrand";
 import { ThemeToggle } from "@/lib/theme";
@@ -153,8 +155,14 @@ export const MEGA_MENU: MegaMenuCategory[] = [
       },
       {
         title: "Prototyping Labs & Facilities",
-        desc: "Specs, equipment lists & lab access procedures",
+        desc: "Specs, equipment lists & Param Shavak supercompute",
         to: "/innovation",
+      },
+      {
+        title: "Book Prototyping Lab",
+        desc: "Online requisition form for equipment & slots",
+        to: "https://forms.gle/EM81FwAN5i4S3FmcA",
+        badge: "Book Lab",
       },
       {
         title: "Patents & Disclosures",
@@ -516,21 +524,9 @@ export function Header() {
                           {cat.label} Overview
                         </div>
                         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                          {cat.items.map((item) => (
-                            <Link
-                              key={item.title}
-                              to={item.to}
-                              className="mega-menu-link"
-                              style={{
-                                display: "flex",
-                                alignItems: "flex-start",
-                                gap: "10px",
-                                padding: "10px 12px",
-                                borderRadius: "10px",
-                                textDecoration: "none",
-                                transition: "background 0.2s",
-                              }}
-                            >
+                          {cat.items.map((item) => {
+                            const isExternal = item.to.startsWith("http");
+                            const content = (
                               <div style={{ flexGrow: 1 }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                                   <span
@@ -543,8 +539,8 @@ export function Header() {
                                       style={{
                                         fontSize: "10.5px",
                                         fontWeight: 700,
-                                        background: "#eff6ff",
-                                        color: "#2563eb",
+                                        background: isExternal ? "#ecfdf5" : "#eff6ff",
+                                        color: isExternal ? "#047857" : "#2563eb",
                                         padding: "1px 6px",
                                         borderRadius: "4px",
                                       }}
@@ -564,8 +560,47 @@ export function Header() {
                                   {item.desc}
                                 </p>
                               </div>
-                            </Link>
-                          ))}
+                            );
+
+                            return isExternal ? (
+                              <a
+                                key={item.title}
+                                href={item.to}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mega-menu-link"
+                                style={{
+                                  display: "flex",
+                                  alignItems: "flex-start",
+                                  gap: "10px",
+                                  padding: "10px 12px",
+                                  borderRadius: "10px",
+                                  textDecoration: "none",
+                                  transition: "background 0.2s",
+                                }}
+                              >
+                                {content}
+                                <ExternalLink className="w-3.5 h-3.5 opacity-40 mt-1 flex-shrink-0" />
+                              </a>
+                            ) : (
+                              <Link
+                                key={item.title}
+                                to={item.to}
+                                className="mega-menu-link"
+                                style={{
+                                  display: "flex",
+                                  alignItems: "flex-start",
+                                  gap: "10px",
+                                  padding: "10px 12px",
+                                  borderRadius: "10px",
+                                  textDecoration: "none",
+                                  transition: "background 0.2s",
+                                }}
+                              >
+                                {content}
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
 
@@ -656,6 +691,31 @@ export function Header() {
               <CalendarDays className="w-4 h-4" />
               <span>Events</span>
             </Link>
+
+            <a
+              href="https://forms.gle/EM81FwAN5i4S3FmcA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline btn-sm nav-action-btn-sm"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                borderColor: "#a7f3d0",
+                background: "#ecfdf5",
+                color: "#047857",
+                fontWeight: 700,
+                fontSize: "13px",
+                padding: "6px 14px",
+                borderRadius: "9999px",
+                textDecoration: "none",
+              }}
+              title="Book Prototyping Lab & Testing Facility Slots"
+            >
+              <FlaskConical className="w-3.5 h-3.5" style={{ color: "#059669" }} />
+              <span>Book Lab</span>
+              <ExternalLink className="w-3 h-3 opacity-60" />
+            </a>
 
             <ThemeToggle variant="dropdown" />
 
@@ -822,7 +882,41 @@ export function Header() {
                           <div className="mobile-nav-subitems">
                             {cat.items.map((item) => {
                               const isItemActive = path === item.to;
-                              return (
+                              const isExternal = item.to.startsWith("http");
+                              const content = (
+                                <div style={{ flexGrow: 1 }}>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: "6px",
+                                      flexWrap: "wrap",
+                                    }}
+                                  >
+                                    <span className="mobile-nav-subitem-title">
+                                      {item.title}
+                                    </span>
+                                    {item.badge && (
+                                      <span className="mobile-nav-badge">{item.badge}</span>
+                                    )}
+                                  </div>
+                                  <p className="mobile-nav-subitem-desc">{item.desc}</p>
+                                </div>
+                              );
+
+                              return isExternal ? (
+                                <a
+                                  key={item.title}
+                                  href={item.to}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={() => setOpen(false)}
+                                  className="mobile-nav-subitem-link"
+                                >
+                                  {content}
+                                  <ExternalLink className="w-3.5 h-3.5 opacity-50 flex-shrink-0 mt-1" />
+                                </a>
+                              ) : (
                                 <Link
                                   key={item.title}
                                   to={item.to}
@@ -831,24 +925,7 @@ export function Header() {
                                     isItemActive ? "active" : ""
                                   }`}
                                 >
-                                  <div style={{ flexGrow: 1 }}>
-                                    <div
-                                      style={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: "6px",
-                                        flexWrap: "wrap",
-                                      }}
-                                    >
-                                      <span className="mobile-nav-subitem-title">
-                                        {item.title}
-                                      </span>
-                                      {item.badge && (
-                                        <span className="mobile-nav-badge">{item.badge}</span>
-                                      )}
-                                    </div>
-                                    <p className="mobile-nav-subitem-desc">{item.desc}</p>
-                                  </div>
+                                  {content}
                                   <ArrowRight className="w-3.5 h-3.5 opacity-30 flex-shrink-0 mt-1" />
                                 </Link>
                               );
@@ -881,6 +958,25 @@ export function Header() {
                 <div className="mobile-nav-divider">
                   <span>Direct Portals</span>
                 </div>
+
+                <a
+                  href="https://forms.gle/EM81FwAN5i4S3FmcA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="mobile-nav-direct-link"
+                  style={{ background: "#ecfdf5", border: "1px solid #a7f3d0" }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div className="mobile-nav-icon-wrap" style={{ color: "#047857", background: "#ffffff" }}>
+                      <FlaskConical className="w-4 h-4" />
+                    </div>
+                    <span style={{ fontWeight: 700, color: "#065f46" }}>Book Prototyping Lab</span>
+                  </div>
+                  <span className="mobile-nav-badge" style={{ background: "#059669", color: "#ffffff" }}>
+                    Google Form ↗
+                  </span>
+                </a>
 
                 <Link
                   to="/apply"
@@ -1088,6 +1184,15 @@ export function Footer() {
           <div className="footer-links">
             <Link to="/about">About GUIITAR</Link>
             <Link to="/innovation">Innovation & Labs</Link>
+            <a
+              href="https://forms.gle/EM81FwAN5i4S3FmcA"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "4px", color: "#60a5fa" }}
+            >
+              <span>Book Prototyping Lab</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
             <Link to="/startups">Startup Directory</Link>
             <Link to="/programs">Incubation Programs</Link>
             <Link to="/impact">Impact Dashboard</Link>

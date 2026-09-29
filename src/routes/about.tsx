@@ -440,10 +440,19 @@ function About() {
             ))}
           </div>
 
-          <div className="center spaced">
-            <ButtonLink to="/contact" size="lg">
-              <span>Request Lab Access / Book a Tour</span>
+          <div className="center spaced" style={{ display: "flex", justifyContent: "center", gap: "12px", flexWrap: "wrap" }}>
+            <a
+              href="https://forms.gle/EM81FwAN5i4S3FmcA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary btn-lg"
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+            >
+              <span>Book Lab Access (Google Form)</span>
               <ArrowRight className="w-4 h-4" />
+            </a>
+            <ButtonLink to="/contact" size="lg" variant="outline">
+              <span>Contact Incubation Desk</span>
             </ButtonLink>
           </div>
         </div>
