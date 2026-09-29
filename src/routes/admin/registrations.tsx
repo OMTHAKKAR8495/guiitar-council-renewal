@@ -308,17 +308,11 @@ export function AdminRegistrationsPage() {
     handleOpenPrintPreview(item);
   };
 
-  const handleDirectBrowserPrint = () => {
-    window.print();
-  };
-
-  const handleDownloadHTMLDocument = () => {
-    if (!printTarget) return;
-
-    let contentHtml = "";
+  const getDocumentHTML = (target: "all" | RegistrationItem) => {
     let docTitle = "GUIITAR_Council_Document";
+    let contentHtml = "";
 
-    if (printTarget === "all") {
+    if (target === "all") {
       docTitle = `GUIITAR_Attendance_Roster_${new Date().toISOString().split("T")[0]}`;
       const totalEnrolled = filteredRegistrations.length;
       const attendedCount = filteredRegistrations.filter((r) => r.status === "Attended").length;
@@ -358,12 +352,12 @@ export function AdminRegistrationsPage() {
         .join("");
 
       contentHtml = `
-        <div style="padding: 20px; color: #0f172a; font-family: 'Inter', -apple-system, sans-serif;">
-          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #2563eb; padding-bottom: 14px; margin-bottom: 18px;">
+        <div style="padding: 16px 20px; color: #0f172a;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #2563eb; padding-bottom: 12px; margin-bottom: 16px;">
             <div style="display: flex; align-items: center; gap: 14px;">
-              <img src="/guiitar-council-logo.png" alt="GUIITAR Council" style="height: 50px; width: auto; object-fit: contain;" />
+              <img src="/guiitar-council-logo.png" alt="GUIITAR Council" style="height: 48px; width: auto; object-fit: contain;" />
               <div>
-                <h1 style="font-size: 19px; font-weight: 800; margin: 0; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.5px;">
+                <h1 style="font-size: 18px; font-weight: 800; margin: 0; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.5px;">
                   GUIITAR COUNCIL — GSFC UNIVERSITY
                 </h1>
                 <p style="font-size: 12px; color: #475569; margin: 2px 0 0; font-weight: 600;">
@@ -378,26 +372,26 @@ export function AdminRegistrationsPage() {
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px;">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;">
             <div style="border: 1px solid #bfdbfe; background: #eff6ff; padding: 8px 12px; border-radius: 8px;">
               <span style="font-size: 10px; color: #1e40af; font-weight: 700; text-transform: uppercase;">Total Enrolled</span>
-              <div style="font-size: 17px; font-weight: 800; color: #1e3a8a;">${totalEnrolled}</div>
+              <div style="font-size: 16px; font-weight: 800; color: #1e3a8a;">${totalEnrolled}</div>
             </div>
             <div style="border: 1px solid #a7f3d0; background: #ecfdf5; padding: 8px 12px; border-radius: 8px;">
               <span style="font-size: 10px; color: #065f46; font-weight: 700; text-transform: uppercase;">Verified Attended</span>
-              <div style="font-size: 17px; font-weight: 800; color: #047857;">${attendedCount}</div>
+              <div style="font-size: 16px; font-weight: 800; color: #047857;">${attendedCount}</div>
             </div>
             <div style="border: 1px solid #fde68a; background: #fef3c7; padding: 8px 12px; border-radius: 8px;">
               <span style="font-size: 10px; color: #92400e; font-weight: 700; text-transform: uppercase;">Upcoming / Registered</span>
-              <div style="font-size: 17px; font-weight: 800; color: #b45309;">${registeredCount}</div>
+              <div style="font-size: 16px; font-weight: 800; color: #b45309;">${registeredCount}</div>
             </div>
             <div style="border: 1px solid #e2e8f0; background: #f8fafc; padding: 8px 12px; border-radius: 8px;">
               <span style="font-size: 10px; color: #475569; font-weight: 700; text-transform: uppercase;">Attendance Rate</span>
-              <div style="font-size: 17px; font-weight: 800; color: #0f172a;">${attendancePct}%</div>
+              <div style="font-size: 16px; font-weight: 800; color: #0f172a;">${attendancePct}%</div>
             </div>
           </div>
 
-          <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 24px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 20px;">
             <thead>
               <tr style="background: #1e3a8a; color: #ffffff; text-align: left;">
                 <th style="padding: 7px 8px; border: 1px solid #1e3a8a; text-align: center; width: 30px;">#</th>
@@ -428,10 +422,10 @@ export function AdminRegistrationsPage() {
         </div>
       `;
     } else {
-      const item = printTarget;
+      const item = target;
       docTitle = `GUIITAR_Pass_${item.ticketId}`;
       contentHtml = `
-        <div style="padding: 24px; max-width: 620px; margin: 0 auto; color: #0f172a; font-family: 'Inter', -apple-system, sans-serif;">
+        <div style="padding: 24px; max-width: 620px; margin: 0 auto; color: #0f172a;">
           <div style="border: 2px solid #2563eb; border-radius: 14px; overflow: hidden; background: #ffffff;">
             <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: #ffffff; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;">
               <div style="display: flex; align-items: center; gap: 12px;">
@@ -506,25 +500,28 @@ export function AdminRegistrationsPage() {
       `;
     }
 
-    const fullHtml = `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
   <title>${docTitle}</title>
   <style>
-    @page { size: A4 portrait; margin: 10mm 12mm; }
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm;
+    }
     *, *::before, *::after {
       box-sizing: border-box;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
       color-adjust: exact !important;
     }
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: #0f172a;
       background: #ffffff;
+      color: #0f172a;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       font-size: 11px;
       line-height: 1.4;
     }
@@ -534,16 +531,41 @@ export function AdminRegistrationsPage() {
   ${contentHtml}
 </body>
 </html>`;
+  };
 
-    const blob = new Blob([fullHtml], { type: "text/html;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", `${docTitle}.html`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+  const printDocumentDirectly = (target: "all" | RegistrationItem | null) => {
+    if (!target) return;
+    try {
+      const htmlContent = getDocumentHTML(target);
+      const printWin = window.open("", "_blank", "width=900,height=900");
+      if (printWin) {
+        printWin.document.open();
+        printWin.document.write(htmlContent);
+        printWin.document.close();
+        setTimeout(() => {
+          try {
+            printWin.focus();
+            printWin.print();
+            printWin.close();
+          } catch (e) {
+            console.error("Popup print error:", e);
+          }
+        }, 300);
+        return;
+      }
+    } catch (err) {
+      console.error("Print window open error:", err);
+    }
+
+    // Fallback: in-page print
+    setPrintTarget(target);
+    setTimeout(() => {
+      window.print();
+    }, 100);
+  };
+
+  const handleDirectBrowserPrint = () => {
+    printDocumentDirectly(printTarget);
   };
 
   const clearAllFilters = () => {
@@ -1764,6 +1786,8 @@ export function AdminRegistrationsPage() {
       {/* INTERACTIVE PRINT PREVIEW MODAL */}
       {previewModalOpen && printTarget && (
         <div
+          className="print-preview-modal-backdrop no-print"
+          role="dialog"
           style={{
             position: "fixed",
             inset: 0,

@@ -3798,7 +3798,7 @@ section {
 @media print {
   @page {
     size: A4 portrait;
-    margin: 10mm 12mm;
+    margin: 8mm 10mm;
   }
 
   *, *::before, *::after {
@@ -3812,6 +3812,8 @@ section {
     color: #0f172a !important;
     margin: 0 !important;
     padding: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   /* Hide navigation, sidebar, headers, backdrops, modals during browser print */
@@ -3821,39 +3823,45 @@ section {
   .page-background-watermark,
   .no-print,
   nav,
-  header.header,
-  footer.footer,
-  aside,
   header,
+  footer,
+  aside,
   .admin-header,
   .admin-content-card,
+  .admin-stat-card,
+  .admin-table-container,
   .modal-backdrop,
+  .print-preview-modal-backdrop,
   [role="dialog"] {
     display: none !important;
+    visibility: hidden !important;
   }
 
-  .admin-workspace-wrapper {
+  .admin-workspace-wrapper,
+  .admin-main {
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
-  }
-
-  .admin-main {
-    padding: 0 !important;
+    display: block !important;
+    background: transparent !important;
+    box-shadow: none !important;
   }
 
   /* Color Print Document specifics */
   #printable-color-sheet {
     display: block !important;
-    position: relative !important;
+    position: static !important;
     width: 100% !important;
     background: #ffffff !important;
     color: #0f172a !important;
     visibility: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .print-only {
     display: block !important;
+    visibility: visible !important;
   }
 }
 
