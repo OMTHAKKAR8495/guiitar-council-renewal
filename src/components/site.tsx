@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useState, useRef, useEffect, type ReactNode, type CSSProperties } from "react";
 import {
   Menu,
   X,
@@ -315,18 +315,20 @@ export function ButtonLink({
   variant = "primary",
   size = "md",
   className = "",
+  style,
 }: {
   to: string;
   children: ReactNode;
   variant?: "primary" | "outline" | "dark" | "glass";
   size?: "sm" | "md" | "lg";
   className?: string;
+  style?: CSSProperties;
 }) {
   const variantClass = `btn-${variant}`;
   const sizeClass = size === "sm" ? "btn-sm" : size === "lg" ? "btn-lg" : "";
 
   return (
-    <Link to={to} className={`btn ${variantClass} ${sizeClass} ${className}`.trim()}>
+    <Link to={to} className={`btn ${variantClass} ${sizeClass} ${className}`.trim()} style={style}>
       {children}
     </Link>
   );

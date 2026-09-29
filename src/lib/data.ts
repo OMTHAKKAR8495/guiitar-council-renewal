@@ -736,7 +736,7 @@ export interface MentorItem {
   id: string;
   name: string;
   designation: string;
-  domain: "Technology" | "Business" | "Finance" | "Legal & IPR" | "Research" | "Industry";
+  domain: "Technology" | "Business" | "Finance" | "Legal & IPR" | "Research" | "Industry" | "Governance";
   organization: string;
   experience: string;
   expertise: string[];

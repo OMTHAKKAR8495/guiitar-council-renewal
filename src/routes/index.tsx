@@ -136,7 +136,7 @@ export function HomePage() {
 
   // 6. Mentor Network Domain Filter
   const [mentorDomain, setMentorDomain] = useState<string>("All");
-  const mentorDomains = ["All", "Technology", "Business", "Research", "Legal & IPR", "Industry"];
+  const mentorDomains = ["All", "Governance", "Technology", "Business", "Research", "Legal & IPR", "Industry"];
   const filteredMentors = useMemo(() => {
     if (mentorDomain === "All") return MENTOR_NETWORK;
     return MENTOR_NETWORK.filter((m) => m.domain === mentorDomain);
