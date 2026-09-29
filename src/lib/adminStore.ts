@@ -1023,6 +1023,32 @@ const INITIAL_FUNDING: FundingScheme[] = [
 
 const INITIAL_RESOURCES: ResourceDoc[] = [
   {
+    id: "doc-startup-policy",
+    title: "GUIITAR Council Startup Policy & Procedures",
+    category: "Policy Document",
+    format: "PDF",
+    size: "1.2 MB",
+    updated: "Sep 2026",
+    description:
+      "Official Standard Operating Procedures (SOP) governing eligibility, incubation stages (Spark-up, Grooming, Incubation, Graduation), seed loan and funding norms.",
+    downloads: 540,
+    link: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_a36d4d47e2e74717acd42bab3ced339e.pdf",
+    isPublic: true,
+  },
+  {
+    id: "doc-ipr-policy",
+    title: "GSFC University Intellectual Property Rights (IPR) Policy",
+    category: "Policy Document",
+    format: "PDF",
+    size: "3.6 MB",
+    updated: "Sep 2026",
+    description:
+      "Comprehensive 46-page university policy approved by President, covering patent/trademark/copyright ownership, 70:30 revenue sharing, and IDF protocols.",
+    downloads: 480,
+    link: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_87cd494308f14eae95f42e1ab0a01910.pdf",
+    isPublic: true,
+  },
+  {
     id: "doc-ssip-guidelines",
     title: "SSIP 2.0 Prototyping Grant Policy & Guidelines",
     category: "Policy Document",

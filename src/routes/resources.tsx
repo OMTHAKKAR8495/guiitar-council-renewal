@@ -62,6 +62,7 @@ function Resources() {
       date: `Updated ${d.updated}`,
       format: d.format,
       size: d.size,
+      link: d.link,
     }));
   }, [docsList]);
 
@@ -73,8 +74,11 @@ function Resources() {
     return matchCat && matchQuery;
   });
 
-  const handleDownload = (title: string) => {
-    setDownloaded(title);
+  const handleDownload = (doc: { title: string; link?: string }) => {
+    setDownloaded(doc.title);
+    if (doc.link && doc.link !== "#") {
+      window.open(doc.link, "_blank", "noopener,noreferrer");
+    }
     setTimeout(() => setDownloaded(null), 3000);
   };
 
@@ -153,7 +157,7 @@ function Resources() {
                   <span className="date">{doc.date}</span>
                   <button
                     className="btn btn-primary btn-sm"
-                    onClick={() => handleDownload(doc.title)}
+                    onClick={() => handleDownload(doc)}
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>{downloaded === doc.title ? "Downloaded!" : "Download"}</span>
