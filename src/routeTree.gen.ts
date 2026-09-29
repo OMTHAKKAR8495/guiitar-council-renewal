@@ -29,6 +29,7 @@ import { Route as AdminAnalyticsRouteImport } from './routes/admin/analytics'
 import { Route as AdminApplicationsRouteImport } from './routes/admin/applications'
 import { Route as AdminAuditLogRouteImport } from './routes/admin/audit-log'
 import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
+import { Route as AdminDatabaseRouteImport } from './routes/admin/database'
 import { Route as AdminEventsRouteImport } from './routes/admin/events'
 import { Route as AdminFaqsRouteImport } from './routes/admin/faqs'
 import { Route as AdminFundingRouteImport } from './routes/admin/funding'
@@ -147,6 +148,11 @@ const AdminDashboardRoute = AdminDashboardRouteImport.update({
   path: '/admin/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDatabaseRoute = AdminDatabaseRouteImport.update({
+  id: '/admin/database',
+  path: '/admin/database',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminEventsRoute = AdminEventsRouteImport.update({
   id: '/admin/events',
   path: '/admin/events',
@@ -253,6 +259,7 @@ export interface FileRoutesByFullPath {
   '/admin/applications': typeof AdminApplicationsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/database': typeof AdminDatabaseRoute
   '/admin/events': typeof AdminEventsRoute
   '/admin/faqs': typeof AdminFaqsRoute
   '/admin/funding': typeof AdminFundingRoute
@@ -292,6 +299,7 @@ export interface FileRoutesByTo {
   '/admin/applications': typeof AdminApplicationsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/database': typeof AdminDatabaseRoute
   '/admin/events': typeof AdminEventsRoute
   '/admin/faqs': typeof AdminFaqsRoute
   '/admin/funding': typeof AdminFundingRoute
@@ -332,6 +340,7 @@ export interface FileRoutesById {
   '/admin/applications': typeof AdminApplicationsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/database': typeof AdminDatabaseRoute
   '/admin/events': typeof AdminEventsRoute
   '/admin/faqs': typeof AdminFaqsRoute
   '/admin/funding': typeof AdminFundingRoute
@@ -373,6 +382,7 @@ export interface FileRouteTypes {
     | '/admin/applications'
     | '/admin/audit-log'
     | '/admin/dashboard'
+    | '/admin/database'
     | '/admin/events'
     | '/admin/faqs'
     | '/admin/funding'
@@ -412,6 +422,7 @@ export interface FileRouteTypes {
     | '/admin/applications'
     | '/admin/audit-log'
     | '/admin/dashboard'
+    | '/admin/database'
     | '/admin/events'
     | '/admin/faqs'
     | '/admin/funding'
@@ -451,6 +462,7 @@ export interface FileRouteTypes {
     | '/admin/applications'
     | '/admin/audit-log'
     | '/admin/dashboard'
+    | '/admin/database'
     | '/admin/events'
     | '/admin/faqs'
     | '/admin/funding'
@@ -491,6 +503,7 @@ export interface RootRouteChildren {
   AdminApplicationsRoute: typeof AdminApplicationsRoute
   AdminAuditLogRoute: typeof AdminAuditLogRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminDatabaseRoute: typeof AdminDatabaseRoute
   AdminEventsRoute: typeof AdminEventsRoute
   AdminFaqsRoute: typeof AdminFaqsRoute
   AdminFundingRoute: typeof AdminFundingRoute
@@ -652,6 +665,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/database': {
+      id: '/admin/database'
+      path: '/admin/database'
+      fullPath: '/admin/database'
+      preLoaderRoute: typeof AdminDatabaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/events': {
       id: '/admin/events'
       path: '/admin/events'
@@ -806,6 +826,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminApplicationsRoute: AdminApplicationsRoute,
   AdminAuditLogRoute: AdminAuditLogRoute,
   AdminDashboardRoute: AdminDashboardRoute,
+  AdminDatabaseRoute: AdminDatabaseRoute,
   AdminEventsRoute: AdminEventsRoute,
   AdminFaqsRoute: AdminFaqsRoute,
   AdminFundingRoute: AdminFundingRoute,

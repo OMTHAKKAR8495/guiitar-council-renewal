@@ -32,6 +32,7 @@ import {
   FileSpreadsheet,
   GraduationCap,
   Ticket,
+  Database,
 } from "lucide-react";
 import { useAuth, getStoredSession } from "@/lib/authStore";
 import { AdminDataStore, type AdminNotification } from "@/lib/adminStore";
@@ -93,6 +94,7 @@ export function AdminLayout({
       title: "CORE",
       items: [
         { label: "Dashboard", icon: LayoutDashboard, href: "/admin/dashboard" },
+        { label: "Neon Tables Hub", icon: Database, href: "/admin/database", badge: "19 Tables" },
         { label: "Analytics", icon: BarChart3, href: "/admin/analytics" },
       ],
     },
