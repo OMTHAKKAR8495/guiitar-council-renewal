@@ -29,6 +29,7 @@ import {
 } from "lucide-react";
 import { GuiitarFullLogo, StickyBackgroundWatermark, GuiitarEmblem } from "./GuiitarBrand";
 import { ThemeToggle } from "@/lib/theme";
+import { WelcomeModal } from "./WelcomeModal";
 
 export interface MegaMenuItem {
   title: string;
@@ -1175,6 +1176,7 @@ export function Footer() {
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <>
+      <WelcomeModal />
       <Header />
       <main className="page-content" style={{ position: "relative", zIndex: 1, minHeight: "80vh" }}>
         {children}

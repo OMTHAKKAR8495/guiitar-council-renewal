@@ -3871,4 +3871,39 @@ section {
   }
 }
 
+/* Welcome Modal Styling & Dark Mode support */
+.dark .welcome-card-theme {
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important;
+  border-color: rgba(51, 65, 85, 0.8) !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .welcome-card-theme h2 {
+  color: #f8fafc !important;
+}
+
+.dark .welcome-card-theme p {
+  color: #94a3b8 !important;
+}
+
+.dark .welcome-card-theme .welcome-highlight-box {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.dark .welcome-card-theme .welcome-highlight-title {
+  color: #f1f5f9 !important;
+}
+
+.dark .welcome-card-theme .welcome-highlight-desc {
+  color: #94a3b8 !important;
+}
+
+.dark .welcome-card-theme .welcome-footer-strip {
+  background: #0b1120 !important;
+  border-top-color: #1e293b !important;
+  color: #94a3b8 !important;
+}
+
+
 
