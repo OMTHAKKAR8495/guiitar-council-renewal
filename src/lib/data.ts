@@ -745,6 +745,21 @@ export interface MentorItem {
 
 export const MENTOR_NETWORK: MentorItem[] = [
   {
+    id: "m-pk-taneja",
+    name: "Shri P. K. Taneja, IAS (Retd.)",
+    designation: "President, GSFC University & Chairman, GUIITAR Council",
+    domain: "Governance",
+    organization: "GSFC University",
+    experience: "Former Additional Chief Secretary (Home / Forest & Env), Govt. of Gujarat",
+    avatar: "/leaders/pk-taneja.png",
+    expertise: [
+      "Public Policy & Governance",
+      "Institutional Leadership",
+      "Strategic Planning",
+      "Innovation Ecosystems",
+    ],
+  },
+  {
     id: "m-gr-sinha",
     name: "Prof. G. R. Sinha",
     designation: "Provost, GSFC University & CEO, GUIITAR Council",

@@ -793,6 +793,23 @@ const INITIAL_EVENTS: EventItem[] = [
 
 const INITIAL_MENTORS: MentorItem[] = [
   {
+    id: "men-0",
+    name: "Shri P. K. Taneja, IAS (Retd.)",
+    designation: "President, GSFC University & Chairman, GUIITAR Council",
+    role: "President & Chairman, GUIITAR",
+    domain: "Governance",
+    organization: "GSFC University",
+    experience: "Former Additional Chief Secretary, Govt. of Gujarat",
+    expertise: [
+      "Public Policy & Governance",
+      "Institutional Leadership",
+      "Strategic Planning",
+      "Innovation Ecosystems",
+    ],
+    avatar: "/leaders/pk-taneja.png",
+    status: "Active",
+  },
+  {
     id: "men-1",
     name: "Prof. G. R. Sinha",
     designation: "Provost, GSFC University & CEO, GUIITAR Council",
