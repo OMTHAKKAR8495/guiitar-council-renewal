@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles, ArrowUpRight, ShieldCheck, Lightbulb, Building2 } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Lightbulb, Building2, CheckCircle2 } from "lucide-react";
 import { SectionTitle } from "./site";
 
 export interface ProgramSupportCard {
@@ -43,8 +43,8 @@ export const PROGRAMS_SUPPORT_DATA: ProgramSupportCard[] = [
       "Assistance with patent attorneys and legal documentation",
       "Copyright, design registration, and commercial licensing",
     ],
-    ctaText: "Apply for IPR Support",
-    ctaLink: "https://www.guiitarstartupcouncil.org/guiitarcouncil-ipr",
+    ctaText: "Explore IPR Support",
+    ctaLink: "/ipr",
     accentColor: "orange",
   },
   {
@@ -59,8 +59,8 @@ export const PROGRAMS_SUPPORT_DATA: ProgramSupportCard[] = [
       "Institutional validation & market access opportunities",
       "Plug-and-play coworking infrastructure and pilot deployment",
     ],
-    ctaText: "Apply for Start-Up Support under Nodal Institute",
-    ctaLink: "https://www.guiitarstartupcouncil.org/guiitarcouncil-nodalinstitute",
+    ctaText: "Explore Nodal Institute",
+    ctaLink: "/nodal-institute",
     accentColor: "emerald",
   },
 ];
@@ -76,7 +76,18 @@ export function ProgramsSupportSection() {
         position: "relative",
       }}
     >
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+      <div
+        className="container"
+        style={{
+          position: "relative",
+          zIndex: 1,
+          maxWidth: "1360px",
+          width: "100%",
+          padding: "0 24px",
+          margin: "0 auto",
+          boxSizing: "border-box",
+        }}
+      >
         <SectionTitle
           badge="Flagship Institutional Initiatives"
           title="Programs & Support"
@@ -88,9 +99,10 @@ export function ProgramsSupportSection() {
           className="programs-support-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "24px",
-            marginTop: "40px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "28px",
+            marginTop: "48px",
+            alignItems: "stretch",
           }}
         >
           {PROGRAMS_SUPPORT_DATA.map((prog) => {
@@ -119,6 +131,12 @@ export function ProgramsSupportSection() {
                 : prog.accentColor === "orange"
                 ? "linear-gradient(135deg, #c2410c 0%, #ea580c 100%)"
                 : "linear-gradient(135deg, #047857 0%, #10b981 100%)";
+            const buttonBg =
+              prog.accentColor === "blue"
+                ? "#1e40af"
+                : prog.accentColor === "orange"
+                ? "#c2410c"
+                : "#047857";
 
             return (
               <div
@@ -126,14 +144,16 @@ export function ProgramsSupportSection() {
                 className="program-support-card"
                 style={{
                   background: "var(--card-bg, #ffffff)",
-                  borderRadius: "20px",
+                  borderRadius: "22px",
                   border: "1px solid var(--border-color, #e2e8f0)",
-                  padding: "32px 28px",
+                  padding: "36px 30px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
                   boxShadow: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
                   transition: "transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease",
+                  height: "100%",
+                  boxSizing: "border-box",
                 }}
               >
                 <div>
@@ -143,14 +163,14 @@ export function ProgramsSupportSection() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      marginBottom: "20px",
+                      marginBottom: "22px",
                       gap: "12px",
                     }}
                   >
                     <div
                       style={{
-                        width: "48px",
-                        height: "48px",
+                        width: "50px",
+                        height: "50px",
                         borderRadius: "14px",
                         background: iconBg,
                         display: "flex",
@@ -170,7 +190,7 @@ export function ProgramsSupportSection() {
                         fontWeight: 700,
                         textTransform: "uppercase",
                         letterSpacing: "0.05em",
-                        padding: "5px 12px",
+                        padding: "6px 12px",
                         borderRadius: "9999px",
                         background: badgeBg,
                         border: `1px solid ${badgeBorder}`,
@@ -184,11 +204,11 @@ export function ProgramsSupportSection() {
                   {/* Title */}
                   <h3
                     style={{
-                      fontSize: "20px",
+                      fontSize: "21px",
                       fontWeight: 800,
                       color: "var(--text-heading, #0f172a)",
                       lineHeight: "1.35",
-                      marginBottom: "12px",
+                      marginBottom: "14px",
                       letterSpacing: "-0.01em",
                     }}
                   >
@@ -199,9 +219,9 @@ export function ProgramsSupportSection() {
                   <p
                     style={{
                       fontSize: "14px",
-                      lineHeight: "1.6",
+                      lineHeight: "1.65",
                       color: "var(--text-muted, #475569)",
-                      marginBottom: "20px",
+                      marginBottom: "24px",
                     }}
                   >
                     {prog.description}
@@ -212,34 +232,27 @@ export function ProgramsSupportSection() {
                     style={{
                       listStyle: "none",
                       padding: 0,
-                      margin: "0 0 28px 0",
+                      margin: "0 0 32px 0",
                       display: "flex",
                       flexDirection: "column",
-                      gap: "10px",
+                      gap: "12px",
                     }}
                   >
                     {prog.features.map((feat, idx) => (
                       <li
                         key={idx}
                         style={{
-                          fontSize: "13px",
+                          fontSize: "13.5px",
                           lineHeight: "1.5",
                           color: "var(--text-body, #334155)",
                           display: "flex",
                           alignItems: "flex-start",
-                          gap: "8px",
+                          gap: "10px",
                         }}
                       >
-                        <span
-                          style={{
-                            display: "inline-block",
-                            width: "6px",
-                            height: "6px",
-                            borderRadius: "50%",
-                            background: badgeColor,
-                            marginTop: "7px",
-                            flexShrink: 0,
-                          }}
+                        <CheckCircle2
+                          className="w-4 h-4 flex-shrink-0"
+                          style={{ color: badgeColor, marginTop: "2px" }}
                         />
                         <span>{feat}</span>
                       </li>
@@ -248,7 +261,7 @@ export function ProgramsSupportSection() {
                 </div>
 
                 {/* Button Action */}
-                <div style={{ marginTop: "auto" }}>
+                <div style={{ marginTop: "auto", paddingTop: "12px" }}>
                   {prog.ctaLink.startsWith("/") ? (
                     <Link
                       to={prog.ctaLink}
@@ -259,17 +272,20 @@ export function ProgramsSupportSection() {
                         alignItems: "center",
                         justifyContent: "center",
                         gap: "8px",
-                        padding: "11px 16px",
+                        padding: "13px 18px",
                         borderRadius: "12px",
-                        fontSize: "13px",
+                        fontSize: "14px",
                         fontWeight: 700,
                         textAlign: "center",
                         whiteSpace: "normal",
                         wordBreak: "break-word",
                         lineHeight: "1.35",
-                        minHeight: "46px",
+                        minHeight: "48px",
                         boxSizing: "border-box",
                         textDecoration: "none",
+                        background: buttonBg,
+                        borderColor: buttonBg,
+                        color: "#ffffff",
                       }}
                     >
                       <span style={{ flex: "1 1 auto" }}>{prog.ctaText}</span>
@@ -287,17 +303,20 @@ export function ProgramsSupportSection() {
                         alignItems: "center",
                         justifyContent: "center",
                         gap: "8px",
-                        padding: "11px 16px",
+                        padding: "13px 18px",
                         borderRadius: "12px",
-                        fontSize: "13px",
+                        fontSize: "14px",
                         fontWeight: 700,
                         textAlign: "center",
                         whiteSpace: "normal",
                         wordBreak: "break-word",
                         lineHeight: "1.35",
-                        minHeight: "46px",
+                        minHeight: "48px",
                         boxSizing: "border-box",
                         textDecoration: "none",
+                        background: buttonBg,
+                        borderColor: buttonBg,
+                        color: "#ffffff",
                       }}
                     >
                       <span style={{ flex: "1 1 auto" }}>{prog.ctaText}</span>

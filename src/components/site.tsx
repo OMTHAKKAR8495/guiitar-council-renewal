@@ -225,14 +225,14 @@ export const MEGA_MENU: MegaMenuCategory[] = [
         to: "/ssip",
       },
       {
-        title: "Gujarat Industrial Policy 2020",
-        desc: "Milestone grants up to ₹30 Lakhs for growth ventures",
-        to: "/funding",
+        title: "Nodal Institute (Policy 2020)",
+        desc: "Seed capital up to ₹30 Lakhs & monthly sustenance",
+        to: "/nodal-institute",
       },
       {
         title: "IPR & Patent Support Grant",
         desc: "Up to ₹1.5 Lakhs reimbursement per patent filing",
-        to: "/funding",
+        to: "/ipr",
       },
       {
         title: "Application Process & Checklist",
@@ -1100,8 +1100,8 @@ export function Footer() {
           <div className="footer-links">
             <Link to="/funding">Funding Navigator</Link>
             <Link to="/ssip">SSIP 2.0 Grant</Link>
-            <Link to="/funding">Gujarat Policy 2020</Link>
-            <Link to="/funding">IPR Support Grant</Link>
+            <Link to="/nodal-institute">Nodal Institute (Policy 2020)</Link>
+            <Link to="/ipr">IPR Support Centre</Link>
             <Link to="/apply">Submit Innovation</Link>
           </div>
         </div>

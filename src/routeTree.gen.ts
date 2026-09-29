@@ -19,6 +19,8 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FundingRouteImport } from './routes/funding'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as InnovationRouteImport } from './routes/innovation'
+import { Route as IprRouteImport } from './routes/ipr'
+import { Route as NodalInstituteRouteImport } from './routes/nodal-institute'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as ResourcesRouteImport } from './routes/resources'
@@ -96,6 +98,16 @@ const ImpactRoute = ImpactRouteImport.update({
 const InnovationRoute = InnovationRouteImport.update({
   id: '/innovation',
   path: '/innovation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IprRoute = IprRouteImport.update({
+  id: '/ipr',
+  path: '/ipr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NodalInstituteRoute = NodalInstituteRouteImport.update({
+  id: '/nodal-institute',
+  path: '/nodal-institute',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartnerRoute = PartnerRouteImport.update({
@@ -250,6 +262,8 @@ export interface FileRoutesByFullPath {
   '/funding': typeof FundingRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
+  '/ipr': typeof IprRoute
+  '/nodal-institute': typeof NodalInstituteRoute
   '/partner': typeof PartnerRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
@@ -290,6 +304,8 @@ export interface FileRoutesByTo {
   '/funding': typeof FundingRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
+  '/ipr': typeof IprRoute
+  '/nodal-institute': typeof NodalInstituteRoute
   '/partner': typeof PartnerRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
@@ -331,6 +347,8 @@ export interface FileRoutesById {
   '/funding': typeof FundingRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
+  '/ipr': typeof IprRoute
+  '/nodal-institute': typeof NodalInstituteRoute
   '/partner': typeof PartnerRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
@@ -373,6 +391,8 @@ export interface FileRouteTypes {
     | '/funding'
     | '/impact'
     | '/innovation'
+    | '/ipr'
+    | '/nodal-institute'
     | '/partner'
     | '/programs'
     | '/resources'
@@ -413,6 +433,8 @@ export interface FileRouteTypes {
     | '/funding'
     | '/impact'
     | '/innovation'
+    | '/ipr'
+    | '/nodal-institute'
     | '/partner'
     | '/programs'
     | '/resources'
@@ -453,6 +475,8 @@ export interface FileRouteTypes {
     | '/funding'
     | '/impact'
     | '/innovation'
+    | '/ipr'
+    | '/nodal-institute'
     | '/partner'
     | '/programs'
     | '/resources'
@@ -494,6 +518,8 @@ export interface RootRouteChildren {
   FundingRoute: typeof FundingRoute
   ImpactRoute: typeof ImpactRoute
   InnovationRoute: typeof InnovationRouteWithChildren
+  IprRoute: typeof IprRoute
+  NodalInstituteRoute: typeof NodalInstituteRoute
   PartnerRoute: typeof PartnerRoute
   ProgramsRoute: typeof ProgramsRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -593,6 +619,20 @@ declare module '@tanstack/react-router' {
       path: '/innovation'
       fullPath: '/innovation'
       preLoaderRoute: typeof InnovationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ipr': {
+      id: '/ipr'
+      path: '/ipr'
+      fullPath: '/ipr'
+      preLoaderRoute: typeof IprRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nodal-institute': {
+      id: '/nodal-institute'
+      path: '/nodal-institute'
+      fullPath: '/nodal-institute'
+      preLoaderRoute: typeof NodalInstituteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partner': {
@@ -817,6 +857,8 @@ const rootRouteChildren: RootRouteChildren = {
   FundingRoute: FundingRoute,
   ImpactRoute: ImpactRoute,
   InnovationRoute: InnovationRouteWithChildren,
+  IprRoute: IprRoute,
+  NodalInstituteRoute: NodalInstituteRoute,
   PartnerRoute: PartnerRoute,
   ProgramsRoute: ProgramsRoute,
   ResourcesRoute: ResourcesRoute,
