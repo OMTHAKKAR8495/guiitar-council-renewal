@@ -1,58 +1,290 @@
-import { FileText, Download, ExternalLink, Handshake, ShieldCheck, Building } from "lucide-react";
+import { FileText, Download, ExternalLink, Handshake, ShieldCheck, Building, Sparkles } from "lucide-react";
 import { SectionTitle } from "./site";
 
-// PLACEHOLDER PARTNERS: Users can easily customize or add their official partner logos/names here
 export interface PartnerLinkageItem {
   id: string;
   name: string;
   category: string;
   description: string;
   badge?: string;
-  logoUrl?: string; // Optional image URL
+  logoType?: "gsfc" | "gujarat-gov" | "ssip" | "nasscom" | "icreate" | "aic" | "custom";
+  logoUrl?: string;
+  logoBg?: string;
 }
 
-export const PLACEHOLDER_ASSOCIATIONS_LINKAGES: PartnerLinkageItem[] = [
+/**
+ * Partner Brand Logo Vector Renderers
+ */
+function PartnerLogoRenderer({ partner }: { partner: PartnerLinkageItem }) {
+  if (partner.logoUrl) {
+    return (
+      <img
+        src={partner.logoUrl}
+        alt={partner.name}
+        style={{
+          maxHeight: "36px",
+          maxWidth: "100%",
+          objectFit: "contain",
+        }}
+      />
+    );
+  }
+
+  switch (partner.logoType) {
+    case "gsfc":
+      return (
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            style={{
+              width: "38px",
+              height: "38px",
+              borderRadius: "8px",
+              background: "linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontWeight: 900,
+              fontSize: "12px",
+              letterSpacing: "0.05em",
+              boxShadow: "0 2px 6px rgba(30, 58, 138, 0.3)",
+            }}
+          >
+            GSFC
+          </div>
+          <div>
+            <div style={{ fontSize: "11px", fontWeight: 800, color: "#1e3a8a", lineHeight: "1.1" }}>
+              GSFC LIMITED
+            </div>
+            <div style={{ fontSize: "9px", color: "#64748b", fontWeight: 600 }}>Fertilizers & Chemicals</div>
+          </div>
+        </div>
+      );
+
+    case "gujarat-gov":
+      return (
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            style={{
+              width: "38px",
+              height: "38px",
+              borderRadius: "8px",
+              background: "linear-gradient(135deg, #991b1b 0%, #ea580c 100%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontWeight: 900,
+              fontSize: "11px",
+              boxShadow: "0 2px 6px rgba(153, 27, 27, 0.3)",
+            }}
+          >
+            GoG
+          </div>
+          <div>
+            <div style={{ fontSize: "11px", fontWeight: 800, color: "#991b1b", lineHeight: "1.1" }}>
+              GOVT OF GUJARAT
+            </div>
+            <div style={{ fontSize: "9px", color: "#64748b", fontWeight: 600 }}>Industries Commissionerate</div>
+          </div>
+        </div>
+      );
+
+    case "ssip":
+      return (
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            style={{
+              width: "38px",
+              height: "38px",
+              borderRadius: "8px",
+              background: "linear-gradient(135deg, #ea580c 0%, #f59e0b 100%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontWeight: 900,
+              fontSize: "12px",
+              letterSpacing: "0.05em",
+              boxShadow: "0 2px 6px rgba(234, 88, 12, 0.3)",
+            }}
+          >
+            SSIP
+          </div>
+          <div>
+            <div style={{ fontSize: "11px", fontWeight: 800, color: "#c2410c", lineHeight: "1.1" }}>
+              SSIP 2.0 GUJARAT
+            </div>
+            <div style={{ fontSize: "9px", color: "#64748b", fontWeight: 600 }}>Education Department</div>
+          </div>
+        </div>
+      );
+
+    case "nasscom":
+      return (
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            style={{
+              width: "38px",
+              height: "38px",
+              borderRadius: "8px",
+              background: "linear-gradient(135deg, #1e40af 0%, #dc2626 100%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontWeight: 900,
+              fontSize: "10px",
+              letterSpacing: "0.04em",
+              boxShadow: "0 2px 6px rgba(30, 64, 175, 0.3)",
+            }}
+          >
+            NASS
+          </div>
+          <div>
+            <div style={{ fontSize: "11px", fontWeight: 800, color: "#1e40af", lineHeight: "1.1" }}>
+              NASSCOM
+            </div>
+            <div style={{ fontSize: "9px", color: "#64748b", fontWeight: 600 }}>Tech Industry Council</div>
+          </div>
+        </div>
+      );
+
+    case "icreate":
+      return (
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            style={{
+              width: "38px",
+              height: "38px",
+              borderRadius: "8px",
+              background: "linear-gradient(135deg, #0284c7 0%, #0d9488 100%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontWeight: 900,
+              fontSize: "11px",
+              boxShadow: "0 2px 6px rgba(2, 132, 199, 0.3)",
+            }}
+          >
+            iCreate
+          </div>
+          <div>
+            <div style={{ fontSize: "11px", fontWeight: 800, color: "#0369a1", lineHeight: "1.1" }}>
+              iCREATE
+            </div>
+            <div style={{ fontSize: "9px", color: "#64748b", fontWeight: 600 }}>Innovation & Incubation</div>
+          </div>
+        </div>
+      );
+
+    case "aic":
+      return (
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            style={{
+              width: "38px",
+              height: "38px",
+              borderRadius: "8px",
+              background: "linear-gradient(135deg, #059669 0%, #0284c7 100%)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontWeight: 900,
+              fontSize: "11px",
+              boxShadow: "0 2px 6px rgba(5, 150, 105, 0.3)",
+            }}
+          >
+            AIC
+          </div>
+          <div>
+            <div style={{ fontSize: "11px", fontWeight: 800, color: "#047857", lineHeight: "1.1" }}>
+              AIC-GISC
+            </div>
+            <div style={{ fontSize: "9px", color: "#64748b", fontWeight: 600 }}>Atal Incubation Center</div>
+          </div>
+        </div>
+      );
+
+    default:
+      return (
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            style={{
+              width: "38px",
+              height: "38px",
+              borderRadius: "8px",
+              background: "#f1f5f9",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#1e3a8a",
+            }}
+          >
+            <Building className="w-4 h-4" />
+          </div>
+          <div style={{ fontSize: "11px", fontWeight: 700, color: "#475569" }}>{partner.name}</div>
+        </div>
+      );
+  }
+}
+
+export const OFFICIAL_ASSOCIATIONS_LINKAGES: PartnerLinkageItem[] = [
   {
     id: "p1",
     name: "GSFC Limited",
     category: "Anchor Industry Partner",
-    description: "Joint industrial research, pilot testing facilities, and chemical incubation support.",
+    description: "Joint industrial research, pilot testing facilities, chemical labs, and startup scale-up mentorship.",
     badge: "Parent Industry",
+    logoType: "gsfc",
+    logoBg: "#eff6ff",
   },
   {
     id: "p2",
     name: "Government of Gujarat — Industries Commissionerate",
-    category: "Government Agency",
-    description: "Nodal Institute recognition, grant disbursement, and state startup incentives.",
+    category: "State Government Agency",
+    description: "Official Nodal Institute recognition, grant disbursements, sustenance allowances, and institutional validation.",
     badge: "State Nodal",
+    logoType: "gujarat-gov",
+    logoBg: "#fef2f2",
   },
   {
     id: "p3",
     name: "SSIP (Education Department, GoG)",
-    category: "Academic Innovation",
-    description: "Student innovation grants, prototyping allowances, and university hub coordination.",
+    category: "Student Innovation Policy",
+    description: "Student innovation grants up to ₹2.5L, proof-of-concept allowances, and state university coordination.",
     badge: "Policy Grant",
+    logoType: "ssip",
+    logoBg: "#fff7ed",
   },
   {
     id: "p4",
-    name: "Partner Organization Placeholder #1",
-    category: "Industry Association",
-    description: "Collaboration on technology transfer, co-incubation, and industry mentorship.",
-    badge: "Placeholder",
+    name: "NASSCOM",
+    category: "National Tech Industry Council",
+    description: "Technology entrepreneurship enablement, deep-tech masterclasses, and global industry linkages.",
+    badge: "Industry Council",
+    logoType: "nasscom",
+    logoBg: "#eff6ff",
   },
   {
     id: "p5",
-    name: "Partner Organization Placeholder #2",
-    category: "Research Institution",
-    description: "Joint patent development, academic labs access, and faculty research linkages.",
-    badge: "Placeholder",
+    name: "iCreate (Autonomous Center of Excellence)",
+    category: "National Innovation Hub",
+    description: "Next-generation tech incubation, investor pitch days, and prototype validation pipelines.",
+    badge: "Incubation Co-Partner",
+    logoType: "icreate",
+    logoBg: "#f0fdfa",
   },
   {
     id: "p6",
-    name: "Partner Organization Placeholder #3",
-    category: "Venture / Ecosystem Linkage",
-    description: "Angel network connections, investor demo days, and market expansion.",
-    badge: "Placeholder",
+    name: "AIC-GISC Foundation",
+    category: "Atal Innovation Mission",
+    description: "NITI Aayog supported incubation network, sector-specific bootcamps, and patent support.",
+    badge: "AIM Partner",
+    logoType: "aic",
+    logoBg: "#ecfdf5",
   },
 ];
 
@@ -207,55 +439,54 @@ export function AssociationLinkagesSection() {
           align="center"
         />
 
-        {/* PARTNER / LINKAGE GRID PLACEHOLDER */}
+        {/* PARTNER / LINKAGE GRID WITH LOGOS */}
         <div
           className="association-linkages-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap: "20px",
-            marginTop: "32px",
+            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+            gap: "24px",
+            marginTop: "36px",
           }}
         >
-          {PLACEHOLDER_ASSOCIATIONS_LINKAGES.map((partner) => (
+          {OFFICIAL_ASSOCIATIONS_LINKAGES.map((partner) => (
             <div
               key={partner.id}
               className="partner-linkage-card"
               style={{
                 background: "var(--card-bg, #ffffff)",
-                borderRadius: "16px",
+                borderRadius: "18px",
                 border: "1px solid var(--border-color, #e2e8f0)",
-                padding: "24px",
+                padding: "24px 26px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
-                transition: "transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease",
+                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.04)",
+                transition: "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
               }}
             >
               <div>
+                {/* Header with Logo Badge and Pill */}
                 <div
                   style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    marginBottom: "12px",
-                    gap: "8px",
+                    marginBottom: "16px",
+                    gap: "12px",
+                    paddingBottom: "14px",
+                    borderBottom: "1px solid var(--border-color, #f1f5f9)",
                   }}
                 >
                   <div
                     style={{
-                      width: "36px",
-                      height: "36px",
+                      padding: "6px 10px",
                       borderRadius: "10px",
-                      background: "#f1f5f9",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#1e3a8a",
+                      background: partner.logoBg || "#f8fafc",
+                      border: "1px solid rgba(0,0,0,0.06)",
                     }}
                   >
-                    <Building className="w-4 h-4" />
+                    <PartnerLogoRenderer partner={partner} />
                   </div>
 
                   {partner.badge && (
@@ -263,19 +494,14 @@ export function AssociationLinkagesSection() {
                       style={{
                         fontSize: "10.5px",
                         fontWeight: 700,
-                        padding: "3px 8px",
+                        padding: "4px 9px",
                         borderRadius: "6px",
-                        background:
-                          partner.badge === "Placeholder"
-                            ? "#fef3c7"
-                            : "#eff6ff",
-                        color:
-                          partner.badge === "Placeholder"
-                            ? "#92400e"
-                            : "#1e40af",
-                        border: `1px solid ${
-                          partner.badge === "Placeholder" ? "#fde68a" : "#bfdbfe"
-                        }`,
+                        background: "#eff6ff",
+                        color: "#1e40af",
+                        border: "1px solid #bfdbfe",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.04em",
+                        whiteSpace: "nowrap",
                       }}
                     >
                       {partner.badge}
@@ -285,10 +511,11 @@ export function AssociationLinkagesSection() {
 
                 <h4
                   style={{
-                    fontSize: "16px",
-                    fontWeight: 700,
+                    fontSize: "17px",
+                    fontWeight: 800,
                     color: "var(--text-heading, #0f172a)",
                     margin: "0 0 4px 0",
+                    lineHeight: "1.3",
                   }}
                 >
                   {partner.name}
@@ -297,10 +524,10 @@ export function AssociationLinkagesSection() {
                 <span
                   style={{
                     display: "block",
-                    fontSize: "12px",
+                    fontSize: "12.5px",
                     color: "#ea580c",
-                    fontWeight: 600,
-                    marginBottom: "8px",
+                    fontWeight: 700,
+                    marginBottom: "10px",
                   }}
                 >
                   {partner.category}
@@ -308,10 +535,10 @@ export function AssociationLinkagesSection() {
 
                 <p
                   style={{
-                    fontSize: "13px",
+                    fontSize: "13.5px",
                     color: "var(--text-muted, #475569)",
                     margin: 0,
-                    lineHeight: "1.5",
+                    lineHeight: "1.55",
                   }}
                 >
                   {partner.description}
