@@ -3905,5 +3905,47 @@ section {
   color: #94a3b8 !important;
 }
 
+/* Programs & Support Section Styles */
+.program-support-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -4px rgba(0, 0, 0, 0.08) !important;
+  border-color: #93c5fd !important;
+}
+
+.dark .program-support-card {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+}
+
+.dark .program-support-card:hover {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 16px 32px -4px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Transparency & Partners Section Styles */
+.partner-linkage-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.07) !important;
+  border-color: #fdba74 !important;
+}
+
+.dark .partner-linkage-card {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+}
+
+.dark .partner-linkage-card:hover {
+  border-color: #f97316 !important;
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.4) !important;
+}
+
+.annual-return-card a:focus-visible,
+.program-support-card a:focus-visible,
+.partner-linkage-card a:focus-visible {
+  outline: 3px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+
 
 

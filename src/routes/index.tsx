@@ -32,6 +32,8 @@ import {
 } from "lucide-react";
 import { ButtonLink, SectionTitle } from "@/components/site";
 import { GuiitarEmblem, GuiitarFullLogo } from "@/components/GuiitarBrand";
+import { ProgramsSupportSection } from "@/components/ProgramsSupportSection";
+import { TransparencyPartnersSection } from "@/components/TransparencyPartnersSection";
 import {
   VERIFIED_METRICS,
   INNOVATION_JOURNEY,
@@ -597,6 +599,9 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* NEW SECTION A: PROGRAMS & SUPPORT (SSIP, IPR Centre, Nodal Institute) */}
+      <ProgramsSupportSection />
 
       {/* 4. THE INNOVATION JOURNEY ("From First Thought to Real-World Impact") */}
       <section>
@@ -2030,6 +2035,9 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* NEW SECTION B: TRANSPARENCY & PARTNERS (Annual Return PDF + Association & Linkages) */}
+      <TransparencyPartnersSection />
 
       {/* 16. FINAL CTA BANNER */}
       <section className="section-blue cta">
