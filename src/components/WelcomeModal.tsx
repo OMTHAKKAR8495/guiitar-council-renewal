@@ -63,9 +63,9 @@ export function WelcomeModal() {
         alignItems: "center",
         justifyContent: "center",
         padding: "16px",
-        background: "rgba(10, 18, 38, 0.72)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
+        background: "rgba(15, 23, 42, 0.32)",
+        backdropFilter: "none",
+        WebkitBackdropFilter: "none",
         transition: "opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1)",
         opacity: isAnimatingOut ? 0 : 1,
       }}
