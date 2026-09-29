@@ -456,9 +456,9 @@ export function Header() {
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
-                      gap: "4px",
-                      padding: "8px 12px",
-                      fontSize: "14.5px",
+                      gap: "3px",
+                      padding: "6px 10px",
+                      fontSize: "14px",
                       fontWeight: 600,
                       color: isActive ? "var(--primary)" : "#334155",
                       textDecoration: "none",
@@ -640,25 +640,18 @@ export function Header() {
           <div className="nav-actions">
             <Link
               to="/events"
-              className={`nav-action-link nav-action-link-xl ${path.startsWith("/events") ? "active" : ""}`}
+              className={`nav-action-link ${path.startsWith("/events") ? "active" : ""}`}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "5px",
+                fontSize: "13.5px",
+                fontWeight: 600,
+                padding: "6px 10px",
+              }}
             >
               <CalendarDays className="w-4 h-4" />
               <span>Events</span>
-            </Link>
-
-            <Link
-              to="/faq"
-              className={`nav-action-link nav-action-link-xl ${path.startsWith("/faq") ? "active" : ""}`}
-            >
-              <HelpCircle className="w-4 h-4" />
-              <span>FAQ</span>
-            </Link>
-
-            <Link
-              to="/contact"
-              className={`nav-action-link nav-action-link-lg ${path.startsWith("/contact") ? "active" : ""}`}
-            >
-              <span>Contact</span>
             </Link>
 
             <ThemeToggle variant="dropdown" />
@@ -673,8 +666,10 @@ export function Header() {
                 borderColor: "#bfdbfe",
                 background: "#eff6ff",
                 color: "#1e40af",
-                fontWeight: 700,
+                fontWeight: 600,
                 fontSize: "13px",
+                padding: "6px 14px",
+                borderRadius: "9999px",
                 textDecoration: "none",
               }}
               title="Sign in to GUIITAR Admin Platform"
@@ -686,9 +681,18 @@ export function Header() {
             <Link
               className="btn btn-primary btn-sm nav-action-btn-sm"
               to="/apply"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                fontWeight: 600,
+                fontSize: "13px",
+                padding: "6px 16px",
+                borderRadius: "9999px",
+              }}
             >
               <span>Apply Now</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
 
             <button
