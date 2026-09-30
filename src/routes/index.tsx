@@ -418,10 +418,10 @@ export function HomePage() {
       {/* 2. THE NUMBERS (Full-Width Enormous Impact Section) */}
       <section
         style={{
-          background: "#ffffff",
-          borderBottom: "1px solid #e2e8f0",
+          background: "var(--surface)",
+          borderBottom: "1px solid var(--border)",
           padding: "50px 0",
-          boxShadow: "0 4px 20px rgba(15, 23, 42, 0.03)",
+          boxShadow: "var(--shadow-sm)",
         }}
       >
         <div className="container">
@@ -434,7 +434,7 @@ export function HomePage() {
                     fontSize: "clamp(32px, 3.5vw, 44px)",
                     fontFamily: "var(--font-heading)",
                     fontWeight: 900,
-                    color: "#1d4ed8",
+                    color: "var(--primary)",
                     lineHeight: 1.05,
                     letterSpacing: "-0.03em",
                   }}
@@ -446,7 +446,7 @@ export function HomePage() {
                     display: "block",
                     fontSize: "14px",
                     fontWeight: 700,
-                    color: "#0f172a",
+                    color: "var(--text)",
                     marginTop: "8px",
                     lineHeight: 1.3,
                   }}
@@ -457,7 +457,7 @@ export function HomePage() {
                   style={{
                     display: "block",
                     fontSize: "12px",
-                    color: "#64748b",
+                    color: "var(--text-muted)",
                     marginTop: "4px",
                   }}
                 >

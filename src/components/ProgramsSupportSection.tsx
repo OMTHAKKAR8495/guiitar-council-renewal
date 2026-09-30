@@ -72,7 +72,9 @@ export function ProgramsSupportSection() {
       className="programs-support-section"
       style={{
         padding: "80px 0",
-        background: "var(--background-alt, #f8fafc)",
+        background: "var(--background)",
+        borderTop: "1px solid var(--border)",
+        borderBottom: "1px solid var(--border)",
         position: "relative",
       }}
     >
@@ -109,22 +111,22 @@ export function ProgramsSupportSection() {
             const IconComponent = prog.icon;
             const badgeBg =
               prog.accentColor === "blue"
-                ? "#eff6ff"
+                ? "rgba(37, 99, 235, 0.12)"
                 : prog.accentColor === "orange"
-                ? "#fff7ed"
-                : "#ecfdf5";
+                ? "rgba(234, 88, 12, 0.12)"
+                : "rgba(16, 185, 129, 0.12)";
             const badgeBorder =
               prog.accentColor === "blue"
-                ? "#bfdbfe"
+                ? "rgba(59, 130, 246, 0.3)"
                 : prog.accentColor === "orange"
-                ? "#fed7aa"
-                : "#a7f3d0";
+                ? "rgba(249, 115, 22, 0.3)"
+                : "rgba(16, 185, 129, 0.3)";
             const badgeColor =
               prog.accentColor === "blue"
-                ? "#1e40af"
+                ? "#2563eb"
                 : prog.accentColor === "orange"
-                ? "#c2410c"
-                : "#047857";
+                ? "#ea580c"
+                : "#059669";
             const iconBg =
               prog.accentColor === "blue"
                 ? "linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)"
@@ -133,24 +135,24 @@ export function ProgramsSupportSection() {
                 : "linear-gradient(135deg, #047857 0%, #10b981 100%)";
             const buttonBg =
               prog.accentColor === "blue"
-                ? "#1e40af"
+                ? "#2563eb"
                 : prog.accentColor === "orange"
-                ? "#c2410c"
-                : "#047857";
+                ? "#ea580c"
+                : "#059669";
 
             return (
               <div
                 key={prog.id}
                 className="program-support-card"
                 style={{
-                  background: "var(--card-bg, #ffffff)",
+                  background: "var(--surface)",
                   borderRadius: "22px",
-                  border: "1px solid var(--border-color, #e2e8f0)",
+                  border: "1px solid var(--border)",
                   padding: "36px 30px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  boxShadow: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+                  boxShadow: "var(--shadow-md)",
                   transition: "transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease",
                   height: "100%",
                   boxSizing: "border-box",
@@ -206,7 +208,7 @@ export function ProgramsSupportSection() {
                     style={{
                       fontSize: "21px",
                       fontWeight: 800,
-                      color: "var(--text-heading, #0f172a)",
+                      color: "var(--text)",
                       lineHeight: "1.35",
                       marginBottom: "14px",
                       letterSpacing: "-0.01em",
@@ -220,7 +222,7 @@ export function ProgramsSupportSection() {
                     style={{
                       fontSize: "14px",
                       lineHeight: "1.65",
-                      color: "var(--text-muted, #475569)",
+                      color: "var(--text-muted)",
                       marginBottom: "24px",
                     }}
                   >
@@ -244,7 +246,7 @@ export function ProgramsSupportSection() {
                         style={{
                           fontSize: "13.5px",
                           lineHeight: "1.5",
-                          color: "var(--text-body, #334155)",
+                          color: "var(--text)",
                           display: "flex",
                           alignItems: "flex-start",
                           gap: "10px",
