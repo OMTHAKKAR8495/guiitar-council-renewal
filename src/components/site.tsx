@@ -701,34 +701,7 @@ export function Header() {
               <span>Events</span>
             </Link>
 
-            <a
-              href="https://forms.gle/EM81FwAN5i4S3FmcA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-action-btn-sm"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                height: "36px",
-                padding: "0 14px",
-                borderRadius: "9999px",
-                border: "1px solid #a7f3d0",
-                background: "#ecfdf5",
-                color: "#047857",
-                fontWeight: 700,
-                fontSize: "13px",
-                textDecoration: "none",
-                transition: "all 0.2s ease",
-                whiteSpace: "nowrap",
-                boxShadow: "0 1px 2px rgba(0, 0, 0, 0.03)",
-              }}
-              title="Book Prototyping Lab & Testing Facility Slots"
-            >
-              <FlaskConical className="w-3.5 h-3.5" style={{ color: "#059669" }} />
-              <span>Book Lab</span>
-              <ExternalLink className="w-3 h-3 opacity-60" />
-            </a>
+
 
             <a
               href="https://www.linkedin.com/company/guiitarcouncil/posts/?feedView=all"

@@ -32,6 +32,7 @@ import {
   FileText,
   Download,
   ExternalLink,
+  FlaskConical,
 } from "lucide-react";
 import { ButtonLink, SectionTitle } from "@/components/site";
 import { GuiitarEmblem, GuiitarFullLogo } from "@/components/GuiitarBrand";
@@ -731,6 +732,130 @@ export function HomePage() {
                   <Download className="w-3.5 h-3.5" />
                   <span>Download PDF</span>
                 </a>
+              </div>
+            </div>
+
+            {/* BOOK PROTOTYPING LAB & TESTING FACILITIES CARD */}
+            <div
+              style={{
+                background: "#ffffff",
+                border: "1px solid #e2e8f0",
+                borderRadius: "18px",
+                padding: "24px 28px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                gap: "16px",
+                boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)",
+                position: "relative",
+                overflow: "hidden",
+                transition: "all 0.2s ease",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: "4px",
+                  background: "linear-gradient(90deg, #f59e0b, #ea580c)",
+                }}
+              />
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "12px",
+                    marginBottom: "10px",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                      background: "rgba(245, 158, 11, 0.1)",
+                      color: "#d97706",
+                      padding: "4px 10px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    <FlaskConical className="w-3.5 h-3.5" />
+                    Prototyping Labs &amp; Testing
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      color: "#64748b",
+                      background: "#f1f5f9",
+                      padding: "2px 8px",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    Online Booking • Form
+                  </span>
+                </div>
+                <h3
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 800,
+                    color: "#0f172a",
+                    margin: "0 0 6px",
+                    lineHeight: "1.3",
+                  }}
+                >
+                  Book Prototyping Lab &amp; Facilities
+                </h3>
+                <p
+                  style={{
+                    fontSize: "13.5px",
+                    color: "#475569",
+                    margin: 0,
+                    lineHeight: "1.55",
+                  }}
+                >
+                  Requisition testing slots for Param Shavak Supercomputing cluster, Advanced Drone UAV proving arena, 3D Prototyping &amp; Makers Lab, and IoT workbenches.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  paddingTop: "12px",
+                  borderTop: "1px solid #f1f5f9",
+                }}
+              >
+                <a
+                  href="https://forms.gle/EM81FwAN5i4S3FmcA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#d97706", borderColor: "#d97706" }}
+                >
+                  <FlaskConical className="w-3.5 h-3.5" />
+                  <span>Book Lab Slot</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                </a>
+                <Link
+                  to="/innovation"
+                  className="btn btn-outline btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Explore Facilities</span>
+                </Link>
               </div>
             </div>
           </div>
