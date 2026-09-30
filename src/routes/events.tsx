@@ -154,10 +154,18 @@ function Events() {
       // 2. Increment registered count for the event
       const currentEv = eventsList.find((ev) => ev.id === selectedEvent.id);
       if (currentEv) {
-        AdminDataStore.saveEvent({
+        const newRegistered = (Number(currentEv.registered) || 0) + 1;
+        const newCapacity = Number(currentEv.capacity) || 100;
+        const newAvailable = Math.max(0, newCapacity - newRegistered);
+        const updated = AdminDataStore.saveEvent({
           ...currentEv,
-          registered: (currentEv.registered || 0) + 1,
+          registered: newRegistered,
+          capacity: newCapacity,
+          seats: `${newAvailable} Seats Available`,
         });
+        setEventsList((prev) =>
+          prev.map((ev) => (ev.id === selectedEvent.id ? { ...ev, ...updated } : ev))
+        );
       }
 
       // 3. Mark as registered locally for immediate feedback
@@ -182,30 +190,38 @@ function Events() {
     }
   };
 
-  const allEvents = eventsList.map((e) => ({
-    raw: e,
-    id: e.id,
-    title: e.title,
-    date: e.date,
-    time: e.time,
-    location: e.location,
-    category: e.category,
-    isUpcoming:
-      e.status === "Upcoming" || e.status === "Registration Open" || e.isUpcoming !== false,
-    seats: e.seats || `${Math.max(0, e.capacity - e.registered)} Seats Available`,
-    desc:
-      e.desc ||
-      `Led by ${e.speaker}. Designed for innovators and technical founders looking to build practical expertise.`,
-    topics:
-      e.topics && e.topics.length > 0
-        ? e.topics
-        : [
-            "Interactive hands-on methodology",
-            "Technical rigging & live benchmarking",
-            "Direct Q&A with domain mentors",
-            "Certificate of participation from GUIITAR Council",
-          ],
-  }));
+  const allEvents = eventsList.map((e) => {
+    const capacity = Number(e.capacity) || 100;
+    const registered = Number(e.registered) || 0;
+    const available = Math.max(0, capacity - registered);
+    return {
+      raw: e,
+      id: e.id,
+      title: e.title,
+      date: e.date,
+      time: e.time,
+      location: e.location,
+      category: e.category,
+      capacity,
+      registered,
+      available,
+      isUpcoming:
+        e.status === "Upcoming" || e.status === "Registration Open" || e.isUpcoming !== false,
+      seats: `${available} Seats Available`,
+      desc:
+        e.desc ||
+        `Led by ${e.speaker}. Designed for innovators and technical founders looking to build practical expertise.`,
+      topics:
+        e.topics && e.topics.length > 0
+          ? e.topics
+          : [
+              "Interactive hands-on methodology",
+              "Technical rigging & live benchmarking",
+              "Direct Q&A with domain mentors",
+              "Certificate of participation from GUIITAR Council",
+            ],
+    };
+  });
 
   const displayed = allEvents.filter((e) => (tab === "Upcoming" ? e.isUpcoming : !e.isUpcoming));
   const featured = allEvents.find((e) => e.isUpcoming);
@@ -236,9 +252,30 @@ function Events() {
               </div>
 
               <div>
-                <span className="pill emerald" style={{ marginBottom: "10px" }}>
-                  {featured.seats}
-                </span>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "12px" }}>
+                  <span className="pill blue" style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontWeight: 700 }}>
+                    <Users className="w-3.5 h-3.5" />
+                    <span><b>{featured.registered}</b> Students Registered</span>
+                  </span>
+                  <span className={`pill ${featured.available > 10 ? "emerald" : "amber"}`} style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontWeight: 700 }}>
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span><b>{featured.available}</b> Seats Available ({featured.capacity} Total)</span>
+                  </span>
+                </div>
+
+                {/* Live Seats Progress Bar */}
+                <div style={{ background: "#f1f5f9", borderRadius: "9999px", height: "8px", width: "100%", maxWidth: "380px", marginBottom: "16px", overflow: "hidden", border: "1px solid #e2e8f0" }}>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: `${Math.min(100, Math.max(6, Math.round(((featured.registered || 0) / (featured.capacity || 100)) * 100)))}%`,
+                      background: "linear-gradient(90deg, #2563eb, #10b981)",
+                      borderRadius: "9999px",
+                      transition: "width 0.4s ease-in-out",
+                    }}
+                  />
+                </div>
+
                 <h2>{featured.title}</h2>
                 <p
                   style={{
@@ -257,6 +294,9 @@ function Events() {
                   </span>
                   <span>
                     <MapPin /> {featured.location}
+                  </span>
+                  <span>
+                    <Users /> <b>{featured.registered}</b> Registered • <b>{featured.available}</b> Seats Available
                   </span>
                 </div>
 
@@ -315,10 +355,23 @@ function Events() {
             {displayed.map((e) => (
               <article className="plain-card event-card" key={e.id} style={{ padding: "30px" }}>
                 <div
-                  style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                  style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "8px", flexWrap: "wrap" }}
                 >
-                  <span className={`pill ${e.isUpcoming ? "emerald" : "blue"}`}>{e.category}</span>
-                  <span className="date">{e.date}</span>
+                  <span className={`pill ${e.isUpcoming ? "blue" : "muted"}`}>{e.category}</span>
+                  {e.isUpcoming ? (
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
+                      <span className="pill blue" style={{ fontSize: "11.5px", fontWeight: 700, padding: "3px 8px", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                        <Users className="w-3 h-3" />
+                        <b>{e.registered}</b> Registered
+                      </span>
+                      <span className={`pill ${e.available > 5 ? "emerald" : "amber"}`} style={{ fontSize: "11.5px", fontWeight: 700, padding: "3px 8px", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                        <CheckCircle2 className="w-3 h-3" />
+                        <b>{e.available}</b> Seats Left
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="date">{e.date}</span>
+                  )}
                 </div>
 
                 <h3>{e.title}</h3>
@@ -333,7 +386,7 @@ function Events() {
                   </span>
                   {e.isUpcoming && (
                     <span>
-                      <Users /> {e.seats}
+                      <Users /> <b>{e.registered}</b> Registered • <b>{e.available}</b> Available ({e.capacity} Cap)
                     </span>
                   )}
                 </div>
@@ -347,7 +400,7 @@ function Events() {
                         className="btn btn-primary btn-sm"
                         onClick={() => openRegistrationModal(e.raw)}
                       >
-                        <span>Register Now</span>
+                        <span>Register Now ({e.available} Left)</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     )
@@ -729,11 +782,38 @@ function Events() {
                       gap: "12px",
                       fontSize: "13px",
                       color: "#64748b",
+                      flexWrap: "wrap",
                     }}
                   >
                     <span>📅 {selectedEvent.date}</span>
                     <span>⏰ {selectedEvent.time}</span>
                     <span>📍 {selectedEvent.location}</span>
+                  </div>
+
+                  {/* Live Registration & Seat Availability Banner */}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: "10px",
+                      background: "#f8fafc",
+                      border: "1px solid #e2e8f0",
+                      padding: "8px 14px",
+                      borderRadius: "10px",
+                      marginTop: "12px",
+                      fontSize: "12.5px",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <span style={{ color: "#2563eb", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "5px" }}>
+                      <Users className="w-3.5 h-3.5" />
+                      <b>{selectedEvent.registered || 0}</b> Students Registered
+                    </span>
+                    <span style={{ color: "#059669", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "5px" }}>
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <b>{Math.max(0, (selectedEvent.capacity || 100) - (selectedEvent.registered || 0))}</b> Seats Available ({selectedEvent.capacity || 100} Total)
+                    </span>
                   </div>
                 </div>
 
