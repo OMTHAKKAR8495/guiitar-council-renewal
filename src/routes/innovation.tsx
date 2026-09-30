@@ -408,13 +408,13 @@ export function InnovationPage() {
                       fontSize: "20px",
                       fontWeight: 800,
                       margin: "0 0 8px",
-                      color: "#0f172a",
+                      color: "var(--text)",
                     }}
                   >
                     <Link
                       to="/innovation/$slug"
                       params={{ slug: p.slug }}
-                      style={{ color: "#0f172a", textDecoration: "none" }}
+                      style={{ color: "var(--text)", textDecoration: "none" }}
                     >
                       {p.name}
                     </Link>
@@ -423,7 +423,7 @@ export function InnovationPage() {
                   <span
                     style={{
                       fontSize: "13px",
-                      color: "#2563eb",
+                      color: "var(--primary)",
                       fontWeight: 700,
                       display: "block",
                       marginBottom: "10px",
@@ -434,7 +434,7 @@ export function InnovationPage() {
 
                   <p
                     style={{
-                      color: "#475569",
+                      color: "var(--text-muted)",
                       fontSize: "14px",
                       lineHeight: 1.6,
                       marginBottom: "18px",
@@ -445,16 +445,16 @@ export function InnovationPage() {
 
                   <div
                     style={{
-                      background: "#f8fafc",
+                      background: "var(--surface-muted)",
                       padding: "12px 14px",
                       borderRadius: "8px",
-                      border: "1px solid #e2e8f0",
+                      border: "1px solid var(--border)",
                       fontSize: "13px",
-                      color: "#334155",
+                      color: "var(--text)",
                       marginBottom: "18px",
                     }}
                   >
-                    <strong style={{ color: "#0f172a", display: "block", marginBottom: "2px" }}>
+                    <strong style={{ color: "var(--text)", display: "block", marginBottom: "2px" }}>
                       Impact Milestone:
                     </strong>
                     {p.impact}
@@ -463,14 +463,14 @@ export function InnovationPage() {
 
                 <div
                   style={{
-                    borderTop: "1px solid #f1f5f9",
+                    borderTop: "1px solid var(--border)",
                     paddingTop: "14px",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                   }}
                 >
-                  <span style={{ fontSize: "12px", color: "#64748b" }}>{p.creator}</span>
+                  <span style={{ fontSize: "12px", color: "var(--text-muted)" }}>{p.creator}</span>
                   <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                     <span className="pill emerald" style={{ fontSize: "11px" }}>
                       {p.stage}

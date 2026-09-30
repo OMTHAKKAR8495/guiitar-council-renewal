@@ -190,7 +190,7 @@ function Funding() {
                     fontSize: "15px",
                     fontWeight: 700,
                     margin: "20px 0 10px",
-                    color: "#0f172a",
+                    color: "var(--text)",
                   }}
                 >
                   What's Covered:
@@ -209,7 +209,7 @@ function Funding() {
                     fontSize: "15px",
                     fontWeight: 700,
                     margin: "0 0 10px",
-                    color: "#0f172a",
+                    color: "var(--text)",
                   }}
                 >
                   Key Eligibility:
@@ -300,15 +300,15 @@ function Funding() {
                 <p style={{ marginBottom: "14px" }}>{p.desc}</p>
                 <div
                   style={{
-                    background: "#f8fafc",
+                    background: "var(--surface-muted)",
                     padding: "14px",
                     borderRadius: "8px",
-                    border: "1px solid #e2e8f0",
+                    border: "1px solid var(--border)",
                     fontSize: "13.5px",
-                    color: "#475569",
+                    color: "var(--text)",
                   }}
                 >
-                  <strong style={{ color: "#0f172a", display: "block", marginBottom: "4px" }}>
+                  <strong style={{ color: "var(--text)", display: "block", marginBottom: "4px" }}>
                     Milestone Impact:
                   </strong>
                   {p.impact}

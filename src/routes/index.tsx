@@ -1222,7 +1222,7 @@ export function HomePage() {
                       fontSize: "12px",
                       fontWeight: 800,
                       textTransform: "uppercase",
-                      color: "#64748b",
+                      color: "var(--text-muted)",
                       letterSpacing: "0.05em",
                     }}
                   >
@@ -1233,14 +1233,14 @@ export function HomePage() {
                       fontSize: "21px",
                       fontWeight: 800,
                       margin: "4px 0 10px",
-                      color: "#0f172a",
+                      color: "var(--text)",
                     }}
                   >
                     "{p.quote}"
                   </h3>
                   <p
                     style={{
-                      color: "#475569",
+                      color: "var(--text-muted)",
                       fontSize: "14.5px",
                       lineHeight: 1.6,
                       marginBottom: "24px",
@@ -1605,7 +1605,7 @@ export function HomePage() {
                       fontSize: "20px",
                       fontWeight: 800,
                       margin: "0 0 8px",
-                      color: "#0f172a",
+                      color: "var(--text)",
                     }}
                   >
                     {p.name}
@@ -1614,7 +1614,7 @@ export function HomePage() {
                   <span
                     style={{
                       fontSize: "12.5px",
-                      color: "#2563eb",
+                      color: "var(--primary)",
                       fontWeight: 700,
                       display: "block",
                       marginBottom: "10px",
@@ -1625,7 +1625,7 @@ export function HomePage() {
 
                   <p
                     style={{
-                      color: "#475569",
+                      color: "var(--text-muted)",
                       fontSize: "14px",
                       lineHeight: 1.6,
                       marginBottom: "18px",
@@ -1636,16 +1636,16 @@ export function HomePage() {
 
                   <div
                     style={{
-                      background: "#f8fafc",
+                      background: "var(--surface-muted)",
                       padding: "12px 14px",
                       borderRadius: "8px",
-                      border: "1px solid #e2e8f0",
+                      border: "1px solid var(--border)",
                       fontSize: "13px",
-                      color: "#334155",
+                      color: "var(--text)",
                       marginBottom: "18px",
                     }}
                   >
-                    <strong style={{ color: "#0f172a", display: "block", marginBottom: "2px" }}>
+                    <strong style={{ color: "var(--text)", display: "block", marginBottom: "2px" }}>
                       Verified Impact:
                     </strong>
                     {p.impact}
@@ -1659,7 +1659,7 @@ export function HomePage() {
                     alignItems: "center",
                     gap: "4px",
                     fontWeight: 700,
-                    color: "#2563eb",
+                    color: "var(--primary)",
                     textDecoration: "none",
                     fontSize: "14px",
                   }}
