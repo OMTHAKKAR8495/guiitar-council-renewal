@@ -33,6 +33,8 @@ import {
   Download,
   ExternalLink,
   FlaskConical,
+  MessageSquare,
+  FolderOpen,
 } from "lucide-react";
 import { ButtonLink, SectionTitle } from "@/components/site";
 import { GuiitarEmblem, GuiitarFullLogo } from "@/components/GuiitarBrand";
@@ -855,6 +857,254 @@ export function HomePage() {
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>Explore Facilities</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* GUIITAR FEEDBACK FORM CARD */}
+            <div
+              style={{
+                background: "#ffffff",
+                border: "1px solid #e2e8f0",
+                borderRadius: "18px",
+                padding: "24px 28px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                gap: "16px",
+                boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)",
+                position: "relative",
+                overflow: "hidden",
+                transition: "all 0.2s ease",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: "4px",
+                  background: "linear-gradient(90deg, #8b5cf6, #ec4899)",
+                }}
+              />
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "12px",
+                    marginBottom: "10px",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                      background: "rgba(139, 92, 246, 0.1)",
+                      color: "#7c3aed",
+                      padding: "4px 10px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    Innovator &amp; Student Voice
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      color: "#64748b",
+                      background: "#f1f5f9",
+                      padding: "2px 8px",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    Google Form • Feedback
+                  </span>
+                </div>
+                <h3
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 800,
+                    color: "#0f172a",
+                    margin: "0 0 6px",
+                    lineHeight: "1.3",
+                  }}
+                >
+                  GUIITAR Feedback &amp; Suggestions
+                </h3>
+                <p
+                  style={{
+                    fontSize: "13.5px",
+                    color: "#475569",
+                    margin: 0,
+                    lineHeight: "1.55",
+                  }}
+                >
+                  Share your valuable suggestions, grievances, or feedback regarding incubation support, mentoring quality, lab facilities, and council services.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  paddingTop: "12px",
+                  borderTop: "1px solid #f1f5f9",
+                }}
+              >
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdUPGZkYa3Xwdqv-QV8w8kHIdWx42uYHXIJBGPmKk5NW0qTVg/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#7c3aed", borderColor: "#7c3aed" }}
+                >
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span>Fill Feedback Form</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                </a>
+                <Link
+                  to="/contact"
+                  className="btn btn-outline btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Contact Council</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* STARTUP RESOURCES DRIVE CARD */}
+            <div
+              style={{
+                background: "#ffffff",
+                border: "1px solid #e2e8f0",
+                borderRadius: "18px",
+                padding: "24px 28px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                gap: "16px",
+                boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)",
+                position: "relative",
+                overflow: "hidden",
+                transition: "all 0.2s ease",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: "4px",
+                  background: "linear-gradient(90deg, #0284c7, #2563eb)",
+                }}
+              />
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "12px",
+                    marginBottom: "10px",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                      background: "rgba(2, 132, 199, 0.1)",
+                      color: "#0284c7",
+                      padding: "4px 10px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    <FolderOpen className="w-3.5 h-3.5" />
+                    Startup Toolkits &amp; Docs
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: 600,
+                      color: "#64748b",
+                      background: "#f1f5f9",
+                      padding: "2px 8px",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    Google Drive • Resources
+                  </span>
+                </div>
+                <h3
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: 800,
+                    color: "#0f172a",
+                    margin: "0 0 6px",
+                    lineHeight: "1.3",
+                  }}
+                >
+                  Startup Resources &amp; Repository
+                </h3>
+                <p
+                  style={{
+                    fontSize: "13.5px",
+                    color: "#475569",
+                    margin: 0,
+                    lineHeight: "1.55",
+                  }}
+                >
+                  Direct access to pitch deck templates, incubation application formats, milestone tracking sheets, IPR templates, and founder toolkits.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  paddingTop: "12px",
+                  borderTop: "1px solid #f1f5f9",
+                }}
+              >
+                <a
+                  href="https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#0284c7", borderColor: "#0284c7" }}
+                >
+                  <FolderOpen className="w-3.5 h-3.5" />
+                  <span>Access Startup Resources</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                </a>
+                <Link
+                  to="/resources"
+                  className="btn btn-outline btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>View Knowledge Base</span>
                 </Link>
               </div>
             </div>
