@@ -842,10 +842,11 @@ function About() {
                     )}
                     <div className="team-socials">
                       <a
-                        href="https://linkedin.com"
+                        href="https://www.linkedin.com/company/guiitarcouncil/posts/?feedView=all"
                         target="_blank"
                         rel="noreferrer"
-                        aria-label="LinkedIn Profile"
+                        aria-label="GUIITAR Council LinkedIn"
+                        title="GUIITAR Council LinkedIn"
                       >
                         <Linkedin className="w-4 h-4" />
                       </a>

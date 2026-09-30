@@ -730,6 +730,29 @@ export function Header() {
               <ExternalLink className="w-3 h-3 opacity-60" />
             </a>
 
+            <a
+              href="https://www.linkedin.com/company/guiitarcouncil/posts/?feedView=all"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="theme-toggle-btn"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "36px",
+                height: "36px",
+                borderRadius: "9999px",
+                border: "1px solid var(--border)",
+                background: "var(--surface)",
+                color: "#0a66c2",
+                textDecoration: "none",
+              }}
+              title="Follow GUIITAR Council on LinkedIn"
+              aria-label="Follow GUIITAR Council on LinkedIn"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+
             <ThemeToggle variant="dropdown" />
 
             <Link
@@ -1147,10 +1170,11 @@ export function Footer() {
           </p>
           <div className="social">
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/guiitarcouncil/posts/?feedView=all"
               target="_blank"
               rel="noreferrer"
               aria-label="GUIITAR Council LinkedIn"
+              title="GUIITAR Council LinkedIn"
             >
               <Linkedin />
             </a>

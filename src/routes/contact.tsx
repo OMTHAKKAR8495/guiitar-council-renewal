@@ -10,6 +10,8 @@ import {
   Building2,
   ArrowRight,
   Sparkles,
+  Linkedin,
+  ExternalLink,
 } from "lucide-react";
 import { PageHero, SectionTitle, ButtonLink } from "@/components/site";
 
@@ -149,6 +151,73 @@ function Contact() {
               Saturday: Lab cohorts by prior appointment
             </span>
           </article>
+        </div>
+
+        {/* LINKEDIN CONNECT BANNER */}
+        <div className="container" style={{ marginTop: "24px" }}>
+          <div
+            style={{
+              background: "linear-gradient(135deg, #0a66c2 0%, #004182 100%)",
+              borderRadius: "18px",
+              padding: "24px 28px",
+              color: "#ffffff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "20px",
+              flexWrap: "wrap",
+              boxShadow: "0 10px 25px -5px rgba(10, 102, 194, 0.3)",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+              <div
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "12px",
+                  background: "rgba(255, 255, 255, 0.18)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                }}
+              >
+                <Linkedin className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 style={{ margin: "0 0 4px", fontSize: "17px", fontWeight: 800 }}>
+                  Connect with GUIITAR Council on LinkedIn
+                </h4>
+                <p style={{ margin: 0, fontSize: "13.5px", color: "#e0f2fe", lineHeight: "1.4" }}>
+                  Follow our official posts for student hackathons, founder spotlights, funding announcements, and cohort deadlines.
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="https://www.linkedin.com/company/guiitarcouncil/posts/?feedView=all"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+              style={{
+                background: "#ffffff",
+                color: "#0a66c2",
+                fontWeight: 700,
+                fontSize: "13.5px",
+                padding: "8px 20px",
+                borderRadius: "9999px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+              }}
+            >
+              <span>View LinkedIn Posts Feed</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </section>
 
