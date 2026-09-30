@@ -90,42 +90,44 @@ const teams: { [k: string]: [string, string, string?][] } = {
       "Distinguished Academician, Researcher, and IEEE Senior Member with 25+ years in engineering leadership.",
     ],
   ],
-  "Core Incubation Team": [
-    ["Prof. G. R. Sinha", "CEO, GUIITAR Council & Provost", "Leadership & Institutional Vision"],
+  "Core Team": [
     [
-      "Mr. KiranKumar Parmar",
-      "Senior Manager (Incubation)",
-      "Operations, Grant Management & Startups",
+      "Mr. Kirankumar Parmar",
+      "Senior Manager",
+      "Incubation operations, startup cohorts & grant administration",
     ],
     [
       "Mr. Bhuvan Vyas",
-      "Manager (Ecosystem & Linkages)",
-      "Corporate Relations & Mentor Coordination",
+      "Manager-Incubation",
+      "Ecosystem linkages, mentor network & corporate relations",
     ],
     [
       "Mr. Amit Duggal",
       "Senior Executive (Technical)",
-      "Prototyping Labs & Hardware Infrastructure",
+      "Prototyping laboratories, hardware rigs & testing infrastructure",
     ],
   ],
-  "Faculty Mentors": [
-    ["Dr. Akhilesh Prajapati", "Associate Professor", "Chemical Engineering & Process Innovation"],
-    ["Dr. Mihir Trivedi", "Sr. Assistant Professor", "Computer Science & AI/ML Systems"],
-    ["Dr. Chandra Has", "Sr. Assistant Professor", "Mechanical Engineering & Prototyping"],
-    ["Dr. Jignesh Valand", "Assistant Professor", "Biotechnology & Bio-pigment Research"],
-    ["Dr. Rahul Sharma", "Assistant Professor", "IoT, Embedded Systems & Electronics"],
-    ["Mr. Abidhusain Lodha", "Assistant Professor", "Robotics, Drones & CAD Modeling"],
-  ],
   "Technical Associates": [
-    ["Mr. Anup Upadhaya", "Lab Assistant", "Makers Lab & 3D Fabrication"],
-    ["Ms. Chaitali Karpe", "Lab Assistant", "Design IoT & Hardware Rigging"],
-    ["Mr. Hemant Rajpoot", "Laboratory Instructor", "Electronics & Drone Systems"],
-    ["Dr. Bhoomi Shah", "Assistant Professor", "IPR Documentation & Research Support"],
+    ["Ms. Foram Mistry", "Technical Associate 1", "Makers & Fabrication Lab support"],
+    ["Ms. Lavanya Jain", "Technical Associate 2", "Prototyping & hardware assistance"],
+    ["Mr. Krish Shah", "Technical Associate 3", "Hardware rig testing & IoT support"],
+    ["Mr. Chandraveer Singh", "Technical Associate 4", "Lab operations & technical assistance"],
   ],
-  "Student Innovation Council": [
-    ["E-Club President & Leads", "Student Leadership", "Hackathons, Outreach & Cohort Operations"],
-    ["Tech Wing Coordinators", "Technical Sub-Committee", "Workshop Execution & Lab Assistance"],
-    ["Design & Media Leads", "Creative Wing", "Branding, Demo Days & Founder Spotlights"],
+  "SoT Team (Technology)": [
+    ["Dr. Chandra Has", "Assistant Professor", "Mechanical Engineering & rapid prototyping"],
+    ["Mr. Abidhusain Lodha", "Assistant Professor", "Robotics, UAV/Drone systems & CAD modeling"],
+    ["Mr. Anup Upadhyay", "Lab Assistant Workshop", "Fabrication, machining & 3D printing"],
+    ["Mr. Hemant M Rajput", "IT Coordinator", "Computing infrastructure & network systems"],
+  ],
+  "SoS Team (Science)": [
+    ["Ms. Charmi Mehta", "Assistant Professor", "Applied sciences & research documentation"],
+    ["Dr. Mihir Trivedi", "Assistant Professor", "Computer Science, AI/ML & supercomputing"],
+    ["Dr. Akhilesh Prajapati", "Associate Professor", "Chemical engineering & industrial process design"],
+    ["Ms. Chaitali Karpe", "Lab Assistant", "Science laboratories & instrumentation"],
+  ],
+  "SoM&E Team (Management)": [
+    ["Dr. Rahul Sharma", "Sr. Assistant Professor", "Business model design, IoT & economics"],
+    ["Dr. Jignesh Valand", "Assistant Professor", "Biotechnology ventures & commercialization"],
   ],
 };
 
@@ -643,13 +645,128 @@ function About() {
         </div>
       </section>
 
+      {/* GUIITAR COUNCIL TEAM HIERARCHY / ORG CHART */}
+      <section style={{ padding: "60px 0 20px", background: "var(--background)" }}>
+        <div className="container">
+          <SectionTitle
+            badge="Institutional Structure"
+            title="GUIITAR COUNCIL TEAM"
+            subtitle="The official leadership hierarchy and operational council overseeing incubation programs, School of Technology, School of Science, and School of Management & Economics."
+          />
+
+          <div
+            style={{
+              maxWidth: "1000px",
+              margin: "0 auto 40px",
+              background: "#ffffff",
+              border: "1px solid var(--border)",
+              borderRadius: "24px",
+              padding: "28px 24px",
+              boxShadow: "0 10px 30px rgba(15, 23, 42, 0.06)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "20px",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: "12px",
+                borderBottom: "1px solid var(--border-light, #f1f5f9)",
+                paddingBottom: "16px",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <div
+                  style={{
+                    width: "38px",
+                    height: "38px",
+                    borderRadius: "10px",
+                    background: "rgba(37, 99, 235, 0.1)",
+                    color: "#2563eb",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Building2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
+                    Official Team Organizational Chart
+                  </h4>
+                  <span style={{ fontSize: "12px", color: "#64748b" }}>
+                    President • Provost &amp; CEO • Core Team • SoT • SoS • SoM&amp;E
+                  </span>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                <a
+                  href="/team/guiitar-council-team-hierarchy.png"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12.5px" }}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>View Full Image</span>
+                </a>
+                <a
+                  href="/team/guiitar-council-team-hierarchy.png"
+                  download="GUIITAR_Council_Team_Hierarchy.png"
+                  className="btn btn-primary btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12.5px" }}
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download Chart</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Exact Team Hierarchy Chart Image */}
+            <div
+              style={{
+                width: "100%",
+                background: "#ffffff",
+                borderRadius: "16px",
+                padding: "8px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src="/team/guiitar-council-team-hierarchy.png"
+                alt="GUIITAR Council Team Organizational Hierarchy Chart"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  borderRadius: "12px",
+                  display: "block",
+                }}
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* GOVERNANCE & TEAM */}
       <section>
         <div className="container">
           <SectionTitle
             badge="Leadership & Mentors"
-            title="Meet Our Governance & Team"
-            subtitle="The dedicated educators, industry mentors, and incubation managers driving student venture success."
+            title="Council Directory & Profiles"
+            subtitle="Explore detailed profiles, responsibilities, and research domains across the council leadership."
           />
 
           <div className="tabs">
