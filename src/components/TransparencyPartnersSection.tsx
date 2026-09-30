@@ -439,113 +439,105 @@ export function AssociationLinkagesSection() {
           align="center"
         />
 
-        {/* PARTNER / LINKAGE GRID WITH LOGOS */}
+        {/* EXACT ASSOCIATION & LINKAGES IMAGE DISPLAY */}
         <div
-          className="association-linkages-grid"
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+            maxWidth: "1080px",
+            margin: "36px auto 0",
+            background: "#ffffff",
+            border: "1px solid var(--border-color, #e2e8f0)",
+            borderRadius: "24px",
+            padding: "32px 28px",
+            boxShadow: "0 10px 30px rgba(15, 23, 42, 0.05)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
             gap: "24px",
-            marginTop: "36px",
           }}
         >
-          {OFFICIAL_ASSOCIATIONS_LINKAGES.map((partner) => (
-            <div
-              key={partner.id}
-              className="partner-linkage-card"
-              style={{
-                background: "var(--card-bg, #ffffff)",
-                borderRadius: "18px",
-                border: "1px solid var(--border-color, #e2e8f0)",
-                padding: "24px 26px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.04)",
-                transition: "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
-              }}
-            >
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "12px",
+              borderBottom: "1px solid var(--border-color, #f1f5f9)",
+              paddingBottom: "16px",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <div
+                style={{
+                  width: "38px",
+                  height: "38px",
+                  borderRadius: "10px",
+                  background: "rgba(37, 99, 235, 0.1)",
+                  color: "#2563eb",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Handshake className="w-5 h-5" />
+              </div>
               <div>
-                {/* Header with Logo Badge and Pill */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginBottom: "16px",
-                    gap: "12px",
-                    paddingBottom: "14px",
-                    borderBottom: "1px solid var(--border-color, #f1f5f9)",
-                  }}
-                >
-                  <div
-                    style={{
-                      padding: "6px 10px",
-                      borderRadius: "10px",
-                      background: partner.logoBg || "#f8fafc",
-                      border: "1px solid rgba(0,0,0,0.06)",
-                    }}
-                  >
-                    <PartnerLogoRenderer partner={partner} />
-                  </div>
-
-                  {partner.badge && (
-                    <span
-                      style={{
-                        fontSize: "10.5px",
-                        fontWeight: 700,
-                        padding: "4px 9px",
-                        borderRadius: "6px",
-                        background: "#eff6ff",
-                        color: "#1e40af",
-                        border: "1px solid #bfdbfe",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.04em",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {partner.badge}
-                    </span>
-                  )}
-                </div>
-
-                <h4
-                  style={{
-                    fontSize: "17px",
-                    fontWeight: 800,
-                    color: "var(--text-heading, #0f172a)",
-                    margin: "0 0 4px 0",
-                    lineHeight: "1.3",
-                  }}
-                >
-                  {partner.name}
+                <h4 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
+                  Official Association &amp; Linkages Network
                 </h4>
-
-                <span
-                  style={{
-                    display: "block",
-                    fontSize: "12.5px",
-                    color: "#ea580c",
-                    fontWeight: 700,
-                    marginBottom: "10px",
-                  }}
-                >
-                  {partner.category}
+                <span style={{ fontSize: "12px", color: "#64748b" }}>
+                  Government • PSUs • Incubators • Accelerators • Academic Partners
                 </span>
-
-                <p
-                  style={{
-                    fontSize: "13.5px",
-                    color: "var(--text-muted, #475569)",
-                    margin: 0,
-                    lineHeight: "1.55",
-                  }}
-                >
-                  {partner.description}
-                </p>
               </div>
             </div>
-          ))}
+
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              <a
+                href="/partners/association-and-linkages.png"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline btn-sm"
+                style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12.5px" }}
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>View Full Resolution</span>
+              </a>
+              <a
+                href="/partners/association-and-linkages.png"
+                download="GUIITAR_Association_and_Linkages.png"
+                className="btn btn-primary btn-sm"
+                style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12.5px" }}
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download Chart</span>
+              </a>
+            </div>
+          </div>
+
+          <div
+            style={{
+              width: "100%",
+              background: "#ffffff",
+              borderRadius: "16px",
+              padding: "12px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src="/partners/association-and-linkages.png"
+              alt="Official Association and Linkages of GUIITAR Council"
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                borderRadius: "12px",
+                display: "block",
+              }}
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </section>

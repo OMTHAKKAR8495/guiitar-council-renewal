@@ -16,6 +16,8 @@ import {
   Building2,
   Handshake,
   FileCheck,
+  Download,
+  ExternalLink,
 } from "lucide-react";
 import { PageHero, SectionTitle, ButtonLink } from "@/components/site";
 import { IconCard } from "@/components/content";
@@ -294,6 +296,108 @@ function Partner() {
             title="Our Esteemed Partners & Linkages"
             subtitle="Proudly collaborating with leading industrial corporations, government agencies, and premier incubators."
           />
+
+          {/* EXACT ASSOCIATION & LINKAGES IMAGE DISPLAY */}
+          <div
+            style={{
+              maxWidth: "1080px",
+              margin: "0 auto 40px",
+              background: "#ffffff",
+              border: "1px solid var(--border-color, #e2e8f0)",
+              borderRadius: "24px",
+              padding: "32px 28px",
+              boxShadow: "0 10px 30px rgba(15, 23, 42, 0.05)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "24px",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: "12px",
+                borderBottom: "1px solid var(--border-color, #f1f5f9)",
+                paddingBottom: "16px",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <div
+                  style={{
+                    width: "38px",
+                    height: "38px",
+                    borderRadius: "10px",
+                    background: "rgba(37, 99, 235, 0.1)",
+                    color: "#2563eb",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Handshake className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
+                    Official Association &amp; Linkages Network
+                  </h4>
+                  <span style={{ fontSize: "12px", color: "#64748b" }}>
+                    Government • PSUs • Incubators • Accelerators • Academic Partners
+                  </span>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                <a
+                  href="/partners/association-and-linkages.png"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12.5px" }}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>View Full Resolution</span>
+                </a>
+                <a
+                  href="/partners/association-and-linkages.png"
+                  download="GUIITAR_Association_and_Linkages.png"
+                  className="btn btn-primary btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12.5px" }}
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download Chart</span>
+                </a>
+              </div>
+            </div>
+
+            <div
+              style={{
+                width: "100%",
+                background: "#ffffff",
+                borderRadius: "16px",
+                padding: "12px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src="/partners/association-and-linkages.png"
+                alt="Official Association and Linkages of GUIITAR Council"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  borderRadius: "12px",
+                  display: "block",
+                }}
+                loading="lazy"
+              />
+            </div>
+          </div>
+
           <div className="partner-grid">
             {partners.map((p) => (
               <div className="partner-box" key={p.name}>
