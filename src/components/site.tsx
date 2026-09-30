@@ -1106,40 +1106,30 @@ export function Footer() {
           <Link
             to="/"
             aria-label="GUIITAR Council home"
-            style={{ display: "inline-block", marginBottom: "12px" }}
+            style={{
+              display: "inline-block",
+              marginBottom: "16px",
+              background: "#ffffff",
+              padding: "8px 14px",
+              borderRadius: "10px",
+              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+            }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <GuiitarEmblem className="w-10 h-10" />
-              <div style={{ lineHeight: 1.1 }}>
-                <strong
-                  style={{
-                    color: "#ffffff",
-                    fontSize: "20px",
-                    fontFamily: "var(--font-heading)",
-                    display: "block",
-                    letterSpacing: "0.04em",
-                  }}
-                >
-                  GUIITAR
-                </strong>
-                <span
-                  style={{
-                    color: "#94a3b8",
-                    fontSize: "13px",
-                    fontWeight: 800,
-                    letterSpacing: "0.22em",
-                  }}
-                >
-                  COUNCIL
-                </span>
-              </div>
-            </div>
+            <img
+              src="/guiitar-council-logo.png"
+              alt="GUIITAR Council"
+              style={{
+                height: "44px",
+                width: "auto",
+                display: "block",
+                objectFit: "contain",
+              }}
+            />
           </Link>
           <p>
             Gujarat University Innovation and Incubation Technology Applied Research (GUIITAR)
-            Council is a premier Section 8 not-for-profit company founded by GSFC University in
-            Vadodara, Gujarat. Empowering students, researchers, and startups to build enduring
-            commercial enterprises.
+            Council is founded by GSFC University in Vadodara, Gujarat. Empowering students,
+            researchers, and startups to build enduring commercial enterprises.
           </p>
           <div className="social">
             <a
@@ -1253,10 +1243,14 @@ export function Footer() {
           gap: "14px",
         }}
       >
-        <span>
-          © {new Date().getFullYear()} GUIITAR Council, GSFC University. Section 8 Not-For-Profit
-          Organization.
-        </span>
+        <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+          <span>
+            © {new Date().getFullYear()} GUIITAR Council, GSFC University. All Rights Reserved.
+          </span>
+          <span style={{ fontSize: "12px", color: "#94a3b8", fontWeight: 700, letterSpacing: "0.05em" }}>
+            DEVELOPED AND MANAGED BY OM THAKKAR
+          </span>
+        </div>
         <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
           <Link to="/resources">Policies & Governance</Link>
           <Link to="/partner">MOU Guidelines</Link>
