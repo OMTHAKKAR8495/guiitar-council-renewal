@@ -439,7 +439,7 @@ export function Header() {
   }, []);
 
   return (
-    <div ref={navRef} style={{ position: "sticky", top: 0, zIndex: 60 }}>
+    <div ref={navRef} style={{ position: "sticky", top: 0, zIndex: 1000, width: "100%" }}>
       {/* Main Sticky Navbar */}
       <header className="header">
         <div className="container nav-wrap">

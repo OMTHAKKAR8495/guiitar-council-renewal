@@ -472,9 +472,9 @@ export function HomePage() {
       {/* OFFICIAL POLICY DOCUMENTS BANNER / CARDS */}
       <section
         style={{
-          background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)",
+          background: "var(--background)",
           padding: "36px 0 20px",
-          borderBottom: "1px solid #e2e8f0",
+          borderBottom: "1px solid var(--border)",
         }}
       >
         <div className="container">
@@ -488,15 +488,15 @@ export function HomePage() {
             {/* STARTUP POLICY CARD */}
             <div
               style={{
-                background: "#ffffff",
-                border: "1px solid #e2e8f0",
+                background: "var(--surface)",
+                border: "1px solid var(--border)",
                 borderRadius: "18px",
                 padding: "24px 28px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 gap: "16px",
-                boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)",
+                boxShadow: "var(--shadow-sm)",
                 position: "relative",
                 overflow: "hidden",
                 transition: "all 0.2s ease",
@@ -532,8 +532,8 @@ export function HomePage() {
                       fontWeight: 700,
                       textTransform: "uppercase",
                       letterSpacing: "0.06em",
-                      background: "rgba(37, 99, 235, 0.08)",
-                      color: "#2563eb",
+                      background: "rgba(37, 99, 235, 0.12)",
+                      color: "var(--primary)",
                       padding: "4px 10px",
                       borderRadius: "6px",
                     }}
@@ -545,8 +545,9 @@ export function HomePage() {
                     style={{
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: "#64748b",
-                      background: "#f1f5f9",
+                      color: "var(--text-muted)",
+                      background: "var(--surface-muted)",
+                      border: "1px solid var(--border)",
                       padding: "2px 8px",
                       borderRadius: "4px",
                     }}
@@ -558,7 +559,7 @@ export function HomePage() {
                   style={{
                     fontSize: "18px",
                     fontWeight: 800,
-                    color: "#0f172a",
+                    color: "var(--text)",
                     margin: "0 0 6px",
                     lineHeight: "1.3",
                   }}
@@ -568,7 +569,7 @@ export function HomePage() {
                 <p
                   style={{
                     fontSize: "13.5px",
-                    color: "#475569",
+                    color: "var(--text-muted)",
                     margin: 0,
                     lineHeight: "1.55",
                   }}
@@ -584,7 +585,7 @@ export function HomePage() {
                   alignItems: "center",
                   flexWrap: "wrap",
                   paddingTop: "12px",
-                  borderTop: "1px solid #f1f5f9",
+                  borderTop: "1px solid var(--border)",
                 }}
               >
                 <a
@@ -614,15 +615,15 @@ export function HomePage() {
             {/* IPR POLICY CARD */}
             <div
               style={{
-                background: "#ffffff",
-                border: "1px solid #e2e8f0",
+                background: "var(--surface)",
+                border: "1px solid var(--border)",
                 borderRadius: "18px",
                 padding: "24px 28px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 gap: "16px",
-                boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)",
+                boxShadow: "var(--shadow-sm)",
                 position: "relative",
                 overflow: "hidden",
                 transition: "all 0.2s ease",
@@ -658,8 +659,8 @@ export function HomePage() {
                       fontWeight: 700,
                       textTransform: "uppercase",
                       letterSpacing: "0.06em",
-                      background: "rgba(16, 185, 129, 0.08)",
-                      color: "#059669",
+                      background: "rgba(16, 185, 129, 0.12)",
+                      color: "#10b981",
                       padding: "4px 10px",
                       borderRadius: "6px",
                     }}
@@ -671,8 +672,9 @@ export function HomePage() {
                     style={{
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: "#64748b",
-                      background: "#f1f5f9",
+                      color: "var(--text-muted)",
+                      background: "var(--surface-muted)",
+                      border: "1px solid var(--border)",
                       padding: "2px 8px",
                       borderRadius: "4px",
                     }}
@@ -684,7 +686,7 @@ export function HomePage() {
                   style={{
                     fontSize: "18px",
                     fontWeight: 800,
-                    color: "#0f172a",
+                    color: "var(--text)",
                     margin: "0 0 6px",
                     lineHeight: "1.3",
                   }}
@@ -694,7 +696,7 @@ export function HomePage() {
                 <p
                   style={{
                     fontSize: "13.5px",
-                    color: "#475569",
+                    color: "var(--text-muted)",
                     margin: 0,
                     lineHeight: "1.55",
                   }}
@@ -710,7 +712,7 @@ export function HomePage() {
                   alignItems: "center",
                   flexWrap: "wrap",
                   paddingTop: "12px",
-                  borderTop: "1px solid #f1f5f9",
+                  borderTop: "1px solid var(--border)",
                 }}
               >
                 <a
@@ -740,15 +742,15 @@ export function HomePage() {
             {/* BOOK PROTOTYPING LAB & TESTING FACILITIES CARD */}
             <div
               style={{
-                background: "#ffffff",
-                border: "1px solid #e2e8f0",
+                background: "var(--surface)",
+                border: "1px solid var(--border)",
                 borderRadius: "18px",
                 padding: "24px 28px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 gap: "16px",
-                boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)",
+                boxShadow: "var(--shadow-sm)",
                 position: "relative",
                 overflow: "hidden",
                 transition: "all 0.2s ease",
@@ -784,8 +786,8 @@ export function HomePage() {
                       fontWeight: 700,
                       textTransform: "uppercase",
                       letterSpacing: "0.06em",
-                      background: "rgba(245, 158, 11, 0.1)",
-                      color: "#d97706",
+                      background: "rgba(245, 158, 11, 0.12)",
+                      color: "#f59e0b",
                       padding: "4px 10px",
                       borderRadius: "6px",
                     }}
@@ -797,8 +799,9 @@ export function HomePage() {
                     style={{
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: "#64748b",
-                      background: "#f1f5f9",
+                      color: "var(--text-muted)",
+                      background: "var(--surface-muted)",
+                      border: "1px solid var(--border)",
                       padding: "2px 8px",
                       borderRadius: "4px",
                     }}
@@ -810,7 +813,7 @@ export function HomePage() {
                   style={{
                     fontSize: "18px",
                     fontWeight: 800,
-                    color: "#0f172a",
+                    color: "var(--text)",
                     margin: "0 0 6px",
                     lineHeight: "1.3",
                   }}
@@ -820,7 +823,7 @@ export function HomePage() {
                 <p
                   style={{
                     fontSize: "13.5px",
-                    color: "#475569",
+                    color: "var(--text-muted)",
                     margin: 0,
                     lineHeight: "1.55",
                   }}
@@ -836,7 +839,7 @@ export function HomePage() {
                   alignItems: "center",
                   flexWrap: "wrap",
                   paddingTop: "12px",
-                  borderTop: "1px solid #f1f5f9",
+                  borderTop: "1px solid var(--border)",
                 }}
               >
                 <a
@@ -864,15 +867,15 @@ export function HomePage() {
             {/* GUIITAR FEEDBACK FORM CARD */}
             <div
               style={{
-                background: "#ffffff",
-                border: "1px solid #e2e8f0",
+                background: "var(--surface)",
+                border: "1px solid var(--border)",
                 borderRadius: "18px",
                 padding: "24px 28px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 gap: "16px",
-                boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)",
+                boxShadow: "var(--shadow-sm)",
                 position: "relative",
                 overflow: "hidden",
                 transition: "all 0.2s ease",
@@ -908,8 +911,8 @@ export function HomePage() {
                       fontWeight: 700,
                       textTransform: "uppercase",
                       letterSpacing: "0.06em",
-                      background: "rgba(139, 92, 246, 0.1)",
-                      color: "#7c3aed",
+                      background: "rgba(139, 92, 246, 0.12)",
+                      color: "#a855f7",
                       padding: "4px 10px",
                       borderRadius: "6px",
                     }}
@@ -921,8 +924,9 @@ export function HomePage() {
                     style={{
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: "#64748b",
-                      background: "#f1f5f9",
+                      color: "var(--text-muted)",
+                      background: "var(--surface-muted)",
+                      border: "1px solid var(--border)",
                       padding: "2px 8px",
                       borderRadius: "4px",
                     }}
@@ -934,7 +938,7 @@ export function HomePage() {
                   style={{
                     fontSize: "18px",
                     fontWeight: 800,
-                    color: "#0f172a",
+                    color: "var(--text)",
                     margin: "0 0 6px",
                     lineHeight: "1.3",
                   }}
@@ -944,7 +948,7 @@ export function HomePage() {
                 <p
                   style={{
                     fontSize: "13.5px",
-                    color: "#475569",
+                    color: "var(--text-muted)",
                     margin: 0,
                     lineHeight: "1.55",
                   }}
@@ -960,7 +964,7 @@ export function HomePage() {
                   alignItems: "center",
                   flexWrap: "wrap",
                   paddingTop: "12px",
-                  borderTop: "1px solid #f1f5f9",
+                  borderTop: "1px solid var(--border)",
                 }}
               >
                 <a
@@ -988,15 +992,15 @@ export function HomePage() {
             {/* STARTUP RESOURCES DRIVE CARD */}
             <div
               style={{
-                background: "#ffffff",
-                border: "1px solid #e2e8f0",
+                background: "var(--surface)",
+                border: "1px solid var(--border)",
                 borderRadius: "18px",
                 padding: "24px 28px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 gap: "16px",
-                boxShadow: "0 4px 20px rgba(15, 23, 42, 0.05)",
+                boxShadow: "var(--shadow-sm)",
                 position: "relative",
                 overflow: "hidden",
                 transition: "all 0.2s ease",
@@ -1032,8 +1036,8 @@ export function HomePage() {
                       fontWeight: 700,
                       textTransform: "uppercase",
                       letterSpacing: "0.06em",
-                      background: "rgba(2, 132, 199, 0.1)",
-                      color: "#0284c7",
+                      background: "rgba(2, 132, 199, 0.12)",
+                      color: "#0ea5e9",
                       padding: "4px 10px",
                       borderRadius: "6px",
                     }}
@@ -1045,8 +1049,9 @@ export function HomePage() {
                     style={{
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: "#64748b",
-                      background: "#f1f5f9",
+                      color: "var(--text-muted)",
+                      background: "var(--surface-muted)",
+                      border: "1px solid var(--border)",
                       padding: "2px 8px",
                       borderRadius: "4px",
                     }}
@@ -1058,7 +1063,7 @@ export function HomePage() {
                   style={{
                     fontSize: "18px",
                     fontWeight: 800,
-                    color: "#0f172a",
+                    color: "var(--text)",
                     margin: "0 0 6px",
                     lineHeight: "1.3",
                   }}
@@ -1068,7 +1073,7 @@ export function HomePage() {
                 <p
                   style={{
                     fontSize: "13.5px",
-                    color: "#475569",
+                    color: "var(--text-muted)",
                     margin: 0,
                     lineHeight: "1.55",
                   }}
@@ -1084,7 +1089,7 @@ export function HomePage() {
                   alignItems: "center",
                   flexWrap: "wrap",
                   paddingTop: "12px",
-                  borderTop: "1px solid #f1f5f9",
+                  borderTop: "1px solid var(--border)",
                 }}
               >
                 <a
