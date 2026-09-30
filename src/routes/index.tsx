@@ -363,11 +363,14 @@ export function HomePage() {
               {/* Orbiting Nodes Grid around center */}
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(70px, 1fr))",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                  alignItems: "center",
                   gap: "10px",
                   width: "100%",
-                  marginTop: "28px",
+                  maxWidth: "460px",
+                  margin: "28px auto 0",
                   zIndex: 3,
                 }}
               >
@@ -386,21 +389,29 @@ export function HomePage() {
                     style={{
                       background: "rgba(255, 255, 255, 0.08)",
                       border: "1px solid rgba(255, 255, 255, 0.15)",
-                      borderRadius: "10px",
-                      padding: "8px 6px",
+                      borderRadius: "12px",
+                      padding: "10px 14px",
                       textAlign: "center",
                       color: "#e2e8f0",
                       fontSize: "11px",
                       fontWeight: 700,
-                      letterSpacing: "0.03em",
+                      letterSpacing: "0.04em",
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
-                      gap: "4px",
+                      justifyContent: "center",
+                      gap: "5px",
+                      minWidth: "84px",
+                      flex: "0 1 auto",
+                      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.12)",
+                      backdropFilter: "blur(4px)",
+                      WebkitBackdropFilter: "blur(4px)",
+                      boxSizing: "border-box",
+                      transition: "transform 0.2s ease, background 0.2s ease",
                     }}
                   >
-                    <node.icon className="w-3.5 h-3.5 text-blue-400" />
-                    <span>{node.name}</span>
+                    <node.icon className="w-4 h-4 text-blue-400" />
+                    <span style={{ lineHeight: 1.2 }}>{node.name}</span>
                   </div>
                 ))}
               </div>
