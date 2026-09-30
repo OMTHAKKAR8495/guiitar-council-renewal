@@ -1170,9 +1170,27 @@ function About() {
             <div className="team-grid">
               {visible.map(([n, t, desc]) => {
                 const leaderPhotos: Record<string, string> = {
-                  "Shri P. K. Taneja, IAS (Retd.)": "/leaders/pk-taneja.png",
-                  "Prof. G. R. Sinha": "/leaders/gr-sinha.png",
-                  "Dr G R Sinha": "/leaders/gr-sinha.png",
+                  "Shri P. K. Taneja, IAS (Retd.)": "/team/pk-taneja.png",
+                  "Prof. G. R. Sinha": "/team/gr-sinha.png",
+                  "Dr G R Sinha": "/team/gr-sinha.png",
+                  "Mr. Kirankumar Parmar": "/team/kirankumar-parmar.png",
+                  "Mr. KiranKumar Parmar": "/team/kirankumar-parmar.png",
+                  "Mr. Bhuvan Vyas": "/team/bhuvan-vyas.png",
+                  "Mr. Amit Duggal": "/team/amit-duggal.png",
+                  "Ms. Foram Mistry": "/team/foram-mistry.png",
+                  "Ms. Lavanya Jain": "/team/lavanya-jain.png",
+                  "Mr. Krish Shah": "/team/krish-shah.png",
+                  "Mr. Chandraveer Singh": "/team/chandraveer-singh.png",
+                  "Dr. Chandra Has": "/team/chandra-has.png",
+                  "Mr. Abidhusain Lodha": "/team/abidhusain-lodha.png",
+                  "Mr. Anup Upadhyay": "/team/anup-upadhyay.png",
+                  "Mr. Hemant M Rajput": "/team/hemant-rajput.png",
+                  "Ms. Charmi Mehta": "/team/charmi-mehta.png",
+                  "Dr. Mihir Trivedi": "/team/mihir-trivedi.png",
+                  "Dr. Akhilesh Prajapati": "/team/akhilesh-prajapati.png",
+                  "Ms. Chaitali Karpe": "/team/chaitali-karpe.png",
+                  "Dr. Rahul Sharma": "/team/rahul-sharma.png",
+                  "Dr. Jignesh Valand": "/team/jignesh-valand.png",
                 };
                 const photo = leaderPhotos[n];
 
