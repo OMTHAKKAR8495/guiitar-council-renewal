@@ -51,6 +51,7 @@ import {
   OFFICIAL_FAQS,
   type ShowcaseProject,
 } from "@/lib/data";
+import { AdminDataStore, type MentorItem as AdminMentorItem } from "@/lib/adminStore";
 import hero from "@/assets/home-hero.jpg.asset.json";
 import impact from "@/assets/impact.png.asset.json";
 
@@ -143,12 +144,39 @@ export function HomePage() {
   );
 
   // 6. Mentor Network Domain Filter
+  const [mentorList, setMentorList] = useState<AdminMentorItem[]>([]);
+  const loadMentors = () => {
+    setMentorList(AdminDataStore.getMentors().filter((m) => m.published !== false));
+  };
+
+  useEffect(() => {
+    loadMentors();
+    const handleUpdate = () => loadMentors();
+    window.addEventListener("guiitar_store_update", handleUpdate);
+    return () => window.removeEventListener("guiitar_store_update", handleUpdate);
+  }, []);
+
   const [mentorDomain, setMentorDomain] = useState<string>("All");
-  const mentorDomains = ["All", "Governance", "Technology", "Business", "Research", "Legal & IPR", "Industry"];
+  const mentorDomains = [
+    "All",
+    "Technology",
+    "Startup & Strategy",
+    "Finance & Investment",
+    "IPR & Legal",
+    "Business & Strategy",
+    "Academia & Research",
+    "Manufacturing & Industry",
+  ];
+
   const filteredMentors = useMemo(() => {
-    if (mentorDomain === "All") return MENTOR_NETWORK;
-    return MENTOR_NETWORK.filter((m) => m.domain === mentorDomain);
-  }, [mentorDomain]);
+    const list = mentorList.length > 0 ? mentorList : MENTOR_NETWORK;
+    if (mentorDomain === "All") return list;
+    return list.filter(
+      (m) =>
+        m.domain?.toLowerCase() === mentorDomain.toLowerCase() ||
+        m.expertise?.some((e) => e.toLowerCase() === mentorDomain.toLowerCase()),
+    );
+  }, [mentorDomain, mentorList]);
 
   return (
     <div className="home-container">
@@ -2209,126 +2237,103 @@ export function HomePage() {
           </div>
 
           <div className="grid-4">
-            {filteredMentors.slice(0, 8).map((m) => (
+            {filteredMentors.slice(0, 12).map((m) => (
               <article
                 key={m.id}
                 className="plain-card"
                 style={{
-                  padding: "28px 20px",
+                  padding: "24px 18px",
                   textAlign: "center",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
+                  borderRadius: "18px",
+                  transition: "all 0.2s ease",
                 }}
               >
                 <div>
-                  {m.avatar ? (
-                    <img
-                      src={m.avatar}
-                      alt={m.name}
-                      style={{
-                        margin: "0 auto 16px",
-                        width: "64px",
-                        height: "64px",
-                        borderRadius: "50%",
-                        objectFit: "cover",
-                        border: "2px solid #3b82f6",
-                        display: "block",
-                        boxShadow: "0 4px 12px rgba(37, 99, 235, 0.15)",
-                      }}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div
-                      className="avatar"
-                      style={{
-                        margin: "0 auto 16px",
-                        width: "64px",
-                        height: "64px",
-                        fontSize: "20px",
-                      }}
-                    >
-                      {m.name
-                        .split(" ")
-                        .filter(
-                          (x) =>
-                            x.length > 2 &&
-                            !x.includes("Dr.") &&
-                            !x.includes("Mr.") &&
-                            !x.includes("Prof."),
-                        )
-                        .slice(0, 2)
-                        .map((x) => x[0])
-                        .join("") || "GM"}
-                    </div>
-                  )}
+                  <img
+                    src={m.avatar || "/images/mentors/sudhir-gupta.jpeg"}
+                    alt={m.name}
+                    style={{
+                      margin: "0 auto 14px",
+                      width: "80px",
+                      height: "80px",
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      border: "3px solid #3b82f6",
+                      display: "block",
+                      boxShadow: "0 4px 12px rgba(37, 99, 235, 0.2)",
+                    }}
+                    loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src =
+                        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80";
+                    }}
+                  />
 
                   <span className="pill" style={{ marginBottom: "8px", fontSize: "11px" }}>
-                    {m.domain}
+                    {m.domain || "Industry Mentor"}
                   </span>
 
-                  <h3 style={{ fontSize: "17px", fontWeight: 800, margin: "6px 0 2px" }}>
+                  <h3
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: 800,
+                      margin: "6px 0 2px",
+                      color: "var(--foreground, #0f172a)",
+                    }}
+                  >
                     {m.name}
                   </h3>
                   <p
                     style={{
-                      fontSize: "13px",
+                      fontSize: "12.5px",
                       color: "#2563eb",
                       fontWeight: 600,
-                      margin: "0 0 10px",
+                      margin: "0 0 4px",
+                      lineHeight: 1.3,
                     }}
                   >
-                    {m.designation}
+                    {m.designation || m.role}
                   </p>
 
                   <span
                     style={{
-                      fontSize: "12px",
-                      color: "#64748b",
+                      fontSize: "11.5px",
+                      color: "var(--muted-foreground, #64748b)",
                       display: "block",
                       marginBottom: "14px",
+                      lineHeight: 1.3,
                     }}
                   >
-                    {m.experience}
+                    {m.organization}
                   </span>
-
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "4px",
-                      flexWrap: "wrap",
-                      justifyContent: "center",
-                      marginBottom: "16px",
-                    }}
-                  >
-                    {m.expertise.slice(0, 2).map((exp) => (
-                      <span
-                        key={exp}
-                        style={{
-                          background: "#f1f5f9",
-                          color: "#475569",
-                          fontSize: "11px",
-                          padding: "2px 6px",
-                          borderRadius: "4px",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {exp}
-                      </span>
-                    ))}
-                  </div>
                 </div>
 
                 <ButtonLink
-                  to="/apply"
+                  to="/guiitar-industry-mentor"
                   variant="outline"
                   size="sm"
                   style={{ width: "100%", justifyContent: "center" }}
                 >
-                  <span>Connect With Mentor</span>
+                  <span>View Profile & Bio</span>
                 </ButtonLink>
               </article>
             ))}
+          </div>
+
+          <div style={{ textAlign: "center", marginTop: "36px" }}>
+            <ButtonLink
+              to="/guiitar-industry-mentor"
+              variant="primary"
+              size="md"
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+            >
+              <span>Explore All {mentorList.length || 36} Official Industry Mentors</span>
+              <ArrowRight className="w-4 h-4" />
+            </ButtonLink>
           </div>
         </div>
       </section>
