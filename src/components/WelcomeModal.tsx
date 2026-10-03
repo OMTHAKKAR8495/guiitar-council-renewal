@@ -138,25 +138,29 @@ export function WelcomeModal() {
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              gap: "10px",
-              padding: "8px 16px",
+              gap: "8px",
+              padding: "6px 16px",
               borderRadius: "9999px",
               background: "#eff6ff",
               border: "1px solid #bfdbfe",
               marginBottom: "20px",
             }}
           >
-            <GuiitarEmblem className="w-5 h-5" />
+            <img
+              src="/guiitar-council-logo.png"
+              alt="GUIITAR Council Logo"
+              style={{ height: "24px", width: "auto", objectFit: "contain" }}
+            />
             <span
               style={{
                 fontSize: "12px",
-                fontWeight: 700,
+                fontWeight: 800,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 color: "#1e40af",
               }}
             >
-              GSFC University Innovation Hub
+              GUIITAR COUNCIL
             </span>
           </div>
 
@@ -200,11 +204,11 @@ export function WelcomeModal() {
               fontSize: "14px",
               lineHeight: "1.6",
               color: "#475569",
-              maxWidth: "460px",
+              maxWidth: "480px",
               margin: "0 auto 24px auto",
             }}
           >
-            Gujarat Federation of Chemical Industries Incubation & Technological Research Council —
+            GU Incubation Innovation Technology and Applied Research Council —
             empowering student innovators, researchers, and startups from ideation to commercialization.
           </p>
 
@@ -252,7 +256,7 @@ export function WelcomeModal() {
                 className="welcome-highlight-desc"
                 style={{ fontSize: "11px", color: "#64748b", lineHeight: "1.3" }}
               >
-                Up to ₹2.5L proto funding
+                Up to ₹2.5 Lakh
               </div>
             </div>
 
@@ -290,7 +294,7 @@ export function WelcomeModal() {
                 className="welcome-highlight-desc"
                 style={{ fontSize: "11px", color: "#64748b", lineHeight: "1.3" }}
               >
-                Prototyping & AI labs
+                Makers & AI labs
               </div>
             </div>
 
