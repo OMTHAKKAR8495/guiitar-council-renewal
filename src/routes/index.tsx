@@ -35,6 +35,7 @@ import {
   FlaskConical,
   MessageSquare,
   FolderOpen,
+  X,
 } from "lucide-react";
 import { ButtonLink, SectionTitle } from "@/components/site";
 import { GuiitarEmblem, GuiitarFullLogo } from "@/components/GuiitarBrand";
@@ -143,8 +144,10 @@ export function HomePage() {
     [activeLabId],
   );
 
-  // 6. Mentor Network Domain Filter
+  // 6. Mentor Network Domain Filter & Modal State
   const [mentorList, setMentorList] = useState<AdminMentorItem[]>([]);
+  const [selectedMentor, setSelectedMentor] = useState<AdminMentorItem | null>(null);
+
   const loadMentors = () => {
     setMentorList(AdminDataStore.getMentors().filter((m) => m.published !== false));
   };
@@ -156,21 +159,86 @@ export function HomePage() {
     return () => window.removeEventListener("guiitar_store_update", handleUpdate);
   }, []);
 
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedMentor(null);
+      }
+    };
+    if (selectedMentor) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedMentor]);
+
   const [mentorDomain, setMentorDomain] = useState<string>("All");
   const mentorDomains = [
     "All",
+    "Industry",
+    "Governance",
     "Technology",
-    "Startup & Strategy",
-    "Finance & Investment",
-    "IPR & Legal",
-    "Business & Strategy",
-    "Academia & Research",
-    "Manufacturing & Industry",
+    "Business",
+    "Research",
+    "Legal & IPR",
   ];
 
   const filteredMentors = useMemo(() => {
     const list = mentorList.length > 0 ? mentorList : MENTOR_NETWORK;
     if (mentorDomain === "All") return list;
+    if (mentorDomain === "Industry" || mentorDomain === "Industry Mentorship") {
+      return list.filter(
+        (m) =>
+          m.id.startsWith("ind-men") ||
+          m.domain?.toLowerCase().includes("industry") ||
+          m.domain?.toLowerCase().includes("strategy") ||
+          m.domain?.toLowerCase().includes("manufacturing") ||
+          m.domain?.toLowerCase().includes("startup") ||
+          m.domain?.toLowerCase().includes("finance"),
+      );
+    }
+    if (mentorDomain === "Governance") {
+      return list.filter((m) => m.domain?.toLowerCase().includes("governance"));
+    }
+    if (mentorDomain === "Technology") {
+      return list.filter(
+        (m) =>
+          m.domain?.toLowerCase().includes("tech") ||
+          m.expertise?.some((e) => e.toLowerCase().includes("tech")),
+      );
+    }
+    if (mentorDomain === "Business") {
+      return list.filter(
+        (m) =>
+          m.domain?.toLowerCase().includes("business") ||
+          m.domain?.toLowerCase().includes("strategy") ||
+          m.domain?.toLowerCase().includes("startup") ||
+          m.domain?.toLowerCase().includes("finance") ||
+          m.domain?.toLowerCase().includes("investment"),
+      );
+    }
+    if (mentorDomain === "Research") {
+      return list.filter(
+        (m) =>
+          m.domain?.toLowerCase().includes("research") ||
+          m.domain?.toLowerCase().includes("academia") ||
+          m.domain?.toLowerCase().includes("biotech"),
+      );
+    }
+    if (mentorDomain === "Legal & IPR") {
+      return list.filter(
+        (m) =>
+          m.domain?.toLowerCase().includes("legal") ||
+          m.domain?.toLowerCase().includes("ipr") ||
+          m.domain?.toLowerCase().includes("patent"),
+      );
+    }
     return list.filter(
       (m) =>
         m.domain?.toLowerCase() === mentorDomain.toLowerCase() ||
@@ -2240,6 +2308,15 @@ export function HomePage() {
             {filteredMentors.slice(0, 12).map((m) => (
               <article
                 key={m.id}
+                onClick={() => setSelectedMentor(m)}
+                tabIndex={0}
+                role="button"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelectedMentor(m);
+                  }
+                }}
                 className="plain-card"
                 style={{
                   padding: "24px 18px",
@@ -2248,7 +2325,8 @@ export function HomePage() {
                   flexDirection: "column",
                   justifyContent: "space-between",
                   borderRadius: "18px",
-                  transition: "all 0.2s ease",
+                  cursor: "pointer",
+                  transition: "all 0.25s ease",
                 }}
               >
                 <div>
@@ -2312,14 +2390,22 @@ export function HomePage() {
                   </span>
                 </div>
 
-                <ButtonLink
-                  to="/guiitar-industry-mentor"
-                  variant="outline"
-                  size="sm"
-                  style={{ width: "100%", justifyContent: "center" }}
+                <div
+                  style={{
+                    borderTop: "1px solid var(--border, #f1f5f9)",
+                    paddingTop: "12px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "6px",
+                    fontSize: "12.5px",
+                    fontWeight: 700,
+                    color: "#2563eb",
+                  }}
                 >
-                  <span>View Profile & Bio</span>
-                </ButtonLink>
+                  <span>View Details</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </div>
               </article>
             ))}
           </div>
@@ -2337,6 +2423,244 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* HOMEPAGE MENTOR DETAILS MODAL */}
+      {selectedMentor && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="homepage-mentor-modal-title"
+          onClick={() => setSelectedMentor(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(15, 23, 42, 0.75)",
+            backdropFilter: "blur(8px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9999,
+            padding: "20px",
+            animation: "fadeIn 0.2s ease-out",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "var(--card, #ffffff)",
+              borderRadius: "24px",
+              maxWidth: "540px",
+              width: "100%",
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+              border: "1px solid var(--border, #e2e8f0)",
+              overflow: "hidden",
+              position: "relative",
+              animation: "scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+            }}
+          >
+            {/* CLOSE BUTTON */}
+            <button
+              onClick={() => setSelectedMentor(null)}
+              aria-label="Close mentor details"
+              style={{
+                position: "absolute",
+                top: "16px",
+                right: "16px",
+                width: "36px",
+                height: "36px",
+                borderRadius: "50%",
+                background: "var(--background, #f1f5f9)",
+                border: "1px solid var(--border, #e2e8f0)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                color: "var(--foreground, #475569)",
+                zIndex: 10,
+                transition: "all 0.15s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#e2e8f0";
+                e.currentTarget.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "var(--background, #f1f5f9)";
+                e.currentTarget.style.transform = "scale(1)";
+              }}
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div style={{ padding: "32px 28px 28px 28px", textAlign: "center" }}>
+              {/* LARGE PROFILE PHOTO */}
+              <div
+                style={{
+                  width: "130px",
+                  height: "130px",
+                  margin: "0 auto 18px auto",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  border: "4px solid #3b82f6",
+                  boxShadow: "0 10px 25px rgba(59, 130, 246, 0.25)",
+                  background: "#f8fafc",
+                }}
+              >
+                <img
+                  src={selectedMentor.avatar || "/images/mentors/sudhir-gupta.jpeg"}
+                  alt={selectedMentor.name}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center top",
+                  }}
+                />
+              </div>
+
+              {/* BADGE */}
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  padding: "4px 12px",
+                  borderRadius: "9999px",
+                  background: "#eff6ff",
+                  border: "1px solid #bfdbfe",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  color: "#1e40af",
+                  marginBottom: "10px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
+                GUIITAR Industry Mentor
+              </div>
+
+              {/* NAME & ROLE */}
+              <h2
+                id="homepage-mentor-modal-title"
+                style={{
+                  fontSize: "22px",
+                  fontWeight: 800,
+                  color: "var(--foreground, #0f172a)",
+                  margin: "0 0 6px 0",
+                }}
+              >
+                {selectedMentor.name}
+              </h2>
+
+              <p
+                style={{
+                  fontSize: "14.5px",
+                  fontWeight: 700,
+                  color: "#2563eb",
+                  margin: "0 0 4px 0",
+                }}
+              >
+                {selectedMentor.designation || selectedMentor.role}
+              </p>
+
+              <p
+                style={{
+                  fontSize: "13.5px",
+                  color: "var(--muted-foreground, #64748b)",
+                  margin: "0 0 18px 0",
+                }}
+              >
+                {selectedMentor.organization}
+              </p>
+
+              {/* MENTOR META SPECIFICATIONS */}
+              <div
+                style={{
+                  background: "var(--background, #f8fafc)",
+                  borderRadius: "16px",
+                  padding: "16px",
+                  border: "1px solid var(--border, #e2e8f0)",
+                  textAlign: "left",
+                  marginBottom: "22px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "12px",
+                    fontSize: "13px",
+                  }}
+                >
+                  <div>
+                    <span style={{ color: "#94a3b8", display: "block", fontSize: "11px", fontWeight: 700 }}>
+                      DOMAIN FOCUS
+                    </span>
+                    <strong style={{ color: "var(--foreground, #0f172a)" }}>
+                      {selectedMentor.domain || "Industry Advisory"}
+                    </strong>
+                  </div>
+                  <div>
+                    <span style={{ color: "#94a3b8", display: "block", fontSize: "11px", fontWeight: 700 }}>
+                      EXPERIENCE
+                    </span>
+                    <strong style={{ color: "var(--foreground, #0f172a)" }}>
+                      {selectedMentor.experience || "10+ Years"}
+                    </strong>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    marginTop: "12px",
+                    paddingTop: "12px",
+                    borderTop: "1px solid var(--border, #e2e8f0)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    fontSize: "12.5px",
+                    color: "#166534",
+                  }}
+                >
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>Official Mentor & Institutional Screening Committee (ISC) Member</span>
+                </div>
+              </div>
+
+              {/* ACTION BUTTONS */}
+              <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedMentor(null)}
+                  className="btn btn-outline btn-md"
+                  style={{ borderRadius: "10px", padding: "10px 20px", fontWeight: 600 }}
+                >
+                  Close
+                </button>
+
+                <Link
+                  to="/submit-idea"
+                  onClick={() => setSelectedMentor(null)}
+                  className="btn btn-primary btn-md"
+                  style={{
+                    borderRadius: "10px",
+                    padding: "10px 22px",
+                    fontWeight: 700,
+                    background: "#2563eb",
+                    color: "#ffffff",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                  }}
+                >
+                  <span>Request Mentorship</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 11. EVENTS DISCOVERY PLATFORM */}
       <section className="section-muted">
