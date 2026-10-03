@@ -2305,7 +2305,7 @@ export function HomePage() {
           </div>
 
           <div className="grid-4">
-            {filteredMentors.slice(0, 12).map((m) => (
+            {filteredMentors.slice(0, 36).map((m) => (
               <article
                 key={m.id}
                 onClick={() => setSelectedMentor(m)}
