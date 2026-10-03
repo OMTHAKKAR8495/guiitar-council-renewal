@@ -123,11 +123,23 @@ export function EcosystemPage() {
     return () => window.removeEventListener("guiitar_store_update", handleUpdate);
   }, []);
 
-  const domains = ["All", "Technology", "Business", "Research", "Legal & IPR", "Industry"];
+  const domains = [
+    "All",
+    "Technology",
+    "Startup & Strategy",
+    "Finance & Investment",
+    "IPR & Legal",
+    "Business & Strategy",
+    "Academia & Research",
+    "Manufacturing & Industry",
+  ];
 
   const filteredMentors = useMemo(() => {
     return mentorList.filter((m) => {
-      const matchDom = selectedDomain === "All" || m.domain === selectedDomain;
+      const matchDom =
+        selectedDomain === "All" ||
+        m.domain?.toLowerCase() === selectedDomain.toLowerCase() ||
+        m.expertise?.some((e) => e.toLowerCase() === selectedDomain.toLowerCase());
       const matchQuery =
         `${m.name} ${m.designation || m.role} ${m.organization} ${(m.expertise || []).join(" ")}`
           .toLowerCase()
@@ -285,80 +297,91 @@ export function EcosystemPage() {
                 key={m.id}
                 className="plain-card"
                 style={{
-                  padding: "30px 24px",
+                  padding: "24px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
+                  borderRadius: "18px",
                 }}
               >
                 <div>
                   <div
                     style={{
                       display: "flex",
-                      justifyContent: "space-between",
                       alignItems: "center",
-                      marginBottom: "14px",
+                      gap: "14px",
+                      marginBottom: "16px",
                     }}
                   >
-                    <span className="pill">{m.domain}</span>
-                    <span style={{ fontSize: "12px", color: "#64748b" }}>{m.organization}</span>
+                    <img
+                      src={m.avatar || "/images/mentors/sudhir-gupta.jpeg"}
+                      alt={m.name}
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        borderRadius: "14px",
+                        objectFit: "cover",
+                        border: "1px solid #e2e8f0",
+                      }}
+                    />
+                    <div>
+                      <span className="pill" style={{ fontSize: "11px", marginBottom: "4px" }}>
+                        {m.domain}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          color: "var(--muted-foreground, #64748b)",
+                          display: "block",
+                          lineHeight: 1.3,
+                        }}
+                      >
+                        {m.organization}
+                      </span>
+                    </div>
                   </div>
 
                   <h3
                     style={{
-                      fontSize: "20px",
+                      fontSize: "18px",
                       fontWeight: 800,
                       margin: "0 0 4px",
-                      color: "#0f172a",
+                      color: "var(--foreground, #0f172a)",
                     }}
                   >
                     {m.name}
                   </h3>
                   <span
                     style={{
-                      fontSize: "13.5px",
+                      fontSize: "13px",
                       fontWeight: 600,
                       color: "#2563eb",
                       display: "block",
-                      marginBottom: "12px",
+                      marginBottom: "10px",
                     }}
                   >
                     {m.designation}
                   </span>
 
-                  <p style={{ fontSize: "13px", color: "#475569", marginBottom: "16px" }}>
+                  <p
+                    style={{
+                      fontSize: "12.5px",
+                      color: "var(--muted-foreground, #475569)",
+                      marginBottom: "14px",
+                    }}
+                  >
                     {m.experience}
                   </p>
-
-                  <div
-                    style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "20px" }}
-                  >
-                    {m.expertise.map((exp) => (
-                      <span
-                        key={exp}
-                        style={{
-                          background: "#f1f5f9",
-                          color: "#334155",
-                          fontSize: "11.5px",
-                          padding: "2px 8px",
-                          borderRadius: "4px",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {exp}
-                      </span>
-                    ))}
-                  </div>
                 </div>
 
-                <div style={{ borderTop: "1px solid #f1f5f9", paddingTop: "16px" }}>
+                <div style={{ borderTop: "1px solid var(--border, #f1f5f9)", paddingTop: "14px" }}>
                   <ButtonLink
-                    to="/apply"
+                    to="/guiitar-industry-mentor"
                     variant="outline"
                     size="sm"
                     style={{ width: "100%", justifyContent: "center" }}
                   >
-                    <span>Request Advisory Session</span>
+                    <span>View Profile in Directory</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </ButtonLink>
                 </div>

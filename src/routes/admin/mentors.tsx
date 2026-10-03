@@ -1,8 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { Users, Plus, Search, CheckCircle, Trash2, Briefcase, Star, Building } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  Users,
+  Plus,
+  Search,
+  CheckCircle,
+  Trash2,
+  Edit2,
+  Briefcase,
+  Building,
+  ShieldCheck,
+  Globe,
+} from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
-import { useEffect } from "react";
 import { AdminDataStore, type MentorItem } from "@/lib/adminStore";
 
 export const Route = createFileRoute("/admin/mentors")({
@@ -13,6 +23,7 @@ export function AdminMentorsPage() {
   const [mentors, setMentors] = useState<MentorItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [editingMentor, setEditingMentor] = useState<MentorItem | null>(null);
   const [toast, setToast] = useState<string | null>(null);
 
   const loadMentors = () => {
@@ -28,12 +39,23 @@ export function AdminMentorsPage() {
 
   const [formData, setFormData] = useState({
     name: "",
-    role: "",
+    designation: "",
     organization: "",
-    domain: "Artificial Intelligence",
-    experience: "10+ Years",
+    domain: "Technology",
+    experience: "15+ Years",
     avatar: "",
+    status: "Active" as "Active" | "Available" | "Busy",
   });
+
+  const domains = [
+    "Technology",
+    "Startup & Strategy",
+    "Finance & Investment",
+    "IPR & Legal",
+    "Business & Strategy",
+    "Academia & Research",
+    "Manufacturing & Industry",
+  ];
 
   const filteredMentors = mentors.filter((m) =>
     `${m.name} ${m.role || m.designation} ${m.organization} ${m.domain}`
@@ -41,39 +63,75 @@ export function AdminMentorsPage() {
       .includes(searchQuery.toLowerCase()),
   );
 
-  const handleAdd = (e: React.FormEvent) => {
+  const openAddModal = () => {
+    setEditingMentor(null);
+    setFormData({
+      name: "",
+      designation: "",
+      organization: "",
+      domain: "Technology",
+      experience: "15+ Years",
+      avatar: "",
+      status: "Active",
+    });
+    setModalOpen(true);
+  };
+
+  const openEditModal = (m: MentorItem) => {
+    setEditingMentor(m);
+    setFormData({
+      name: m.name,
+      designation: m.designation || m.role || "",
+      organization: m.organization || "",
+      domain: m.domain || "Technology",
+      experience: m.experience || "10+ Years",
+      avatar: m.avatar || "",
+      status: m.status || "Active",
+    });
+    setModalOpen(true);
+  };
+
+  const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name) return;
 
-    AdminDataStore.saveMentor({
-      name: formData.name,
-      role: formData.role || "Mentor",
-      designation: formData.role || "Mentor & Domain Specialist",
-      organization: formData.organization || "GSFC University / Industry",
-      domain: formData.domain,
-      experience: formData.experience,
-      avatar:
-        formData.avatar ||
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
-      expertise: [formData.domain, "Mentorship"],
-      status: "Active",
-    });
+    if (editingMentor) {
+      AdminDataStore.saveMentor({
+        id: editingMentor.id,
+        name: formData.name,
+        role: formData.designation,
+        designation: formData.designation,
+        organization: formData.organization,
+        domain: formData.domain,
+        experience: formData.experience,
+        avatar: formData.avatar || editingMentor.avatar,
+        expertise: [formData.domain, "Mentorship", "Innovation"],
+        status: formData.status,
+      });
+      setToast(`Updated mentor "${formData.name}"`);
+    } else {
+      AdminDataStore.saveMentor({
+        name: formData.name,
+        role: formData.designation || "Industry Mentor",
+        designation: formData.designation || "Industry Mentor",
+        organization: formData.organization || "Industry Partner",
+        domain: formData.domain,
+        experience: formData.experience,
+        avatar:
+          formData.avatar ||
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
+        expertise: [formData.domain, "Mentorship", "Innovation"],
+        status: formData.status,
+      });
+      setToast(`Added mentor "${formData.name}"`);
+    }
 
     setModalOpen(false);
-    setFormData({
-      name: "",
-      role: "",
-      organization: "",
-      domain: "Artificial Intelligence",
-      experience: "10+ Years",
-      avatar: "",
-    });
-    setToast(`Added mentor "${formData.name}"`);
     setTimeout(() => setToast(null), 3000);
   };
 
   const handleDelete = (id: string, name: string) => {
-    if (window.confirm(`Remove mentor "${name}"?`)) {
+    if (window.confirm(`Remove mentor "${name}" from directory?`)) {
       AdminDataStore.deleteMentor(id);
       setToast(`Removed "${name}"`);
       setTimeout(() => setToast(null), 3000);
@@ -82,15 +140,15 @@ export function AdminMentorsPage() {
 
   return (
     <AdminLayout
-      title="Institutional Mentor Network"
+      title="Industry Mentor Directory Management"
       actions={
         <button
-          onClick={() => setModalOpen(true)}
+          onClick={openAddModal}
           className="btn btn-primary btn-sm"
           style={{ display: "flex", alignItems: "center", gap: "6px" }}
         >
           <Plus className="w-4 h-4" />
-          Add Mentor
+          Add New Mentor
         </button>
       }
     >
@@ -131,9 +189,11 @@ export function AdminMentorsPage() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            flexWrap: "wrap",
+            gap: "12px",
           }}
         >
-          <div style={{ position: "relative", width: "320px" }}>
+          <div style={{ position: "relative", width: "340px" }}>
             <Search
               style={{
                 position: "absolute",
@@ -161,9 +221,12 @@ export function AdminMentorsPage() {
             />
           </div>
 
-          <span style={{ fontSize: "13px", color: "#64748b" }}>
-            Active Mentors: <strong>50+</strong> industry leaders & faculty
-          </span>
+          <div style={{ fontSize: "13px", color: "#64748b", display: "flex", alignItems: "center", gap: "6px" }}>
+            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <span>
+              Total Verified Mentors: <strong style={{ color: "#0f172a" }}>{mentors.length}</strong>
+            </span>
+          </div>
         </div>
 
         <div style={{ overflowX: "auto" }}>
@@ -171,9 +234,10 @@ export function AdminMentorsPage() {
             <thead>
               <tr>
                 <th>Mentor</th>
-                <th>Professional Role & Company</th>
-                <th>Domain Expertise</th>
+                <th>Role & Organization</th>
+                <th>Domain Category</th>
                 <th>Experience</th>
+                <th>Status</th>
                 <th style={{ textAlign: "right" }}>Actions</th>
               </tr>
             </thead>
@@ -181,24 +245,30 @@ export function AdminMentorsPage() {
               {filteredMentors.map((m) => (
                 <tr key={m.id}>
                   <td>
-                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                       <img
-                        src={m.avatar}
+                        src={m.avatar || "/images/mentors/sudhir-gupta.jpeg"}
                         alt={m.name}
                         style={{
-                          width: "36px",
-                          height: "36px",
-                          borderRadius: "50%",
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "10px",
                           objectFit: "cover",
+                          border: "1px solid #e2e8f0",
                         }}
                       />
-                      <strong style={{ color: "#0f172a", fontSize: "14px" }}>{m.name}</strong>
+                      <div>
+                        <strong style={{ color: "#0f172a", fontSize: "14px", display: "block" }}>{m.name}</strong>
+                        <span style={{ fontSize: "11.5px", color: "#94a3b8" }}>{m.id}</span>
+                      </div>
                     </div>
                   </td>
                   <td>
                     <div style={{ fontSize: "13px" }}>
-                      <span style={{ color: "#0f172a", fontWeight: 600 }}>{m.role}</span>
-                      <span style={{ color: "#64748b", display: "block", fontSize: "12px" }}>
+                      <span style={{ color: "#0f172a", fontWeight: 600, display: "block" }}>
+                        {m.designation || m.role}
+                      </span>
+                      <span style={{ color: "#64748b", fontSize: "12px" }}>
                         {m.organization}
                       </span>
                     </div>
@@ -212,6 +282,7 @@ export function AdminMentorsPage() {
                         borderRadius: "6px",
                         fontSize: "12px",
                         fontWeight: 700,
+                        display: "inline-block",
                       }}
                     >
                       {m.domain}
@@ -220,14 +291,39 @@ export function AdminMentorsPage() {
                   <td>
                     <span style={{ fontSize: "13px", color: "#475569" }}>{m.experience}</span>
                   </td>
-                  <td style={{ textAlign: "right" }}>
-                    <button
-                      onClick={() => handleDelete(m.id, m.name)}
-                      className="btn btn-outline btn-sm"
-                      style={{ padding: "6px 10px", color: "#ef4444", borderColor: "#fca5a5" }}
+                  <td>
+                    <span
+                      style={{
+                        background: "#ecfdf5",
+                        color: "#065f46",
+                        padding: "3px 8px",
+                        borderRadius: "9999px",
+                        fontSize: "11.5px",
+                        fontWeight: 700,
+                      }}
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
+                      {m.status || "Active"}
+                    </span>
+                  </td>
+                  <td style={{ textAlign: "right" }}>
+                    <div style={{ display: "flex", justifyContent: "flex-end", gap: "6px" }}>
+                      <button
+                        onClick={() => openEditModal(m)}
+                        className="btn btn-outline btn-sm"
+                        style={{ padding: "6px 10px", color: "#2563eb", borderColor: "#bfdbfe" }}
+                        title="Edit Mentor"
+                      >
+                        <Edit2 className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(m.id, m.name)}
+                        className="btn btn-outline btn-sm"
+                        style={{ padding: "6px 10px", color: "#ef4444", borderColor: "#fca5a5" }}
+                        title="Delete Mentor"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -236,13 +332,14 @@ export function AdminMentorsPage() {
         </div>
       </div>
 
-      {/* ADD MENTOR MODAL */}
+      {/* ADD / EDIT MENTOR MODAL */}
       {modalOpen && (
         <div
           style={{
             position: "fixed",
             inset: 0,
             background: "rgba(15, 23, 42, 0.6)",
+            backdropFilter: "blur(4px)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -255,16 +352,16 @@ export function AdminMentorsPage() {
               background: "#ffffff",
               borderRadius: "16px",
               padding: "28px",
-              maxWidth: "500px",
+              maxWidth: "520px",
               width: "100%",
               boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1)",
             }}
           >
             <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a", margin: "0 0 16px" }}>
-              Add Mentor to Roster
+              {editingMentor ? "Edit Mentor Details" : "Add Mentor to Official Roster"}
             </h3>
 
-            <form onSubmit={handleAdd}>
+            <form onSubmit={handleSave}>
               <div style={{ marginBottom: "14px" }}>
                 <label
                   style={{
@@ -282,7 +379,7 @@ export function AdminMentorsPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="e.g., Dr. Rajeshwari Nair"
+                  placeholder="e.g., Mr. Sudhir Gupta"
                   style={{
                     width: "100%",
                     padding: "10px 14px",
@@ -305,13 +402,14 @@ export function AdminMentorsPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    Current Designation / Role
+                    Designation / Title *
                   </label>
                   <input
                     type="text"
-                    value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    placeholder="e.g., Chief Technology Officer"
+                    required
+                    value={formData.designation}
+                    onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
+                    placeholder="e.g., CEO & Founder"
                     style={{
                       width: "100%",
                       padding: "10px 14px",
@@ -333,13 +431,14 @@ export function AdminMentorsPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    Organization / Company
+                    Organization / Company *
                   </label>
                   <input
                     type="text"
+                    required
                     value={formData.organization}
                     onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                    placeholder="e.g., GSFC Ltd. / Industry"
+                    placeholder="e.g., Barodaweb"
                     style={{
                       width: "100%",
                       padding: "10px 14px",
@@ -352,7 +451,7 @@ export function AdminMentorsPage() {
                 </div>
               </div>
 
-              <div className="form-row-2" style={{ gap: "14px", marginBottom: "24px" }}>
+              <div className="form-row-2" style={{ gap: "14px", marginBottom: "14px" }}>
                 <div>
                   <label
                     style={{
@@ -363,13 +462,11 @@ export function AdminMentorsPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    Domain Focus
+                    Domain Category
                   </label>
-                  <input
-                    type="text"
+                  <select
                     value={formData.domain}
                     onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
-                    placeholder="e.g., Bioprocess & HPLC"
                     style={{
                       width: "100%",
                       padding: "10px 14px",
@@ -377,8 +474,15 @@ export function AdminMentorsPage() {
                       border: "1px solid #cbd5e1",
                       fontSize: "14px",
                       boxSizing: "border-box",
+                      background: "#ffffff",
                     }}
-                  />
+                  >
+                    {domains.map((dom) => (
+                      <option key={dom} value={dom}>
+                        {dom}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>
@@ -391,7 +495,7 @@ export function AdminMentorsPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    Industry Experience
+                    Experience
                   </label>
                   <input
                     type="text"
@@ -410,6 +514,34 @@ export function AdminMentorsPage() {
                 </div>
               </div>
 
+              <div style={{ marginBottom: "20px" }}>
+                <label
+                  style={{
+                    display: "block",
+                    fontSize: "13px",
+                    fontWeight: 700,
+                    color: "#0f172a",
+                    marginBottom: "6px",
+                  }}
+                >
+                  Avatar / Image URL (Path or URL)
+                </label>
+                <input
+                  type="text"
+                  value={formData.avatar}
+                  onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
+                  placeholder="e.g., /images/mentors/sudhir-gupta.jpeg"
+                  style={{
+                    width: "100%",
+                    padding: "10px 14px",
+                    borderRadius: "8px",
+                    border: "1px solid #cbd5e1",
+                    fontSize: "14px",
+                    boxSizing: "border-box",
+                  }}
+                />
+              </div>
+
               <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}>
                 <button
                   type="button"
@@ -419,7 +551,7 @@ export function AdminMentorsPage() {
                   Cancel
                 </button>
                 <button type="submit" className="btn btn-primary btn-sm">
-                  Save Mentor
+                  {editingMentor ? "Update Mentor" : "Save Mentor"}
                 </button>
               </div>
             </form>

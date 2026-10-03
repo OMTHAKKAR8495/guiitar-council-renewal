@@ -17,6 +17,7 @@ import { Route as EcosystemRouteImport } from './routes/ecosystem'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FundingRouteImport } from './routes/funding'
+import { Route as GuiitarIndustryMentorRouteImport } from './routes/guiitar-industry-mentor'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as InnovationRouteImport } from './routes/innovation'
 import { Route as IprRouteImport } from './routes/ipr'
@@ -88,6 +89,11 @@ const FaqRoute = FaqRouteImport.update({
 const FundingRoute = FundingRouteImport.update({
   id: '/funding',
   path: '/funding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuiitarIndustryMentorRoute = GuiitarIndustryMentorRouteImport.update({
+  id: '/guiitar-industry-mentor',
+  path: '/guiitar-industry-mentor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImpactRoute = ImpactRouteImport.update({
@@ -260,6 +266,7 @@ export interface FileRoutesByFullPath {
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/funding': typeof FundingRoute
+  '/guiitar-industry-mentor': typeof GuiitarIndustryMentorRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
   '/ipr': typeof IprRoute
@@ -302,6 +309,7 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/funding': typeof FundingRoute
+  '/guiitar-industry-mentor': typeof GuiitarIndustryMentorRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
   '/ipr': typeof IprRoute
@@ -345,6 +353,7 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/funding': typeof FundingRoute
+  '/guiitar-industry-mentor': typeof GuiitarIndustryMentorRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
   '/ipr': typeof IprRoute
@@ -389,6 +398,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faq'
     | '/funding'
+    | '/guiitar-industry-mentor'
     | '/impact'
     | '/innovation'
     | '/ipr'
@@ -431,6 +441,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faq'
     | '/funding'
+    | '/guiitar-industry-mentor'
     | '/impact'
     | '/innovation'
     | '/ipr'
@@ -473,6 +484,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faq'
     | '/funding'
+    | '/guiitar-industry-mentor'
     | '/impact'
     | '/innovation'
     | '/ipr'
@@ -516,6 +528,7 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   FaqRoute: typeof FaqRoute
   FundingRoute: typeof FundingRoute
+  GuiitarIndustryMentorRoute: typeof GuiitarIndustryMentorRoute
   ImpactRoute: typeof ImpactRoute
   InnovationRoute: typeof InnovationRouteWithChildren
   IprRoute: typeof IprRoute
@@ -605,6 +618,13 @@ declare module '@tanstack/react-router' {
       path: '/funding'
       fullPath: '/funding'
       preLoaderRoute: typeof FundingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guiitar-industry-mentor': {
+      id: '/guiitar-industry-mentor'
+      path: '/guiitar-industry-mentor'
+      fullPath: '/guiitar-industry-mentor'
+      preLoaderRoute: typeof GuiitarIndustryMentorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/impact': {
@@ -855,6 +875,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   FaqRoute: FaqRoute,
   FundingRoute: FundingRoute,
+  GuiitarIndustryMentorRoute: GuiitarIndustryMentorRoute,
   ImpactRoute: ImpactRoute,
   InnovationRoute: InnovationRouteWithChildren,
   IprRoute: IprRoute,
