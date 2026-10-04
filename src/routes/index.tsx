@@ -158,8 +158,23 @@ export function HomePage() {
     return () => window.removeEventListener("guiitar_store_update", handleStoreUpdate);
   }, []);
 
+  // Domains shown in tabs (excluding "All"). Defines both the visible tab set and
+  // the display order used when "All" is selected.
+  const ACTIVE_DOMAINS = ["Board of Directors", "Industry", "Faculty"] as const;
+
   const filteredMentors = useMemo(() => {
-    if (mentorDomain === "All") return mentorList;
+    if (mentorDomain === "All") {
+      // Show only profiles belonging to the three active tabs, in the specified order,
+      // deduplicating by id to guard against any duplicate seed entries.
+      const seen = new Set<string>();
+      return ACTIVE_DOMAINS.flatMap((domain) =>
+        mentorList.filter((m) => {
+          if (m.domain !== domain || seen.has(m.id)) return false;
+          seen.add(m.id);
+          return true;
+        }),
+      );
+    }
     return mentorList.filter((m) => m.domain === mentorDomain);
   }, [mentorDomain, mentorList]);
 
