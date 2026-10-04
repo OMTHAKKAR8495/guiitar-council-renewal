@@ -145,10 +145,14 @@ export function HomePage() {
   // 6. Mentor Network — live from AdminDataStore (single source of truth shared with Admin Dashboard)
   const [mentorList, setMentorList] = useState(() => AdminDataStore.getMentors());
   const [mentorDomain, setMentorDomain] = useState<string>("All");
-  const mentorDomains = ["All", "Governance", "Technology", "Business", "Research", "Legal & IPR", "Industry", "Faculty"];
+  const mentorDomains = ["All", "Industry", "Faculty", "Board of Directors"];
 
-  // Re-read whenever the admin makes a change in the same browser session
+  // Re-read whenever the admin makes a change in the same browser session.
+  // Also run the safe migration on first mount so new seed records (e.g. Board of Directors)
+  // appear immediately for users who have never visited /admin/mentors.
   useEffect(() => {
+    AdminDataStore.migrateMentorData();
+    setMentorList(AdminDataStore.getMentors());
     const handleStoreUpdate = () => setMentorList(AdminDataStore.getMentors());
     window.addEventListener("guiitar_store_update", handleStoreUpdate);
     return () => window.removeEventListener("guiitar_store_update", handleStoreUpdate);
@@ -173,9 +177,10 @@ export function HomePage() {
   }, [photoModal, closePhotoModal]);
 
   /**
-   * Derive a document path for Industry and Faculty mentor records.
-   * - Industry: IDs follow "ind-men-XX" → /mentors/industry/documents/industry-mentor-XX.pdf
-   * - Faculty:  IDs follow "faculty-XX"  → /mentors/faculty/documents/industry-mentor-XX.pdf
+   * Derive a document path for Industry, Faculty, and Board of Directors mentor records.
+   * - Industry:          IDs follow "ind-men-XX" → /mentors/industry/documents/industry-mentor-XX.pdf
+   * - Faculty:           IDs follow "faculty-XX"  → /mentors/faculty/documents/industry-mentor-XX.pdf
+   * - Board of Directors: IDs follow "board-XX"   → /mentors/Board of Directors/documents/industry-mentor-XX.pdf
    * Returns null for all other IDs (no document available).
    */
   const getMentorDocPath = (id: string): string | null => {
@@ -183,6 +188,8 @@ export function HomePage() {
     if (indMatch) return `/mentors/industry/documents/industry-mentor-${indMatch[1]}.pdf`;
     const facMatch = id.match(/^faculty-(\d{2})$/);
     if (facMatch) return `/mentors/faculty/documents/industry-mentor-${facMatch[1]}.pdf`;
+    const bodMatch = id.match(/^board-(\d{2})$/);
+    if (bodMatch) return `/mentors/Board of Directors/documents/industry-mentor-${bodMatch[1]}.pdf`;
     return null;
   };
 

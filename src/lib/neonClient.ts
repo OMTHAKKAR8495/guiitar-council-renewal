@@ -2,7 +2,7 @@ import { neon } from "@neondatabase/serverless";
 import type { EventItem, IdeaItem, StartupItem, ApplicationItem, MentorItem, RegistrationItem } from "./adminStore";
 
 export const NEON_CONNECTION_STRING =
-  "postgresql://neondb_owner:npg_6xstyEme5PMN@ep-twilight-brook-b4c0f74u-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
+  process.env.DATABASE_URL || "";
 
 function getConnectionString(): string {
   try {
