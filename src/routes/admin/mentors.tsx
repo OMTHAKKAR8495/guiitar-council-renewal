@@ -20,6 +20,9 @@ export function AdminMentorsPage() {
   };
 
   useEffect(() => {
+    // Bring any stale localStorage records up-to-date with the current seed data
+    // before reading, without overwriting genuine admin edits.
+    AdminDataStore.migrateMentorData();
     loadMentors();
     const handleUpdate = () => loadMentors();
     window.addEventListener("guiitar_store_update", handleUpdate);

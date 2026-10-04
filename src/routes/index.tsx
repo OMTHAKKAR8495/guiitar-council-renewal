@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import {
   Lightbulb,
   Banknote,
@@ -40,6 +40,7 @@ import { ButtonLink, SectionTitle } from "@/components/site";
 import { GuiitarEmblem, GuiitarFullLogo } from "@/components/GuiitarBrand";
 import { ProgramsSupportSection } from "@/components/ProgramsSupportSection";
 import { AnnualReturnSection, AssociationLinkagesSection } from "@/components/TransparencyPartnersSection";
+import { AdminDataStore } from "@/lib/adminStore";
 import {
   VERIFIED_METRICS,
   INNOVATION_JOURNEY,
@@ -47,7 +48,6 @@ import {
   SHOWCASE_PROJECTS,
   STARTUP_DIRECTORY,
   LAB_FACILITIES,
-  MENTOR_NETWORK,
   OFFICIAL_FAQS,
   type ShowcaseProject,
 } from "@/lib/data";
@@ -142,13 +142,48 @@ export function HomePage() {
     [activeLabId],
   );
 
-  // 6. Mentor Network Domain Filter
+  // 6. Mentor Network — live from AdminDataStore (single source of truth shared with Admin Dashboard)
+  const [mentorList, setMentorList] = useState(() => AdminDataStore.getMentors());
   const [mentorDomain, setMentorDomain] = useState<string>("All");
   const mentorDomains = ["All", "Governance", "Technology", "Business", "Research", "Legal & IPR", "Industry"];
+
+  // Re-read whenever the admin makes a change in the same browser session
+  useEffect(() => {
+    const handleStoreUpdate = () => setMentorList(AdminDataStore.getMentors());
+    window.addEventListener("guiitar_store_update", handleStoreUpdate);
+    return () => window.removeEventListener("guiitar_store_update", handleStoreUpdate);
+  }, []);
+
   const filteredMentors = useMemo(() => {
-    if (mentorDomain === "All") return MENTOR_NETWORK;
-    return MENTOR_NETWORK.filter((m) => m.domain === mentorDomain);
-  }, [mentorDomain]);
+    if (mentorDomain === "All") return mentorList;
+    return mentorList.filter((m) => m.domain === mentorDomain);
+  }, [mentorDomain, mentorList]);
+
+  // Photo enlargement modal — holds the mentor whose photo was clicked, or null when closed
+  const [photoModal, setPhotoModal] = useState<{ name: string; avatar: string } | null>(null);
+
+  const closePhotoModal = useCallback(() => setPhotoModal(null), []);
+
+  // Close modal on Escape key
+  useEffect(() => {
+    if (!photoModal) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closePhotoModal(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [photoModal, closePhotoModal]);
+
+  /**
+   * Derive a document path for Industry Mentor placeholder records only.
+   * IDs follow the pattern "ind-men-XX" (e.g. "ind-men-01").
+   * Maps directly to /mentors/industry/documents/industry-mentor-XX.pdf.
+   * Returns null for non-ind-men IDs (no document available yet).
+   * ind-men-37 (TiE Vadodara) uses industry-mentor-37.pdf — included by the regex below.
+   */
+  const getMentorDocPath = (id: string): string | null => {
+    const match = id.match(/^ind-men-(\d{2})$/);
+    if (!match) return null;
+    return `/mentors/industry/documents/industry-mentor-${match[1]}.pdf`;
+  };
 
   return (
     <div className="home-container">
@@ -2209,129 +2244,282 @@ export function HomePage() {
           </div>
 
           <div className="grid-4">
-            {filteredMentors.slice(0, 8).map((m) => (
-              <article
-                key={m.id}
-                className="plain-card"
-                style={{
-                  padding: "28px 20px",
-                  textAlign: "center",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  {m.avatar ? (
-                    <img
-                      src={m.avatar}
-                      alt={m.name}
-                      style={{
-                        margin: "0 auto 16px",
-                        width: "64px",
-                        height: "64px",
-                        borderRadius: "50%",
-                        objectFit: "cover",
-                        border: "2px solid #3b82f6",
-                        display: "block",
-                        boxShadow: "0 4px 12px rgba(37, 99, 235, 0.15)",
-                      }}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div
-                      className="avatar"
-                      style={{
-                        margin: "0 auto 16px",
-                        width: "64px",
-                        height: "64px",
-                        fontSize: "20px",
-                      }}
-                    >
-                      {m.name
-                        .split(" ")
-                        .filter(
-                          (x) =>
-                            x.length > 2 &&
-                            !x.includes("Dr.") &&
-                            !x.includes("Mr.") &&
-                            !x.includes("Prof."),
-                        )
-                        .slice(0, 2)
-                        .map((x) => x[0])
-                        .join("") || "GM"}
-                    </div>
-                  )}
-
-                  <span className="pill" style={{ marginBottom: "8px", fontSize: "11px" }}>
-                    {m.domain}
-                  </span>
-
-                  <h3 style={{ fontSize: "17px", fontWeight: 800, margin: "6px 0 2px" }}>
-                    {m.name}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: "13px",
-                      color: "#2563eb",
-                      fontWeight: 600,
-                      margin: "0 0 10px",
-                    }}
-                  >
-                    {m.designation}
-                  </p>
-
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      color: "#64748b",
-                      display: "block",
-                      marginBottom: "14px",
-                    }}
-                  >
-                    {m.experience}
-                  </span>
-
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "4px",
-                      flexWrap: "wrap",
-                      justifyContent: "center",
-                      marginBottom: "16px",
-                    }}
-                  >
-                    {m.expertise.slice(0, 2).map((exp) => (
-                      <span
-                        key={exp}
-                        style={{
-                          background: "#f1f5f9",
-                          color: "#475569",
-                          fontSize: "11px",
-                          padding: "2px 6px",
-                          borderRadius: "4px",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {exp}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <ButtonLink
-                  to="/apply"
-                  variant="outline"
-                  size="sm"
-                  style={{ width: "100%", justifyContent: "center" }}
+            {filteredMentors.map((m) => {
+              const docPath = getMentorDocPath(m.id);
+              const isOrgCard = m.id === "ind-men-37";
+              return (
+                <article
+                  key={m.id}
+                  className="plain-card"
+                  style={{
+                    padding: "28px 20px",
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    // Org card gets a subtle teal/blue accent border to distinguish it
+                    ...(isOrgCard && {
+                      borderColor: "#0ea5e9",
+                      background: "linear-gradient(145deg, #f0f9ff 0%, #ffffff 100%)",
+                    }),
+                  }}
                 >
-                  <span>Connect With Mentor</span>
-                </ButtonLink>
-              </article>
-            ))}
+                  <div>
+                    {m.avatar ? (
+                      isOrgCard ? (
+                        /* Org card: logo displayed as a rounded-rect, clickable to open zoom modal */
+                        <button
+                          type="button"
+                          onClick={() => setPhotoModal({ name: m.name, avatar: m.avatar as string })}
+                          aria-label={`Enlarge logo of ${m.name}`}
+                          style={{
+                            background: "none",
+                            border: "none",
+                            padding: 0,
+                            cursor: "zoom-in",
+                            display: "block",
+                            margin: "0 auto 16px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "80px",
+                              height: "80px",
+                              borderRadius: "14px",
+                              overflow: "hidden",
+                              border: "2px solid #0ea5e9",
+                              boxShadow: "0 4px 12px rgba(14, 165, 233, 0.18)",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              background: "#ffffff",
+                            }}
+                          >
+                            <img
+                              src={m.avatar}
+                              alt={`${m.name} logo`}
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "contain",
+                                display: "block",
+                              }}
+                              loading="lazy"
+                              onError={(e) => { e.currentTarget.parentElement!.parentElement!.style.display = "none"; }}
+                            />
+                          </div>
+                        </button>
+                      ) : (
+                        /* Individual mentor: circular photo with zoom button */
+                        <button
+                          type="button"
+                          onClick={() => setPhotoModal({ name: m.name, avatar: m.avatar as string })}
+                          aria-label={`Enlarge photo of ${m.name}`}
+                          style={{
+                            background: "none",
+                            border: "none",
+                            padding: 0,
+                            cursor: "zoom-in",
+                            display: "block",
+                            margin: "0 auto 16px",
+                            borderRadius: "50%",
+                          }}
+                        >
+                          <img
+                            src={m.avatar}
+                            alt={m.name}
+                            style={{
+                              width: "64px",
+                              height: "64px",
+                              borderRadius: "50%",
+                              objectFit: "cover",
+                              border: "2px solid #3b82f6",
+                              display: "block",
+                              boxShadow: "0 4px 12px rgba(37, 99, 235, 0.15)",
+                            }}
+                            loading="lazy"
+                            onError={(e) => { e.currentTarget.parentElement!.style.display = "none"; }}
+                          />
+                        </button>
+                      )
+                    ) : (
+                      <div
+                        className="avatar"
+                        style={{ margin: "0 auto 16px", width: "64px", height: "64px", fontSize: "20px" }}
+                      >
+                        {m.name
+                          .split(" ")
+                          .filter((x) => x.length > 2 && !x.includes("Dr.") && !x.includes("Mr.") && !x.includes("Prof."))
+                          .slice(0, 2)
+                          .map((x) => x[0])
+                          .join("") || "GM"}
+                      </div>
+                    )}
+
+                    <div style={{ display: "flex", gap: "6px", justifyContent: "center", marginBottom: "8px", flexWrap: "wrap" }}>
+                      <span className="pill" style={{ fontSize: "11px" }}>
+                        {m.domain}
+                      </span>
+                      {/* Extra badge distinguishing org/network cards from individuals */}
+                      {isOrgCard && (
+                        <span
+                          style={{
+                            background: "#e0f2fe",
+                            color: "#0369a1",
+                            fontSize: "11px",
+                            fontWeight: 700,
+                            padding: "2px 8px",
+                            borderRadius: "9999px",
+                            border: "1px solid #bae6fd",
+                          }}
+                        >
+                          Network
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Name: clickable → PDF for individual ind-men records; plain text for org card */}
+                    {docPath ? (
+                      <h3 style={{ fontSize: "17px", fontWeight: 800, margin: "6px 0 2px" }}>
+                        <a
+                          href={docPath}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`View profile document for ${m.name}`}
+                          style={{ color: "inherit", textDecoration: "none" }}
+                          onMouseEnter={(e) => { e.currentTarget.style.textDecoration = "underline"; }}
+                          onMouseLeave={(e) => { e.currentTarget.style.textDecoration = "none"; }}
+                        >
+                          {m.name}
+                        </a>
+                      </h3>
+                    ) : (
+                      <h3 style={{ fontSize: "17px", fontWeight: 800, margin: "6px 0 2px" }}>
+                        {m.name}
+                      </h3>
+                    )}
+
+                    <p style={{ fontSize: "13px", color: "#2563eb", fontWeight: 600, margin: "0 0 10px" }}>
+                      {m.designation}
+                    </p>
+
+                    <span style={{ fontSize: "12px", color: "#64748b", display: "block", marginBottom: "14px" }}>
+                      {m.experience}
+                    </span>
+
+                    <div
+                      style={{ display: "flex", gap: "4px", flexWrap: "wrap", justifyContent: "center", marginBottom: "16px" }}
+                    >
+                      {m.expertise.slice(0, 2).map((exp) => (
+                        <span
+                          key={exp}
+                          style={{
+                            background: "#f1f5f9",
+                            color: "#475569",
+                            fontSize: "11px",
+                            padding: "2px 6px",
+                            borderRadius: "4px",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {exp}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <ButtonLink
+                    to="/apply"
+                    variant="outline"
+                    size="sm"
+                    style={{ width: "100%", justifyContent: "center" }}
+                  >
+                    <span>{isOrgCard ? "Explore Mentor Network" : "Connect With Mentor"}</span>
+                  </ButtonLink>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
+
+      {/* PHOTO ENLARGEMENT MODAL */}
+      {photoModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Photo of ${photoModal.name}`}
+          onClick={closePhotoModal}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0, 0, 0, 0.75)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9999,
+            padding: "24px",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: "relative",
+              background: "#ffffff",
+              borderRadius: "16px",
+              padding: "24px",
+              boxShadow: "0 25px 60px rgba(0,0,0,0.4)",
+              maxWidth: "420px",
+              width: "100%",
+              textAlign: "center",
+            }}
+          >
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={closePhotoModal}
+              aria-label="Close photo modal"
+              style={{
+                position: "absolute",
+                top: "12px",
+                right: "12px",
+                background: "#f1f5f9",
+                border: "none",
+                borderRadius: "50%",
+                width: "32px",
+                height: "32px",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "18px",
+                color: "#475569",
+                lineHeight: 1,
+              }}
+            >
+              ×
+            </button>
+
+            <img
+              src={photoModal.avatar}
+              alt={`Photo of ${photoModal.name}`}
+              style={{
+                width: "240px",
+                height: "240px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                border: "3px solid #3b82f6",
+                boxShadow: "0 8px 24px rgba(37, 99, 235, 0.2)",
+                margin: "0 auto 16px",
+                display: "block",
+              }}
+            />
+            <p style={{ fontWeight: 700, fontSize: "16px", color: "#0f172a", margin: 0 }}>
+              {photoModal.name}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* 11. EVENTS DISCOVERY PLATFORM */}
       <section className="section-muted">
