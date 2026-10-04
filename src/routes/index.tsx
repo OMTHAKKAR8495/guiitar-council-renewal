@@ -145,7 +145,7 @@ export function HomePage() {
   // 6. Mentor Network — live from AdminDataStore (single source of truth shared with Admin Dashboard)
   const [mentorList, setMentorList] = useState(() => AdminDataStore.getMentors());
   const [mentorDomain, setMentorDomain] = useState<string>("All");
-  const mentorDomains = ["All", "Governance", "Technology", "Business", "Research", "Legal & IPR", "Industry"];
+  const mentorDomains = ["All", "Governance", "Technology", "Business", "Research", "Legal & IPR", "Industry", "Faculty"];
 
   // Re-read whenever the admin makes a change in the same browser session
   useEffect(() => {
@@ -173,16 +173,17 @@ export function HomePage() {
   }, [photoModal, closePhotoModal]);
 
   /**
-   * Derive a document path for Industry Mentor placeholder records only.
-   * IDs follow the pattern "ind-men-XX" (e.g. "ind-men-01").
-   * Maps directly to /mentors/industry/documents/industry-mentor-XX.pdf.
-   * Returns null for non-ind-men IDs (no document available yet).
-   * ind-men-37 (TiE Vadodara) uses industry-mentor-37.pdf — included by the regex below.
+   * Derive a document path for Industry and Faculty mentor records.
+   * - Industry: IDs follow "ind-men-XX" → /mentors/industry/documents/industry-mentor-XX.pdf
+   * - Faculty:  IDs follow "faculty-XX"  → /mentors/faculty/documents/industry-mentor-XX.pdf
+   * Returns null for all other IDs (no document available).
    */
   const getMentorDocPath = (id: string): string | null => {
-    const match = id.match(/^ind-men-(\d{2})$/);
-    if (!match) return null;
-    return `/mentors/industry/documents/industry-mentor-${match[1]}.pdf`;
+    const indMatch = id.match(/^ind-men-(\d{2})$/);
+    if (indMatch) return `/mentors/industry/documents/industry-mentor-${indMatch[1]}.pdf`;
+    const facMatch = id.match(/^faculty-(\d{2})$/);
+    if (facMatch) return `/mentors/faculty/documents/industry-mentor-${facMatch[1]}.pdf`;
+    return null;
   };
 
   return (
