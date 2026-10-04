@@ -261,9 +261,9 @@ export const MEGA_MENU: MegaMenuCategory[] = [
     to: "/ecosystem",
     items: [
       {
-        title: "Industry Mentors",
-        desc: "Search and connect with 36+ official industry mentors",
-        to: "/guiitar-industry-mentor",
+        title: "Mentor Network",
+        desc: "Search and connect with 50+ domain experts",
+        to: "/ecosystem",
       },
       {
         title: "Corporate Alliances & CSR",

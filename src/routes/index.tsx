@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import {
   Lightbulb,
   Banknote,
@@ -35,7 +35,6 @@ import {
   FlaskConical,
   MessageSquare,
   FolderOpen,
-  X,
 } from "lucide-react";
 import { ButtonLink, SectionTitle } from "@/components/site";
 import { GuiitarEmblem, GuiitarFullLogo } from "@/components/GuiitarBrand";
@@ -52,7 +51,6 @@ import {
   OFFICIAL_FAQS,
   type ShowcaseProject,
 } from "@/lib/data";
-import { AdminDataStore, type MentorItem as AdminMentorItem } from "@/lib/adminStore";
 import hero from "@/assets/home-hero.jpg.asset.json";
 import impact from "@/assets/impact.png.asset.json";
 
@@ -144,107 +142,13 @@ export function HomePage() {
     [activeLabId],
   );
 
-  // 6. Mentor Network Domain Filter & Modal State
-  const [mentorList, setMentorList] = useState<AdminMentorItem[]>([]);
-  const [selectedMentor, setSelectedMentor] = useState<AdminMentorItem | null>(null);
-
-  const loadMentors = () => {
-    setMentorList(AdminDataStore.getMentors().filter((m) => m.published !== false));
-  };
-
-  useEffect(() => {
-    loadMentors();
-    const handleUpdate = () => loadMentors();
-    window.addEventListener("guiitar_store_update", handleUpdate);
-    return () => window.removeEventListener("guiitar_store_update", handleUpdate);
-  }, []);
-
-  // Handle ESC key to close modal
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setSelectedMentor(null);
-      }
-    };
-    if (selectedMentor) {
-      window.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "unset";
-    };
-  }, [selectedMentor]);
-
+  // 6. Mentor Network Domain Filter
   const [mentorDomain, setMentorDomain] = useState<string>("All");
-  const mentorDomains = [
-    "All",
-    "Industry",
-    "Governance",
-    "Technology",
-    "Business",
-    "Research",
-    "Legal & IPR",
-  ];
-
+  const mentorDomains = ["All", "Governance", "Technology", "Business", "Research", "Legal & IPR", "Industry"];
   const filteredMentors = useMemo(() => {
-    const list = mentorList.length > 0 ? mentorList : MENTOR_NETWORK;
-    if (mentorDomain === "All") return list;
-    if (mentorDomain === "Industry" || mentorDomain === "Industry Mentorship") {
-      return list.filter(
-        (m) =>
-          m.id.startsWith("ind-men") ||
-          m.domain?.toLowerCase().includes("industry") ||
-          m.domain?.toLowerCase().includes("strategy") ||
-          m.domain?.toLowerCase().includes("manufacturing") ||
-          m.domain?.toLowerCase().includes("startup") ||
-          m.domain?.toLowerCase().includes("finance"),
-      );
-    }
-    if (mentorDomain === "Governance") {
-      return list.filter((m) => m.domain?.toLowerCase().includes("governance"));
-    }
-    if (mentorDomain === "Technology") {
-      return list.filter(
-        (m) =>
-          m.domain?.toLowerCase().includes("tech") ||
-          m.expertise?.some((e) => e.toLowerCase().includes("tech")),
-      );
-    }
-    if (mentorDomain === "Business") {
-      return list.filter(
-        (m) =>
-          m.domain?.toLowerCase().includes("business") ||
-          m.domain?.toLowerCase().includes("strategy") ||
-          m.domain?.toLowerCase().includes("startup") ||
-          m.domain?.toLowerCase().includes("finance") ||
-          m.domain?.toLowerCase().includes("investment"),
-      );
-    }
-    if (mentorDomain === "Research") {
-      return list.filter(
-        (m) =>
-          m.domain?.toLowerCase().includes("research") ||
-          m.domain?.toLowerCase().includes("academia") ||
-          m.domain?.toLowerCase().includes("biotech"),
-      );
-    }
-    if (mentorDomain === "Legal & IPR") {
-      return list.filter(
-        (m) =>
-          m.domain?.toLowerCase().includes("legal") ||
-          m.domain?.toLowerCase().includes("ipr") ||
-          m.domain?.toLowerCase().includes("patent"),
-      );
-    }
-    return list.filter(
-      (m) =>
-        m.domain?.toLowerCase() === mentorDomain.toLowerCase() ||
-        m.expertise?.some((e) => e.toLowerCase() === mentorDomain.toLowerCase()),
-    );
-  }, [mentorDomain, mentorList]);
+    if (mentorDomain === "All") return MENTOR_NETWORK;
+    return MENTOR_NETWORK.filter((m) => m.domain === mentorDomain);
+  }, [mentorDomain]);
 
   return (
     <div className="home-container">
@@ -2305,362 +2209,129 @@ export function HomePage() {
           </div>
 
           <div className="grid-4">
-            {filteredMentors.slice(0, 36).map((m) => (
+            {filteredMentors.slice(0, 8).map((m) => (
               <article
                 key={m.id}
-                onClick={() => setSelectedMentor(m)}
-                tabIndex={0}
-                role="button"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setSelectedMentor(m);
-                  }
-                }}
                 className="plain-card"
                 style={{
-                  padding: "24px 18px",
+                  padding: "28px 20px",
                   textAlign: "center",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  borderRadius: "18px",
-                  cursor: "pointer",
-                  transition: "all 0.25s ease",
                 }}
               >
                 <div>
-                  <img
-                    src={m.avatar || "/images/mentors/sudhir-gupta.jpeg"}
-                    alt={m.name}
-                    style={{
-                      margin: "0 auto 14px",
-                      width: "80px",
-                      height: "80px",
-                      borderRadius: "50%",
-                      objectFit: "cover",
-                      objectPosition: "center top",
-                      border: "3px solid #3b82f6",
-                      display: "block",
-                      boxShadow: "0 4px 12px rgba(37, 99, 235, 0.2)",
-                    }}
-                    loading="lazy"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80";
-                    }}
-                  />
+                  {m.avatar ? (
+                    <img
+                      src={m.avatar}
+                      alt={m.name}
+                      style={{
+                        margin: "0 auto 16px",
+                        width: "64px",
+                        height: "64px",
+                        borderRadius: "50%",
+                        objectFit: "cover",
+                        border: "2px solid #3b82f6",
+                        display: "block",
+                        boxShadow: "0 4px 12px rgba(37, 99, 235, 0.15)",
+                      }}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div
+                      className="avatar"
+                      style={{
+                        margin: "0 auto 16px",
+                        width: "64px",
+                        height: "64px",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {m.name
+                        .split(" ")
+                        .filter(
+                          (x) =>
+                            x.length > 2 &&
+                            !x.includes("Dr.") &&
+                            !x.includes("Mr.") &&
+                            !x.includes("Prof."),
+                        )
+                        .slice(0, 2)
+                        .map((x) => x[0])
+                        .join("") || "GM"}
+                    </div>
+                  )}
 
                   <span className="pill" style={{ marginBottom: "8px", fontSize: "11px" }}>
-                    {m.domain || "Industry Mentor"}
+                    {m.domain}
                   </span>
 
-                  <h3
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: 800,
-                      margin: "6px 0 2px",
-                      color: "var(--foreground, #0f172a)",
-                    }}
-                  >
+                  <h3 style={{ fontSize: "17px", fontWeight: 800, margin: "6px 0 2px" }}>
                     {m.name}
                   </h3>
                   <p
                     style={{
-                      fontSize: "12.5px",
+                      fontSize: "13px",
                       color: "#2563eb",
                       fontWeight: 600,
-                      margin: "0 0 4px",
-                      lineHeight: 1.3,
+                      margin: "0 0 10px",
                     }}
                   >
-                    {m.designation || m.role}
+                    {m.designation}
                   </p>
 
                   <span
                     style={{
-                      fontSize: "11.5px",
-                      color: "var(--muted-foreground, #64748b)",
+                      fontSize: "12px",
+                      color: "#64748b",
                       display: "block",
                       marginBottom: "14px",
-                      lineHeight: 1.3,
                     }}
                   >
-                    {m.organization}
+                    {m.experience}
                   </span>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "4px",
+                      flexWrap: "wrap",
+                      justifyContent: "center",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    {m.expertise.slice(0, 2).map((exp) => (
+                      <span
+                        key={exp}
+                        style={{
+                          background: "#f1f5f9",
+                          color: "#475569",
+                          fontSize: "11px",
+                          padding: "2px 6px",
+                          borderRadius: "4px",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {exp}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                <div
-                  style={{
-                    borderTop: "1px solid var(--border, #f1f5f9)",
-                    paddingTop: "12px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "6px",
-                    fontSize: "12.5px",
-                    fontWeight: 700,
-                    color: "#2563eb",
-                  }}
+                <ButtonLink
+                  to="/apply"
+                  variant="outline"
+                  size="sm"
+                  style={{ width: "100%", justifyContent: "center" }}
                 >
-                  <span>View Details</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </div>
+                  <span>Connect With Mentor</span>
+                </ButtonLink>
               </article>
             ))}
           </div>
-
-          <div style={{ textAlign: "center", marginTop: "36px" }}>
-            <ButtonLink
-              to="/guiitar-industry-mentor"
-              variant="primary"
-              size="md"
-              style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
-            >
-              <span>Explore All {mentorList.length || 36} Official Industry Mentors</span>
-              <ArrowRight className="w-4 h-4" />
-            </ButtonLink>
-          </div>
         </div>
       </section>
-
-      {/* HOMEPAGE MENTOR DETAILS MODAL */}
-      {selectedMentor && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="homepage-mentor-modal-title"
-          onClick={() => setSelectedMentor(null)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(15, 23, 42, 0.75)",
-            backdropFilter: "blur(8px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 9999,
-            padding: "20px",
-            animation: "fadeIn 0.2s ease-out",
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              background: "var(--card, #ffffff)",
-              borderRadius: "24px",
-              maxWidth: "540px",
-              width: "100%",
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-              border: "1px solid var(--border, #e2e8f0)",
-              overflow: "hidden",
-              position: "relative",
-              animation: "scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          >
-            {/* CLOSE BUTTON */}
-            <button
-              onClick={() => setSelectedMentor(null)}
-              aria-label="Close mentor details"
-              style={{
-                position: "absolute",
-                top: "16px",
-                right: "16px",
-                width: "36px",
-                height: "36px",
-                borderRadius: "50%",
-                background: "var(--background, #f1f5f9)",
-                border: "1px solid var(--border, #e2e8f0)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                color: "var(--foreground, #475569)",
-                zIndex: 10,
-                transition: "all 0.15s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#e2e8f0";
-                e.currentTarget.style.transform = "scale(1.05)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "var(--background, #f1f5f9)";
-                e.currentTarget.style.transform = "scale(1)";
-              }}
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div style={{ padding: "32px 28px 28px 28px", textAlign: "center" }}>
-              {/* LARGE PROFILE PHOTO */}
-              <div
-                style={{
-                  width: "130px",
-                  height: "130px",
-                  margin: "0 auto 18px auto",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  border: "4px solid #3b82f6",
-                  boxShadow: "0 10px 25px rgba(59, 130, 246, 0.25)",
-                  background: "#f8fafc",
-                }}
-              >
-                <img
-                  src={selectedMentor.avatar || "/images/mentors/sudhir-gupta.jpeg"}
-                  alt={selectedMentor.name}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center top",
-                  }}
-                />
-              </div>
-
-              {/* BADGE */}
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  padding: "4px 12px",
-                  borderRadius: "9999px",
-                  background: "#eff6ff",
-                  border: "1px solid #bfdbfe",
-                  fontSize: "12px",
-                  fontWeight: 700,
-                  color: "#1e40af",
-                  marginBottom: "10px",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
-                GUIITAR Industry Mentor
-              </div>
-
-              {/* NAME & ROLE */}
-              <h2
-                id="homepage-mentor-modal-title"
-                style={{
-                  fontSize: "22px",
-                  fontWeight: 800,
-                  color: "var(--foreground, #0f172a)",
-                  margin: "0 0 6px 0",
-                }}
-              >
-                {selectedMentor.name}
-              </h2>
-
-              <p
-                style={{
-                  fontSize: "14.5px",
-                  fontWeight: 700,
-                  color: "#2563eb",
-                  margin: "0 0 4px 0",
-                }}
-              >
-                {selectedMentor.designation || selectedMentor.role}
-              </p>
-
-              <p
-                style={{
-                  fontSize: "13.5px",
-                  color: "var(--muted-foreground, #64748b)",
-                  margin: "0 0 18px 0",
-                }}
-              >
-                {selectedMentor.organization}
-              </p>
-
-              {/* MENTOR META SPECIFICATIONS */}
-              <div
-                style={{
-                  background: "var(--background, #f8fafc)",
-                  borderRadius: "16px",
-                  padding: "16px",
-                  border: "1px solid var(--border, #e2e8f0)",
-                  textAlign: "left",
-                  marginBottom: "22px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "12px",
-                    fontSize: "13px",
-                  }}
-                >
-                  <div>
-                    <span style={{ color: "#94a3b8", display: "block", fontSize: "11px", fontWeight: 700 }}>
-                      DOMAIN FOCUS
-                    </span>
-                    <strong style={{ color: "var(--foreground, #0f172a)" }}>
-                      {selectedMentor.domain || "Industry Advisory"}
-                    </strong>
-                  </div>
-                  <div>
-                    <span style={{ color: "#94a3b8", display: "block", fontSize: "11px", fontWeight: 700 }}>
-                      EXPERIENCE
-                    </span>
-                    <strong style={{ color: "var(--foreground, #0f172a)" }}>
-                      {selectedMentor.experience || "10+ Years"}
-                    </strong>
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    marginTop: "12px",
-                    paddingTop: "12px",
-                    borderTop: "1px solid var(--border, #e2e8f0)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    fontSize: "12.5px",
-                    color: "#166534",
-                  }}
-                >
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>Official Mentor & Institutional Screening Committee (ISC) Member</span>
-                </div>
-              </div>
-
-              {/* ACTION BUTTONS */}
-              <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
-                <button
-                  type="button"
-                  onClick={() => setSelectedMentor(null)}
-                  className="btn btn-outline btn-md"
-                  style={{ borderRadius: "10px", padding: "10px 20px", fontWeight: 600 }}
-                >
-                  Close
-                </button>
-
-                <Link
-                  to="/submit-idea"
-                  onClick={() => setSelectedMentor(null)}
-                  className="btn btn-primary btn-md"
-                  style={{
-                    borderRadius: "10px",
-                    padding: "10px 22px",
-                    fontWeight: 700,
-                    background: "#2563eb",
-                    color: "#ffffff",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "6px",
-                  }}
-                >
-                  <span>Request Mentorship</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* 11. EVENTS DISCOVERY PLATFORM */}
       <section className="section-muted">

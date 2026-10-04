@@ -793,887 +793,137 @@ const INITIAL_EVENTS: EventItem[] = [
 
 const INITIAL_MENTORS: MentorItem[] = [
   {
-    "id": "m-pk-taneja",
-    "name": "Shri P. K. Taneja, IAS (Retd.)",
-    "designation": "President, GSFC University & Chairman, GUIITAR Council",
-    "role": "President & Chairman, GUIITAR",
-    "domain": "Governance",
-    "organization": "GSFC University",
-    "experience": "Former Additional Chief Secretary, Govt. of Gujarat",
-    "expertise": [
+    id: "men-0",
+    name: "Shri P. K. Taneja, IAS (Retd.)",
+    designation: "President, GSFC University & Chairman, GUIITAR Council",
+    role: "President & Chairman, GUIITAR",
+    domain: "Governance",
+    organization: "GSFC University",
+    experience: "Former Additional Chief Secretary, Govt. of Gujarat",
+    expertise: [
       "Public Policy & Governance",
       "Institutional Leadership",
       "Strategic Planning",
-      "Innovation Ecosystems"
+      "Innovation Ecosystems",
     ],
-    "avatar": "/team/pk-taneja.png",
-    "status": "Active",
-    "published": true
+    avatar: "/leaders/pk-taneja.png",
+    status: "Active",
   },
   {
-    "id": "m-gr-sinha",
-    "name": "Prof. G. R. Sinha",
-    "designation": "Provost, GSFC University & CEO, GUIITAR Council",
-    "role": "Provost & CEO, GUIITAR",
-    "domain": "Research",
-    "organization": "GSFC University",
-    "experience": "25+ Years in Engineering Research & Academic Leadership",
-    "expertise": [
+    id: "men-1",
+    name: "Prof. G. R. Sinha",
+    designation: "Provost, GSFC University & CEO, GUIITAR Council",
+    role: "Provost & CEO, GUIITAR",
+    domain: "Research",
+    organization: "GSFC University",
+    experience: "25+ Years in Engineering Research & Academic Leadership",
+    expertise: [
       "Biomedical Signal Processing",
       "AI/ML in Healthcare",
       "IPR Strategy",
-      "Academic Entrepreneurship"
+      "Academic Entrepreneurship",
     ],
-    "avatar": "/team/gr-sinha.png",
-    "status": "Active",
-    "published": true
+    avatar: "/leaders/gr-sinha.png",
+    status: "Active",
   },
   {
-    "id": "m-kirankumar",
-    "name": "Mr. KiranKumar Parmar",
-    "designation": "Senior Manager (Incubation)",
-    "role": "Senior Manager (Incubation)",
-    "domain": "Business",
-    "organization": "GUIITAR Council",
-    "experience": "12+ Years in Incubation Management & Startup Ecosystems",
-    "expertise": [
+    id: "men-2",
+    name: "Mr. KiranKumar Parmar",
+    designation: "Senior Manager (Incubation)",
+    role: "Senior Manager (Incubation)",
+    domain: "Business",
+    organization: "GUIITAR Council",
+    experience: "12+ Years in Incubation Management & Startup Ecosystems",
+    expertise: [
       "Startup Incubation",
       "SSIP 2.0 Grant Governance",
       "Business Modeling",
-      "Policy Compliance"
+      "Policy Compliance",
     ],
-    "avatar": "/team/kirankumar-parmar.png",
-    "status": "Active",
-    "published": true
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80",
+    status: "Active",
   },
   {
-    "id": "m-akhilesh",
-    "name": "Dr. Akhilesh Prajapati",
-    "designation": "Associate Professor & Faculty Mentor",
-    "role": "Associate Professor",
-    "domain": "Technology",
-    "organization": "School of Technology, GSFC University",
-    "experience": "14+ Years in Chemical & Process Engineering",
-    "expertise": [
-      "Chemical Process Scale-up",
-      "Novel Polymers",
-      "Industrial Safety",
-      "Applied R&D"
-    ],
-    "avatar": "/team/akhilesh-prajapati.png",
-    "status": "Active",
-    "published": true
+    id: "men-3",
+    name: "Dr. Akhilesh Prajapati",
+    designation: "Associate Professor & Faculty Mentor",
+    role: "Associate Professor",
+    domain: "Technology",
+    organization: "School of Technology, GSFC University",
+    experience: "14+ Years in Chemical & Process Engineering",
+    expertise: ["Chemical Process Scale-up", "Novel Polymers", "Industrial Safety", "Applied R&D"],
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&auto=format&fit=crop&q=80",
+    status: "Active",
   },
   {
-    "id": "m-mihir",
-    "name": "Dr. Mihir Trivedi",
-    "designation": "Sr. Assistant Professor",
-    "role": "Sr. Assistant Professor",
-    "domain": "Technology",
-    "organization": "Computer Science Dept, GSFC University",
-    "experience": "10+ Years in Distributed Systems & AI",
-    "expertise": [
+    id: "men-4",
+    name: "Dr. Mihir Trivedi",
+    designation: "Sr. Assistant Professor",
+    role: "Sr. Assistant Professor",
+    domain: "Technology",
+    organization: "Computer Science Dept, GSFC University",
+    experience: "10+ Years in Distributed Systems & AI",
+    expertise: [
       "High-Performance Computing",
       "GPU Acceleration",
       "Computer Vision",
-      "Deep Learning"
+      "Deep Learning",
     ],
-    "avatar": "/team/mihir-trivedi.png",
-    "status": "Active",
-    "published": true
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&auto=format&fit=crop&q=80",
+    status: "Active",
   },
   {
-    "id": "m-jignesh",
-    "name": "Dr. Jignesh Valand",
-    "designation": "Assistant Professor & Biotech Mentor",
-    "role": "Assistant Professor (Biotech)",
-    "domain": "Research",
-    "organization": "School of Science, GSFC University",
-    "experience": "9+ Years in Microbial Biotechnology",
-    "expertise": [
+    id: "men-5",
+    name: "Dr. Jignesh Valand",
+    designation: "Assistant Professor & Biotech Mentor",
+    role: "Assistant Professor (Biotech)",
+    domain: "Research",
+    organization: "School of Science, GSFC University",
+    experience: "9+ Years in Microbial Biotechnology",
+    expertise: [
       "Bio-pigments",
       "Microbial Synthesis",
       "Enzyme Engineering",
-      "Phytopharma Validation"
+      "Phytopharma Validation",
     ],
-    "avatar": "/team/jignesh-valand.png",
-    "status": "Active",
-    "published": true
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80",
+    status: "Active",
   },
   {
-    "id": "m-bhuvan",
-    "name": "Mr. Bhuvan Vyas",
-    "designation": "Manager (Ecosystem & Linkages)",
-    "role": "Manager (Ecosystem & Linkages)",
-    "domain": "Industry",
-    "organization": "GUIITAR Council",
-    "experience": "8+ Years in Corporate Relations & MOUs",
-    "expertise": [
-      "Corporate Linkages",
-      "CSR Grant Funding",
-      "MOU Execution",
-      "Investor Relations"
-    ],
-    "avatar": "/team/bhuvan-vyas.png",
-    "status": "Active",
-    "published": true
+    id: "men-6",
+    name: "Mr. Amit Duggal",
+    designation: "Senior Executive (Technical)",
+    role: "Senior Executive (Technical)",
+    domain: "Technology",
+    organization: "GUIITAR Council",
+    experience: "7+ Years in Hardware Prototyping & Labs",
+    expertise: ["3D Printing Slicing", "Laser Cutting Tooling", "Drone Avionics", "PoC Assembly"],
+    avatar:
+      "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=300&auto=format&fit=crop&q=80",
+    status: "Active",
   },
   {
-    "id": "m-bhoomi",
-    "name": "Dr. Bhoomi Shah",
-    "designation": "Assistant Professor & IPR Lead",
-    "role": "Assistant Professor & IPR Lead",
-    "domain": "Legal & IPR",
-    "organization": "GSFC University",
-    "experience": "8+ Years in Patent Search & Research Compliance",
-    "expertise": [
+    id: "men-7",
+    name: "Dr. Bhoomi Shah",
+    designation: "Assistant Professor & IPR Lead",
+    role: "Assistant Professor & IPR Lead",
+    domain: "Legal & IPR",
+    organization: "GSFC University",
+    experience: "8+ Years in Patent Search & Research Compliance",
+    expertise: [
       "Patent Prior-Art Searching",
       "Invention Disclosure Filing",
       "Copyrights",
-      "Design Registrations"
+      "Design Registrations",
     ],
-    "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80",
-    "status": "Active",
-    "published": true
+    avatar:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80",
+    status: "Active",
   },
-  {
-    "id": "m-amit",
-    "name": "Mr. Amit Duggal",
-    "designation": "Senior Executive (Technical)",
-    "role": "Senior Executive (Technical)",
-    "domain": "Technology",
-    "organization": "GUIITAR Council",
-    "experience": "7+ Years in Hardware Prototyping & Labs",
-    "expertise": [
-      "3D Printing Slicing",
-      "Laser Cutting Tooling",
-      "Drone Avionics",
-      "PoC Assembly"
-    ],
-    "avatar": "/team/amit-duggal.png",
-    "status": "Active",
-    "published": true
-  },
-  {
-    "id": "m-rahul",
-    "name": "Dr. Rahul Sharma",
-    "designation": "Sr. Assistant Professor & Management Mentor",
-    "role": "Sr. Assistant Professor",
-    "domain": "Business",
-    "organization": "School of Management, GSFC University",
-    "experience": "11+ Years in Business Strategy & IoT",
-    "expertise": [
-      "Business Models",
-      "Market Validation",
-      "IoT Commercialization",
-      "Venture Scaling"
-    ],
-    "avatar": "/team/rahul-sharma.png",
-    "status": "Active",
-    "published": true
-  },
-  {
-    "id": "m-charmi",
-    "name": "Ms. Charmi Mehta",
-    "designation": "Assistant Professor",
-    "role": "Assistant Professor",
-    "domain": "Research",
-    "organization": "School of Science, GSFC University",
-    "experience": "8+ Years in Applied Sciences & Research",
-    "avatar": "/team/charmi-mehta.png",
-    "expertise": [
-      "Applied Science",
-      "Research Documentation",
-      "Academic Mentorship",
-      "Student Innovations"
-    ],
-    "status": "Active",
-    "published": true
-  },
-  {
-    "id": "m-chandra-has",
-    "name": "Dr. Chandra Has",
-    "designation": "Assistant Professor & Prototyping Mentor",
-    "role": "Assistant Professor",
-    "domain": "Technology",
-    "organization": "School of Technology, GSFC University",
-    "experience": "9+ Years in Mechanical Engineering",
-    "avatar": "/team/chandra-has.png",
-    "expertise": [
-      "Mechanical Systems",
-      "Rapid Prototyping",
-      "CAD/CAM",
-      "Product Design"
-    ],
-    "status": "Active",
-    "published": true
-  },
-  {
-    "id": "m-abidhusain",
-    "name": "Mr. Abidhusain Lodha",
-    "designation": "Assistant Professor & UAV Mentor",
-    "role": "Assistant Professor",
-    "domain": "Technology",
-    "organization": "School of Technology, GSFC University",
-    "experience": "8+ Years in Robotics & Drone Systems",
-    "avatar": "/team/abidhusain-lodha.png",
-    "expertise": [
-      "Drone UAV Systems",
-      "Robotics",
-      "Flight Avionics",
-      "Mechatronics"
-    ],
-    "status": "Active",
-    "published": true
-  },
-  {
-    "id": "ind-men-1",
-    "name": "Mr. Sudhir Gupta",
-    "designation": "Member Strategic Advisory Board",
-    "role": "Member Strategic Advisory Board",
-    "domain": "Startup & Strategy",
-    "organization": "Millennium Alliance",
-    "experience": "30+ Years",
-    "expertise": [
-      "Startup & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/sudhir-gupta.jpeg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_f626361753c045a4b4007504099e256b.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-2",
-    "name": "Prof Dhruv Nath",
-    "designation": "Director",
-    "role": "Director",
-    "domain": "Finance & Investment",
-    "organization": "Lead Angels Network",
-    "experience": "25+ Years",
-    "expertise": [
-      "Finance & Investment",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/dhruv-nath.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_3522d430479b4abc96682b3f263ca36c.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-3",
-    "name": "Mr. Ravin Sanghavi",
-    "designation": "Founder",
-    "role": "Founder",
-    "domain": "Business & Strategy",
-    "organization": "Ravin Sanghavi & Associates",
-    "experience": "20+ Years",
-    "expertise": [
-      "Business & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/ravin-sanghavi.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_95a435118a3a4a12b11dc74459927361.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-4",
-    "name": "Dr. Manoj Shukla",
-    "designation": "CEO",
-    "role": "CEO",
-    "domain": "Academia & Research",
-    "organization": "Gurukul Academy",
-    "experience": "18+ Years",
-    "expertise": [
-      "Academia & Research",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/manoj-shukla.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_b76597f723314929a1fae2d3807797cb.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-5",
-    "name": "Mr. Rupesh Shah",
-    "designation": "CEO",
-    "role": "CEO",
-    "domain": "Technology",
-    "organization": "Barodaweb",
-    "experience": "22+ Years",
-    "expertise": [
-      "Technology",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/rupesh-shah.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_ef5de869843d4fedbd3f12660ec452f5.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-6",
-    "name": "Adv. Bhavik B Patel",
-    "designation": "CEO",
-    "role": "CEO",
-    "domain": "IPR & Legal",
-    "organization": "INFINVENT IP",
-    "experience": "15+ Years",
-    "expertise": [
-      "IPR & Legal",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/bhavik-b-patel.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_b174ab28924b4d75b76f203e100e882e.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-7",
-    "name": "Dr. Kavita Saxena",
-    "designation": "Freelancer",
-    "role": "Freelancer",
-    "domain": "Startup & Strategy",
-    "organization": "Freelancing Startup mentor",
-    "experience": "16+ Years",
-    "expertise": [
-      "Startup & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/kavita-saxena.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_cef107d61df34fc9921d87fe29a4932c.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-8",
-    "name": "Kalpesh Shah",
-    "designation": "Director",
-    "role": "Director",
-    "domain": "Finance & Investment",
-    "organization": "Market Creators Ltd",
-    "experience": "20+ Years",
-    "expertise": [
-      "Finance & Investment",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/kalpesh-shah.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_051d68e3ef8947fc8be29fa2e45c29d9.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-9",
-    "name": "Mr. Brijesh M Garala",
-    "designation": "Director",
-    "role": "Director",
-    "domain": "Manufacturing & Industry",
-    "organization": "Oviyan Cast & Forge Pvt. Ltd.",
-    "experience": "15+ Years",
-    "expertise": [
-      "Manufacturing & Industry",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/brijesh-m-garala.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_8851367873f94303bd402ef470ad7d47.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-10",
-    "name": "Dr. Suresh P Othayoth",
-    "designation": "Manager - Research",
-    "role": "Manager - Research",
-    "domain": "Academia & Research",
-    "organization": "GSFC Ltd.",
-    "experience": "20+ Years",
-    "expertise": [
-      "Academia & Research",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/suresh-p-othayoth.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_a0fd71e9340747c49fed4aabaa766ef0.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-11",
-    "name": "Mr. Hitesh Porwal",
-    "designation": "Founder",
-    "role": "Founder",
-    "domain": "Startup & Strategy",
-    "organization": "BIZSTART",
-    "experience": "14+ Years",
-    "expertise": [
-      "Startup & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/hitesh-porwal.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_cc65b6b4905e4953a948c8f0fb4192d5.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-12",
-    "name": "Mr. Bhavesh Chelani",
-    "designation": "MD & CEO",
-    "role": "MD & CEO",
-    "domain": "Business & Strategy",
-    "organization": "Santushti Shakes Pvt. Ltd.",
-    "experience": "15+ Years",
-    "expertise": [
-      "Business & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/bhavesh-chelani.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_020f80a058aa4c1e8e45e2f737a2d749.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-13",
-    "name": "Mr. Ashutosh Tewari",
-    "designation": "Senior Venture Coach",
-    "role": "Senior Venture Coach",
-    "domain": "Academia & Research",
-    "organization": "GITAM (deemed to be) University",
-    "experience": "16+ Years",
-    "expertise": [
-      "Academia & Research",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/ashutosh-tewari.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_86d8f90f74d64d42aa7fdf8780aa28e5.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-14",
-    "name": "Mr. Bhavesh Kothari",
-    "designation": "Founder Director",
-    "role": "Founder Director",
-    "domain": "Startup & Strategy",
-    "organization": "Billennium Divas Pvt Ltd",
-    "experience": "18+ Years",
-    "expertise": [
-      "Startup & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/bhavesh-kothari.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_a680ad1660c84922b84e11548095dcf5.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-15",
-    "name": "Mr. Saurabh Jain",
-    "designation": "Founder",
-    "role": "Founder",
-    "domain": "Technology",
-    "organization": "FUN2DO Labs Pvt. Ltd.",
-    "experience": "15+ Years",
-    "expertise": [
-      "Technology",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/saurabh-jain.png",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_c094d191dbd649d0838e129aa6c3e5f2.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-16",
-    "name": "CA CS Chintan Popat",
-    "designation": "CA CS - FOUNDER",
-    "role": "CA CS - FOUNDER",
-    "domain": "Finance & Investment",
-    "organization": "CA Chintan Popat & Associates",
-    "experience": "16+ Years",
-    "expertise": [
-      "Finance & Investment",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/chintan-popat.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_48a2314239374a8cb536c0526927dfa3.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-17",
-    "name": "Mr. Devesh Chawla",
-    "designation": "Founder & CEO",
-    "role": "Founder & CEO",
-    "domain": "Startup & Strategy",
-    "organization": "Chatur Ideas",
-    "experience": "14+ Years",
-    "expertise": [
-      "Startup & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/devesh-chawla.jpeg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_3d7e5c844236411cb9866556543587e6.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-18",
-    "name": "Mr. Karan Shah",
-    "designation": "Head - Partnership & Outreach",
-    "role": "Head - Partnership & Outreach",
-    "domain": "Business & Strategy",
-    "organization": "Civitas Sustainability Foundation",
-    "experience": "12+ Years",
-    "expertise": [
-      "Business & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/karan-shah.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_dbcd0856f9bf4c96b4356dae8cd27621.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-19",
-    "name": "Mr. Ashwin V. Parikh",
-    "designation": "Director",
-    "role": "Director",
-    "domain": "Business & Strategy",
-    "organization": "International Business Development (IBD)",
-    "experience": "25+ Years",
-    "expertise": [
-      "Business & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/ashwin-v-parikh.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_72f57101c8f34853a68a8a2bd26dd880.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-20",
-    "name": "Mr. Devang Patel",
-    "designation": "Founder",
-    "role": "Founder",
-    "domain": "Business & Strategy",
-    "organization": "Vantage Point Executive Coaching",
-    "experience": "20+ Years",
-    "expertise": [
-      "Business & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/devang-patel.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_55c68fe072b94adca94bcb6c8da6db1b.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-21",
-    "name": "Mr. Jekishan K Parmar",
-    "designation": "Head of Sales & Technology",
-    "role": "Head of Sales & Technology",
-    "domain": "Manufacturing & Industry",
-    "organization": "Aver India Equipment",
-    "experience": "15+ Years",
-    "expertise": [
-      "Manufacturing & Industry",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/jekishan-k-parmar.jpeg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_4ddc0c4e4c2a4416af2d2fb07dfed470.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-22",
-    "name": "Mr. Prakash Vaghasiya",
-    "designation": "CEO",
-    "role": "CEO",
-    "domain": "Manufacturing & Industry",
-    "organization": "Vise Organic",
-    "experience": "12+ Years",
-    "expertise": [
-      "Manufacturing & Industry",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/prakash-vaghasiya.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_78626586638c4f70b34f428c32a7229a.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-23",
-    "name": "Mr. Amitkumar Patel",
-    "designation": "Managing Director",
-    "role": "Managing Director",
-    "domain": "IPR & Legal",
-    "organization": "PATectual IP Law Services LLP",
-    "experience": "18+ Years",
-    "expertise": [
-      "IPR & Legal",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/amitkumar-patel.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_6741e3628d134b91b6674366687cb0fd.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-24",
-    "name": "Mr. Javid Shaikh",
-    "designation": "Freelancing Consultant",
-    "role": "Freelancing Consultant",
-    "domain": "Business & Strategy",
-    "organization": "Freelance Advisory",
-    "experience": "15+ Years",
-    "expertise": [
-      "Business & Strategy",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/javid-shaikh.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_1151b4b837b94d3992eb42a2324702f6.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-25",
-    "name": "Adv. Dr. Heena Patel",
-    "designation": "Partner",
-    "role": "Partner",
-    "domain": "IPR & Legal",
-    "organization": "INFINVENT IP",
-    "experience": "14+ Years",
-    "expertise": [
-      "IPR & Legal",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/heena-patel.jpeg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_f3f9ccca5d364342a5e18c4c8d4ccf2e.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-26",
-    "name": "Mr. Bhavik Bhansali",
-    "designation": "Senior Engineer",
-    "role": "Senior Engineer",
-    "domain": "Technology",
-    "organization": "L&T Technology Services",
-    "experience": "10+ Years",
-    "expertise": [
-      "Technology",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/bhavik-bhansali.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_0920cfb921c542e3bc1155347f18a120.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-27",
-    "name": "Mr. Akash Dadhania",
-    "designation": "Owner",
-    "role": "Owner",
-    "domain": "Manufacturing & Industry",
-    "organization": "J K Fertilizers",
-    "experience": "12+ Years",
-    "expertise": [
-      "Manufacturing & Industry",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/akash-dadhania.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_d7bbafea715d42f8ad69359bf1e9c9cb.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-28",
-    "name": "CA Jintendra Jain",
-    "designation": "CEO",
-    "role": "CEO",
-    "domain": "Finance & Investment",
-    "organization": "Tapanshi Finanziell Pvt. Ltd.",
-    "experience": "18+ Years",
-    "expertise": [
-      "Finance & Investment",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/jitendra-jain.jpeg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_3259a34cc5da4e87b78fbb53a6a5222f.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-29",
-    "name": "Dr. Ashish Kumar",
-    "designation": "Associate Professor",
-    "role": "Associate Professor",
-    "domain": "Academia & Research",
-    "organization": "Inter University Accelerator Center",
-    "experience": "16+ Years",
-    "expertise": [
-      "Academia & Research",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/ashish-kumar.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_23ea148014aa4eefa5f8327840f10a3f.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-30",
-    "name": "Nilesh Vaghela",
-    "designation": "CEO",
-    "role": "CEO",
-    "domain": "Technology",
-    "organization": "Electromech Cloudtech Pvt. Ltd.",
-    "experience": "20+ Years",
-    "expertise": [
-      "Technology",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/nilesh-vaghela.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_030f9bc215cb4f0d91708d3dc0664efc.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-31",
-    "name": "Karmjitsinh Bihola",
-    "designation": "Founder",
-    "role": "Founder",
-    "domain": "Technology",
-    "organization": "Innodesk Designovation Services",
-    "experience": "14+ Years",
-    "expertise": [
-      "Technology",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/karmjitsinh-bihola.png",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_818d001a506b4df486a21de642925660.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-32",
-    "name": "Mr. Anant Acharya",
-    "designation": "CTO",
-    "role": "CTO",
-    "domain": "Technology",
-    "organization": "MarsBazaar.com",
-    "experience": "15+ Years",
-    "expertise": [
-      "Technology",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/anant-acharya.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_c8298fe73fed4e8087f4c15b0f258bdd.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-33",
-    "name": "Mr. Shaurin Patel",
-    "designation": "Industry Specialist & Mentor",
-    "role": "Industry Specialist & Mentor",
-    "domain": "Manufacturing & Industry",
-    "organization": "Venture & Industry Advisory",
-    "experience": "15+ Years",
-    "expertise": [
-      "Manufacturing & Industry",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/shaurin-patel.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_4c8290c853ae4aa6bb82472e190fbbf4.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-34",
-    "name": "Mr. Baljeetsingh B. Sucharia",
-    "designation": "MD & CEO, Vexma Technologies | Co-founder, LifeSecret Consultancy LLP",
-    "role": "MD & CEO, Vexma Technologies | Co-founder, LifeSecret Consultancy LLP",
-    "domain": "Technology",
-    "organization": "Vexma Technologies / LifeSecret Consultancy",
-    "experience": "16+ Years",
-    "expertise": [
-      "Technology",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/baljeetsingh-b-sucharia.jpeg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_8e59fee9065640c1bf27173a221b045c.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-35",
-    "name": "Mr. Hemant Mishra",
-    "designation": "Independent Director",
-    "role": "Independent Director",
-    "domain": "Technology",
-    "organization": "Tech Defence Solutions Pvt. Ltd.",
-    "experience": "18+ Years",
-    "expertise": [
-      "Technology",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/hemant-mishra.jpg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_3f7a8e68673048bc8024f5ea81343d96.pdf",
-    "published": true
-  },
-  {
-    "id": "ind-men-36",
-    "name": "Mr. Hemal Shah",
-    "designation": "CEO-Founder",
-    "role": "CEO-Founder",
-    "domain": "Technology",
-    "organization": "Bharatomni Technologies Pvt. Ltd.",
-    "experience": "15+ Years",
-    "expertise": [
-      "Technology",
-      "Mentorship",
-      "Innovation"
-    ],
-    "avatar": "/images/mentors/hemal-shah.jpeg",
-    "status": "Active",
-    "pdfUrl": "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_b90fb4c4826745fb9978b4d94d0425d9.pdf",
-    "published": true
-  }
 ];
 
 const INITIAL_PROGRAMS: IncubationProgram[] = [
@@ -2233,7 +1483,7 @@ const STORAGE_CATEGORIES_KEY = "guiitar_categories_data_v1";
 const STORAGE_STARTUPS_KEY = "guiitar_startups_data_v1";
 const STORAGE_EVENTS_KEY = "guiitar_events_data_v1";
 const STORAGE_REGISTRATIONS_KEY = "guiitar_registrations_data_v1";
-const STORAGE_MENTORS_KEY = "guiitar_mentors_data_v3";
+const STORAGE_MENTORS_KEY = "guiitar_mentors_data_v1";
 const STORAGE_PROGRAMS_KEY = "guiitar_programs_data_v1";
 const STORAGE_FUNDING_KEY = "guiitar_funding_data_v1";
 const STORAGE_RESOURCES_KEY = "guiitar_resources_data_v1";
