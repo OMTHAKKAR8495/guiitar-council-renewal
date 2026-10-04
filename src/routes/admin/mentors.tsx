@@ -12,8 +12,11 @@ export const Route = createFileRoute("/admin/mentors")({
 export function AdminMentorsPage() {
   const [mentors, setMentors] = useState<MentorItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeTab, setActiveTab] = useState<string>("All");
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+
+  const ADMIN_TABS = ["All", ...AdminDataStore.ACTIVE_DOMAINS] as const;
 
   const loadMentors = () => {
     setMentors(AdminDataStore.getMentors());
@@ -33,12 +36,18 @@ export function AdminMentorsPage() {
     name: "",
     role: "",
     organization: "",
-    domain: "Artificial Intelligence",
+    domain: "Industry",
     experience: "10+ Years",
     avatar: "",
   });
 
-  const filteredMentors = mentors.filter((m) =>
+  // Filter to active domains, apply tab selection, then apply search
+  const activeMentors = mentors.filter((m) =>
+    (AdminDataStore.ACTIVE_DOMAINS as readonly string[]).includes(m.domain),
+  );
+  const tabMentors =
+    activeTab === "All" ? activeMentors : activeMentors.filter((m) => m.domain === activeTab);
+  const filteredMentors = tabMentors.filter((m) =>
     `${m.name} ${m.role || m.designation} ${m.organization} ${m.domain}`
       .toLowerCase()
       .includes(searchQuery.toLowerCase()),
@@ -167,6 +176,52 @@ export function AdminMentorsPage() {
           <span style={{ fontSize: "13px", color: "#64748b" }}>
             Active Mentors: <strong>50+</strong> industry leaders & faculty
           </span>
+        </div>
+
+        {/* Category tabs */}
+        <div
+          style={{
+            padding: "12px 24px",
+            borderBottom: "1px solid #e2e8f0",
+            display: "flex",
+            gap: "8px",
+            flexWrap: "wrap",
+          }}
+        >
+          {ADMIN_TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              style={{
+                padding: "6px 16px",
+                borderRadius: "9999px",
+                border: "1px solid",
+                fontSize: "13px",
+                fontWeight: 600,
+                cursor: "pointer",
+                background: activeTab === tab ? "#1e40af" : "#f8fafc",
+                color: activeTab === tab ? "#ffffff" : "#475569",
+                borderColor: activeTab === tab ? "#1e40af" : "#cbd5e1",
+                transition: "all 0.15s",
+              }}
+            >
+              {tab}
+              {tab !== "All" && (
+                <span
+                  style={{
+                    marginLeft: "6px",
+                    background: activeTab === tab ? "rgba(255,255,255,0.25)" : "#e2e8f0",
+                    color: activeTab === tab ? "#ffffff" : "#64748b",
+                    borderRadius: "9999px",
+                    padding: "1px 7px",
+                    fontSize: "11px",
+                  }}
+                >
+                  {activeMentors.filter((m) => m.domain === tab).length}
+                </span>
+              )}
+            </button>
+          ))}
         </div>
 
         <div style={{ overflowX: "auto" }}>
@@ -366,13 +421,11 @@ export function AdminMentorsPage() {
                       marginBottom: "6px",
                     }}
                   >
-                    Domain Focus
+                    Category
                   </label>
-                  <input
-                    type="text"
+                  <select
                     value={formData.domain}
                     onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
-                    placeholder="e.g., Bioprocess & HPLC"
                     style={{
                       width: "100%",
                       padding: "10px 14px",
@@ -380,8 +433,13 @@ export function AdminMentorsPage() {
                       border: "1px solid #cbd5e1",
                       fontSize: "14px",
                       boxSizing: "border-box",
+                      background: "#ffffff",
                     }}
-                  />
+                  >
+                    {AdminDataStore.ACTIVE_DOMAINS.map((d) => (
+                      <option key={d} value={d}>{d}</option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>

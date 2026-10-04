@@ -3017,9 +3017,15 @@ export class AdminDataStore {
    * records.
    *
    * Rules:
-   *  - For each record in INITIAL_MENTORS, if a stored record with the same id
-   *    already exists, update only the fields that still carry placeholder text
-   *    (i.e. fields whose value starts with "[") — leaving any admin edits intact.
+   *  - Seed records whose domain is NOT in ACTIVE_DOMAINS are removed from
+   *    localStorage (they belong to retired categories like Governance,
+   *    Technology, Business, Research, Legal & IPR). Admin-created records
+   *    with those same domain values are left untouched — only seed IDs
+   *    (present in INITIAL_MENTORS) are eligible for removal.
+   *  - For each record in INITIAL_MENTORS whose domain IS active, if a stored
+   *    record with the same id already exists, update only the fields that still
+   *    carry placeholder text (i.e. fields whose value starts with "[") —
+   *    leaving any admin edits intact.
    *  - If no stored record matches the id, insert the INITIAL_MENTORS record at
    *    the end of the list (new seed record, never seen before).
    *  - Stored records whose ids do NOT appear in INITIAL_MENTORS are left
@@ -3030,14 +3036,32 @@ export class AdminDataStore {
    * Safe to call on every mount — it is a no-op when all records are already
    * up-to-date.
    */
+  static readonly ACTIVE_DOMAINS = ["Board of Directors", "Industry", "Faculty"] as const;
+
   static migrateMentorData(): void {
-    const stored = this.getMentors();
+    // IDs of seed records that belong to retired categories — safe to remove.
+    const retiredSeedIds = new Set(
+      INITIAL_MENTORS
+        .filter((m) => !(AdminDataStore.ACTIVE_DOMAINS as readonly string[]).includes(m.domain))
+        .map((m) => m.id),
+    );
+
+    let stored = this.getMentors();
     let changed = false;
+
+    // Purge retired seed records from localStorage.
+    // Admin-created records (IDs not in INITIAL_MENTORS) are never touched.
+    const beforeLen = stored.length;
+    stored = stored.filter((m) => !retiredSeedIds.has(m.id));
+    if (stored.length !== beforeLen) changed = true;
 
     // Build a mutable map keyed by id for O(1) lookup
     const storedMap = new Map<string, MentorItem>(stored.map((m) => [m.id, m]));
 
     for (const seed of INITIAL_MENTORS) {
+      // Skip seeds that belong to retired categories — already purged above.
+      if (!(AdminDataStore.ACTIVE_DOMAINS as readonly string[]).includes(seed.domain)) continue;
+
       const existing = storedMap.get(seed.id);
 
       if (!existing) {
