@@ -15,6 +15,7 @@ import {
   GraduationCap,
   Landmark,
   Layers,
+  FileText,
 } from "lucide-react";
 import { PageHero, SectionTitle, ButtonLink } from "@/components/site";
 import { GuiitarEmblem } from "@/components/GuiitarBrand";
@@ -292,6 +293,34 @@ export function EcosystemPage() {
                 }}
               >
                 <div>
+                  {/* Mentor photo — hidden gracefully when the image file is not yet available */}
+                  {m.imagePath && (
+                    <div
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                        borderRadius: "50%",
+                        overflow: "hidden",
+                        marginBottom: "16px",
+                        border: "2px solid #e2e8f0",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <img
+                        src={m.imagePath}
+                        alt={`Photo of ${m.name}`}
+                        width={80}
+                        height={80}
+                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                        onError={(e) => {
+                          // Hide the entire photo container when the file is not yet available
+                          const el = e.currentTarget.parentElement;
+                          if (el) el.style.display = "none";
+                        }}
+                      />
+                    </div>
+                  )}
+
                   <div
                     style={{
                       display: "flex",
@@ -351,16 +380,51 @@ export function EcosystemPage() {
                   </div>
                 </div>
 
-                <div style={{ borderTop: "1px solid #f1f5f9", paddingTop: "16px" }}>
+                <div style={{ borderTop: "1px solid #f1f5f9", paddingTop: "16px", display: "flex", gap: "8px", flexWrap: "wrap" }}>
                   <ButtonLink
                     to="/apply"
                     variant="outline"
                     size="sm"
-                    style={{ width: "100%", justifyContent: "center" }}
+                    style={{ flex: 1, justifyContent: "center", minWidth: "140px" }}
                   >
                     <span>Request Advisory Session</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </ButtonLink>
+
+                  {/* View Profile document link — only shown once the PDF asset exists */}
+                  {m.documentPath && (
+                    <a
+                      href={m.documentPath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View profile document for ${m.name}`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "5px",
+                        padding: "7px 14px",
+                        borderRadius: "8px",
+                        border: "1px solid #cbd5e1",
+                        fontSize: "13px",
+                        fontWeight: 600,
+                        color: "#475569",
+                        textDecoration: "none",
+                        whiteSpace: "nowrap",
+                        background: "#ffffff",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "#f8fafc";
+                        e.currentTarget.style.borderColor = "#94a3b8";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "#ffffff";
+                        e.currentTarget.style.borderColor = "#cbd5e1";
+                      }}
+                    >
+                      <FileText className="w-3.5 h-3.5" />
+                      <span>View Profile</span>
+                    </a>
+                  )}
                 </div>
               </article>
             ))}

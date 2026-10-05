@@ -133,6 +133,12 @@ export interface MentorItem {
   expertise: string[];
   role?: string;
   avatar?: string;
+  /** Absolute public path to the mentor's photo (e.g. /mentors/industry/photos/industry-mentor-01.avif).
+   *  Replace with the real path once assets are provided. */
+  imagePath?: string;
+  /** Absolute public path to the mentor's profile document (e.g. /mentors/industry/documents/industry-mentor-01.pdf).
+   *  Replace with the real path once documents are provided. */
+  documentPath?: string;
   email?: string;
   status?: "Active" | "Available" | "Busy";
 }
@@ -924,6 +930,803 @@ const INITIAL_MENTORS: MentorItem[] = [
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80",
     status: "Active",
   },
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // INDUSTRY MENTORS (01–36) — real data; ind-men-37 = TiE Vadodara org card.
+  // IDs are stable. Kept in sync with MENTOR_NETWORK in data.ts.
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: "ind-men-01",
+    name: "Mr. Sudhir Gupta",
+    designation: "Member, Strategic Advisory Board",
+    role: "Member, Strategic Advisory Board",
+    domain: "Industry",
+    organization: "Millennium Alliance",
+    experience: "Strategic advisor with experience in alliance-building, innovation policy and early-stage startup support.",
+    expertise: ["Strategic Advisory", "Alliance Building", "Innovation Policy", "Startup Support"],
+    avatar: "/mentors/industry/photos/industry-mentor-01.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-01.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-01.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-02",
+    name: "Prof. Dhruv Nath",
+    designation: "Director",
+    role: "Director",
+    domain: "Industry",
+    organization: "Lead Angels Network",
+    experience: "Angel investor and startup mentor with extensive experience in venture evaluation and early-stage funding.",
+    expertise: ["Angel Investing", "Venture Evaluation", "Startup Mentorship", "Early-Stage Funding"],
+    avatar: "/mentors/industry/photos/industry-mentor-02.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-02.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-02.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-03",
+    name: "Mr. Ravin Sanghavi",
+    designation: "Founder",
+    role: "Founder",
+    domain: "Industry",
+    organization: "Ravin Sanghavi & Associates",
+    experience: "Founder and consultant with expertise in business development, legal advisory and entrepreneurship.",
+    expertise: ["Business Development", "Legal Advisory", "Entrepreneurship", "Consulting"],
+    avatar: "/mentors/industry/photos/industry-mentor-03.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-03.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-03.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-04",
+    name: "Dr. Manoj Shukla",
+    designation: "CEO",
+    role: "CEO",
+    domain: "Industry",
+    organization: "Gurukul Academy",
+    experience: "CEO with experience in educational leadership, skill development and institution building.",
+    expertise: ["Educational Leadership", "Skill Development", "Institution Building", "Mentorship"],
+    avatar: "/mentors/industry/photos/industry-mentor-04.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-04.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-04.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-05",
+    name: "Mr. Rupesh Shah",
+    designation: "CEO",
+    role: "CEO",
+    domain: "Industry",
+    organization: "Barodaweb",
+    experience: "CEO of a digital solutions company with expertise in web technology, digital marketing and SME enablement.",
+    expertise: ["Web Technology", "Digital Marketing", "SME Enablement", "Business Strategy"],
+    avatar: "/mentors/industry/photos/industry-mentor-05.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-05.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-05.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-06",
+    // NOTE: No title prefix in screenshot — verify from document.
+    name: "Kalpesh Shah",
+    designation: "Director",
+    role: "Director",
+    domain: "Industry",
+    organization: "Market Creators Ltd",
+    experience: "Director with expertise in market strategy, business creation and corporate development.",
+    expertise: ["Market Strategy", "Business Creation", "Corporate Development", "Sales"],
+    avatar: "/mentors/industry/photos/industry-mentor-06.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-06.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-06.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-07",
+    name: "Mr. Hitesh Porwal",
+    designation: "Founder",
+    role: "Founder",
+    domain: "Industry",
+    organization: "BIZSTART",
+    experience: "Founder with experience in startup ecosystem development, business incubation and entrepreneurship coaching.",
+    expertise: ["Startup Ecosystem", "Business Incubation", "Entrepreneurship Coaching", "MSME Support"],
+    avatar: "/mentors/industry/photos/industry-mentor-07.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-07.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-07.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-08",
+    name: "Mr. Bhavesh Kothari",
+    designation: "Founder Director",
+    role: "Founder Director",
+    domain: "Industry",
+    organization: "Billennium Divas Pvt Ltd",
+    experience: "Founder Director with expertise in business strategy, organizational leadership and new venture creation.",
+    expertise: ["Business Strategy", "Organizational Leadership", "Venture Creation", "Corporate Governance"],
+    avatar: "/mentors/industry/photos/industry-mentor-08.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-08.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-08.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-09",
+    name: "Adv. Bhavik B. Patel",
+    designation: "CEO",
+    role: "CEO",
+    domain: "Industry",
+    organization: "INFINVENT IP",
+    experience: "IP law professional and CEO specializing in intellectual property rights, patent prosecution and startup IP strategy.",
+    expertise: ["Intellectual Property", "Patent Prosecution", "IP Strategy", "Legal Advisory"],
+    avatar: "/mentors/industry/photos/industry-mentor-09.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-09.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-09.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-10",
+    name: "Mr. Brijesh M. Garala",
+    designation: "Director",
+    role: "Director",
+    domain: "Industry",
+    organization: "Oviyan Cast & Forge Pvt. Ltd.",
+    experience: "Director in manufacturing and heavy engineering with expertise in casting, forging and industrial operations.",
+    expertise: ["Manufacturing", "Casting & Forging", "Industrial Operations", "Engineering"],
+    avatar: "/mentors/industry/photos/industry-mentor-10.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-10.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-10.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-11",
+    name: "Mr. Bhavesh Chelani",
+    designation: "MD & CEO",
+    role: "MD & CEO",
+    domain: "Industry",
+    organization: "Santushti Shakes Pvt. Ltd.",
+    experience: "MD & CEO with experience in FMCG, food & beverage industry, franchise management and retail scaling.",
+    expertise: ["FMCG", "Food & Beverage", "Franchise Management", "Retail Scaling"],
+    avatar: "/mentors/industry/photos/industry-mentor-11.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-11.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-11.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-12",
+    name: "Mr. Saurabh Jain",
+    designation: "Founder",
+    role: "Founder",
+    domain: "Industry",
+    organization: "FUN2DO Labs Pvt. Ltd.",
+    experience: "Founder specializing in EdTech, experiential learning, STEM education and product innovation for children.",
+    expertise: ["EdTech", "Experiential Learning", "STEM Education", "Product Innovation"],
+    avatar: "/mentors/industry/photos/industry-mentor-12.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-12.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-12.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-13",
+    name: "Dr. Kavita Saxena",
+    designation: "Freelancer",
+    role: "Freelancing Startup Mentor",
+    domain: "Industry",
+    organization: "Freelancing Startup Mentor",
+    experience: "Independent startup mentor with experience in business advisory, market research and early-stage venture guidance.",
+    expertise: ["Business Advisory", "Market Research", "Startup Mentoring", "Early-Stage Guidance"],
+    avatar: "/mentors/industry/photos/industry-mentor-13.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-13.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-13.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-14",
+    name: "Dr. Suresh P. Othayoth",
+    designation: "Manager - Research",
+    role: "Manager - Research",
+    domain: "Industry",
+    organization: "GSFC Ltd.",
+    experience: "Research manager at GSFC Ltd. with expertise in chemical sciences, industrial R&D and applied research.",
+    expertise: ["Chemical Sciences", "Industrial R&D", "Applied Research", "Process Innovation"],
+    avatar: "/mentors/industry/photos/industry-mentor-14.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-14.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-14.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-15",
+    name: "Mr. Ashutosh Tewari",
+    designation: "Senior Venture Coach",
+    role: "Senior Venture Coach",
+    domain: "Industry",
+    // NOTE: Verify exact legal name of GITAM university from document.
+    organization: "GITAM (Deemed to be) University",
+    experience: "Senior Venture Coach supporting deep-tech and social innovation startups through structured mentoring and business coaching.",
+    expertise: ["Venture Coaching", "Deep-Tech Startups", "Social Innovation", "Business Coaching"],
+    avatar: "/mentors/industry/photos/industry-mentor-15.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-15.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-15.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-16",
+    name: "CA CS Chintan Popat",
+    designation: "CA CS - Founder",
+    role: "CA CS - Founder",
+    domain: "Industry",
+    organization: "CA Chintan Popat & Associates",
+    experience: "Chartered Accountant and Company Secretary with expertise in finance, taxation, compliance and startup CFO advisory.",
+    expertise: ["Chartered Accountancy", "Company Secretarial", "Taxation & Compliance", "CFO Advisory"],
+    avatar: "/mentors/industry/photos/industry-mentor-16.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-16.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-16.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-17",
+    name: "Mr. Devesh Chawla",
+    designation: "Founder & CEO",
+    role: "Founder & CEO",
+    domain: "Industry",
+    organization: "Chatur Ideas",
+    experience: "Founder & CEO of a branding and marketing consultancy with expertise in brand strategy, content and growth marketing.",
+    expertise: ["Brand Strategy", "Content Marketing", "Growth Marketing", "Business Development"],
+    avatar: "/mentors/industry/photos/industry-mentor-17.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-17.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-17.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-18",
+    // NOTE: Organization not confirmed — verify from document.
+    name: "Mr. Ashwin V. Parikh",
+    designation: "Director, International Business Development (IBD)",
+    role: "Director, International Business Development (IBD)",
+    domain: "Industry",
+    organization: "[Organisation — verify from document]",
+    experience: "Director of International Business Development with expertise in global market entry, trade and cross-border partnerships.",
+    expertise: ["International Business Development", "Global Market Entry", "Trade", "Cross-Border Partnerships"],
+    avatar: "/mentors/industry/photos/industry-mentor-18.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-18.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-18.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-19",
+    name: "Mr. Jekishan K. Parmar",
+    designation: "Head of Sales & Technology",
+    role: "Head of Sales & Technology",
+    domain: "Industry",
+    organization: "Aver India Equipment",
+    experience: "Sales and technology leader with expertise in B2B sales, AV & IT equipment distribution and channel management.",
+    expertise: ["B2B Sales", "AV & IT Equipment", "Channel Management", "Technology Sales"],
+    avatar: "/mentors/industry/photos/industry-mentor-19.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-19.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-19.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-20",
+    name: "Mr. Amitkumar Patel",
+    designation: "Managing Director",
+    role: "Managing Director",
+    domain: "Industry",
+    organization: "Pactual IP Law Services LLP",
+    experience: "Managing Director of an IP law services firm specializing in patent filing, IP portfolio management and legal consulting.",
+    expertise: ["Patent Filing", "IP Portfolio Management", "Legal Consulting", "Intellectual Property"],
+    avatar: "/mentors/industry/photos/industry-mentor-20.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-20.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-20.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-21",
+    name: "Mr. Karan Shah",
+    designation: "Head - Partnership & Outreach",
+    role: "Head - Partnership & Outreach",
+    domain: "Industry",
+    organization: "Civitas Sustainability Foundation",
+    experience: "Partnership and outreach leader focused on sustainability, CSR, social impact programs and corporate engagement.",
+    expertise: ["Sustainability", "CSR", "Social Impact", "Partnership & Outreach"],
+    avatar: "/mentors/industry/photos/industry-mentor-21.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-21.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-21.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-22",
+    name: "Mr. Devang Patel",
+    designation: "Founder",
+    role: "Founder",
+    domain: "Industry",
+    organization: "Vantage Point Executive Coaching",
+    experience: "Founder of an executive coaching practice with expertise in leadership development, coaching and organizational effectiveness.",
+    expertise: ["Executive Coaching", "Leadership Development", "Organizational Effectiveness", "Mentoring"],
+    avatar: "/mentors/industry/photos/industry-mentor-22.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-22.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-22.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-23",
+    name: "Mr. Prakash Vaghasiya",
+    designation: "CEO",
+    role: "CEO",
+    domain: "Industry",
+    organization: "Vise Organic",
+    experience: "CEO with expertise in organic products, sustainable agriculture, agri-business and rural entrepreneurship.",
+    expertise: ["Organic Products", "Sustainable Agriculture", "Agri-Business", "Rural Entrepreneurship"],
+    avatar: "/mentors/industry/photos/industry-mentor-23.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-23.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-23.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-24",
+    // NOTE: Verify full name and title prefix from document.
+    name: "Mr. Javid Shaikh",
+    designation: "Freelancing Consultant",
+    role: "Freelancing Consultant",
+    domain: "Industry",
+    organization: "Independent Consultant",
+    experience: "Independent consultant with expertise in business advisory, market strategy and startup mentoring.",
+    expertise: ["Business Advisory", "Market Strategy", "Startup Mentoring", "Consulting"],
+    avatar: "/mentors/industry/photos/industry-mentor-24.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-24.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-24.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-25",
+    name: "Adv. Dr. Heena Patel",
+    designation: "Partner",
+    role: "Partner",
+    domain: "Industry",
+    organization: "INFINVENT IP",
+    experience: "IP law partner and advocate with expertise in patent drafting, IP litigation, trademark and legal advisory for startups.",
+    expertise: ["Patent Drafting", "IP Litigation", "Trademark", "Legal Advisory"],
+    avatar: "/mentors/industry/photos/industry-mentor-25.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-25.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-25.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-26",
+    name: "Mr. Bhavik Bhansali",
+    designation: "Senior Engineer",
+    role: "Senior Engineer",
+    domain: "Industry",
+    organization: "L&T Technology Services",
+    experience: "Senior Engineer at L&T Technology Services with expertise in engineering services, product development and R&D.",
+    expertise: ["Engineering Services", "Product Development", "R&D", "Technology Consulting"],
+    avatar: "/mentors/industry/photos/industry-mentor-26.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-26.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-26.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-27",
+    name: "Mr. Akash Dadhania",
+    designation: "Owner",
+    role: "Owner",
+    domain: "Industry",
+    organization: "J K Fertilizers",
+    experience: "Business owner in the agri-input sector with expertise in fertilizers, agricultural supply chain and rural markets.",
+    expertise: ["Fertilizers", "Agricultural Supply Chain", "Rural Markets", "Agri-Business"],
+    avatar: "/mentors/industry/photos/industry-mentor-27.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-27.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-27.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-28",
+    name: "CA Jitendra Jain",
+    designation: "CEO",
+    role: "CEO",
+    domain: "Industry",
+    organization: "Tapanshi Financial Pvt. Ltd.",
+    experience: "Chartered Accountant and CEO specializing in financial services, investment advisory and wealth management.",
+    expertise: ["Financial Services", "Investment Advisory", "Wealth Management", "Chartered Accountancy"],
+    avatar: "/mentors/industry/photos/industry-mentor-28.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-28.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-28.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-29",
+    name: "Dr. Ashish Kumar",
+    designation: "Associate Professor",
+    role: "Associate Professor",
+    domain: "Industry",
+    organization: "Inter University Accelerator Center",
+    experience: "Associate Professor and researcher at a national accelerator facility with expertise in physics research and academic mentoring.",
+    expertise: ["Physics Research", "Accelerator Science", "Academic Mentoring", "Research & Development"],
+    avatar: "/mentors/industry/photos/industry-mentor-29.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-29.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-29.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-30",
+    // NOTE: No title prefix in screenshot — verify from document.
+    name: "Nilesh Vaghhela",
+    designation: "CEO",
+    role: "CEO",
+    domain: "Industry",
+    organization: "Electromech Cloudtech Pvt. Ltd.",
+    experience: "CEO of an electromechanical and cloud technology company with expertise in industrial automation and tech startups.",
+    expertise: ["Industrial Automation", "Cloud Technology", "Electromechanical Systems", "Tech Startups"],
+    avatar: "/mentors/industry/photos/industry-mentor-30.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-30.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-30.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-31",
+    // NOTE: No title prefix in screenshot — verify from document.
+    name: "Karmjitsinh Bihola",
+    designation: "Founder",
+    role: "Founder",
+    domain: "Industry",
+    organization: "Innodesk Designovation Services",
+    experience: "Founder of a design and innovation services firm with expertise in product design, design thinking and prototyping.",
+    expertise: ["Product Design", "Design Thinking", "Prototyping", "Innovation Services"],
+    avatar: "/mentors/industry/photos/industry-mentor-31.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-31.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-31.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-32",
+    name: "Mr. Anant Acharya",
+    designation: "CTO",
+    role: "CTO",
+    domain: "Industry",
+    // NOTE: Verify exact organisation spelling from document.
+    organization: "MarsBazaar.com",
+    experience: "CTO with expertise in e-commerce technology, platform architecture, software engineering and startup scaling.",
+    expertise: ["E-Commerce Technology", "Platform Architecture", "Software Engineering", "Startup Scaling"],
+    avatar: "/mentors/industry/photos/industry-mentor-32.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-32.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-32.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-33",
+    name: "Mr. Shaurin Patel",
+    designation: "MD & CEO",
+    role: "MD & CEO",
+    domain: "Industry",
+    organization: "Vexma Technologies",
+    experience: "MD & CEO of an advanced manufacturing and 3D printing technology company specializing in industrial prototyping and AM solutions.",
+    expertise: ["3D Printing", "Advanced Manufacturing", "Industrial Prototyping", "Additive Manufacturing"],
+    avatar: "/mentors/industry/photos/industry-mentor-33.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-33.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-33.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-34",
+    name: "Mr. Baljeetsingh B. Sucharia",
+    designation: "Co-founder",
+    role: "Co-founder",
+    domain: "Industry",
+    organization: "LifeSecret Consultancy LLP",
+    experience: "Co-founder of a wellness and lifestyle consultancy with expertise in health coaching, wellness programs and social enterprise.",
+    expertise: ["Health Coaching", "Wellness Programs", "Social Enterprise", "Lifestyle Consultancy"],
+    avatar: "/mentors/industry/photos/industry-mentor-34.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-34.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-34.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-35",
+    name: "Mr. Hemant Mishra",
+    designation: "Independent Director",
+    role: "Independent Director",
+    domain: "Industry",
+    organization: "Tech Defence Solutions Pvt. Ltd.",
+    experience: "Independent Director with expertise in defence technology, corporate governance, strategic leadership and board advisory.",
+    expertise: ["Defence Technology", "Corporate Governance", "Strategic Leadership", "Board Advisory"],
+    avatar: "/mentors/industry/photos/industry-mentor-35.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-35.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-35.pdf",
+    status: "Active",
+  },
+  {
+    id: "ind-men-36",
+    // NOTE: Full org name truncated in screenshot — verify from document.
+    name: "Mr. Hemal Shah",
+    designation: "CEO-Founder",
+    role: "CEO-Founder",
+    domain: "Industry",
+    organization: "Bharat Technologies Pvt. Ltd. [verify full name from document]",
+    experience: "CEO-Founder with expertise in technology entrepreneurship, product innovation and business scaling.",
+    expertise: ["Technology Entrepreneurship", "Product Innovation", "Business Scaling", "Startup Leadership"],
+    avatar: "/mentors/industry/photos/industry-mentor-36.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-36.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-36.pdf",
+    status: "Active",
+  },
+  {
+    // TiE Vadodara Mentors — organization/network card, not an individual profile.
+    id: "ind-men-37",
+    name: "TiE Vadodara Mentors",
+    designation: "Industry Mentor Network",
+    role: "Industry Mentor Network",
+    domain: "Industry",
+    organization: "TiE Vadodara",
+    experience: "A network of experienced entrepreneurs, investors and industry leaders committed to fostering entrepreneurship.",
+    expertise: ["Entrepreneurship", "Investor Network", "Startup Mentorship", "Industry Linkages"],
+    avatar: "/mentors/industry/photos/industry-mentor-37.avif",
+    imagePath: "/mentors/industry/photos/industry-mentor-37.avif",
+    documentPath: "/mentors/industry/documents/industry-mentor-37.pdf",
+    status: "Active",
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // FACULTY MENTORS (faculty-01 – faculty-11) — GSF University faculty profiles.
+  // IDs are stable. Photos: /mentors/faculty/photos/industry-mentor-XX.avif
+  // Documents: /mentors/faculty/documents/industry-mentor-XX.pdf
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: "faculty-01",
+    name: "Dr. Bharti Trivedi",
+    designation: "Visiting Professor",
+    role: "Visiting Professor",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-01.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-01.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-01.pdf",
+    status: "Active",
+  },
+  {
+    id: "faculty-02",
+    name: "Dr. Devjani Banerjee",
+    designation: "Professor",
+    role: "Professor",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-02.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-02.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-02.pdf",
+    status: "Active",
+  },
+  {
+    id: "faculty-03",
+    name: "Dr. Chetna Parmar",
+    designation: "Associate Dean",
+    role: "Associate Dean",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-03.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-03.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-03.pdf",
+    status: "Active",
+  },
+  {
+    id: "faculty-04",
+    name: "Dr. Sanjukta Bose Goswami",
+    designation: "Dean, SoI & Associate Professor",
+    role: "Dean, SoI & Associate Professor",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-04.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-04.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-04.pdf",
+    status: "Active",
+  },
+  {
+    id: "faculty-05",
+    name: "Ms. Patel Mosam",
+    designation: "Sr. Assistant Professor",
+    role: "Sr. Assistant Professor",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-05.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-05.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-05.pdf",
+    status: "Active",
+  },
+  {
+    id: "faculty-06",
+    name: "Dr. Arti Bhaduria",
+    designation: "Assistant Professor",
+    role: "Assistant Professor",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-06.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-06.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-06.pdf",
+    status: "Active",
+  },
+  {
+    id: "faculty-07",
+    name: "Dr. Parin Kanaya",
+    designation: "Sr. Assistant Professor",
+    role: "Sr. Assistant Professor",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-07.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-07.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-07.pdf",
+    status: "Active",
+  },
+  {
+    id: "faculty-08",
+    name: "Ms. Swati Saxena",
+    designation: "Sr. Assistant Professor",
+    role: "Sr. Assistant Professor",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-08.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-08.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-08.pdf",
+    status: "Active",
+  },
+  {
+    id: "faculty-09",
+    name: "Dr. Akhilesh Prajapati",
+    designation: "Associate Professor",
+    role: "Associate Professor",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-09.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-09.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-09.pdf",
+    status: "Active",
+  },
+  {
+    id: "faculty-10",
+    name: "Ms. Archana Mage",
+    designation: "Sr. Assistant Professor",
+    role: "Sr. Assistant Professor",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-10.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-10.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-10.pdf",
+    status: "Active",
+  },
+  {
+    id: "faculty-11",
+    name: "Dr. Arti Hansa",
+    designation: "Assistant Professor",
+    role: "Assistant Professor",
+    domain: "Faculty",
+    organization: "GSF University",
+    experience: "Faculty Mentor, GSF University",
+    expertise: ["Academic Mentorship", "Research Guidance"],
+    avatar: "/mentors/faculty/photos/industry-mentor-11.avif",
+    imagePath: "/mentors/faculty/photos/industry-mentor-11.avif",
+    documentPath: "/mentors/faculty/documents/industry-mentor-11.pdf",
+    status: "Active",
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // BOARD OF DIRECTORS (board-01 – board-07)
+  // Photos:    /mentors/Board of Directors/photos/industry-mentor-XX.avif
+  // Documents: /mentors/Board of Directors/documents/industry-mentor-XX.pdf
+  // Order matches screenshot left-to-right, top-to-bottom.
+  // ─────────────────────────────────────────────────────────────────────────────
+  {
+    id: "board-01",
+    name: "Shri P. K. Taneja, IAS (Retd.)",
+    designation: "Chairman",
+    role: "Chairman",
+    domain: "Board of Directors",
+    organization: "GUIITAR Council",
+    experience: "Former Additional Chief Secretary (Home / Forest & Environment), Govt. of Gujarat",
+    expertise: ["Public Policy & Governance", "Institutional Leadership", "Strategic Planning", "Innovation Ecosystems"],
+    avatar: "/mentors/Board of Directors/photos/industry-mentor-01.avif",
+    imagePath: "/mentors/Board of Directors/photos/industry-mentor-01.avif",
+    documentPath: "/mentors/Board of Directors/documents/industry-mentor-01.pdf",
+    status: "Active",
+  },
+  {
+    id: "board-02",
+    name: "Prof. G. R. Sinha",
+    designation: "Director & CEO, GUITAR",
+    role: "Director & CEO, GUITAR",
+    domain: "Board of Directors",
+    organization: "GUIITAR Council",
+    experience: "25+ Years in Engineering Research & Academic Leadership",
+    expertise: ["Biomedical Signal Processing", "AI/ML in Healthcare", "IPR Strategy", "Academic Entrepreneurship"],
+    avatar: "/mentors/Board of Directors/photos/industry-mentor-02.avif",
+    imagePath: "/mentors/Board of Directors/photos/industry-mentor-02.avif",
+    documentPath: "/mentors/Board of Directors/documents/industry-mentor-02.pdf",
+    status: "Active",
+  },
+  {
+    id: "board-03",
+    name: "Shri Utkarsh Jajnik",
+    designation: "Director",
+    role: "Director",
+    domain: "Board of Directors",
+    organization: "GUIITAR Council",
+    experience: "Board Director, GUIITAR Council",
+    expertise: ["Corporate Governance", "Strategic Leadership", "Business Development"],
+    avatar: "/mentors/Board of Directors/photos/industry-mentor-03.avif",
+    imagePath: "/mentors/Board of Directors/photos/industry-mentor-03.avif",
+    documentPath: "/mentors/Board of Directors/documents/industry-mentor-03.pdf",
+    status: "Active",
+  },
+  {
+    id: "board-04",
+    name: "Ms. Swati Bedekar",
+    designation: "Director",
+    role: "Director",
+    domain: "Board of Directors",
+    organization: "GUIITAR Council",
+    experience: "Board Director, GUIITAR Council",
+    expertise: ["Corporate Governance", "Strategic Leadership", "Innovation Policy"],
+    avatar: "/mentors/Board of Directors/photos/industry-mentor-04.avif",
+    imagePath: "/mentors/Board of Directors/photos/industry-mentor-04.avif",
+    documentPath: "/mentors/Board of Directors/documents/industry-mentor-04.pdf",
+    status: "Active",
+  },
+  {
+    id: "board-05",
+    name: "Dr. Pujan Vaishnav",
+    designation: "Director",
+    role: "Director",
+    domain: "Board of Directors",
+    organization: "GUIITAR Council",
+    experience: "Board Director, GUIITAR Council",
+    expertise: ["Research & Development", "Innovation Ecosystems", "Strategic Advisory"],
+    avatar: "/mentors/Board of Directors/photos/industry-mentor-05.avif",
+    imagePath: "/mentors/Board of Directors/photos/industry-mentor-05.avif",
+    documentPath: "/mentors/Board of Directors/documents/industry-mentor-05.pdf",
+    status: "Active",
+  },
+  {
+    id: "board-06",
+    name: "Mr. Anupam Jalote",
+    designation: "CEO, iCEM - International Centre for Excellence in Mining",
+    role: "CEO, iCEM",
+    domain: "Board of Directors",
+    organization: "iCEM - International Centre for Excellence in Mining",
+    experience: "Board Director, GUIITAR Council",
+    expertise: ["Mining Technology", "Centre of Excellence Management", "Industry Partnerships"],
+    avatar: "/mentors/Board of Directors/photos/industry-mentor-06.avif",
+    imagePath: "/mentors/Board of Directors/photos/industry-mentor-06.avif",
+    documentPath: "/mentors/Board of Directors/documents/industry-mentor-06.pdf",
+    status: "Active",
+  },
+  {
+    id: "board-07",
+    name: "Shri Ravin Sanghavi",
+    designation: "Director",
+    role: "Director",
+    domain: "Board of Directors",
+    organization: "GUIITAR Council",
+    experience: "Board Director, GUIITAR Council",
+    expertise: ["Business Development", "Legal Advisory", "Entrepreneurship", "Consulting"],
+    avatar: "/mentors/Board of Directors/photos/industry-mentor-07.avif",
+    imagePath: "/mentors/Board of Directors/photos/industry-mentor-07.avif",
+    documentPath: "/mentors/Board of Directors/documents/industry-mentor-07.pdf",
+    status: "Active",
+  },
 ];
 
 const INITIAL_PROGRAMS: IncubationProgram[] = [
@@ -1483,7 +2286,7 @@ const STORAGE_CATEGORIES_KEY = "guiitar_categories_data_v1";
 const STORAGE_STARTUPS_KEY = "guiitar_startups_data_v1";
 const STORAGE_EVENTS_KEY = "guiitar_events_data_v1";
 const STORAGE_REGISTRATIONS_KEY = "guiitar_registrations_data_v1";
-const STORAGE_MENTORS_KEY = "guiitar_mentors_data_v1";
+const STORAGE_MENTORS_KEY = "guiitar_mentors_data_v2";
 const STORAGE_PROGRAMS_KEY = "guiitar_programs_data_v1";
 const STORAGE_FUNDING_KEY = "guiitar_funding_data_v1";
 const STORAGE_RESOURCES_KEY = "guiitar_resources_data_v1";
@@ -2198,6 +3001,118 @@ export class AdminDataStore {
     );
     this.addAuditLog("Admin", "Deleted Mentor Profile", item.name, "Mentor", "");
     return true;
+  }
+
+  /**
+   * Bulk-replace the entire stored mentor list.
+   * Used internally by migrateMentorData.
+   */
+  static setMentors(mentors: MentorItem[]): void {
+    this.setStored(STORAGE_MENTORS_KEY, mentors);
+  }
+
+  /**
+   * Safe upsert migration: merges the canonical INITIAL_MENTORS seed into the
+   * currently stored array without overwriting admin-created or admin-edited
+   * records.
+   *
+   * Rules:
+   *  - Seed records whose domain is NOT in ACTIVE_DOMAINS are removed from
+   *    localStorage (they belong to retired categories like Governance,
+   *    Technology, Business, Research, Legal & IPR). Admin-created records
+   *    with those same domain values are left untouched — only seed IDs
+   *    (present in INITIAL_MENTORS) are eligible for removal.
+   *  - For each record in INITIAL_MENTORS whose domain IS active, if a stored
+   *    record with the same id already exists, update only the fields that still
+   *    carry placeholder text (i.e. fields whose value starts with "[") —
+   *    leaving any admin edits intact.
+   *  - If no stored record matches the id, insert the INITIAL_MENTORS record at
+   *    the end of the list (new seed record, never seen before).
+   *  - Stored records whose ids do NOT appear in INITIAL_MENTORS are left
+   *    completely untouched (admin-created records).
+   *  - Fires guiitar_store_update when changes were made, so all listeners
+   *    (homepage, admin dashboard) re-render immediately.
+   *
+   * Safe to call on every mount — it is a no-op when all records are already
+   * up-to-date.
+   */
+  static readonly ACTIVE_DOMAINS = ["Board of Directors", "Industry", "Faculty"] as const;
+
+  static migrateMentorData(): void {
+    // IDs of seed records that belong to retired categories — safe to remove.
+    const retiredSeedIds = new Set(
+      INITIAL_MENTORS
+        .filter((m) => !(AdminDataStore.ACTIVE_DOMAINS as readonly string[]).includes(m.domain))
+        .map((m) => m.id),
+    );
+
+    let stored = this.getMentors();
+    let changed = false;
+
+    // Purge retired seed records from localStorage.
+    // Admin-created records (IDs not in INITIAL_MENTORS) are never touched.
+    const beforeLen = stored.length;
+    stored = stored.filter((m) => !retiredSeedIds.has(m.id));
+    if (stored.length !== beforeLen) changed = true;
+
+    // Build a mutable map keyed by id for O(1) lookup
+    const storedMap = new Map<string, MentorItem>(stored.map((m) => [m.id, m]));
+
+    for (const seed of INITIAL_MENTORS) {
+      // Skip seeds that belong to retired categories — already purged above.
+      if (!(AdminDataStore.ACTIVE_DOMAINS as readonly string[]).includes(seed.domain)) continue;
+
+      const existing = storedMap.get(seed.id);
+
+      if (!existing) {
+        // New seed record — add it
+        stored.push(seed);
+        storedMap.set(seed.id, seed);
+        changed = true;
+      } else {
+        // Existing record — overwrite only fields that still hold placeholder text
+        let recordChanged = false;
+        const updated = { ...existing };
+
+        const isPlaceholder = (v: unknown): boolean =>
+          typeof v === "string" && v.startsWith("[");
+
+        const stringFields: (keyof MentorItem)[] = [
+          "name", "designation", "role", "organization", "experience",
+          "avatar", "imagePath", "documentPath",
+        ];
+
+        for (const field of stringFields) {
+          if (isPlaceholder(existing[field]) && !isPlaceholder(seed[field])) {
+            (updated as Record<string, unknown>)[field] = seed[field];
+            recordChanged = true;
+          }
+        }
+
+        // For the expertise array: replace only if every element is a placeholder
+        if (
+          Array.isArray(existing.expertise) &&
+          existing.expertise.every(isPlaceholder) &&
+          Array.isArray(seed.expertise) &&
+          seed.expertise.length > 0 &&
+          !seed.expertise.every(isPlaceholder)
+        ) {
+          updated.expertise = seed.expertise;
+          recordChanged = true;
+        }
+
+        if (recordChanged) {
+          const idx = stored.findIndex((m) => m.id === seed.id);
+          if (idx >= 0) stored[idx] = updated;
+          storedMap.set(seed.id, updated);
+          changed = true;
+        }
+      }
+    }
+
+    if (changed) {
+      this.setStored(STORAGE_MENTORS_KEY, stored);
+    }
   }
 
   // ================= 6. INCUBATION PROGRAMS CRUD =================
