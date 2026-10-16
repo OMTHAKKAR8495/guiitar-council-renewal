@@ -76,7 +76,7 @@ export function AdminLayout({
   useEffect(() => {
     const loadNotifs = () => setNotifications(AdminDataStore.getNotifications());
     loadNotifs();
-    AdminDataStore.syncFromNeon();
+    AdminDataStore.syncFromSupabase();
     window.addEventListener("guiitar_store_update", loadNotifs);
     return () => window.removeEventListener("guiitar_store_update", loadNotifs);
   }, []);
@@ -108,7 +108,7 @@ export function AdminLayout({
       title: "ECOSYSTEM & OPS",
       items: [
         { label: "Events & Workshops", icon: Calendar, href: "/admin/events" },
-        { label: "Student Registrations", icon: GraduationCap, href: "/admin/registrations", badge: "Neon DB" },
+        { label: "Student Registrations", icon: GraduationCap, href: "/admin/registrations", badge: "Supabase" },
         { label: "Mentor Advisory", icon: Users, href: "/admin/mentors" },
         { label: "Programs & Cohorts", icon: Briefcase, href: "/admin/programs" },
         { label: "Funding & Grants", icon: Banknote, href: "/admin/funding" },

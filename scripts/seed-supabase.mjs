@@ -1,28 +1,27 @@
-import { neon } from "@neondatabase/serverless";
-import * as fs from "fs";
-import * as path from "path";
+import fs from "fs";
+import path from "path";
+import pg from "pg";
+const { Client } = pg;
 
 let dbUrl = process.env.DATABASE_URL;
 if (!dbUrl) {
   try {
-    const envFile = fs.readFileSync(path.resolve(process.cwd(), ".env.local"), "utf8");
-    const match = envFile.match(/DATABASE_URL=["']?([^"'\r\n]+)/);
-    if (match) {
-      dbUrl = match[1];
-    }
-  } catch (e) {
-    // Ignore error
-  }
+    const envContent = fs.readFileSync(path.resolve(process.cwd(), ".env.local"), "utf8");
+    const m = envContent.match(/DATABASE_URL=["']?([^"'\r\n]+)/);
+    if (m) dbUrl = m[1];
+  } catch {}
 }
-
-if (!dbUrl) {
-  dbUrl = "postgresql://neondb_owner:npg_6xstyEme5PMN@ep-twilight-brook-b4c0f74u-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
-}
-
-const sql = neon(dbUrl);
 
 async function seed() {
-  console.log("Seeding data into Neon Database...");
+  console.log("Seeding data into Supabase Database...");
+  const client = new Client({
+    connectionString: dbUrl,
+    ssl: { rejectUnauthorized: false }
+  });
+  await client.connect();
+
+  // Helper query
+  const query = (text, params) => client.query(text, params);
 
   // 1. Events
   const events = [
@@ -93,9 +92,9 @@ async function seed() {
   ];
 
   for (const ev of events) {
-    await sql`
+    await query(`
       INSERT INTO events (id, title, date, time, location, speaker, category, capacity, registered, status, is_upcoming, seats, "desc", topics)
-      VALUES (${ev.id}, ${ev.title}, ${ev.date}, ${ev.time}, ${ev.location}, ${ev.speaker}, ${ev.category}, ${ev.capacity}, ${ev.registered}, ${ev.status}, ${ev.is_upcoming}, ${ev.seats}, ${ev.desc}, ${ev.topics})
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
       ON CONFLICT (id) DO UPDATE SET
         title = EXCLUDED.title,
         date = EXCLUDED.date,
@@ -110,7 +109,7 @@ async function seed() {
         seats = EXCLUDED.seats,
         "desc" = EXCLUDED."desc",
         topics = EXCLUDED.topics;
-    `;
+    `, [ev.id, ev.title, ev.date, ev.time, ev.location, ev.speaker, ev.category, ev.capacity, ev.registered, ev.status, ev.is_upcoming, ev.seats, ev.desc, ev.topics]);
   }
   console.log("✓ Seeded events");
 
@@ -189,9 +188,9 @@ async function seed() {
   ];
 
   for (const app of applications) {
-    await sql`
+    await query(`
       INSERT INTO applications (id, project_name, applicant_name, email, phone, track, stage, status, submitted_date, pitch_summary, team_size, notes)
-      VALUES (${app.id}, ${app.project_name}, ${app.applicant_name}, ${app.email}, ${app.phone}, ${app.track}, ${app.stage}, ${app.status}, ${app.submitted_date}, ${app.pitch_summary}, ${app.team_size}, ${app.notes})
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
       ON CONFLICT (id) DO UPDATE SET
         project_name = EXCLUDED.project_name,
         applicant_name = EXCLUDED.applicant_name,
@@ -204,7 +203,7 @@ async function seed() {
         pitch_summary = EXCLUDED.pitch_summary,
         team_size = EXCLUDED.team_size,
         notes = EXCLUDED.notes;
-    `;
+    `, [app.id, app.project_name, app.applicant_name, app.email, app.phone, app.track, app.stage, app.status, app.submitted_date, app.pitch_summary, app.team_size, app.notes]);
   }
   console.log("✓ Seeded applications");
 
@@ -283,9 +282,9 @@ async function seed() {
   ];
 
   for (const stu of startups) {
-    await sql`
+    await query(`
       INSERT INTO startups (id, name, founders, domain, batch, funding_raised, description, website_url, status, patents, valuation, tags)
-      VALUES (${stu.id}, ${stu.name}, ${stu.founders}, ${stu.domain}, ${stu.batch}, ${stu.funding_raised}, ${stu.description}, ${stu.website_url}, ${stu.status}, ${stu.patents}, ${stu.valuation}, ${stu.tags})
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
       ON CONFLICT (id) DO UPDATE SET
         name = EXCLUDED.name,
         founders = EXCLUDED.founders,
@@ -298,7 +297,7 @@ async function seed() {
         patents = EXCLUDED.patents,
         valuation = EXCLUDED.valuation,
         tags = EXCLUDED.tags;
-    `;
+    `, [stu.id, stu.name, stu.founders, stu.domain, stu.batch, stu.funding_raised, stu.description, stu.website_url, stu.status, stu.patents, stu.valuation, stu.tags]);
   }
   console.log("✓ Seeded startups");
 
@@ -395,9 +394,9 @@ async function seed() {
   ];
 
   for (const idea of ideas) {
-    await sql`
+    await query(`
       INSERT INTO ideas (id, ref_id, slug, title, innovator, team_members, email, phone, stage, category, sector, "desc", problem_statement, solution_desc, novelty, patent_status, funding_required, trl_level, status, views)
-      VALUES (${idea.id}, ${idea.ref_id}, ${idea.slug}, ${idea.title}, ${idea.innovator}, ${idea.team_members}, ${idea.email}, ${idea.phone}, ${idea.stage}, ${idea.category}, ${idea.sector}, ${idea.desc}, ${idea.problem_statement}, ${idea.solution_desc}, ${idea.novelty}, ${idea.patent_status}, ${idea.funding_required}, ${idea.trl_level}, ${idea.status}, ${idea.views})
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)
       ON CONFLICT (id) DO UPDATE SET
         ref_id = EXCLUDED.ref_id,
         slug = EXCLUDED.slug,
@@ -418,7 +417,7 @@ async function seed() {
         trl_level = EXCLUDED.trl_level,
         status = EXCLUDED.status,
         views = EXCLUDED.views;
-    `;
+    `, [idea.id, idea.ref_id, idea.slug, idea.title, idea.innovator, idea.team_members, idea.email, idea.phone, idea.stage, idea.category, idea.sector, idea.desc, idea.problem_statement, idea.solution_desc, idea.novelty, idea.patent_status, idea.funding_required, idea.trl_level, idea.status, idea.views]);
   }
   console.log("✓ Seeded ideas");
 
@@ -475,9 +474,9 @@ async function seed() {
   ];
 
   for (const m of mentors) {
-    await sql`
+    await query(`
       INSERT INTO mentors (id, name, designation, domain, organization, experience, expertise, avatar, email, status)
-      VALUES (${m.id}, ${m.name}, ${m.designation}, ${m.domain}, ${m.organization}, ${m.experience}, ${m.expertise}, ${m.avatar}, ${m.email}, ${m.status})
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
       ON CONFLICT (id) DO UPDATE SET
         name = EXCLUDED.name,
         designation = EXCLUDED.designation,
@@ -488,7 +487,7 @@ async function seed() {
         avatar = EXCLUDED.avatar,
         email = EXCLUDED.email,
         status = EXCLUDED.status;
-    `;
+    `, [m.id, m.name, m.designation, m.domain, m.organization, m.experience, m.expertise, m.avatar, m.email, m.status]);
   }
   console.log("✓ Seeded mentors");
 
@@ -548,9 +547,9 @@ async function seed() {
   ];
 
   for (const prog of programs) {
-    await sql`
+    await query(`
       INSERT INTO programs (id, name, tagline, duration, grant_support, target_cohort, description, features, eligibility, status)
-      VALUES (${prog.id}, ${prog.name}, ${prog.tagline}, ${prog.duration}, ${prog.grant_support}, ${prog.target_cohort}, ${prog.description}, ${prog.features}, ${prog.eligibility}, ${prog.status})
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
       ON CONFLICT (id) DO UPDATE SET
         name = EXCLUDED.name,
         tagline = EXCLUDED.tagline,
@@ -561,7 +560,7 @@ async function seed() {
         features = EXCLUDED.features,
         eligibility = EXCLUDED.eligibility,
         status = EXCLUDED.status;
-    `;
+    `, [prog.id, prog.name, prog.tagline, prog.duration, prog.grant_support, prog.target_cohort, prog.description, prog.features, prog.eligibility, prog.status]);
   }
   console.log("✓ Seeded programs");
 
@@ -571,9 +570,9 @@ async function seed() {
       id: "log-1",
       admin_name: "KiranKumar Parmar",
       action: "Created Event",
-      target_record: "demo guitar data",
+      target_record: "Autonomous Drone Technology & Aerodynamics Workshop",
       record_type: "Event",
-      details: "Date: 27/12/2026"
+      details: "Date: 17/10/2026"
     },
     {
       id: "log-2",
@@ -602,15 +601,16 @@ async function seed() {
   ];
 
   for (const log of auditLogs) {
-    await sql`
+    await query(`
       INSERT INTO audit_logs (id, admin_name, action, target_record, record_type, details)
-      VALUES (${log.id}, ${log.admin_name}, ${log.action}, ${log.target_record}, ${log.record_type}, ${log.details})
+      VALUES ($1, $2, $3, $4, $5, $6)
       ON CONFLICT (id) DO NOTHING;
-    `;
+    `, [log.id, log.admin_name, log.action, log.target_record, log.record_type, log.details]);
   }
   console.log("✓ Seeded audit_logs");
 
-  console.log("\nALL TABLES FULLY POPULATED WITH INITIAL DATA!");
+  await client.end();
+  console.log("\nALL TABLES FULLY POPULATED WITH INITIAL DATA IN SUPABASE!");
 }
 
 seed().catch(err => {

@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { PageHero, SectionTitle, ButtonLink } from "@/components/site";
 import { AdminDataStore, type EventItem, type RegistrationItem } from "@/lib/adminStore";
-import { NeonClient } from "@/lib/neonClient";
+import { SupabaseDbClient } from "@/lib/supabaseClient";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -80,7 +80,7 @@ function Events() {
 
   useEffect(() => {
     loadEvents();
-    NeonClient.getEvents().then((remoteEvents) => {
+    SupabaseDbClient.getEvents().then((remoteEvents) => {
       if (remoteEvents && remoteEvents.length > 0) {
         setEventsList(remoteEvents);
         AdminDataStore.setEvents(remoteEvents);
@@ -137,7 +137,7 @@ function Events() {
     setSubmitting(true);
 
     try {
-      // 1. Save registration into AdminDataStore + automatically syncs to live Neon DB
+      // 1. Save registration into AdminDataStore + automatically syncs to live Supabase DB
       const newReg = AdminDataStore.saveRegistration({
         studentName: formData.studentName.trim(),
         enrollmentNo: formData.enrollmentNo.trim(),

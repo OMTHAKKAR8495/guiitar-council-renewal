@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { AdminDataStore, type EventItem } from "@/lib/adminStore";
-import { NeonClient } from "@/lib/neonClient";
+import { SupabaseDbClient } from "@/lib/supabaseClient";
 
 function toISODateString(str: string): string {
   if (!str) return "";
@@ -66,7 +66,7 @@ export function AdminEventsPage() {
 
   useEffect(() => {
     loadEvents();
-    NeonClient.getEvents().then((remoteEvents) => {
+    SupabaseDbClient.getEvents().then((remoteEvents) => {
       if (remoteEvents && remoteEvents.length > 0) {
         setEvents(remoteEvents);
         AdminDataStore.setEvents(remoteEvents);
@@ -157,13 +157,13 @@ export function AdminEventsPage() {
     setEditingId(null);
     setFormData(defaultForm);
 
-    setToast(editingId ? `Updating "${titleSaved}" in Neon DB...` : `Publishing "${titleSaved}" to Neon DB...`);
+    setToast(editingId ? `Updating "${titleSaved}" in Supabase DB...` : `Publishing "${titleSaved}" to Supabase DB...`);
 
     try {
-      await NeonClient.saveEvent({ ...eventPayload, id: saved.id });
-      setToast(editingId ? `✓ Updated "${titleSaved}" in Neon Database` : `✓ Published "${titleSaved}" in Neon Database`);
+      await SupabaseDbClient.saveEvent({ ...eventPayload, id: saved.id });
+      setToast(editingId ? `✓ Updated "${titleSaved}" in Supabase Database` : `✓ Published "${titleSaved}" in Supabase Database`);
     } catch (err) {
-      console.error("Neon DB sync error:", err);
+      console.error("Supabase DB sync error:", err);
     }
     setTimeout(() => setToast(null), 3500);
   };
@@ -172,12 +172,12 @@ export function AdminEventsPage() {
     if (window.confirm(`Are you sure you want to delete event "${title}"?`)) {
       AdminDataStore.deleteEvent(id);
       loadEvents();
-      setToast(`Deleting "${title}" from Neon DB...`);
+      setToast(`Deleting "${title}" from Supabase DB...`);
       try {
-        await NeonClient.deleteEvent(id);
-        setToast(`✓ Deleted event "${title}" from Neon Database`);
+        await SupabaseDbClient.deleteEvent(id);
+        setToast(`✓ Deleted event "${title}" from Supabase Database`);
       } catch (err) {
-        console.error("Neon DB delete error:", err);
+        console.error("Supabase DB delete error:", err);
       }
       setTimeout(() => setToast(null), 3500);
     }

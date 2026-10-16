@@ -1,4 +1,4 @@
-import { NeonClient } from "./neonClient";
+import { SupabaseDbClient } from "./supabaseClient";
 
 export type IdeaStatus =
   "Draft" | "Pending Review" | "Under Review" | "Approved" | "Published" | "Rejected" | "Archived";
@@ -2440,8 +2440,8 @@ export class AdminDataStore {
     }
 
     this.setStored(STORAGE_IDEAS_KEY, ideas);
-    // Asynchronously sync to Neon Postgres
-    NeonClient.saveIdea({
+    // Asynchronously sync to Supabase Postgres
+    SupabaseDbClient.saveIdea({
       id: savedItem.id,
       refId: savedItem.refId,
       slug: savedItem.slug,
@@ -2461,7 +2461,7 @@ export class AdminDataStore {
       fundingRequired: "₹2.5 Lakhs",
       trlLevel: "TRL-3",
       status: savedItem.status,
-    }).catch((err) => console.warn("Neon async saveIdea error:", err));
+    }).catch((err) => console.warn("Supabase async saveIdea error:", err));
     return savedItem;
   }
 
@@ -2504,7 +2504,7 @@ export class AdminDataStore {
       "Idea",
       reason || `Status set to ${status}`,
     );
-    NeonClient.saveIdea({
+    SupabaseDbClient.saveIdea({
       id: item.id,
       refId: item.refId,
       slug: item.slug,
@@ -2518,7 +2518,7 @@ export class AdminDataStore {
       sector: item.thrustArea,
       desc: item.detailedDescription || item.shortDescription,
       status: item.status,
-    }).catch((err) => console.warn("Neon update status error:", err));
+    }).catch((err) => console.warn("Supabase update status error:", err));
     return item;
   }
 
@@ -2572,8 +2572,8 @@ export class AdminDataStore {
       "Idea",
       `Ref ID: ${item.refId}`,
     );
-    NeonClient.deleteIdea(id).catch((err) =>
-      console.warn("Neon deleteIdea error:", err)
+    SupabaseDbClient.deleteIdea(id).catch((err) =>
+      console.warn("Supabase deleteIdea error:", err)
     );
     return true;
   }
@@ -2693,8 +2693,8 @@ export class AdminDataStore {
     }
 
     this.setStored(STORAGE_STARTUPS_KEY, startups);
-    // Asynchronously sync to Neon Postgres
-    NeonClient.saveStartup({
+    // Asynchronously sync to Supabase Postgres
+    SupabaseDbClient.saveStartup({
       id: saved.id,
       name: saved.name,
       founders: typeof saved.team === "string" ? [saved.team] : (saved.team as string[]) || ["Founder"],
@@ -2706,7 +2706,7 @@ export class AdminDataStore {
       patents: saved.patents || 0,
       valuation: saved.valuation || "Seed",
       tags: saved.tags || [],
-    }).catch((err) => console.warn("Neon async saveStartup error:", err));
+    }).catch((err) => console.warn("Supabase async saveStartup error:", err));
     return saved;
   }
 
@@ -2719,8 +2719,8 @@ export class AdminDataStore {
       startups.filter((s) => s.id !== id),
     );
     this.addAuditLog("Admin", "Deleted Startup Record", item.name, "Startup", "");
-    NeonClient.deleteStartup(id).catch((err) =>
-      console.warn("Neon deleteStartup error:", err)
+    SupabaseDbClient.deleteStartup(id).catch((err) =>
+      console.warn("Supabase deleteStartup error:", err)
     );
     return true;
   }
@@ -2789,9 +2789,9 @@ export class AdminDataStore {
     }
 
     this.setStored(STORAGE_EVENTS_KEY, events);
-    // Asynchronously sync to Neon Postgres
-    NeonClient.saveEvent(saved).catch((err) =>
-      console.warn("Neon async saveEvent error:", err)
+    // Asynchronously sync to Supabase Postgres
+    SupabaseDbClient.saveEvent(saved).catch((err) =>
+      console.warn("Supabase async saveEvent error:", err)
     );
     return saved;
   }
@@ -2809,9 +2809,9 @@ export class AdminDataStore {
       events.filter((e) => e.id !== id),
     );
     this.addAuditLog("Admin", "Deleted Event", item.title, "Event", "");
-    // Asynchronously delete from Neon Postgres
-    NeonClient.deleteEvent(id).catch((err) =>
-      console.warn("Neon async deleteEvent error:", err)
+    // Asynchronously delete from Supabase Postgres
+    SupabaseDbClient.deleteEvent(id).catch((err) =>
+      console.warn("Supabase async deleteEvent error:", err)
     );
     return true;
   }
@@ -2883,9 +2883,9 @@ export class AdminDataStore {
     }
 
     this.setStored(STORAGE_REGISTRATIONS_KEY, list);
-    // Asynchronously sync to Neon Postgres
-    NeonClient.saveRegistration(saved).catch((err) =>
-      console.warn("Neon async saveRegistration error:", err),
+    // Asynchronously sync to Supabase Postgres
+    SupabaseDbClient.saveRegistration(saved).catch((err) =>
+      console.warn("Supabase async saveRegistration error:", err),
     );
     return saved;
   }
@@ -2906,8 +2906,8 @@ export class AdminDataStore {
       "Registration",
       `New Status: ${status}`,
     );
-    NeonClient.updateRegistrationStatus(id, status).catch((err) =>
-      console.warn("Neon async updateRegistrationStatus error:", err),
+    SupabaseDbClient.updateRegistrationStatus(id, status).catch((err) =>
+      console.warn("Supabase async updateRegistrationStatus error:", err),
     );
     return true;
   }
@@ -2931,9 +2931,9 @@ export class AdminDataStore {
       "Registration",
       `Event: ${item.eventTitle}`,
     );
-    // Asynchronously delete from Neon Postgres
-    NeonClient.deleteRegistration(id).catch((err) =>
-      console.warn("Neon async deleteRegistration error:", err),
+    // Asynchronously delete from Supabase Postgres
+    SupabaseDbClient.deleteRegistration(id).catch((err) =>
+      console.warn("Supabase async deleteRegistration error:", err),
     );
     return true;
   }
@@ -2988,6 +2988,9 @@ export class AdminDataStore {
     }
 
     this.setStored(STORAGE_MENTORS_KEY, mentors);
+    SupabaseDbClient.saveMentor(saved).catch((err) =>
+      console.warn("Supabase async saveMentor error:", err)
+    );
     return saved;
   }
 
@@ -3000,6 +3003,9 @@ export class AdminDataStore {
       mentors.filter((m) => m.id !== id),
     );
     this.addAuditLog("Admin", "Deleted Mentor Profile", item.name, "Mentor", "");
+    SupabaseDbClient.deleteMentor(id).catch((err) =>
+      console.warn("Supabase async deleteMentor error:", err)
+    );
     return true;
   }
 
@@ -3159,6 +3165,9 @@ export class AdminDataStore {
     }
 
     this.setStored(STORAGE_PROGRAMS_KEY, progs);
+    SupabaseDbClient.saveProgram(saved).catch((err) =>
+      console.warn("Supabase async saveProgram error:", err)
+    );
     return saved;
   }
 
@@ -3171,7 +3180,18 @@ export class AdminDataStore {
       progs.filter((p) => p.id !== id),
     );
     this.addAuditLog("Admin", "Deleted Incubation Program", item.name, "Program", "");
+    SupabaseDbClient.deleteProgram(id).catch((err) =>
+      console.warn("Supabase async deleteProgram error:", err)
+    );
     return true;
+  }
+
+  static setPrograms(programs: IncubationProgram[]): void {
+    this.setStored(STORAGE_PROGRAMS_KEY, programs);
+  }
+
+  static setApplications(apps: ApplicationItem[]): void {
+    this.setStored(STORAGE_APPLICATIONS_KEY, apps);
   }
 
   // ================= 7. FUNDING SCHEMES CRUD =================
@@ -3651,17 +3671,20 @@ export class AdminDataStore {
     };
   }
 
-  // ================= 17. NEON DATABASE BIDIRECTIONAL SYNC =================
-  static async syncFromNeon(): Promise<void> {
+  // ================= 17. SUPABASE DATABASE BIDIRECTIONAL SYNC =================
+  static async syncFromSupabase(): Promise<void> {
     try {
       const results = await Promise.allSettled([
-        NeonClient.getEvents(),
-        NeonClient.getIdeas(),
-        NeonClient.getStartups(),
-        NeonClient.getRegistrations(),
+        SupabaseDbClient.getEvents(),
+        SupabaseDbClient.getIdeas(),
+        SupabaseDbClient.getStartups(),
+        SupabaseDbClient.getRegistrations(),
+        SupabaseDbClient.getMentors(),
+        SupabaseDbClient.getPrograms(),
+        SupabaseDbClient.getApplications(),
       ]);
 
-      const [eventsRes, ideasRes, startupsRes, regRes] = results;
+      const [eventsRes, ideasRes, startupsRes, regRes, mentorsRes, progRes, appRes] = results;
 
       if (eventsRes.status === "fulfilled" && Array.isArray(eventsRes.value) && eventsRes.value.length > 0) {
         this.setEvents(eventsRes.value);
@@ -3675,11 +3698,25 @@ export class AdminDataStore {
       if (regRes.status === "fulfilled" && Array.isArray(regRes.value) && regRes.value.length > 0) {
         this.setRegistrations(regRes.value);
       }
+      if (mentorsRes.status === "fulfilled" && Array.isArray(mentorsRes.value) && mentorsRes.value.length > 0) {
+        this.setMentors(mentorsRes.value);
+      }
+      if (progRes.status === "fulfilled" && Array.isArray(progRes.value) && progRes.value.length > 0) {
+        this.setPrograms(progRes.value);
+      }
+      if (appRes.status === "fulfilled" && Array.isArray(appRes.value) && appRes.value.length > 0) {
+        this.setApplications(appRes.value);
+      }
       try {
         window.dispatchEvent(new Event("guiitar_store_update"));
       } catch {}
     } catch (err) {
-      console.warn("Neon bidirectional sync warning:", err);
+      console.warn("Supabase bidirectional sync warning:", err);
     }
+  }
+
+  // Backwards compatibility alias
+  static async syncFromNeon(): Promise<void> {
+    return this.syncFromSupabase();
   }
 }

@@ -31,7 +31,7 @@ import {
   type RegistrationItem,
   type EventItem,
 } from "@/lib/adminStore";
-import { NeonClient } from "@/lib/neonClient";
+import { SupabaseDbClient } from "@/lib/supabaseClient";
 
 const formatDateTime = (date = new Date()) => {
   try {
@@ -104,8 +104,8 @@ export function AdminRegistrationsPage() {
         }));
       }
 
-      // Sync fresh from live Neon DB
-      const dbRegs = await NeonClient.getRegistrations();
+      // Sync fresh from live Supabase DB
+      const dbRegs = await SupabaseDbClient.getRegistrations();
       if (dbRegs && dbRegs.length > 0) {
         setRegistrations(dbRegs);
         AdminDataStore.setRegistrations(dbRegs);
@@ -238,7 +238,7 @@ export function AdminRegistrationsPage() {
       notes: "",
     });
 
-    setToast(`Successfully registered student "${saved.studentName}" (Ticket: ${saved.ticketId}) & saved to Neon DB!`);
+    setToast(`Successfully registered student "${saved.studentName}" (Ticket: ${saved.ticketId}) & saved to Supabase DB!`);
     setTimeout(() => setToast(null), 4000);
   };
 
@@ -249,7 +249,7 @@ export function AdminRegistrationsPage() {
   };
 
   const handleDelete = (id: string, name: string) => {
-    if (window.confirm(`Are you sure you want to delete registration for "${name}"? This will sync immediately to Neon DB.`)) {
+    if (window.confirm(`Are you sure you want to delete registration for "${name}"? This will sync immediately to Supabase DB.`)) {
       AdminDataStore.deleteRegistration(id);
       setToast(`Deleted registration for "${name}"`);
       setTimeout(() => setToast(null), 3000);
@@ -582,7 +582,7 @@ export function AdminRegistrationsPage() {
   return (
     <AdminLayout
       title="Student Registrations & Workshop Attendance"
-      subtitle="Track verified student enrollments, issue registration tickets, and manage event check-ins stored live on Neon Postgres."
+      subtitle="Track verified student enrollments, issue registration tickets, and manage event check-ins stored live on Supabase Postgres."
       breadcrumbs={[
         { label: "Admin", href: "/admin/dashboard" },
         { label: "Events & Workshops", href: "/admin/events" },
@@ -595,10 +595,10 @@ export function AdminRegistrationsPage() {
             disabled={loading}
             className="btn btn-outline btn-sm"
             style={{ display: "flex", alignItems: "center", gap: "6px", background: "#ffffff" }}
-            title="Fetch latest registrations from Neon Postgres"
+            title="Fetch latest registrations from Supabase Postgres"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin text-blue-600" : ""}`} />
-            <span>{loading ? "Syncing..." : "Sync Neon DB"}</span>
+            <span>{loading ? "Syncing..." : "Sync Supabase DB"}</span>
           </button>
 
           <button
@@ -693,7 +693,7 @@ export function AdminRegistrationsPage() {
           </div>
           <span style={{ fontSize: "12px", color: "#059669", fontWeight: 600, display: "flex", alignItems: "center", gap: "4px", marginTop: "4px" }}>
             <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#10b981" }} />
-            Live in Neon Database
+            Live in Supabase Database
           </span>
         </div>
 
@@ -1392,7 +1392,7 @@ export function AdminRegistrationsPage() {
                     Register Student for Workshop / Event
                   </h3>
                   <span style={{ fontSize: "12px", color: "#64748b" }}>
-                    Saves directly to live Neon Postgres DB
+                    Saves directly to live Supabase Postgres DB
                   </span>
                 </div>
               </div>
@@ -1666,7 +1666,7 @@ export function AdminRegistrationsPage() {
                 </button>
                 <button type="submit" className="btn btn-primary btn-sm" style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                   <Check className="w-4 h-4" />
-                  Save Registration to Neon DB
+                  Save Registration to Supabase DB
                 </button>
               </div>
             </form>
