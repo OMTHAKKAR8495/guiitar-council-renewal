@@ -64,7 +64,7 @@ export function AdminLayout({
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    if (typeof window !== "undefined" && !getStoredSession()) {
+    if (typeof window !== "undefined" && !isAuthenticated && !getStoredSession()) {
       navigate({ to: "/admin/login" });
     }
   }, [isAuthenticated, navigate]);

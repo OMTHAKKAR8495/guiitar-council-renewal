@@ -10,21 +10,35 @@ import type {
   PartnerItem,
 } from "./adminStore";
 
-export const SUPABASE_URL =
+const envUrl =
   (typeof import.meta !== "undefined" && (import.meta as any).env?.VITE_SUPABASE_URL) ||
-  (typeof process !== "undefined" && process.env?.SUPABASE_URL) ||
-  "https://jkihhrwqxglhffcbwhbt.supabase.co";
+  (typeof process !== "undefined" && (process.env?.VITE_SUPABASE_URL || process.env?.SUPABASE_URL)) ||
+  "";
 
-export const SUPABASE_ANON_KEY =
+const envAnonKey =
   (typeof import.meta !== "undefined" && (import.meta as any).env?.VITE_SUPABASE_ANON_KEY) ||
-  (typeof process !== "undefined" && (process.env?.SUPABASE_ANON_KEY || process.env?.SUPABASE_SERVICE_ROLE_KEY)) ||
-  "sb_publishable_S-GzvjPo60_xHob5nKe_NA_ts5urzHO";
+  (typeof process !== "undefined" && (process.env?.VITE_SUPABASE_ANON_KEY || process.env?.SUPABASE_ANON_KEY)) ||
+  "";
+
+export const SUPABASE_URL = envUrl;
+export const SUPABASE_ANON_KEY = envAnonKey;
 
 let supabaseInstance: SupabaseClient | null = null;
 
 export function getSupabase(): SupabaseClient {
   if (!supabaseInstance) {
-    supabaseInstance = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      console.warn(
+        "Supabase credentials not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env.local",
+      );
+    }
+    supabaseInstance = createClient(SUPABASE_URL || "https://placeholder.supabase.co", SUPABASE_ANON_KEY || "placeholder-key", {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+      },
+    });
   }
   return supabaseInstance;
 }

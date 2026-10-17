@@ -53,6 +53,8 @@ import {
 } from "@/lib/data";
 import hero from "@/assets/home-hero.jpg.asset.json";
 import impact from "@/assets/impact.png.asset.json";
+import { Cms, CmsImage, useCmsValue, useCmsList } from "@/lib/cms";
+import type { MetricItem, PathwayStage } from "@/lib/data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,11 +79,21 @@ export const Route = createFileRoute("/")({
 });
 
 export function HomePage() {
+  // CMS Dynamic Lists with static fallbacks
+  const { items: journeyStages } = useCmsList<PathwayStage>(
+    "home.journey.stages",
+    INNOVATION_JOURNEY,
+  );
+  const { items: verifiedMetrics } = useCmsList<MetricItem>(
+    "home.metrics.list",
+    VERIFIED_METRICS,
+  );
+
   // 1. Innovation Journey Stage State
   const [activeStageId, setActiveStageId] = useState("ideate");
   const currentStage = useMemo(
-    () => INNOVATION_JOURNEY.find((s) => s.id === activeStageId) || INNOVATION_JOURNEY[0],
-    [activeStageId],
+    () => journeyStages.find((s) => s.id === activeStageId) || journeyStages[0] || INNOVATION_JOURNEY[0],
+    [activeStageId, journeyStages],
   );
 
   // 2. Ecosystem Map Selected Node State
@@ -273,7 +285,10 @@ export function HomePage() {
                 }}
               >
                 <span className="pulse-dot" />
-                <span>GSFC UNIVERSITY • SECTION 8 INCUBATION HUB</span>
+                <Cms
+                  k="home.hero.pill_text"
+                  fallback="GSFC UNIVERSITY • SECTION 8 INCUBATION HUB"
+                />
               </div>
 
               <h1
@@ -287,8 +302,10 @@ export function HomePage() {
                   margin: "0 0 24px",
                 }}
               >
-                Where Ideas <br />
-                <span className="text-gradient-light">Become Impact.</span>
+                <Cms k="home.hero.title_prefix" fallback="Where Ideas" /> <br />
+                <span className="text-gradient-light">
+                  <Cms k="home.hero.title_gradient" fallback="Become Impact." />
+                </span>
               </h1>
 
               <p
@@ -300,18 +317,19 @@ export function HomePage() {
                   margin: "0 0 36px",
                 }}
               >
-                GUIITAR Council empowers students, innovators, and startups with the ecosystem,
-                mentorship, infrastructure, and non-dilutive funding needed to turn bold ideas into
-                meaningful ventures.
+                <Cms
+                  k="home.hero.subtitle"
+                  fallback="GUIITAR Council empowers students, innovators, and startups with the ecosystem, mentorship, infrastructure, and non-dilutive funding needed to turn bold ideas into meaningful ventures."
+                />
               </p>
 
               <div className="hero-btn-row">
-                <ButtonLink to="/apply" size="lg" variant="primary">
-                  <span>Start Your Innovation Journey</span>
+                <ButtonLink to={useCmsValue("home.hero.cta_primary_link", "/apply")} size="lg" variant="primary">
+                  <Cms k="home.hero.cta_primary_label" fallback="Start Your Innovation Journey" />
                   <ArrowRight className="w-5 h-5" />
                 </ButtonLink>
-                <ButtonLink to="/about" size="lg" variant="glass">
-                  <span>Explore GUIITAR</span>
+                <ButtonLink to={useCmsValue("home.hero.cta_secondary_link", "/about")} size="lg" variant="glass">
+                  <Cms k="home.hero.cta_secondary_label" fallback="Explore GUIITAR" />
                 </ButtonLink>
               </div>
 
@@ -495,7 +513,7 @@ export function HomePage() {
       >
         <div className="container">
           <div className="stats-counter-grid">
-            {VERIFIED_METRICS.map((m) => (
+            {verifiedMetrics.map((m) => (
               <div key={m.label} style={{ textAlign: "center", padding: "8px" }}>
                 <strong
                   style={{
@@ -1340,7 +1358,7 @@ export function HomePage() {
 
           {/* Horizontal Interactive Stepper Bar */}
           <div className="journey-stepper-bar">
-            {INNOVATION_JOURNEY.map((s) => {
+            {journeyStages.map((s) => {
               const isActive = s.id === activeStageId;
               return (
                 <button
@@ -2755,14 +2773,15 @@ export function HomePage() {
             <article className="leader-card">
               <div className="leader-quote-mark">“</div>
               <p className="leader-quote">
-                Create an environment of excellence through innovation for you will forever be
-                remembered for your contribution to the world. Innovation is a journey in which you
-                have to say no to thousands of things which already exist while embracing the
-                one which is yet to come.
+                <Cms
+                  k="home.leadership.chairman_quote"
+                  fallback="Create an environment of excellence through innovation for you will forever be remembered for your contribution to the world. Innovation is a journey in which you have to say no to thousands of things which already exist while embracing the one which is yet to come."
+                />
               </p>
               <div className="leader-footer">
-                <img
-                  src="/leaders/pk-taneja.png"
+                <CmsImage
+                  k="home.leadership.chairman_image"
+                  fallback="/leaders/pk-taneja.png"
                   alt="Shri P. K. Taneja, IAS (Retd.)"
                   className="leader-avatar-photo"
                   width={68}
@@ -2771,8 +2790,12 @@ export function HomePage() {
                 />
                 <div className="leader-info">
                   <span className="leader-desk-badge">Message from President's Desk</span>
-                  <h3>Shri P. K. Taneja, IAS (Retd.)</h3>
-                  <p>President, GSFC University & Director, GUIITAR Council</p>
+                  <h3>
+                    <Cms k="home.leadership.chairman_name" fallback="Shri P. K. Taneja, IAS (Retd.)" />
+                  </h3>
+                  <p>
+                    <Cms k="home.leadership.chairman_title" fallback="President, GSFC University & Director, GUIITAR Council" />
+                  </p>
                 </div>
               </div>
             </article>
@@ -2780,12 +2803,15 @@ export function HomePage() {
             <article className="leader-card">
               <div className="leader-quote-mark">“</div>
               <p className="leader-quote">
-                Innovation is not to repeat a success story but to celebrate a failure. Pick-up and
-                never Give-up is an attitude towards innovation.
+                <Cms
+                  k="home.leadership.provost_quote"
+                  fallback="Innovation is not to repeat a success story but to celebrate a failure. Pick-up and never Give-up is an attitude towards innovation."
+                />
               </p>
               <div className="leader-footer">
-                <img
-                  src="/leaders/gr-sinha.png"
+                <CmsImage
+                  k="home.leadership.provost_image"
+                  fallback="/leaders/gr-sinha.png"
                   alt="Dr G R Sinha"
                   className="leader-avatar-photo"
                   width={68}
@@ -2794,8 +2820,12 @@ export function HomePage() {
                 />
                 <div className="leader-info">
                   <span className="leader-desk-badge">Message from Provost's Desk</span>
-                  <h3>Dr G R Sinha</h3>
-                  <p>Provost, GSFC University & CEO, GUIITAR Council</p>
+                  <h3>
+                    <Cms k="home.leadership.provost_name" fallback="Dr G R Sinha" />
+                  </h3>
+                  <p>
+                    <Cms k="home.leadership.provost_title" fallback="Provost, GSFC University & CEO, GUIITAR Council" />
+                  </p>
                 </div>
               </div>
             </article>
@@ -2930,14 +2960,23 @@ export function HomePage() {
       <section className="section-blue cta">
         <div className="container">
           <span className="section-badge light">The Digital Home of Innovation</span>
-          <h2>Turn Your Bold Idea Into Gujarat's Next High-Impact Venture.</h2>
+          <h2>
+            <Cms
+              k="home.cta.title"
+              fallback="Turn Your Bold Idea Into Gujarat's Next High-Impact Venture."
+            />
+          </h2>
           <p>
-            Whether you are a student with an idea, an innovator building hardware prototypes, or an
-            established startup seeking acceleration — GUIITAR Council is your launchpad.
+            <Cms
+              k="home.cta.subtitle"
+              fallback="Whether you are a student with an idea, an innovator building hardware prototypes, or an established startup seeking acceleration — GUIITAR Council is your launchpad."
+            />
           </p>
           <div className="button-row">
-            <ButtonLink to="/apply" size="lg" variant="dark">
-              <span>Start Your Application</span>
+            <ButtonLink to={useCmsValue("home.cta.button_link", "/apply")} size="lg" variant="dark">
+              <span>
+                <Cms k="home.cta.button_text" fallback="Start Your Application" />
+              </span>
               <ArrowRight className="w-5 h-5" />
             </ButtonLink>
             <ButtonLink to="/contact" size="lg" variant="glass">

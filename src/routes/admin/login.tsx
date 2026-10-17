@@ -31,18 +31,18 @@ export function AdminLoginPage() {
     }
   }, [isAuthenticated, navigate]);
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
     try {
-      const res = login(email.trim(), password);
+      const res = await login(email.trim(), password);
       if (res.success) {
         navigate({ to: "/admin/dashboard" });
       } else {
         setIsLoading(false);
-        setError(res.error || "Authentication failed.");
+        setError(res.error || "Authentication failed. Please verify your credentials.");
       }
     } catch (err: any) {
       setIsLoading(false);
