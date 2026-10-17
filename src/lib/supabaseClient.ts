@@ -10,15 +10,19 @@ import type {
   PartnerItem,
 } from "./adminStore";
 
+// Default public configuration (Publishable anon key is safe for client-side use with RLS)
+const DEFAULT_SUPABASE_URL = "https://jkihhrwqxglhffcbwhbt.supabase.co";
+const DEFAULT_SUPABASE_ANON_KEY = "sb_publishable_S-GzvjPo60_xHob5nKe_NA_ts5urzHO";
+
 const envUrl =
   (typeof import.meta !== "undefined" && (import.meta as any).env?.VITE_SUPABASE_URL) ||
   (typeof process !== "undefined" && (process.env?.VITE_SUPABASE_URL || process.env?.SUPABASE_URL)) ||
-  "";
+  DEFAULT_SUPABASE_URL;
 
 const envAnonKey =
   (typeof import.meta !== "undefined" && (import.meta as any).env?.VITE_SUPABASE_ANON_KEY) ||
   (typeof process !== "undefined" && (process.env?.VITE_SUPABASE_ANON_KEY || process.env?.SUPABASE_ANON_KEY)) ||
-  "";
+  DEFAULT_SUPABASE_ANON_KEY;
 
 export const SUPABASE_URL = envUrl;
 export const SUPABASE_ANON_KEY = envAnonKey;
@@ -27,12 +31,7 @@ let supabaseInstance: SupabaseClient | null = null;
 
 export function getSupabase(): SupabaseClient {
   if (!supabaseInstance) {
-    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-      console.warn(
-        "Supabase credentials not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env.local",
-      );
-    }
-    supabaseInstance = createClient(SUPABASE_URL || "https://placeholder.supabase.co", SUPABASE_ANON_KEY || "placeholder-key", {
+    supabaseInstance = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
       auth: {
         persistSession: true,
         autoRefreshToken: true,
