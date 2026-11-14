@@ -13,20 +13,26 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CoworkingRouteImport } from './routes/coworking'
+import { Route as DroneProgramRouteImport } from './routes/drone-program'
+import { Route as EClubRouteImport } from './routes/e-club'
 import { Route as EcosystemRouteImport } from './routes/ecosystem'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FundingRouteImport } from './routes/funding'
+import { Route as IicRouteImport } from './routes/iic'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as InnovationRouteImport } from './routes/innovation'
 import { Route as IprRouteImport } from './routes/ipr'
 import { Route as NodalInstituteRouteImport } from './routes/nodal-institute'
 import { Route as PartnerRouteImport } from './routes/partner'
+import { Route as PolicyRouteImport } from './routes/policy'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SsipRouteImport } from './routes/ssip'
 import { Route as StartupsRouteImport } from './routes/startups'
 import { Route as SubmitIdeaRouteImport } from './routes/submit-idea'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin/analytics'
 import { Route as AdminApplicationsRouteImport } from './routes/admin/applications'
@@ -70,6 +76,21 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CoworkingRoute = CoworkingRouteImport.update({
+  id: '/coworking',
+  path: '/coworking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DroneProgramRoute = DroneProgramRouteImport.update({
+  id: '/drone-program',
+  path: '/drone-program',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EClubRoute = EClubRouteImport.update({
+  id: '/e-club',
+  path: '/e-club',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EcosystemRoute = EcosystemRouteImport.update({
   id: '/ecosystem',
   path: '/ecosystem',
@@ -88,6 +109,11 @@ const FaqRoute = FaqRouteImport.update({
 const FundingRoute = FundingRouteImport.update({
   id: '/funding',
   path: '/funding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IicRoute = IicRouteImport.update({
+  id: '/iic',
+  path: '/iic',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImpactRoute = ImpactRouteImport.update({
@@ -115,6 +141,11 @@ const PartnerRoute = PartnerRouteImport.update({
   path: '/partner',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PolicyRoute = PolicyRouteImport.update({
+  id: '/policy',
+  path: '/policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
@@ -138,6 +169,11 @@ const StartupsRoute = StartupsRouteImport.update({
 const SubmitIdeaRoute = SubmitIdeaRouteImport.update({
   id: '/submit-idea',
   path: '/submit-idea',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -256,20 +292,26 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
+  '/coworking': typeof CoworkingRoute
+  '/drone-program': typeof DroneProgramRoute
+  '/e-club': typeof EClubRoute
   '/ecosystem': typeof EcosystemRoute
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/funding': typeof FundingRoute
+  '/iic': typeof IicRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
   '/ipr': typeof IprRoute
   '/nodal-institute': typeof NodalInstituteRoute
   '/partner': typeof PartnerRoute
+  '/policy': typeof PolicyRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/ssip': typeof SsipRoute
   '/startups': typeof StartupsRoute
   '/submit-idea': typeof SubmitIdeaRoute
+  '/team': typeof TeamRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/applications': typeof AdminApplicationsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
@@ -298,20 +340,26 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
+  '/coworking': typeof CoworkingRoute
+  '/drone-program': typeof DroneProgramRoute
+  '/e-club': typeof EClubRoute
   '/ecosystem': typeof EcosystemRoute
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/funding': typeof FundingRoute
+  '/iic': typeof IicRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
   '/ipr': typeof IprRoute
   '/nodal-institute': typeof NodalInstituteRoute
   '/partner': typeof PartnerRoute
+  '/policy': typeof PolicyRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/ssip': typeof SsipRoute
   '/startups': typeof StartupsRoute
   '/submit-idea': typeof SubmitIdeaRoute
+  '/team': typeof TeamRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/applications': typeof AdminApplicationsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
@@ -341,20 +389,26 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
+  '/coworking': typeof CoworkingRoute
+  '/drone-program': typeof DroneProgramRoute
+  '/e-club': typeof EClubRoute
   '/ecosystem': typeof EcosystemRoute
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
   '/funding': typeof FundingRoute
+  '/iic': typeof IicRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
   '/ipr': typeof IprRoute
   '/nodal-institute': typeof NodalInstituteRoute
   '/partner': typeof PartnerRoute
+  '/policy': typeof PolicyRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/ssip': typeof SsipRoute
   '/startups': typeof StartupsRoute
   '/submit-idea': typeof SubmitIdeaRoute
+  '/team': typeof TeamRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/applications': typeof AdminApplicationsRoute
   '/admin/audit-log': typeof AdminAuditLogRoute
@@ -385,20 +439,26 @@ export interface FileRouteTypes {
     | '/about'
     | '/apply'
     | '/contact'
+    | '/coworking'
+    | '/drone-program'
+    | '/e-club'
     | '/ecosystem'
     | '/events'
     | '/faq'
     | '/funding'
+    | '/iic'
     | '/impact'
     | '/innovation'
     | '/ipr'
     | '/nodal-institute'
     | '/partner'
+    | '/policy'
     | '/programs'
     | '/resources'
     | '/ssip'
     | '/startups'
     | '/submit-idea'
+    | '/team'
     | '/admin/analytics'
     | '/admin/applications'
     | '/admin/audit-log'
@@ -427,20 +487,26 @@ export interface FileRouteTypes {
     | '/about'
     | '/apply'
     | '/contact'
+    | '/coworking'
+    | '/drone-program'
+    | '/e-club'
     | '/ecosystem'
     | '/events'
     | '/faq'
     | '/funding'
+    | '/iic'
     | '/impact'
     | '/innovation'
     | '/ipr'
     | '/nodal-institute'
     | '/partner'
+    | '/policy'
     | '/programs'
     | '/resources'
     | '/ssip'
     | '/startups'
     | '/submit-idea'
+    | '/team'
     | '/admin/analytics'
     | '/admin/applications'
     | '/admin/audit-log'
@@ -469,20 +535,26 @@ export interface FileRouteTypes {
     | '/about'
     | '/apply'
     | '/contact'
+    | '/coworking'
+    | '/drone-program'
+    | '/e-club'
     | '/ecosystem'
     | '/events'
     | '/faq'
     | '/funding'
+    | '/iic'
     | '/impact'
     | '/innovation'
     | '/ipr'
     | '/nodal-institute'
     | '/partner'
+    | '/policy'
     | '/programs'
     | '/resources'
     | '/ssip'
     | '/startups'
     | '/submit-idea'
+    | '/team'
     | '/admin/analytics'
     | '/admin/applications'
     | '/admin/audit-log'
@@ -512,20 +584,26 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ApplyRoute: typeof ApplyRoute
   ContactRoute: typeof ContactRoute
+  CoworkingRoute: typeof CoworkingRoute
+  DroneProgramRoute: typeof DroneProgramRoute
+  EClubRoute: typeof EClubRoute
   EcosystemRoute: typeof EcosystemRoute
   EventsRoute: typeof EventsRoute
   FaqRoute: typeof FaqRoute
   FundingRoute: typeof FundingRoute
+  IicRoute: typeof IicRoute
   ImpactRoute: typeof ImpactRoute
   InnovationRoute: typeof InnovationRouteWithChildren
   IprRoute: typeof IprRoute
   NodalInstituteRoute: typeof NodalInstituteRoute
   PartnerRoute: typeof PartnerRoute
+  PolicyRoute: typeof PolicyRoute
   ProgramsRoute: typeof ProgramsRoute
   ResourcesRoute: typeof ResourcesRoute
   SsipRoute: typeof SsipRoute
   StartupsRoute: typeof StartupsRoute
   SubmitIdeaRoute: typeof SubmitIdeaRoute
+  TeamRoute: typeof TeamRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminApplicationsRoute: typeof AdminApplicationsRoute
   AdminAuditLogRoute: typeof AdminAuditLogRoute
@@ -579,6 +657,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/coworking': {
+      id: '/coworking'
+      path: '/coworking'
+      fullPath: '/coworking'
+      preLoaderRoute: typeof CoworkingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/drone-program': {
+      id: '/drone-program'
+      path: '/drone-program'
+      fullPath: '/drone-program'
+      preLoaderRoute: typeof DroneProgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/e-club': {
+      id: '/e-club'
+      path: '/e-club'
+      fullPath: '/e-club'
+      preLoaderRoute: typeof EClubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ecosystem': {
       id: '/ecosystem'
       path: '/ecosystem'
@@ -605,6 +704,13 @@ declare module '@tanstack/react-router' {
       path: '/funding'
       fullPath: '/funding'
       preLoaderRoute: typeof FundingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/iic': {
+      id: '/iic'
+      path: '/iic'
+      fullPath: '/iic'
+      preLoaderRoute: typeof IicRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/impact': {
@@ -642,6 +748,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PartnerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/policy': {
+      id: '/policy'
+      path: '/policy'
+      fullPath: '/policy'
+      preLoaderRoute: typeof PolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programs': {
       id: '/programs'
       path: '/programs'
@@ -675,6 +788,13 @@ declare module '@tanstack/react-router' {
       path: '/submit-idea'
       fullPath: '/submit-idea'
       preLoaderRoute: typeof SubmitIdeaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -851,20 +971,26 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ApplyRoute: ApplyRoute,
   ContactRoute: ContactRoute,
+  CoworkingRoute: CoworkingRoute,
+  DroneProgramRoute: DroneProgramRoute,
+  EClubRoute: EClubRoute,
   EcosystemRoute: EcosystemRoute,
   EventsRoute: EventsRoute,
   FaqRoute: FaqRoute,
   FundingRoute: FundingRoute,
+  IicRoute: IicRoute,
   ImpactRoute: ImpactRoute,
   InnovationRoute: InnovationRouteWithChildren,
   IprRoute: IprRoute,
   NodalInstituteRoute: NodalInstituteRoute,
   PartnerRoute: PartnerRoute,
+  PolicyRoute: PolicyRoute,
   ProgramsRoute: ProgramsRoute,
   ResourcesRoute: ResourcesRoute,
   SsipRoute: SsipRoute,
   StartupsRoute: StartupsRoute,
   SubmitIdeaRoute: SubmitIdeaRoute,
+  TeamRoute: TeamRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminApplicationsRoute: AdminApplicationsRoute,
   AdminAuditLogRoute: AdminAuditLogRoute,

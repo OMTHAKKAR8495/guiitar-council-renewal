@@ -729,6 +729,48 @@ export const LAB_FACILITIES: LabFacility[] = [
     whoCanAccess: "Open to all GSFC University students, faculty, and visiting ecosystem guests.",
     imageAlt: "Surjan Open Arena GSFC University",
   },
+  {
+    id: "guiitar-lab",
+    name: "GUIITAR Lab (Central Incubation Suite)",
+    zone: "Incubation Core",
+    headline: "Central Innovation & Startup Incubation Hub",
+    description:
+      "The central operations and incubation headquarters located on the 2nd Floor of Anviksha Building, coordinating screening reviews, mentor clinics, and startup progress tracking.",
+    equipment: [
+      "Screening Committee Presentation Suite with Multi-Display Teleconferencing",
+      "Incubatee Workspace Allotment Units & Lockers",
+      "Confidential Mentoring Cabins & IPR Clinic Desks",
+      "High-Speed Gigabit LAN & Redundant Enterprise Backhaul",
+    ],
+    useCases: [
+      "Institutional Screening Committee (ISC) pitch sessions",
+      "Pre-incubation onboarding and milestone reviews",
+      "Confidential Invention Disclosure intake and legal meetings",
+    ],
+    whoCanAccess: "Admitted incubatees, applicant student teams, and faculty research mentors.",
+    imageAlt: "GUIITAR Central Incubation Suite Anviksha Building",
+  },
+  {
+    id: "innovation-library",
+    name: "Specialized Innovation & IPR Library (Open till 11 PM)",
+    zone: "Knowledge & IPR",
+    headline: "Exhaustive Repositories on Entrepreneurship, Patents & Case Studies",
+    description:
+      "Specialized collection of books, case studies, international patent gazettes, and venture finance literature, accessible until 11:00 PM for all registered incubatees.",
+    equipment: [
+      "Comprehensive Collection of Startup, Venture Capital, and IPR Textbooks",
+      "Subscription to IEEE Xplore, ScienceDirect, and Global Patent Databases",
+      "Quiet Research Study Carrels with Power Sockets and Wi-Fi Access",
+      "Extended Reading Hours (Access Permitted Until 11:00 PM)",
+    ],
+    useCases: [
+      "Prior-art literature surveys and technological benchmark studies",
+      "Market feasibility research and business plan literature reviews",
+      "Quiet founder study sprints and deep-work reading",
+    ],
+    whoCanAccess: "Enrolled GSFC University students, faculty researchers, and incubated founders.",
+    imageAlt: "GSFC University Innovation Library",
+  },
 ];
 
 

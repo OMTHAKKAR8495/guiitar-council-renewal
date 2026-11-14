@@ -80,9 +80,8 @@ function Contact() {
               <MapPin />
             </div>
             <h3>Campus Location</h3>
-            <p style={{ fontSize: "14px", lineHeight: "1.5" }}>
-              Event Room, 2nd Floor, Anviksha Building, GSFC University Campus, Fertilizernagar,
-              Vadodara, Gujarat 391750, India
+            <p style={{ fontSize: "13.5px", lineHeight: "1.5", color: "var(--text)" }}>
+              GUIITAR Council, 2nd Floor, Anviksha Building, GSFC University, Vigyan Bhavan, P.O. Fertilizernagar, Vadodara – 391750, Gujarat, India
             </p>
           </article>
 
@@ -91,30 +90,43 @@ function Contact() {
               <Phone />
             </div>
             <h3>Direct Contact</h3>
-            <p style={{ fontSize: "14px", fontWeight: 600, color: "#0f172a", margin: "0 0 4px" }}>
-              Mr. KiranKumar Parmar
+            <p style={{ fontSize: "14px", fontWeight: 700, color: "#0f172a", margin: "0 0 2px" }}>
+              Board Line &amp; Mobile
             </p>
             <span
               style={{
-                fontSize: "12.5px",
+                fontSize: "12px",
                 color: "#64748b",
                 display: "block",
                 marginBottom: "8px",
               }}
             >
-              Senior Manager (Incubation)
+              Incubation Secretariat
             </span>
-            <a
-              href="tel:+912653093750"
-              style={{
-                color: "#2563eb",
-                fontWeight: 700,
-                textDecoration: "none",
-                fontSize: "14px",
-              }}
-            >
-              +91 (0265) 3093750
-            </a>
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <a
+                href="tel:+912653093750"
+                style={{
+                  color: "#2563eb",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  fontSize: "13.5px",
+                }}
+              >
+                Tel: +91 (0265) 3093750
+              </a>
+              <a
+                href="tel:+919313262712"
+                style={{
+                  color: "#2563eb",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  fontSize: "13.5px",
+                }}
+              >
+                Mobile: +91 9313262712
+              </a>
+            </div>
           </article>
 
           <article className="info-card" style={{ padding: "28px 24px" }}>
@@ -122,21 +134,35 @@ function Contact() {
               <Mail />
             </div>
             <h3>Email Desk</h3>
-            <p style={{ fontSize: "13.5px", color: "#64748b", margin: "0 0 6px" }}>
-              Official inquiries & grant submissions:
+            <p style={{ fontSize: "13px", color: "#64748b", margin: "0 0 6px" }}>
+              Official inquiries &amp; admissions:
             </p>
-            <a
-              href="mailto:guiitar@gsfcuniversity.ac.in"
-              style={{
-                color: "#2563eb",
-                fontWeight: 700,
-                textDecoration: "none",
-                fontSize: "14px",
-                wordBreak: "break-all",
-              }}
-            >
-              guiitar@gsfcuniversity.ac.in
-            </a>
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <a
+                href="mailto:guiitar@gsfcuniversity.ac.in"
+                style={{
+                  color: "#2563eb",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  fontSize: "13.5px",
+                  wordBreak: "break-all",
+                }}
+              >
+                guiitar@gsfcuniversity.ac.in
+              </a>
+              <a
+                href="mailto:admission@gsfcuniversity.ac.in"
+                style={{
+                  color: "#2563eb",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  fontSize: "13.5px",
+                  wordBreak: "break-all",
+                }}
+              >
+                admission@gsfcuniversity.ac.in
+              </a>
+            </div>
           </article>
 
           <article className="info-card" style={{ padding: "28px 24px" }}>

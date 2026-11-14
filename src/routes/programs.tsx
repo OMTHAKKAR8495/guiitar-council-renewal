@@ -310,6 +310,142 @@ export function ProgramsPage() {
         </div>
       </section>
 
+      {/* INSTITUTIONAL COUNCILS & SPECIALIZED TRACKS */}
+      <section style={{ padding: "60px 0 20px", background: "var(--background)" }}>
+        <div className="container">
+          <SectionTitle
+            badge="Institutional Pillars"
+            title="Specialized Councils &amp; Programs"
+            subtitle="Explore dedicated student societies, national innovation councils, drone flight schools, and official incubation policies."
+          />
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "20px",
+              marginTop: "28px",
+            }}
+          >
+            <div
+              style={{
+                background: "var(--card)",
+                borderRadius: "18px",
+                padding: "26px",
+                border: "1.5px solid #ea580c",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                boxShadow: "0 6px 18px rgba(234, 88, 12, 0.08)",
+              }}
+            >
+              <div>
+                <span className="pill amber" style={{ fontSize: "11px", marginBottom: "8px" }}>
+                  Est. Dec 2024
+                </span>
+                <h3 style={{ fontSize: "18px", fontWeight: 800, margin: "0 0 8px 0" }}>
+                  Entrepreneurship Club (E-Club)
+                </h3>
+                <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", lineHeight: "1.6", marginBottom: "18px" }}>
+                  Official student-led innovation society under GUIITAR Council. Monthly hackathons, maker workshops, ideathons, and founder networking.
+                </p>
+              </div>
+              <ButtonLink to="/e-club" size="sm" variant="outline">
+                <span>Explore E-Club Page</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </ButtonLink>
+            </div>
+
+            <div
+              style={{
+                background: "var(--card)",
+                borderRadius: "18px",
+                padding: "26px",
+                border: "1.5px solid #2563eb",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                boxShadow: "0 6px 18px rgba(37, 99, 235, 0.08)",
+              }}
+            >
+              <div>
+                <span className="pill blue" style={{ fontSize: "11px", marginBottom: "8px" }}>
+                  MoE / AICTE Mandate
+                </span>
+                <h3 style={{ fontSize: "18px", fontWeight: 800, margin: "0 0 8px 0" }}>
+                  Institution's Innovation Council (IIC)
+                </h3>
+                <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", lineHeight: "1.6", marginBottom: "18px" }}>
+                  Established under the Ministry of Education's Innovation Cell. Oversees idea scouting, design thinking, NISP implementation, and mentor pools.
+                </p>
+              </div>
+              <ButtonLink to="/iic" size="sm" variant="outline">
+                <span>Explore IIC Page</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </ButtonLink>
+            </div>
+
+            <div
+              style={{
+                background: "var(--card)",
+                borderRadius: "18px",
+                padding: "26px",
+                border: "1.5px solid #0284c7",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                boxShadow: "0 6px 18px rgba(2, 132, 199, 0.08)",
+              }}
+            >
+              <div>
+                <span className="pill cyan" style={{ fontSize: "11px", marginBottom: "8px" }}>
+                  Garuda Aerospace Alliance
+                </span>
+                <h3 style={{ fontSize: "18px", fontWeight: 800, margin: "0 0 8px 0" }}>
+                  Drone Training &amp; Research Program
+                </h3>
+                <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", lineHeight: "1.6", marginBottom: "18px" }}>
+                  Advanced aeronautical lab, multi-rotor assembly, flight avionics, DGCA airspace rules, and outdoor flight proving grounds.
+                </p>
+              </div>
+              <ButtonLink to="/drone-program" size="sm" variant="outline">
+                <span>Explore Drone Program</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </ButtonLink>
+            </div>
+
+            <div
+              style={{
+                background: "var(--card)",
+                borderRadius: "18px",
+                padding: "26px",
+                border: "1.5px solid #059669",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                boxShadow: "0 6px 18px rgba(5, 150, 105, 0.08)",
+              }}
+            >
+              <div>
+                <span className="pill emerald" style={{ fontSize: "11px", marginBottom: "8px" }}>
+                  18-Month SOP
+                </span>
+                <h3 style={{ fontSize: "18px", fontWeight: 800, margin: "0 0 8px 0" }}>
+                  Official Startup Incubation Policy
+                </h3>
+                <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", lineHeight: "1.6", marginBottom: "18px" }}>
+                  Binding 4-stage incubation procedure (Spark-up, Grooming, Incubation, Graduation), seed loan norms, and monthly reporting.
+                </p>
+              </div>
+              <ButtonLink to="/policy" size="sm" variant="outline">
+                <span>Read Official Policy</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </ButtonLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ALL PROGRAMS GRID */}
       <section className="section-muted">
         <div className="container">

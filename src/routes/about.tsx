@@ -84,92 +84,133 @@ const teams: { [k: string]: [string, string, string?][] } = {
   "Board of Directors": [
     [
       "Shri P. K. Taneja, IAS (Retd.)",
-      "President, GSFC University & Chairman, GUIITAR Council",
-      "Former Additional Chief Secretary (Home / Forest & Environment), Govt. of Gujarat.",
+      "Chairman, GUIITAR Council & President, GSFC University",
+      "Former Additional Chief Secretary (Home / Forest & Environment), Government of Gujarat.",
     ],
     [
       "Prof. G. R. Sinha",
-      "Provost, GSFC University & CEO, GUIITAR Council",
-      "Distinguished Academician, Researcher, and IEEE Senior Member with 25+ years in engineering leadership.",
+      "Director & CEO, GUIITAR Council; Provost, GSFC University",
+      "Distinguished Academician, IEEE Senior Member, and global researcher with 25+ years in engineering leadership.",
+    ],
+    [
+      "Shri Utkarsh Yajnik",
+      "Director, GUIITAR Council",
+      "Experienced corporate executive steering institutional growth, venture investments, and enterprise scaling.",
+    ],
+    [
+      "Ms. Swati Bedekar",
+      "Director, GUIITAR Council",
+      "Social entrepreneur and innovation advocate advancing grassroots innovation and women-led entrepreneurship.",
+    ],
+    [
+      "Dr. Pujan Vaishnav",
+      "Director, GUIITAR Council",
+      "Academic and technology leader advising on curriculum-integrated entrepreneurship and incubation metrics.",
+    ],
+    [
+      "Mr. Anupam Jalote",
+      "Director, GUIITAR Council & CEO, iCEM",
+      "Chief Executive Officer at International Centre of Excellence in Mining, leading industrial partnerships.",
+    ],
+    [
+      "Shri Ravin Sanghavi",
+      "Director, GUIITAR Council",
+      "Entrepreneur, investor, and legal advisory specialist with deep expertise in angel networks and startup compliance.",
     ],
   ],
-  "Core Team": [
+  "Core Incubation Team": [
     [
       "Mr. Kirankumar Parmar",
-      "Senior Manager",
-      "Incubation operations, startup cohorts & grant administration",
+      "Senior Manager (Incubation)",
+      "12+ years in university business incubation, SSIP 2.0 grant governance, and startup cohort administration.",
     ],
     [
       "Mr. Bhuvan Vyas",
-      "Manager-Incubation",
-      "Ecosystem linkages, mentor network & corporate relations",
+      "Manager, Incubation (Ecosystem & Linkages)",
+      "Industrial alliances, CSR grant funding, investor relations, and external institutional partnerships.",
     ],
     [
       "Mr. Amit Duggal",
       "Senior Executive (Technical)",
-      "Prototyping laboratories, hardware rigs & testing infrastructure",
+      "Hardware prototyping laboratories, 3D printing slicing, laser cutting tooling, and test rigs.",
     ],
   ],
   "Technical Associates": [
-    ["Ms. Foram Mistry", "Technical Associate 1", "Makers & Fabrication Lab support"],
-    ["Ms. Lavanya Jain", "Technical Associate 2", "Prototyping & hardware assistance"],
-    ["Mr. Krish Shah", "Technical Associate 3", "Hardware rig testing & IoT support"],
-    ["Mr. Chandraveer Singh", "Technical Associate 4", "Lab operations & technical assistance"],
+    ["Mr. Krishay Shah", "Technical Associate", "Design IoT Lab, embedded hardware, sensor calibration & firmware"],
+    ["Ms. Lavanya Jain", "Technical Associate", "Makers Lab 3D printing (SLA/FDM), CAD evaluation & rapid prototyping"],
+    ["Mr. Tirth Darji", "Technical Associate", "Precision laser cutting, mechanical fabrication & workshop tools"],
+    ["Mr. Dev Patel", "Technical Associate", "Computing clusters, software prototype deployment & portal systems"],
+    ["Ms. Chaitali Karpe", "Lab Assistant", "Chemical instrumentation, wet labs & biotechnology experiments"],
+    ["Ms. Nishita Navlani", "Technical Associate", "Technical documentation, screening dossier & monthly progress files"],
+    ["Ms. Priyanshi Vankar", "Technical Associate", "Invention Disclosure Form (IDF) intake & IPR Centre coordination"],
   ],
-  "SoT Team (Technology)": [
-    ["Dr. Chandra Has", "Assistant Professor", "Mechanical Engineering & rapid prototyping"],
-    ["Mr. Abidhusain Lodha", "Assistant Professor", "Robotics, UAV/Drone systems & CAD modeling"],
-    ["Mr. Anup Upadhyay", "Lab Assistant Workshop", "Fabrication, machining & 3D printing"],
-    ["Mr. Hemant M Rajput", "IT Coordinator", "Computing infrastructure & network systems"],
-  ],
-  "SoS Team (Science)": [
-    ["Ms. Charmi Mehta", "Assistant Professor", "Applied sciences & research documentation"],
-    ["Dr. Mihir Trivedi", "Assistant Professor", "Computer Science, AI/ML & supercomputing"],
-    ["Dr. Akhilesh Prajapati", "Associate Professor", "Chemical engineering & industrial process design"],
-    ["Ms. Chaitali Karpe", "Lab Assistant", "Science laboratories & instrumentation"],
-  ],
-  "SoM&E Team (Management)": [
-    ["Dr. Rahul Sharma", "Sr. Assistant Professor", "Business model design, IoT & economics"],
-    ["Dr. Jignesh Valand", "Assistant Professor", "Biotechnology ventures & commercialization"],
+  "Academic & Departmental Mentors": [
+    ["Dr. Chandra Has", "Assistant Professor, Mechanical Engg (SoT)", "CAD/CAM, rapid mechanical prototyping & materials"],
+    ["Mr. Abidhusain Lodha", "Assistant Professor, Robotics (SoT)", "Drone UAV systems, flight avionics & autonomous mechatronics"],
+    ["Dr. Mihir Trivedi", "Assistant Professor, Computer Science (SoT)", "Param Shavak supercomputing, parallel CUDA & AI/ML"],
+    ["Dr. Akhilesh Prajapati", "Associate Professor, Chemical Engg (SoT)", "Chemical process scale-up, industrial safety & applied chemistry"],
+    ["Ms. Charmi Mehta", "Assistant Professor, Applied Sciences (SoS)", "Applied sciences, research documentation & student cohorts"],
+    ["Dr. Rahul Sharma", "Sr. Assistant Professor, Management (SoM&E)", "Business modeling, venture unit economics & pitch design"],
+    ["Dr. Jignesh Valand", "Assistant Professor, Biotechnology (SoS)", "Microbial biotechnology, bio-pigments & green chemistry"],
+    ["Mr. Anup Upadhyay", "Lab Assistant, Workshop (SoT)", "Machine shop fabrication, structural tooling & lathe operations"],
+    ["Mr. Hemant M Rajput", "IT Coordinator, Central IT", "High-speed campus networking, server management & security"],
   ],
 };
 
 const infra = [
   {
-    name: "Supercomputer Lab (Param Shavak)",
-    desc: "Equipped with the Param Shavak DL GPU Supercomputing system, designed to accelerate training and development of deep learning models, computer vision, and compute-intensive simulations.",
-    icon: Monitor,
+    name: "GUIITAR Lab (Central Incubation Suite)",
+    desc: "The central incubation and ideation facility at 2nd Floor Anviksha Building, coordinating applicant screening, mentorship clinics, and venture monitoring.",
+    icon: Building2,
     tone: "tone-0",
   },
   {
-    name: "Advanced Drone & UAV Lab",
-    desc: "A dedicated aeronautical innovation center supporting multi-rotor assembly, autonomous flight path programming, payload testing, and drone regulations research.",
-    icon: Plane,
+    name: "Co-Working Space & Meeting Suites",
+    desc: "Dedicated and flexible work desks, high-speed Wi-Fi, 12-seater multimedia conference room, private pods, and 24/7 access with security.",
+    icon: BookOpen,
     tone: "tone-1",
   },
   {
-    name: "Makers & 3D Prototyping Lab",
-    desc: "Spacious fabrication space outfitted with high-precision Laser Cutting machines, FDM & Resin 3D Printers, Vinyl Cutters, and rapid PoC assembly workbenches.",
-    icon: Layers,
+    name: "Tinkering Lab",
+    desc: "Rapid electronics experimentation benches equipped with digital storage oscilloscopes, function generators, microcontrollers, and sensor arrays.",
+    icon: Cpu,
     tone: "tone-2",
   },
   {
-    name: "Design & IoT Tinkering Lab",
-    desc: "Dedicated hardware benches with oscilloscope suites, microcontrollers (ESP32, STM32, Arduino, Raspberry Pi), sensor arrays, and soldering stations.",
-    icon: Cpu,
+    name: "Specialized Innovation Library (Till 11 PM)",
+    desc: "Specialized collection of books on entrepreneurship, startups, innovation case studies, venture capital, and IPR, accessible until 11:00 PM for incubatees.",
+    icon: BookOpen,
     tone: "tone-3",
   },
   {
-    name: "Anviksha Co-Working Hub",
-    desc: "Ergonomic, high-speed furnished workstation suites and private conference booths tailored for incubated student founders and early-stage startup teams.",
-    icon: BookOpen,
+    name: "Maker Lab / Prototyping Lab",
+    desc: "Equipped for product development with FDM and SLA industrial 3D printers, precision laser cutting machines, digital vinyl cutters, and CNC profiling.",
+    icon: Layers,
     tone: "tone-0",
   },
   {
-    name: "Surjan Open Collaboration Arena",
-    desc: "A vibrant open-air campus amphitheater and amphitheater pod designed for casual brainstorming, startup meetups, pitch practice, and peer ideation.",
-    icon: Sparkles,
+    name: "Super Computer Lab (Param Shavak DL)",
+    desc: "Equipped with the Param Shavak DL GPU Supercomputing system to accelerate deep learning training, computer vision models, and compute-intensive simulations.",
+    icon: Monitor,
     tone: "tone-1",
+  },
+  {
+    name: "Design & IoT Tinkering Lab",
+    desc: "Advanced embedded electronics bench, RF communication testing (LoRa, BLE, Zigbee), wireless telemetry prototyping, and PCB rework tools.",
+    icon: Cpu,
+    tone: "tone-2",
+  },
+  {
+    name: "Surjan Ideation Arena",
+    desc: "A collaborative design-thinking and open-air brainstorm arena designed for multidisciplinary hackathons, peer ideation circles, and demo sessions.",
+    icon: Sparkles,
+    tone: "tone-3",
+  },
+  {
+    name: "Advanced Drone & UAV Lab",
+    desc: "A dedicated aeronautical innovation facility supporting multi-rotor assembly, autonomous flight path programming, payload testing, and drone regulations in partnership with Garuda Aerospace.",
+    icon: Plane,
+    tone: "tone-0",
   },
 ];
 
@@ -986,7 +1027,7 @@ function About() {
                 <div className="leader-info">
                   <span className="leader-desk-badge">Message from President's Desk</span>
                   <h3>Shri P. K. Taneja, IAS (Retd.)</h3>
-                  <p>President, GSFC University & Director, GUIITAR Council</p>
+                  <p>President, GSFC University &amp; Chairman, GUIITAR Council</p>
                 </div>
               </div>
             </article>
@@ -1000,7 +1041,7 @@ function About() {
               <div className="leader-footer">
                 <img
                   src="/leaders/gr-sinha.png"
-                  alt="Dr G R Sinha"
+                  alt="Prof. G. R. Sinha"
                   className="leader-avatar-photo"
                   width={68}
                   height={68}
@@ -1008,8 +1049,8 @@ function About() {
                 />
                 <div className="leader-info">
                   <span className="leader-desk-badge">Message from Provost's Desk</span>
-                  <h3>Dr G R Sinha</h3>
-                  <p>Provost, GSFC University & CEO, GUIITAR Council</p>
+                  <h3>Prof. G. R. Sinha</h3>
+                  <p>Provost, GSFC University &amp; CEO, GUIITAR Council</p>
                 </div>
               </div>
             </article>
@@ -1256,6 +1297,13 @@ function About() {
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
+
+          <div style={{ textAlign: "center", marginTop: "32px" }}>
+            <ButtonLink to="/team" size="md" variant="primary">
+              <span>View Complete Official Team Directory</span>
+              <ArrowRight className="w-4 h-4" />
+            </ButtonLink>
+          </div>
         </div>
       </section>
 
@@ -1283,15 +1331,19 @@ function About() {
           </div>
 
           <div className="center spaced" style={{ display: "flex", justifyContent: "center", gap: "12px", flexWrap: "wrap" }}>
+            <ButtonLink to="/coworking" size="lg" variant="primary">
+              <span>Explore Co-Working &amp; All 9 Facilities</span>
+              <ArrowRight className="w-4 h-4" />
+            </ButtonLink>
             <a
               href="https://forms.gle/EM81FwAN5i4S3FmcA"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary btn-lg"
+              className="btn btn-outline btn-lg"
               style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
             >
               <span>Book Lab Access (Google Form)</span>
-              <ArrowRight className="w-4 h-4" />
+              <ExternalLink className="w-4 h-4" />
             </a>
             <ButtonLink to="/contact" size="lg" variant="outline">
               <span>Contact Incubation Desk</span>

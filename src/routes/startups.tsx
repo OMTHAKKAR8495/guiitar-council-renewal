@@ -87,6 +87,137 @@ export function StartupsPage() {
         </div>
       </PageHero>
 
+      {/* OFFICIAL FOUR-STAGE INCUBATION PROCEDURE */}
+      <section style={{ padding: "60px 0 20px", background: "var(--background)" }}>
+        <div className="container">
+          <SectionTitle
+            badge="Official Incubation SOP"
+            title="Official GUIITAR Incubation Procedure (4 Stages)"
+            subtitle="The officially approved institutional standard operating procedure governing idea intake, laboratory grooming, incubation residency, and graduation."
+          />
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "20px",
+              marginTop: "28px",
+            }}
+          >
+            {[
+              {
+                step: "01",
+                name: "Stage 1 — Spark-up",
+                timeline: "Month 1–2",
+                points: [
+                  "Idea submission & online evaluation",
+                  "Technical uniqueness & feasibility review",
+                  "Business proposal preparation",
+                  "Presentation to University Startup Committee",
+                  "Agreement execution with GUIITAR Council",
+                ],
+                accent: "#2563eb",
+              },
+              {
+                step: "02",
+                name: "Stage 2 — Grooming",
+                timeline: "Month 2–6",
+                points: [
+                  "Proof of Concept (PoC) & prototype build",
+                  "Maker Lab & Supercomputer access",
+                  "Customer discovery & market research",
+                  "Business plan & unit economics refinement",
+                  "Mandatory monthly progress reporting",
+                ],
+                accent: "#ea580c",
+              },
+              {
+                step: "03",
+                name: "Stage 3 — Incubation",
+                timeline: "Month 6–18",
+                points: [
+                  "Legal entity incorporation (Pvt Ltd / LLP)",
+                  "Formal Incubation Agreement signing",
+                  "Dedicated co-working desk allotment",
+                  "Seed loan & grant disbursement review",
+                  "Corporate pilot trials with GSFC Ltd",
+                ],
+                accent: "#059669",
+              },
+              {
+                step: "04",
+                name: "Stage 4 — Graduation",
+                timeline: "At / By 18 Months",
+                points: [
+                  "Milestone-based commercial exit",
+                  "External investment & business scaling",
+                  "Completion of permitted 18-month tenure",
+                  "Loan settlement & IP licensing execution",
+                  "Alumni Founder Network transition",
+                ],
+                accent: "#7c3aed",
+              },
+            ].map((st) => (
+              <div
+                key={st.name}
+                className="plain-card"
+                style={{
+                  padding: "24px",
+                  borderRadius: "16px",
+                  border: "1px solid var(--border-color, #e2e8f0)",
+                  borderTop: `4px solid ${st.accent}`,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
+                    <span style={{ fontSize: "12px", fontWeight: 800, color: st.accent }}>{st.step}</span>
+                    <span className="pill" style={{ fontSize: "11px" }}>{st.timeline}</span>
+                  </div>
+                  <h4 style={{ fontSize: "17px", fontWeight: 800, margin: "0 0 12px 0", color: "var(--text)" }}>
+                    {st.name}
+                  </h4>
+                  <ul style={{ margin: 0, paddingLeft: "18px", fontSize: "13px", color: "var(--muted-foreground)", lineHeight: 1.6 }}>
+                    {st.points.map((pt) => (
+                      <li key={pt} style={{ marginBottom: "4px" }}>{pt}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div
+            style={{
+              marginTop: "24px",
+              background: "#fff7ed",
+              border: "1px solid #fed7aa",
+              borderRadius: "14px",
+              padding: "16px 20px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "12px",
+            }}
+          >
+            <div style={{ fontSize: "13px", color: "#9a3412" }}>
+              <strong>Policy Note:</strong> Standard incubation tenure is <strong>18 months</strong> after Stage 1 clearance. Seed funding is milestone-linked, subject to fund availability, and never guaranteed upon admission. Monthly reports are mandatory during Grooming and Incubation.
+            </div>
+            <Link
+              to="/policy"
+              className="btn btn-outline btn-sm"
+              style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "12.5px" }}
+            >
+              <span>Read Full Policy Details</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* INCUBATION SUPPORT PILLARS */}
       <section>
         <div className="container">

@@ -2574,21 +2574,21 @@ export function HomePage() {
           <div className="featured-event">
             <div className="event-date-box">
               <CalendarDays />
-              <b>October 17, 2026</b>
-              <span>Hardware & UAV Masterclass</span>
+              <b>November 28, 2026</b>
+              <span>Grant Pitching &amp; Screening</span>
             </div>
 
             <div>
               <div
                 style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "10px" }}
               >
-                <span className="pill emerald">45 Seats Available</span>
+                <span className="pill emerald">12 Slots Remaining</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, color: "#2563eb" }}>
-                  Free for GSFC Students & Incubatees
+                  Up to ₹2.5 Lakhs SSIP 2.0 Prototyping Support
                 </span>
               </div>
 
-              <h2>Autonomous Drone Technology & Aerodynamics Workshop</h2>
+              <h2>SSIP 2.0 Institutional Pitch &amp; Grant Screening Call</h2>
               <p
                 style={{
                   color: "#475569",
@@ -2597,23 +2597,28 @@ export function HomePage() {
                   margin: "10px 0 16px",
                 }}
               >
-                Hands-on multi-rotor drone assembly, electronic speed controller (ESC) rigging,
-                ArduPilot autonomous waypoint mission planning, and DGCA airspace regulations.
+                Formal 12-slide presentation rounds before the Institutional Screening Committee (ISC)
+                for student innovator teams seeking non-dilutive prototyping grants under Gujarat SSIP 2.0 governance.
               </p>
 
               <div className="event-meta">
                 <span>
-                  <Clock /> 10:00 AM – 4:30 PM IST
+                  <Clock /> 02:00 PM – 06:00 PM IST
                 </span>
                 <span>
-                  <MapPin /> Drone Research Lab & SOT Proving Ground
+                  <MapPin /> GUIITAR Incubation Suite, 2nd Floor Anviksha
                 </span>
               </div>
 
-              <ButtonLink to="/events" size="md">
-                <span>Register for Workshop</span>
-                <ArrowRight className="w-4 h-4" />
-              </ButtonLink>
+              <div style={{ display: "flex", gap: "12px", marginTop: "16px", flexWrap: "wrap" }}>
+                <ButtonLink to="/events" size="md">
+                  <span>Register for Pitch Session</span>
+                  <ArrowRight className="w-4 h-4" />
+                </ButtonLink>
+                <Link to="/events" className="btn btn-outline btn-md">
+                  <span>View Past Event Reports</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

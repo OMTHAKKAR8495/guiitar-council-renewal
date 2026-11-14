@@ -61,23 +61,25 @@ export const MEGA_MENU: MegaMenuCategory[] = [
     items: [
       {
         title: "About GUIITAR",
-        desc: "Our identity as GSFC University’s Section 8 incubation hub",
+        desc: "Section 8 incubation council established by GSFC University",
         to: "/about",
       },
       {
-        title: "Mission & Vision",
-        desc: "Guiding principles and long-term societal goals",
-        to: "/about",
+        title: "Our Dedicated Team",
+        desc: "Operational team, Technical Associates & Academic Mentors",
+        to: "/team",
+        badge: "Official Team",
       },
       {
         title: "Leadership & Board",
-        desc: "Provost, Chairman, and institutional mentors",
+        desc: "Provost, Chairman, and Board of Directors directory",
         to: "/about",
       },
       {
-        title: "Prototyping Labs",
-        desc: "Param Shavak Supercomputer, Drone Lab & Makers space",
-        to: "/innovation",
+        title: "Co-Working Space & Labs",
+        desc: "Dedicated workstations, meeting suites & all 9 facilities",
+        to: "/coworking",
+        badge: "Infrastructure",
       },
       {
         title: "Impact Dashboard",
@@ -105,8 +107,21 @@ export const MEGA_MENU: MegaMenuCategory[] = [
     items: [
       {
         title: "Student Innovation (E-Club)",
-        desc: "Student-led hackathons, cohorts & ideathons",
-        to: "/programs",
+        desc: "Student-led society established Dec 2024 under GUIITAR",
+        to: "/e-club",
+        badge: "E-Club",
+      },
+      {
+        title: "Institution's Innovation Council",
+        desc: "MoE Innovation Cell & AICTE established IIC council",
+        to: "/iic",
+        badge: "MoE / AICTE",
+      },
+      {
+        title: "Drone Training Program",
+        desc: "Advanced Drone Lab & Garuda Aerospace collaboration",
+        to: "/drone-program",
+        badge: "Aerospace",
       },
       {
         title: "Venture Incubation",
@@ -119,14 +134,9 @@ export const MEGA_MENU: MegaMenuCategory[] = [
         to: "/programs",
       },
       {
-        title: "High-Tech Workshops",
-        desc: "Hands-on training in Drones, AI & 3D Prototyping",
-        to: "/events",
-      },
-      {
         title: "IPR & Patent Support",
         desc: "Up to ₹1.5L grant for patent drafting and filing",
-        to: "/programs",
+        to: "/ipr",
         badge: "Grant",
       },
     ],
@@ -149,14 +159,14 @@ export const MEGA_MENU: MegaMenuCategory[] = [
         badge: "Showcase",
       },
       {
-        title: "13 Thrust Areas",
+        title: "12 Thrust Areas",
         desc: "Biotech, AI/Robotics, CleanTech, Energy & Healthcare",
-        to: "/innovation",
+        to: "/about",
       },
       {
-        title: "Prototyping Labs & Facilities",
-        desc: "Specs, equipment lists & Param Shavak supercompute",
-        to: "/innovation",
+        title: "All 9 Prototyping Labs",
+        desc: "Makers Lab, Supercomputer, Drone Lab & Tinkering specs",
+        to: "/coworking",
       },
       {
         title: "Book Prototyping Lab",
@@ -167,7 +177,7 @@ export const MEGA_MENU: MegaMenuCategory[] = [
       {
         title: "Patents & Disclosures",
         desc: "145+ protected intellectual properties & disclosures",
-        to: "/innovation",
+        to: "/ipr",
       },
       {
         title: "Innovation Journey (01–08)",
@@ -178,7 +188,7 @@ export const MEGA_MENU: MegaMenuCategory[] = [
     featured: {
       title: "Supercomputing & Drones",
       desc: "Direct hands-on access to GPU clusters and flight test proving grounds.",
-      to: "/innovation",
+      to: "/coworking",
       cta: "Discover Labs",
     },
   },
@@ -194,14 +204,20 @@ export const MEGA_MENU: MegaMenuCategory[] = [
         badge: "Directory",
       },
       {
+        title: "Official Incubation SOP (4 Stages)",
+        desc: "Spark-up, Grooming, Incubation, Graduation criteria",
+        to: "/policy",
+        badge: "Official Policy",
+      },
+      {
         title: "Founder Success Stories",
         desc: "In-depth case studies with verified grant milestones",
         to: "/startups",
       },
       {
-        title: "Incubation Support & Stages",
-        desc: "From pre-incubation PoC to full market acceleration",
-        to: "/startups",
+        title: "Incubation Support & Facilities",
+        desc: "Dedicated co-working pods, seed capital & testing",
+        to: "/coworking",
       },
       {
         title: "Startup Toolkit & Resources",
@@ -228,6 +244,11 @@ export const MEGA_MENU: MegaMenuCategory[] = [
         badge: "Quiz Tool",
       },
       {
+        title: "Official Startup Policy & Seed Rules",
+        desc: "18-month tenure, monthly reporting & committee rules",
+        to: "/policy",
+      },
+      {
         title: "SSIP 2.0 Grant Scheme",
         desc: "Non-dilutive grants up to ₹2.5 Lakhs for students/alumni",
         to: "/ssip",
@@ -238,14 +259,9 @@ export const MEGA_MENU: MegaMenuCategory[] = [
         to: "/nodal-institute",
       },
       {
-        title: "IPR & Patent Support Grant",
-        desc: "Up to ₹1.5 Lakhs reimbursement per patent filing",
+        title: "IPR Policy & Revenue Sharing (70:30)",
+        desc: "70% innovator royalty framework & definitions glossary",
         to: "/ipr",
-      },
-      {
-        title: "Application Process & Checklist",
-        desc: "4-stage transparent ISC evaluation roadmap",
-        to: "/funding",
       },
     ],
     featured: {
@@ -1127,9 +1143,7 @@ export function Footer() {
             />
           </Link>
           <p>
-            Gujarat University Innovation and Incubation Technology Applied Research (GUIITAR)
-            Council is founded by GSFC University in Vadodara, Gujarat. Empowering students,
-            researchers, and startups to build enduring commercial enterprises.
+            GU Incubation Innovation Technology and Applied Research (GUIITAR) Council was established by GSFC University in Vadodara, Gujarat, and is registered under Section 8 of the Companies Act, 2013 (CIN: U80903GJ2020NPL115312). Dedicated to promoting and supporting creativity, innovation, and entrepreneurship.
           </p>
           <div className="social">
             <a
@@ -1164,42 +1178,45 @@ export function Footer() {
           <h3>Explore</h3>
           <div className="footer-links">
             <Link to="/about">About GUIITAR</Link>
-            <Link to="/innovation">Innovation & Labs</Link>
-            <a
-              href="https://forms.gle/EM81FwAN5i4S3FmcA"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: "4px", color: "#60a5fa" }}
-            >
-              <span>Book Prototyping Lab</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
+            <Link to="/team">Our Team</Link>
+            <Link to="/coworking">Co-Working &amp; Labs</Link>
             <Link to="/startups">Startup Directory</Link>
-            <Link to="/programs">Incubation Programs</Link>
+            <Link to="/policy">Startup Policy (4 Stages)</Link>
             <Link to="/impact">Impact Dashboard</Link>
             <Link to="/ecosystem">Ecosystem Map</Link>
           </div>
         </div>
 
         <div>
-          <h3>Funding & IPR</h3>
+          <h3>Programs &amp; Grants</h3>
           <div className="footer-links">
-            <Link to="/funding">Funding Navigator</Link>
-            <Link to="/ssip">SSIP 2.0 Grant</Link>
+            <Link to="/programs">All Incubation Programs</Link>
+            <Link to="/e-club">E-Club (Student Society)</Link>
+            <Link to="/iic">Institution's Innovation Council</Link>
+            <Link to="/drone-program">Drone Training Program</Link>
+            <Link to="/ssip">SSIP 2.0 Grant Scheme</Link>
             <Link to="/nodal-institute">Nodal Institute (Policy 2020)</Link>
-            <Link to="/ipr">IPR Support Centre</Link>
-            <Link to="/apply">Submit Innovation</Link>
+            <Link to="/ipr">IPR Centre &amp; 70:30 Policy</Link>
           </div>
         </div>
 
         <div>
-          <h3>Community</h3>
+          <h3>Community &amp; Legal</h3>
           <div className="footer-links">
-            <Link to="/events">Workshops & Events</Link>
+            <Link to="/events">Workshops &amp; Events</Link>
             <Link to="/partner">Partner With Us</Link>
             <Link to="/resources">Resource Library</Link>
-            <Link to="/faq">Help Center & FAQ</Link>
-            <Link to="/contact">Campus Visit</Link>
+            <Link to="/faq">Help Center &amp; FAQ</Link>
+            <a
+              href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_36db0b5ca7c64cdca278b62636d850e6.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}
+            >
+              <span>Annual Return (MGT-7)</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+            <Link to="/contact">Campus Visit &amp; Map</Link>
           </div>
         </div>
 
@@ -1208,17 +1225,25 @@ export function Footer() {
           <p className="contact-line">
             <MapPin />
             <span>
-              Event Room, 2nd Floor, Anviksha Building, GSFC University Campus, Vigyan Bhavan,
-              Fertilizernagar, Vadodara, Gujarat 391750, India
+              GUIITAR Council, 2nd Floor, Anviksha Building, GSFC University Campus, Vigyan Bhavan,
+              P.O. Fertilizernagar, Vadodara – 391750, Gujarat, India
             </span>
           </p>
           <a className="contact-line" href="tel:+912653093750">
             <Phone />
-            <span>+91 (0265) 3093750</span>
+            <span>Tel: +91 (0265) 3093750</span>
+          </a>
+          <a className="contact-line" href="tel:+919313262712">
+            <Phone />
+            <span>Mobile: +91 9313262712</span>
           </a>
           <a className="contact-line" href="mailto:guiitar@gsfcuniversity.ac.in">
             <Mail />
             <span>guiitar@gsfcuniversity.ac.in</span>
+          </a>
+          <a className="contact-line" href="mailto:admission@gsfcuniversity.ac.in">
+            <Mail />
+            <span>admission@gsfcuniversity.ac.in</span>
           </a>
           <div style={{ marginTop: "16px" }}>
             <Link
@@ -1226,7 +1251,7 @@ export function Footer() {
               className="btn btn-primary btn-sm"
               style={{ width: "100%", justifyContent: "center" }}
             >
-              <span>Apply for Cohort 2026</span>
+              <span>Apply for Incubation</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
