@@ -46,7 +46,7 @@ const FOUR_STAGES = [
   {
     stage: "Stage 1",
     name: "Spark-up (Idea Intake & Screening)",
-    timeline: "Month 1–2",
+    timeline: "Illustrative: Months 1–2 (Intake)",
     badge: "Evaluation & Intake",
     accent: "#2563eb",
     summary:
@@ -63,7 +63,7 @@ const FOUR_STAGES = [
   {
     stage: "Stage 2",
     name: "Grooming (PoC & Prototype Development)",
-    timeline: "Month 2–6",
+    timeline: "Illustrative: Months 2–6 (Post-Clearance)",
     badge: "Benchwork & Proof of Concept",
     accent: "#ea580c",
     summary:
@@ -81,7 +81,7 @@ const FOUR_STAGES = [
   {
     stage: "Stage 3",
     name: "Incubation (Entity Incorporation & Scale)",
-    timeline: "Month 6–18",
+    timeline: "Illustrative: Months 6–18 (Post-Clearance)",
     badge: "Enterprise Acceleration",
     accent: "#059669",
     summary:
@@ -99,16 +99,17 @@ const FOUR_STAGES = [
   {
     stage: "Stage 4",
     name: "Graduation (Milestone Exit & Scaling)",
-    timeline: "At or before 18 Months",
+    timeline: "Up to 18 Months post-Stage 1 clearance",
     badge: "Commercial Independence",
     accent: "#7c3aed",
     summary:
       "Formal exit and graduation from university incubation based on predetermined financial, market, or tenure completion milestones.",
     keySteps: [
-      "Evaluation against official graduation criteria (revenue milestones, external venture funding, or space independence).",
-      "Securing substantial external angel investment, venture capital, or commercial debt.",
-      "Completion of permitted incubation tenure (standard maximum 18 months from Stage 1 clearance, unless extension is specifically sanctioned).",
-      "Settlement of seed loans, equity options (if applicable), and IP revenue sharing agreements.",
+      "Evaluation against official graduation and exit criteria under Section 3.4 (satisfying any one of the alternative milestones):",
+      "• Alternative A: Raising external angel investment, venture capital funding, or commercial debt.",
+      "• Alternative B: Achieving commercial revenue milestones, space independence, and establishing external corporate premises.",
+      "• Alternative C: Completion of permitted incubation tenure (standard maximum of 18 months beginning from the date of Stage 1 clearance, with or without external capital).",
+      "Required Settlement Actions: Clearance of physical premises/labs, settlement of any availed seed loans or dues, and execution of applicable IPR revenue sharing agreements.",
       "Transition into the GUIITAR Alumni Founder Network for ongoing mentorship and peer collaboration.",
     ],
     deliverables: "Incubation Completion Certificate, Independent Commercial Operations, Alumni Founder Roster Enrolment.",
@@ -130,7 +131,7 @@ const POLICY_SECTIONS = [
   },
   {
     title: "Mandatory Monthly Reporting",
-    desc: "Incubatees in Stage 2 (Grooming) and Stage 3 (Incubation) must submit monthly technical and financial progress reports by the 5th of every month. Non-submission of reports for two consecutive months may lead to termination.",
+    desc: "Incubatees in Stage 2 (Grooming) and Stage 3 (Incubation) must submit monthly technical and financial progress reports to evaluate milestones and continued incubation support.",
   },
   {
     title: "Infrastructure & Lab Permissions",

@@ -183,16 +183,15 @@ export function CoworkingPage() {
         text="A modern, fully equipped innovation hub in Vadodara providing dedicated workstations, rapid prototyping labs, supercomputing compute, and 24/7 security for visionary founders."
       >
         <div className="button-row">
-          <a
-            href="https://forms.gle/EM81FwAN5i4S3FmcA"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/apply"
+            search={{ track: "incubation" }}
             className="btn btn-primary btn-md"
             style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
           >
             <span>Apply for Co-Working Space</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
           <a
             href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_a36d4d47e2e74717acd42bab3ced339e.pdf"
             target="_blank"
@@ -266,16 +265,15 @@ export function CoworkingPage() {
               <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", lineHeight: "1.5", marginBottom: "16px" }}>
                 Submit your team information, required number of desks, incubation stage, and laboratory requirements directly to the allotment committee.
               </p>
-              <a
-                href="https://forms.gle/EM81FwAN5i4S3FmcA"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/apply"
+                search={{ track: "incubation" }}
                 className="btn btn-primary btn-sm"
                 style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
               >
-                <ExternalLink className="w-4 h-4" />
-                <span>Fill Application Form Online</span>
-              </a>
+                <span>Apply for Desk Allotment Online</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
 
             <div
@@ -289,24 +287,22 @@ export function CoworkingPage() {
             >
               <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
                 <Building2 className="w-5 h-5 text-orange-600" />
-                <span className="pill amber" style={{ fontSize: "11px" }}>Brochure</span>
+                <span className="pill amber" style={{ fontSize: "11px" }}>Brochure &amp; Specs</span>
               </div>
               <h3 style={{ fontSize: "18px", fontWeight: 800, margin: "0 0 8px" }}>
-                GUIITAR Council Infrastructure Brochure
+                GUIITAR Council Infrastructure Specs
               </h3>
               <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", lineHeight: "1.5", marginBottom: "16px" }}>
                 Complete brochure covering photo walkthroughs, lab equipment specifications, Param Shavak compute details, and fee structure.
               </p>
-              <a
-                href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_36db0b5ca7c64cdca278b62636d850e6.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/innovation"
                 className="btn btn-outline btn-sm"
                 style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
               >
-                <Download className="w-4 h-4" />
-                <span>Download Brochure (PDF)</span>
-              </a>
+                <span>Explore Full Infrastructure Specs</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>

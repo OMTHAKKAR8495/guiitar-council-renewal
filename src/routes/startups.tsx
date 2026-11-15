@@ -108,7 +108,7 @@ export function StartupsPage() {
               {
                 step: "01",
                 name: "Stage 1 — Spark-up",
-                timeline: "Month 1–2",
+                timeline: "Illustrative: M1–M2 (Intake)",
                 points: [
                   "Idea submission & online evaluation",
                   "Technical uniqueness & feasibility review",
@@ -121,20 +121,20 @@ export function StartupsPage() {
               {
                 step: "02",
                 name: "Stage 2 — Grooming",
-                timeline: "Month 2–6",
+                timeline: "Illustrative: M2–M6 (Post-Clearance)",
                 points: [
                   "Proof of Concept (PoC) & prototype build",
                   "Maker Lab & Supercomputer access",
                   "Customer discovery & market research",
                   "Business plan & unit economics refinement",
-                  "Mandatory monthly progress reporting",
+                  "Periodic monthly progress reporting",
                 ],
                 accent: "#ea580c",
               },
               {
                 step: "03",
                 name: "Stage 3 — Incubation",
-                timeline: "Month 6–18",
+                timeline: "Illustrative: M6–M18 (Post-Clearance)",
                 points: [
                   "Legal entity incorporation (Pvt Ltd / LLP)",
                   "Formal Incubation Agreement signing",
@@ -147,13 +147,13 @@ export function StartupsPage() {
               {
                 step: "04",
                 name: "Stage 4 — Graduation",
-                timeline: "At / By 18 Months",
+                timeline: "Up to 18M post-Stage 1 clearance",
                 points: [
-                  "Milestone-based commercial exit",
-                  "External investment & business scaling",
-                  "Completion of permitted 18-month tenure",
-                  "Loan settlement & IP licensing execution",
-                  "Alumni Founder Network transition",
+                  "Exit via alternative Section 3.4 criteria",
+                  "Alternative A: External investment or capital raise",
+                  "Alternative B: Commercial space independence",
+                  "Alternative C: Tenure completion (up to 18 months)",
+                  "Dues/loan settlement & alumni network transition",
                 ],
                 accent: "#7c3aed",
               },

@@ -100,16 +100,15 @@ export function DroneProgramPage() {
         text="A premier technological initiative hosted at the Advanced Drone Lab of GUIITAR Council, GSFC University, in strategic institutional partnership with Garuda Aerospace Pvt. Ltd."
       >
         <div className="button-row">
-          <a
-            href="https://forms.gle/sUvSDHDubWQVdLHi8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary btn-md"
-            style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+          <ButtonLink
+            to="/contact"
+            search={{ subject: "Drone Training Program" }}
+            size="md"
+            variant="primary"
           >
             <span>Register for Next Drone Cohort</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
+            <ArrowRight className="w-4 h-4" />
+          </ButtonLink>
           <ButtonLink to="/contact" size="md" variant="outline">
             <span>Enquire for Research Collaborations</span>
           </ButtonLink>
@@ -340,16 +339,15 @@ export function DroneProgramPage() {
             Learn drone assembly, autonomous navigation, and DGCA flight regulations from certified pilots and aeronautical researchers.
           </p>
           <div className="button-row">
-            <a
-              href="https://forms.gle/sUvSDHDubWQVdLHi8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-dark"
-              style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "12px 24px" }}
+            <ButtonLink
+              to="/contact"
+              search={{ subject: "Drone Training Enrollment" }}
+              size="lg"
+              variant="dark"
             >
               <span>Apply for Drone Training</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
+              <ArrowRight className="w-4 h-4" />
+            </ButtonLink>
             <ButtonLink to="/coworking" size="lg" variant="glass">
               <span>View Drone Lab Facilities</span>
             </ButtonLink>

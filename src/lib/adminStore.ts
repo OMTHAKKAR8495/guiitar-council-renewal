@@ -1964,19 +1964,6 @@ const INITIAL_RESOURCES: ResourceDoc[] = [
     isPublic: true,
   },
   {
-    id: "doc-coworking-brochure",
-    title: "Co-Working & Prototyping Infrastructure Brochure",
-    category: "Policy Document",
-    format: "PDF",
-    size: "2.4 MB",
-    updated: "Aug 2026",
-    description:
-      "Comprehensive brochure detailing workstations, Maker Lab 3D printers, laser cutters, Param Shavak Supercomputer, and Drone Lab proving grounds.",
-    downloads: 510,
-    link: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_36db0b5ca7c64cdca278b62636d850e6.pdf",
-    isPublic: true,
-  },
-  {
     id: "doc-startup-kit",
     title: "Official GUIITAR Startup Kit (Google Drive)",
     category: "Pitch Template",
@@ -2010,21 +1997,8 @@ const INITIAL_RESOURCES: ResourceDoc[] = [
     size: "1.8 MB",
     updated: "Sep 2026",
     description:
-      "Official audited statutory annual return filing for GU Incubation Innovation Technology and Applied Research Council (Section 8 Company, CIN: U80903GJ2020NPL115312).",
+      "Official audited statutory annual return filing for GU Incubation Innovation Technology and Applied Research Council (Section 8 Company, CIN: U73100GJ2020NPL115782).",
     downloads: 320,
-    link: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_36db0b5ca7c64cdca278b62636d850e6.pdf",
-    isPublic: true,
-  },
-  {
-    id: "doc-iic-members",
-    title: "Institution's Innovation Council (IIC) Members Notification",
-    category: "Policy Document",
-    format: "PDF",
-    size: "850 KB",
-    updated: "Aug 2026",
-    description:
-      "Official university circular appointing faculty coordinators, student leaders, and external mentors to the GSFC University IIC under MoE Innovation Cell guidelines.",
-    downloads: 260,
     link: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_36db0b5ca7c64cdca278b62636d850e6.pdf",
     isPublic: true,
   },
@@ -2878,7 +2852,42 @@ export class AdminDataStore {
 
   // ================= 4. EVENTS CRUD =================
   static getEvents(): EventItem[] {
-    return this.getStored<EventItem[]>(STORAGE_EVENTS_KEY, INITIAL_EVENTS);
+    const events = this.getStored<EventItem[]>(STORAGE_EVENTS_KEY, INITIAL_EVENTS);
+    if (typeof window !== "undefined" && Array.isArray(events)) {
+      const ev3Idx = events.findIndex((e) => e.id === "ev-3");
+      const defaultEv3 = INITIAL_EVENTS.find((e) => e.id === "ev-3");
+      if (ev3Idx >= 0 && defaultEv3) {
+        const storedEv3 = events[ev3Idx];
+        // Distinguish unedited defaults from user edits:
+        // If stored ev-3 retains an unedited stale default date or title, migrate to revised November 28 values
+        const isUneditedDefault =
+          storedEv3.date === "October 17, 2026" ||
+          storedEv3.date === "October 20, 2026" ||
+          storedEv3.title === "Autonomous Drone Technology & Aerodynamics Workshop" ||
+          (storedEv3.title === defaultEv3.title && (storedEv3.date !== defaultEv3.date || storedEv3.status !== defaultEv3.status));
+
+        if (isUneditedDefault) {
+          events[ev3Idx] = {
+            ...storedEv3,
+            title: defaultEv3.title,
+            date: defaultEv3.date,
+            time: defaultEv3.time,
+            location: defaultEv3.location,
+            speaker: defaultEv3.speaker,
+            category: defaultEv3.category,
+            capacity: defaultEv3.capacity,
+            registered: defaultEv3.registered,
+            status: defaultEv3.status,
+            isUpcoming: defaultEv3.isUpcoming,
+            seats: defaultEv3.seats,
+            desc: defaultEv3.desc,
+            topics: defaultEv3.topics,
+          };
+          this.setStored(STORAGE_EVENTS_KEY, events);
+        }
+      }
+    }
+    return events;
   }
 
   static getEventById(id: string): EventItem | undefined {

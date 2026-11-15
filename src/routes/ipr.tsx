@@ -145,15 +145,6 @@ const IPR_DOCS = [
     primary: true,
   },
   {
-    title: "Invention Disclosure Form (IDF) — DOCX Template",
-    desc: "Editable drafting template to structure novelty claims, technical drawings, and prior-art search results prior to committee review.",
-    type: "DOCX Template",
-    tag: "Template",
-    url: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_87cd494308f14eae95f42e1ab0a01910.pdf",
-    icon: Download,
-    primary: false,
-  },
-  {
     title: "SSIP 2.0 IPR Facilitation Guidelines",
     desc: "Official Government of Gujarat circular outlining funding caps, allowable legal expenses, and reimbursement procedures for patents.",
     type: "PDF Document",
@@ -353,7 +344,10 @@ export function IPRPage() {
   const [glossarySearch, setGlossarySearch] = useState("");
   const [selectedGlossaryCategory, setSelectedGlossaryCategory] = useState("All");
 
-  const glossaryCategories = ["All", "Core Definition", "IP Types", "Parties", "Governance", "Commercialization", "Ecosystem", "Finance", "Development"];
+  const glossaryCategories = useMemo(
+    () => ["All", ...Array.from(new Set(IPR_GLOSSARY.map((item) => item.category)))],
+    []
+  );
 
   const filteredGlossary = useMemo(() => {
     return IPR_GLOSSARY.filter((item) => {

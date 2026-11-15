@@ -527,7 +527,9 @@ export interface LabFacility {
     | "Collaboration Hub"
     | "IPR & Legal"
     | "Drone & Aerospace"
-    | "IoT & Electronics";
+    | "IoT & Electronics"
+    | "Incubation Core"
+    | "Knowledge & IPR";
   headline: string;
   description: string;
   equipment: string[];

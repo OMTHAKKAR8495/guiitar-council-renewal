@@ -142,14 +142,14 @@ export function IICPage() {
       >
         <div className="button-row">
           <a
-            href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_36db0b5ca7c64cdca278b62636d850e6.pdf"
+            href="https://iic.mic.gov.in/"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary btn-md"
             style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
           >
-            <Download className="w-4 h-4" />
-            <span>Download IIC Members List (PDF)</span>
+            <ExternalLink className="w-4 h-4" />
+            <span>MoE Innovation Cell (MIC) Portal</span>
           </a>
           <Link to="/events" className="btn btn-outline btn-md">
             <span>View IIC Calendar &amp; Activities</span>
@@ -340,14 +340,14 @@ export function IICPage() {
             }}
           >
             <a
-              href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_36db0b5ca7c64cdca278b62636d850e6.pdf"
+              href="https://iic.mic.gov.in/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-outline btn-md"
               style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
             >
-              <Download className="w-4 h-4" />
-              <span>Download Complete IIC Council Members Notification (PDF)</span>
+              <ExternalLink className="w-4 h-4" />
+              <span>Verify Institution Listing on MoE IIC Portal</span>
             </a>
           </div>
         </div>
