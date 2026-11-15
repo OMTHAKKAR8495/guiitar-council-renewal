@@ -19,11 +19,13 @@ import { Route as EClubRouteImport } from './routes/e-club'
 import { Route as EcosystemRouteImport } from './routes/ecosystem'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as FundingRouteImport } from './routes/funding'
 import { Route as IicRouteImport } from './routes/iic'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as InnovationRouteImport } from './routes/innovation'
 import { Route as IprRouteImport } from './routes/ipr'
+import { Route as LabBookingRouteImport } from './routes/lab-booking'
 import { Route as NodalInstituteRouteImport } from './routes/nodal-institute'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as PolicyRouteImport } from './routes/policy'
@@ -106,6 +108,11 @@ const FaqRoute = FaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FundingRoute = FundingRouteImport.update({
   id: '/funding',
   path: '/funding',
@@ -129,6 +136,11 @@ const InnovationRoute = InnovationRouteImport.update({
 const IprRoute = IprRouteImport.update({
   id: '/ipr',
   path: '/ipr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabBookingRoute = LabBookingRouteImport.update({
+  id: '/lab-booking',
+  path: '/lab-booking',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NodalInstituteRoute = NodalInstituteRouteImport.update({
@@ -298,11 +310,13 @@ export interface FileRoutesByFullPath {
   '/ecosystem': typeof EcosystemRoute
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
+  '/feedback': typeof FeedbackRoute
   '/funding': typeof FundingRoute
   '/iic': typeof IicRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
   '/ipr': typeof IprRoute
+  '/lab-booking': typeof LabBookingRoute
   '/nodal-institute': typeof NodalInstituteRoute
   '/partner': typeof PartnerRoute
   '/policy': typeof PolicyRoute
@@ -346,11 +360,13 @@ export interface FileRoutesByTo {
   '/ecosystem': typeof EcosystemRoute
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
+  '/feedback': typeof FeedbackRoute
   '/funding': typeof FundingRoute
   '/iic': typeof IicRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
   '/ipr': typeof IprRoute
+  '/lab-booking': typeof LabBookingRoute
   '/nodal-institute': typeof NodalInstituteRoute
   '/partner': typeof PartnerRoute
   '/policy': typeof PolicyRoute
@@ -395,11 +411,13 @@ export interface FileRoutesById {
   '/ecosystem': typeof EcosystemRoute
   '/events': typeof EventsRoute
   '/faq': typeof FaqRoute
+  '/feedback': typeof FeedbackRoute
   '/funding': typeof FundingRoute
   '/iic': typeof IicRoute
   '/impact': typeof ImpactRoute
   '/innovation': typeof InnovationRouteWithChildren
   '/ipr': typeof IprRoute
+  '/lab-booking': typeof LabBookingRoute
   '/nodal-institute': typeof NodalInstituteRoute
   '/partner': typeof PartnerRoute
   '/policy': typeof PolicyRoute
@@ -445,11 +463,13 @@ export interface FileRouteTypes {
     | '/ecosystem'
     | '/events'
     | '/faq'
+    | '/feedback'
     | '/funding'
     | '/iic'
     | '/impact'
     | '/innovation'
     | '/ipr'
+    | '/lab-booking'
     | '/nodal-institute'
     | '/partner'
     | '/policy'
@@ -493,11 +513,13 @@ export interface FileRouteTypes {
     | '/ecosystem'
     | '/events'
     | '/faq'
+    | '/feedback'
     | '/funding'
     | '/iic'
     | '/impact'
     | '/innovation'
     | '/ipr'
+    | '/lab-booking'
     | '/nodal-institute'
     | '/partner'
     | '/policy'
@@ -541,11 +563,13 @@ export interface FileRouteTypes {
     | '/ecosystem'
     | '/events'
     | '/faq'
+    | '/feedback'
     | '/funding'
     | '/iic'
     | '/impact'
     | '/innovation'
     | '/ipr'
+    | '/lab-booking'
     | '/nodal-institute'
     | '/partner'
     | '/policy'
@@ -590,11 +614,13 @@ export interface RootRouteChildren {
   EcosystemRoute: typeof EcosystemRoute
   EventsRoute: typeof EventsRoute
   FaqRoute: typeof FaqRoute
+  FeedbackRoute: typeof FeedbackRoute
   FundingRoute: typeof FundingRoute
   IicRoute: typeof IicRoute
   ImpactRoute: typeof ImpactRoute
   InnovationRoute: typeof InnovationRouteWithChildren
   IprRoute: typeof IprRoute
+  LabBookingRoute: typeof LabBookingRoute
   NodalInstituteRoute: typeof NodalInstituteRoute
   PartnerRoute: typeof PartnerRoute
   PolicyRoute: typeof PolicyRoute
@@ -699,6 +725,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/funding': {
       id: '/funding'
       path: '/funding'
@@ -732,6 +765,13 @@ declare module '@tanstack/react-router' {
       path: '/ipr'
       fullPath: '/ipr'
       preLoaderRoute: typeof IprRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lab-booking': {
+      id: '/lab-booking'
+      path: '/lab-booking'
+      fullPath: '/lab-booking'
+      preLoaderRoute: typeof LabBookingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nodal-institute': {
@@ -977,11 +1017,13 @@ const rootRouteChildren: RootRouteChildren = {
   EcosystemRoute: EcosystemRoute,
   EventsRoute: EventsRoute,
   FaqRoute: FaqRoute,
+  FeedbackRoute: FeedbackRoute,
   FundingRoute: FundingRoute,
   IicRoute: IicRoute,
   ImpactRoute: ImpactRoute,
   InnovationRoute: InnovationRouteWithChildren,
   IprRoute: IprRoute,
+  LabBookingRoute: LabBookingRoute,
   NodalInstituteRoute: NodalInstituteRoute,
   PartnerRoute: PartnerRoute,
   PolicyRoute: PolicyRoute,

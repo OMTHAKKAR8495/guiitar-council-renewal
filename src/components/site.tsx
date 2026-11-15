@@ -330,6 +330,18 @@ export const MEGA_MENU: MegaMenuCategory[] = [
         desc: "10-slide standardized deck for ISC committee review",
         to: "/resources",
       },
+      {
+        title: "Lab Booking Portal",
+        desc: "Book 3D printers, Supercomputing & Drone arena",
+        to: "/lab-booking",
+        badge: "Booking",
+      },
+      {
+        title: "Feedback & Grievance",
+        desc: "Official portal for suggestions & grievance redressal",
+        to: "/feedback",
+        badge: "Portal",
+      },
     ],
   },
 ];
@@ -1166,6 +1178,8 @@ export function Footer() {
             <Link to="/team?tab=Committee">GUIITAR Committee</Link>
             <Link to="/coworking">Infrastructure</Link>
             <Link to="/coworking">Co-Working Space</Link>
+            <Link to="/lab-booking">Lab Booking</Link>
+            <Link to="/feedback">Feedback</Link>
           </div>
         </div>
 
@@ -1174,6 +1188,11 @@ export function Footer() {
           <div className="footer-links">
             <Link to="/ssip">SSIP</Link>
             <Link to="/iic">IIC</Link>
+            <Link to="/e-club">E-Club</Link>
+            <Link to="/drone-program">Drone Training</Link>
+            <Link to="/nodal-institute">Nodal Institute</Link>
+            <Link to="/ipr">IPR Centre</Link>
+            <Link to="/events">Event Reports</Link>
             <a
               href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_a36d4d47e2e74717acd42bab3ced339e.pdf"
               target="_blank"
