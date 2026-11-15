@@ -536,6 +536,7 @@ export interface LabFacility {
   useCases: string[];
   whoCanAccess: string;
   imageAlt: string;
+  image?: string;
   sources?: { title: string; url: string }[];
 }
 
@@ -563,6 +564,7 @@ export const LAB_FACILITIES: LabFacility[] = [
     whoCanAccess:
       "All registered GUIITAR incubatees, SSIP 2.0 grant recipients, student innovators, and faculty researchers.",
     imageAlt: "Maker Lab Prototyping Workshop at GUIITAR Council GSFC University",
+    image: "/images/original/infrastructure/maker-lab.jpg",
     sources: [
       {
         title: "GUIITAR Infrastructure",
@@ -600,6 +602,7 @@ export const LAB_FACILITIES: LabFacility[] = [
     whoCanAccess:
       "Incubated AI/ML startups, data science scholars, student researchers, and faculty members.",
     imageAlt: "Param Shavak Supercomputer Lab at GSFC University",
+    image: "/images/original/infrastructure/supercomputer-lab.jpg",
     sources: [
       {
         title: "GUIITAR Infrastructure",
@@ -630,6 +633,7 @@ export const LAB_FACILITIES: LabFacility[] = [
     whoCanAccess:
       "Officially incubated startups, pre-incubation cohort founders, and student venture teams.",
     imageAlt: "Co-Working Space & Brainstorming Rooms at GUIITAR Council",
+    image: "/images/original/infrastructure/coworking-space.jpg",
     sources: [
       {
         title: "GUIITAR Co-Working Space",
@@ -661,6 +665,7 @@ export const LAB_FACILITIES: LabFacility[] = [
     whoCanAccess:
       "All GSFC University student innovators, incubated startup founders, and faculty inventors.",
     imageAlt: "Intellectual Property Rights (IPR) Centre at GUIITAR Council",
+    image: "/images/original/infrastructure/guiitar-central-lab.jpg",
     sources: [
       {
         title: "GUIITAR IPR Centre",
@@ -689,6 +694,7 @@ export const LAB_FACILITIES: LabFacility[] = [
     whoCanAccess:
       "Approved drone startup teams, E-Club UAV wing members, and licensed student pilots.",
     imageAlt: "Advanced Drone Lab at GUIITAR Council",
+    image: "/images/original/infrastructure/drone-lab.png",
   },
   {
     id: "design-iot-lab",
@@ -710,6 +716,7 @@ export const LAB_FACILITIES: LabFacility[] = [
     ],
     whoCanAccess: "Electronics innovators, IoT startup founders, and engineering researchers.",
     imageAlt: "Design IoT Tinkering Lab at GUIITAR Council",
+    image: "/images/original/infrastructure/tinkering-lab.png",
   },
   {
     id: "surjan-arena",
@@ -730,6 +737,7 @@ export const LAB_FACILITIES: LabFacility[] = [
     ],
     whoCanAccess: "Open to all GSFC University students, faculty, and visiting ecosystem guests.",
     imageAlt: "Surjan Open Arena GSFC University",
+    image: "/images/original/infrastructure/srujan-lab.jpg",
   },
   {
     id: "guiitar-lab",
@@ -751,6 +759,7 @@ export const LAB_FACILITIES: LabFacility[] = [
     ],
     whoCanAccess: "Admitted incubatees, applicant student teams, and faculty research mentors.",
     imageAlt: "GUIITAR Central Incubation Suite Anviksha Building",
+    image: "/images/original/infrastructure/guiitar-central-lab.jpg",
   },
   {
     id: "innovation-library",
@@ -772,6 +781,7 @@ export const LAB_FACILITIES: LabFacility[] = [
     ],
     whoCanAccess: "Enrolled GSFC University students, faculty researchers, and incubated founders.",
     imageAlt: "GSFC University Innovation Library",
+    image: "/images/original/infrastructure/library.jpg",
   },
 ];
 

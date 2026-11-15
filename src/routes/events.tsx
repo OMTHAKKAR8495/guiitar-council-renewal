@@ -21,6 +21,8 @@ import {
   Copy,
   AlertCircle,
   Loader2,
+  FileText,
+  Download,
 } from "lucide-react";
 import { PageHero, SectionTitle, ButtonLink } from "@/components/site";
 import { AdminDataStore, type EventItem, type RegistrationItem } from "@/lib/adminStore";
@@ -409,6 +411,245 @@ function Events() {
                       <span>View Session Archive</span>
                     </ButtonLink>
                   )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* OFFICIAL EVENT REPORTS & PROCEEDINGS ARCHIVE */}
+      <section style={{ padding: "70px 0", borderTop: "1px solid var(--border)" }}>
+        <div className="container">
+          <SectionTitle
+            badge="Official Institutional Records"
+            title="Event Reports & Proceedings Archive"
+            subtitle="Download verified official event reports, attendee rosters, and technical workshop summaries published by GUIITAR Council."
+          />
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "20px",
+              marginTop: "32px",
+            }}
+          >
+            {[
+              {
+                title: "TOD FOD JOD (TFJ) Workshop Report",
+                date: "10-14 July 2023",
+                category: "Prototyping & Making",
+                pdfUrl: "/documents/events/2026-tod-fod-jod-workshop.pdf",
+                size: "592 KB",
+                pages: "6 Pages",
+                desc: "Hands-on engineering deconstruction and reconstruction workshop for high school and diploma students.",
+              },
+              {
+                title: "NCC National Drone Training Camp",
+                date: "14-23 September 2023",
+                category: "Drone & Aerospace",
+                pdfUrl: "/documents/events/2026-ncc-drone-camp.pdf",
+                size: "4.6 MB",
+                pages: "12 Pages",
+                desc: "Intensive 10-day drone assembly, calibration, telemetry, and flight training camp for NCC Air Wing cadets.",
+              },
+              {
+                title: "Central Gujarat Startup Ecosystem Seminar (Vibrant Gujarat)",
+                date: "3 October 2023",
+                category: "Policy & Funding",
+                pdfUrl: "/documents/events/2026-central-gujarat-startup-seminar.pdf",
+                size: "1.4 MB",
+                pages: "8 Pages",
+                desc: "Regional stakeholder consultation and startup promotion summit leading up to Vibrant Gujarat Global Summit.",
+              },
+              {
+                title: "Corporate Business Simulation Game Workshop",
+                date: "19 October 2023",
+                category: "Business Modeling",
+                pdfUrl: "/documents/events/2026-corporate-business-simulation.pdf",
+                size: "1.4 MB",
+                pages: "7 Pages",
+                desc: "Interactive gamified corporate strategy, balance sheet, and financial decision-making simulation.",
+              },
+              {
+                title: "Venture Creation & Validation Bootcamp",
+                date: "2-3 November 2023",
+                category: "Incubation Track",
+                pdfUrl: "/documents/events/2026-venture-creation-bootcamp.pdf",
+                size: "804 KB",
+                pages: "6 Pages",
+                desc: "Comprehensive 2-day founder sprint covering customer discovery, lean canvas, and proof-of-concept testing.",
+              },
+              {
+                title: "Orientation on Laser Cutting & 3D Scanning",
+                date: "23 November 2023",
+                category: "Maker Lab",
+                pdfUrl: "/documents/events/2026-orientation-laser-3d.pdf",
+                size: "961 KB",
+                pages: "5 Pages",
+                desc: "Technical safety certification and hands-on tooling workshop on industrial laser engravers and 3D scanners.",
+              },
+              {
+                title: "National Technology Day Innovation Showcase",
+                date: "11 May 2024",
+                category: "Institutional",
+                pdfUrl: "/documents/events/2026-national-technology-day.pdf",
+                size: "1.1 MB",
+                pages: "8 Pages",
+                desc: "Commemoration of indigenous technology milestones with prototype demos and student research exhibition.",
+              },
+              {
+                title: "Seminar on IPR, Professional Values & Business Ethics",
+                date: "25 July 2024",
+                category: "Legal & IPR",
+                pdfUrl: "/documents/events/2026-ipr-values-ethics.pdf",
+                size: "1.0 MB",
+                pages: "6 Pages",
+                desc: "Intellectual property rights framework, patent filing procedures, and corporate governance compliance norms.",
+              },
+              {
+                title: "Garuda Aerospace Drone Masterclass Phase II",
+                date: "21-23 August 2024",
+                category: "Aerospace",
+                pdfUrl: "/documents/events/2026-drone-workshop-ii.pdf",
+                size: "3.7 MB",
+                pages: "10 Pages",
+                desc: "DGCA compliance, autonomous waypoint navigation, and multi-spectral sensor integration for precision farming.",
+              },
+              {
+                title: "Shark Tank GSFCU — Ananta National Techfest",
+                date: "14 September 2024",
+                category: "Pitch Competition",
+                pdfUrl: "/documents/events/2026-shark-tank-gsfcu-ananta.pdf",
+                size: "4.2 MB",
+                pages: "14 Pages",
+                desc: "Flagship startup pitching competition featuring 24 shortlisted ventures presenting to angel investors and CXOs.",
+              },
+              {
+                title: "How to Register Industrial Design & Copyrights",
+                date: "8 October 2024",
+                category: "Legal & IPR",
+                pdfUrl: "/documents/events/2026-register-industrial-design.pdf",
+                size: "1.2 MB",
+                pages: "7 Pages",
+                desc: "Practical walkthrough on preparing design patent drawings, novel aesthetic claims, and statutory filings.",
+              },
+              {
+                title: "ABC of Entrepreneurship: From Idea to Incorporation",
+                date: "18 January 2025",
+                category: "Startup 101",
+                pdfUrl: "/documents/events/2026-abc-entrepreneurship.pdf",
+                size: "1.6 MB",
+                pages: "9 Pages",
+                desc: "Foundational masterclass on enterprise structuring, GST compliance, banking, and early traction metrics.",
+              },
+            ].map((rep) => (
+              <article
+                key={rep.title}
+                className="plain-card"
+                style={{
+                  padding: "24px",
+                  borderRadius: "16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  border: "1px solid var(--border)",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      gap: "8px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <span className="pill blue" style={{ fontSize: "11px" }}>
+                      {rep.category}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: "11.5px",
+                        fontWeight: 600,
+                        color: "var(--text-muted)",
+                        background: "var(--surface-muted, #f1f5f9)",
+                        padding: "2px 8px",
+                        borderRadius: "4px",
+                      }}
+                    >
+                      {rep.size} • {rep.pages}
+                    </span>
+                  </div>
+                  <h3 style={{ fontSize: "17px", fontWeight: 800, margin: "0 0 6px", lineHeight: "1.35" }}>
+                    {rep.title}
+                  </h3>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      fontSize: "12px",
+                      color: "#059669",
+                      fontWeight: 700,
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <CalendarDays className="w-3.5 h-3.5" />
+                    <span>{rep.date}</span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      color: "var(--text-muted)",
+                      lineHeight: "1.5",
+                      margin: "0 0 16px",
+                    }}
+                  >
+                    {rep.desc}
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "8px",
+                    alignItems: "center",
+                    borderTop: "1px solid var(--border)",
+                    paddingTop: "14px",
+                  }}
+                >
+                  <a
+                    href={rep.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-sm"
+                    style={{
+                      flex: 1,
+                      justifyContent: "center",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                    }}
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    <span>Read Report</span>
+                  </a>
+                  <a
+                    href={rep.pdfUrl}
+                    download
+                    className="btn btn-outline btn-sm"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                    }}
+                    title="Download Report PDF"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </article>
             ))}

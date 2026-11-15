@@ -104,54 +104,63 @@ const COMPLETE_INFRA_FACILITIES = [
     zone: "Incubation Core",
     location: "2nd Floor, Anviksha Building",
     desc: "The central nervous system of incubation at GSFC University. Coordinates screening, legal onboarding, mentorship sprints, and project tracking.",
+    image: "/images/original/infrastructure/guiitar-central-lab.jpg",
   },
   {
     name: "Co-Working Space",
     zone: "Venture Suites",
     location: "2nd Floor, Anviksha Building",
     desc: "Dedicated and flexible desks, private discussion pods, conference facilities, and collaborative brainstorming stations for student and startup teams.",
+    image: "/images/original/infrastructure/coworking-space.jpg",
   },
   {
     name: "Tinkering Lab",
     zone: "Electronics & Hardware",
     location: "Anviksha Technical Wing",
     desc: "Rapid electronics experimentation benches with digital oscilloscopes, function generators, soldering stations, microcontrollers, and hardware toolkits.",
+    image: "/images/original/infrastructure/tinkering-lab.png",
   },
   {
     name: "Maker Lab / Prototyping Lab",
     zone: "Digital Fabrication",
     location: "Ground Floor Workshop Complex",
     desc: "Equipped with FDM and SLA industrial 3D printers, precision laser cutters, CNC profiling tables, and finishing tools for proof-of-concept builds.",
+    image: "/images/original/infrastructure/maker-lab.jpg",
   },
   {
     name: "Super Computer Lab (Param Shavak DL)",
     zone: "AI & High-Performance Compute",
     location: "Anviksha Supercomputing Center",
     desc: "Powered by the Param Shavak DL GPU Supercomputing system to accelerate deep learning training, computer vision models, and compute-intensive simulations.",
+    image: "/images/original/infrastructure/supercomputer-lab.jpg",
   },
   {
     name: "Design IoT Lab",
     zone: "IoT & Telemetry",
     location: "School of Technology Wing",
     desc: "Advanced embedded electronics bench, RF communication analyzers (LoRa, BLE, Zigbee), wireless sensor arrays, and telemetry prototyping gear.",
+    image: "/images/original/infrastructure/tinkering-lab.png",
   },
   {
     name: "Surjan Ideation Arena",
     zone: "Design Thinking",
     location: "Anviksha Central Atrium",
     desc: "An open, flexible design-thinking and collaborative ideation space for multidisciplinary hackathons, brainstorming circles, and demo sessions.",
+    image: "/images/original/infrastructure/srujan-lab.jpg",
   },
   {
     name: "Advanced Drone & UAV Lab",
     zone: "Aerospace & Flight Rigs",
     location: "SOT Flight Hangar & Drone Field",
     desc: "Aeronautical test benches, autonomous flight avionics (Pixhawk/ArduPilot), payload calibration, and flight proving grounds in partnership with Garuda Aerospace.",
+    image: "/images/original/infrastructure/drone-lab.png",
   },
   {
     name: "Specialized Innovation Library",
     zone: "Knowledge & IPR",
     location: "University Library Hub (Accessible till 11 PM)",
     desc: "Exhaustive repositories of literature on intellectual property rights, patent case studies, entrepreneurship biographies, venture finance, and technology laws.",
+    image: "/images/original/infrastructure/library.jpg",
   },
 ];
 
@@ -404,6 +413,29 @@ export function CoworkingPage() {
                 }}
               >
                 <div>
+                  {f.image && (
+                    <div
+                      style={{
+                        marginBottom: "16px",
+                        borderRadius: "12px",
+                        overflow: "hidden",
+                        height: "170px",
+                        border: "1px solid var(--border-color, #e2e8f0)",
+                      }}
+                    >
+                      <img
+                        src={f.image}
+                        alt={f.name}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          display: "block",
+                        }}
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
                     <span className="pill emerald" style={{ fontSize: "11px" }}>{f.zone}</span>
                     <span style={{ fontSize: "12px", fontWeight: 700, color: "#64748b" }}>Facility #{i + 1}</span>

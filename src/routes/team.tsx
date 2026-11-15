@@ -79,8 +79,22 @@ const BOARD_MEMBERS: TeamMember[] = [
       "Research commercialization, IP oversight, and academic alignment",
       "Institutional review of advanced prototyping and deep-tech initiatives",
     ],
-    image: "/leaders/gr-sinha.png",
+    image: "/images/original/leadership/provost-gr-sinha.jpg",
     document: "/mentors/Board of Directors/documents/industry-mentor-02.pdf",
+  },
+  {
+    name: "Shri Mahesh Barot",
+    designation: "Director, GUIITAR Council",
+    role: "Board Director",
+    category: "Leadership",
+    department: "Board of Directors",
+    bio: "Corporate director providing high-level organizational leadership and strategic governance for GUIITAR Council.",
+    responsibilities: [
+      "Board governance and strategic oversight",
+      "Institutional policy steering and resource mobilization",
+      "Executive review of council initiatives",
+    ],
+    image: "/images/original/board/mahesh-barot.png",
   },
   {
     name: "Shri Utkarsh Yajnik",
@@ -94,7 +108,7 @@ const BOARD_MEMBERS: TeamMember[] = [
       "Corporate venture capital network building",
       "Advisory on enterprise risk and sustainability",
     ],
-    image: "/mentors/Board of Directors/photos/industry-mentor-03.avif",
+    image: "/images/original/board/utkarsh-yajnik.png",
     document: "/mentors/Board of Directors/documents/industry-mentor-03.pdf",
   },
   {
@@ -109,7 +123,7 @@ const BOARD_MEMBERS: TeamMember[] = [
       "Community grassroots problem-solving initiatives",
       "Ecosystem partnership oversight",
     ],
-    image: "/mentors/Board of Directors/photos/industry-mentor-04.avif",
+    image: "/images/original/board/swati-bedekar.png",
     document: "/mentors/Board of Directors/documents/industry-mentor-04.pdf",
   },
   {
@@ -124,7 +138,7 @@ const BOARD_MEMBERS: TeamMember[] = [
       "Incubation governance and curriculum interface",
       "Student innovation tracking",
     ],
-    image: "/mentors/Board of Directors/photos/industry-mentor-05.avif",
+    image: "/images/original/board/pujan-patel.png",
     document: "/mentors/Board of Directors/documents/industry-mentor-05.pdf",
   },
   {
@@ -139,7 +153,7 @@ const BOARD_MEMBERS: TeamMember[] = [
       "International centre of excellence collaboration",
       "Venture scaling advisory",
     ],
-    image: "/mentors/Board of Directors/photos/industry-mentor-06.avif",
+    image: "/images/original/board/anupam-jalote.png",
     document: "/mentors/Board of Directors/documents/industry-mentor-06.pdf",
   },
   {
@@ -154,7 +168,7 @@ const BOARD_MEMBERS: TeamMember[] = [
       "Legal structuring and shareholder agreements",
       "Startup valuation and seed financing reviews",
     ],
-    image: "/mentors/Board of Directors/photos/industry-mentor-07.avif",
+    image: "/images/original/board/ravin-sanghavi.png",
     document: "/mentors/Board of Directors/documents/industry-mentor-07.pdf",
   },
 ];
@@ -173,7 +187,7 @@ const CORE_TEAM: TeamMember[] = [
       "Incubatee onboarding, milestone reviews, and graduation monitoring",
       "Liaison with Gujarat Knowledge Society (GKS) and Industries Commissionerate",
     ],
-    image: "/team/kirankumar-parmar.png",
+    image: "/images/original/team/kirankumar-parmar.jpg",
   },
   {
     name: "Mr. Bhuvan Vyas",
@@ -188,7 +202,7 @@ const CORE_TEAM: TeamMember[] = [
       "Investor demo day orchestration and venture acceleration",
       "Outreach for international and inter-institutional partnerships",
     ],
-    image: "/team/bhuvan-vyas.png",
+    image: "/images/original/team/bhuvan-vyas.jpeg",
   },
   {
     name: "Mr. Amit Duggal",
@@ -203,7 +217,7 @@ const CORE_TEAM: TeamMember[] = [
       "Hands-on hardware troubleshooting for student prototype teams",
       "Coordination of pay-as-you-go prototyping facility access",
     ],
-    image: "/team/amit-duggal.png",
+    image: "/images/original/team/amit-duggal.jpeg",
   },
 ];
 
@@ -220,6 +234,7 @@ const TECHNICAL_ASSOCIATES: TeamMember[] = [
       "Embedded C / Arduino / ESP32 firmware troubleshooting",
       "Sensor calibration and telemetry circuit validation",
     ],
+    image: "/images/original/team/krishay-shah.jpeg",
   },
   {
     name: "Ms. Lavanya Jain",
@@ -233,7 +248,7 @@ const TECHNICAL_ASSOCIATES: TeamMember[] = [
       "CAD file evaluation and tolerance checks for rapid prototyping",
       "Post-processing of resin and filament fabricated parts",
     ],
-    image: "/team/lavanya-jain.png",
+    image: "/images/original/team/lavanya-jain.jpg",
   },
   {
     name: "Mr. Tirth Darji",
@@ -247,6 +262,7 @@ const TECHNICAL_ASSOCIATES: TeamMember[] = [
       "Mechanical assembly and workshop tool operations",
       "Prototype safety compliance and workshop inventory",
     ],
+    image: "/images/original/team/tirth-darji.jpeg",
   },
   {
     name: "Mr. Dev Patel",
@@ -260,6 +276,7 @@ const TECHNICAL_ASSOCIATES: TeamMember[] = [
       "Database and server assistance for software MVPs",
       "Student innovation tracking portal support",
     ],
+    image: "/images/original/team/dev-patel.jpeg",
   },
   {
     name: "Ms. Chaitali Karpe",
@@ -273,7 +290,7 @@ const TECHNICAL_ASSOCIATES: TeamMember[] = [
       "Material handling and chemical safety documentation",
       "Assistance for biotech and environmental startup experiments",
     ],
-    image: "/team/chaitali-karpe.png",
+    image: "/images/original/team/chaitali-karpe.jpeg",
   },
   {
     name: "Ms. Nishita Navlani",
@@ -287,6 +304,7 @@ const TECHNICAL_ASSOCIATES: TeamMember[] = [
       "Screening committee presentation support",
       "Incubatee monthly progress report collection",
     ],
+    image: "/images/original/team/nishita-navlani.jpeg",
   },
   {
     name: "Ms. Priyanshi Vankar",
@@ -300,6 +318,7 @@ const TECHNICAL_ASSOCIATES: TeamMember[] = [
       "IPR awareness workshop scheduling and student support",
       "Follow-ups with empaneled patent attorneys",
     ],
+    image: "/images/original/team/priyanshi-vankar.jpeg",
   },
 ];
 
@@ -312,7 +331,7 @@ const ACADEMIC_MENTORS: TeamMember[] = [
     department: "School of Technology (SoT)",
     bio: "Expert in finite element analysis, additive manufacturing, CAD/CAM, and mechanical rapid prototyping.",
     responsibilities: ["Mechanical design validation", "Rapid prototyping mentorship", "Materials selection"],
-    image: "/team/chandra-has.png",
+    image: "/images/original/team/chandra-has.jpg",
   },
   {
     name: "Mr. Abidhusain Lodha",
@@ -322,7 +341,7 @@ const ACADEMIC_MENTORS: TeamMember[] = [
     department: "School of Technology (SoT)",
     bio: "Specialist in unmanned aerial vehicles (UAVs), multi-rotor flight mechanics, ROS, and autonomous robotics.",
     responsibilities: ["Drone Lab guidance", "Flight avionics programming", "Robotics PoC evaluation"],
-    image: "/team/abidhusain-lodha.png",
+    image: "/images/original/team/abidhusain-lodha.jpg",
   },
   {
     name: "Dr. Mihir Trivedi",
@@ -332,7 +351,7 @@ const ACADEMIC_MENTORS: TeamMember[] = [
     department: "School of Technology (SoT)",
     bio: "Specializing in high-performance computing, GPU parallelism, distributed AI, and deep learning architectures.",
     responsibilities: ["Param Shavak Supercomputer workflows", "AI/ML algorithm optimization", "Computer vision"],
-    image: "/team/mihir-trivedi.png",
+    image: "/images/original/team/mihir-trivedi.jpg",
   },
   {
     name: "Dr. Akhilesh Prajapati",
@@ -342,7 +361,7 @@ const ACADEMIC_MENTORS: TeamMember[] = [
     department: "School of Technology (SoT)",
     bio: "14+ years in chemical reaction engineering, industrial polymer chemistry, and industrial process scale-up.",
     responsibilities: ["Chemical process scale-up", "Industrial safety compliance", "Clean-tech validation"],
-    image: "/team/akhilesh-prajapati.png",
+    image: "/images/original/team/akhilesh-prajapati.jpg",
   },
   {
     name: "Ms. Charmi Mehta",
@@ -352,7 +371,7 @@ const ACADEMIC_MENTORS: TeamMember[] = [
     department: "School of Science (SoS)",
     bio: "Guiding fundamental research documentation, scientific methodology, and interdisciplinary student ventures.",
     responsibilities: ["Applied sciences research documentation", "Student cohort guidance", "Scientific validation"],
-    image: "/team/charmi-mehta.png",
+    image: "/images/original/team/charmi-mehta.jpg",
   },
   {
     name: "Dr. Rahul Sharma",
@@ -362,7 +381,7 @@ const ACADEMIC_MENTORS: TeamMember[] = [
     department: "School of Management & Enterprise (SoM&E)",
     bio: "Specializing in business model canvas design, venture unit economics, pricing strategies, and tech commercialization.",
     responsibilities: ["Business model validation", "Unit economics analysis", "Investor pitch preparation"],
-    image: "/team/rahul-sharma.png",
+    image: "/images/original/team/rahul-sharma.jpeg",
   },
   {
     name: "Dr. Jignesh Valand",
@@ -372,7 +391,7 @@ const ACADEMIC_MENTORS: TeamMember[] = [
     department: "School of Science (SoS)",
     bio: "Research mentor for bio-pigments, microbial fermentation, phytopharmaceutical formulations, and green chemistry.",
     responsibilities: ["Biotech venture screening", "Microbial process optimization", "Bio-safety advisory"],
-    image: "/team/jignesh-valand.png",
+    image: "/images/original/team/jignesh-valand.jpg",
   },
   {
     name: "Mr. Anup Upadhyay",
@@ -382,7 +401,7 @@ const ACADEMIC_MENTORS: TeamMember[] = [
     department: "School of Technology (SoT)",
     bio: "Hands-on machinist and workshop specialist assisting student fabrication, lathe turning, welding, and structural tooling.",
     responsibilities: ["Machine shop tooling", "Welding & structural fabrication", "Safety gear compliance"],
-    image: "/team/anup-upadhyay.png",
+    image: "/images/original/team/anup-upadhyay.jpg",
   },
   {
     name: "Mr. Hemant M Rajput",
@@ -392,7 +411,7 @@ const ACADEMIC_MENTORS: TeamMember[] = [
     department: "GSFC University Central Computing",
     bio: "Managing high-speed fiber campus networking, server virtualization, lab compute racks, and portal security.",
     responsibilities: ["Computing lab networking", "Server availability", "Access control management"],
-    image: "/team/hemant-rajput.png",
+    image: "/images/original/team/hemant-rajpoot.jpg",
   },
 ];
 

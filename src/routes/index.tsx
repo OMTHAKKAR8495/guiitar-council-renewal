@@ -2305,6 +2305,29 @@ export function HomePage() {
             </div>
 
             <div>
+              {currentLab.image && (
+                <div
+                  style={{
+                    marginBottom: "20px",
+                    borderRadius: "14px",
+                    overflow: "hidden",
+                    border: "1px solid var(--border)",
+                    boxShadow: "0 6px 20px rgba(0, 0, 0, 0.08)",
+                  }}
+                >
+                  <img
+                    src={currentLab.image}
+                    alt={currentLab.imageAlt}
+                    style={{
+                      width: "100%",
+                      height: "220px",
+                      objectFit: "cover",
+                      display: "block",
+                    }}
+                    loading="lazy"
+                  />
+                </div>
+              )}
               <div>
                 <h4
                   style={{

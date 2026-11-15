@@ -1534,11 +1534,11 @@ const INITIAL_MENTORS: MentorItem[] = [
     designation: "Visiting Professor",
     role: "Visiting Professor",
     domain: "Faculty",
-    organization: "GSF University",
-    experience: "Faculty Mentor, GSF University",
+    organization: "GSFC University",
+    experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/mentors/faculty/photos/industry-mentor-01.avif",
-    imagePath: "/mentors/faculty/photos/industry-mentor-01.avif",
+    avatar: "/images/original/faculty/bharti-trivedi.jpg",
+    imagePath: "/images/original/faculty/bharti-trivedi.jpg",
     documentPath: "/mentors/faculty/documents/industry-mentor-01.pdf",
     status: "Active",
   },
@@ -1548,11 +1548,11 @@ const INITIAL_MENTORS: MentorItem[] = [
     designation: "Professor",
     role: "Professor",
     domain: "Faculty",
-    organization: "GSF University",
-    experience: "Faculty Mentor, GSF University",
+    organization: "GSFC University",
+    experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/mentors/faculty/photos/industry-mentor-02.avif",
-    imagePath: "/mentors/faculty/photos/industry-mentor-02.avif",
+    avatar: "/images/original/faculty/devjani-banerjee.jpg",
+    imagePath: "/images/original/faculty/devjani-banerjee.jpg",
     documentPath: "/mentors/faculty/documents/industry-mentor-02.pdf",
     status: "Active",
   },
@@ -1562,11 +1562,11 @@ const INITIAL_MENTORS: MentorItem[] = [
     designation: "Associate Dean",
     role: "Associate Dean",
     domain: "Faculty",
-    organization: "GSF University",
-    experience: "Faculty Mentor, GSF University",
+    organization: "GSFC University",
+    experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/mentors/faculty/photos/industry-mentor-03.avif",
-    imagePath: "/mentors/faculty/photos/industry-mentor-03.avif",
+    avatar: "/images/original/faculty/chetna-parmar.jpg",
+    imagePath: "/images/original/faculty/chetna-parmar.jpg",
     documentPath: "/mentors/faculty/documents/industry-mentor-03.pdf",
     status: "Active",
   },
@@ -1576,11 +1576,11 @@ const INITIAL_MENTORS: MentorItem[] = [
     designation: "Dean, SoI & Associate Professor",
     role: "Dean, SoI & Associate Professor",
     domain: "Faculty",
-    organization: "GSF University",
-    experience: "Faculty Mentor, GSF University",
+    organization: "GSFC University",
+    experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/mentors/faculty/photos/industry-mentor-04.avif",
-    imagePath: "/mentors/faculty/photos/industry-mentor-04.avif",
+    avatar: "/images/original/faculty/sanjukta-roy.png",
+    imagePath: "/images/original/faculty/sanjukta-roy.png",
     documentPath: "/mentors/faculty/documents/industry-mentor-04.pdf",
     status: "Active",
   },
@@ -1590,11 +1590,11 @@ const INITIAL_MENTORS: MentorItem[] = [
     designation: "Sr. Assistant Professor",
     role: "Sr. Assistant Professor",
     domain: "Faculty",
-    organization: "GSF University",
-    experience: "Faculty Mentor, GSF University",
+    organization: "GSFC University",
+    experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/mentors/faculty/photos/industry-mentor-05.avif",
-    imagePath: "/mentors/faculty/photos/industry-mentor-05.avif",
+    avatar: "/images/original/faculty/mosam-patel.png",
+    imagePath: "/images/original/faculty/mosam-patel.png",
     documentPath: "/mentors/faculty/documents/industry-mentor-05.pdf",
     status: "Active",
   },
@@ -1607,8 +1607,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GSFC University",
     experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/mentors/faculty/photos/industry-mentor-06.avif",
-    imagePath: "/mentors/faculty/photos/industry-mentor-06.avif",
+    avatar: "/images/original/faculty/arti-bhadoria.png",
+    imagePath: "/images/original/faculty/arti-bhadoria.png",
     documentPath: "/mentors/faculty/documents/industry-mentor-06.pdf",
     status: "Active",
   },
@@ -1621,8 +1621,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GSFC University",
     experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/mentors/faculty/photos/industry-mentor-07.avif",
-    imagePath: "/mentors/faculty/photos/industry-mentor-07.avif",
+    avatar: "/images/original/faculty/parin-kanaiya.jpg",
+    imagePath: "/images/original/faculty/parin-kanaiya.jpg",
     documentPath: "/mentors/faculty/documents/industry-mentor-07.pdf",
     status: "Active",
   },
@@ -1635,8 +1635,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GSFC University",
     experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/mentors/faculty/photos/industry-mentor-08.avif",
-    imagePath: "/mentors/faculty/photos/industry-mentor-08.avif",
+    avatar: "/images/original/faculty/swati-saxena.jpg",
+    imagePath: "/images/original/faculty/swati-saxena.jpg",
     documentPath: "/mentors/faculty/documents/industry-mentor-08.pdf",
     status: "Active",
   },
@@ -1649,8 +1649,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GSFC University",
     experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/team/akhilesh-prajapati.png",
-    imagePath: "/mentors/faculty/photos/industry-mentor-09.avif",
+    avatar: "/images/original/team/akhilesh-prajapati.jpg",
+    imagePath: "/images/original/team/akhilesh-prajapati.jpg",
     documentPath: "/mentors/faculty/documents/industry-mentor-09.pdf",
     status: "Active",
   },
@@ -1663,8 +1663,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GSFC University",
     experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/mentors/faculty/photos/industry-mentor-10.avif",
-    imagePath: "/mentors/faculty/photos/industry-mentor-10.avif",
+    avatar: "/images/original/faculty/archana-magare.png",
+    imagePath: "/images/original/faculty/archana-magare.png",
     documentPath: "/mentors/faculty/documents/industry-mentor-10.pdf",
     status: "Active",
   },
@@ -1677,17 +1677,14 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GSFC University",
     experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/mentors/faculty/photos/industry-mentor-11.avif",
-    imagePath: "/mentors/faculty/photos/industry-mentor-11.avif",
+    avatar: "/images/original/faculty/arti-hansda.jpg",
+    imagePath: "/images/original/faculty/arti-hansda.jpg",
     documentPath: "/mentors/faculty/documents/industry-mentor-11.pdf",
     status: "Active",
   },
 
   // ─────────────────────────────────────────────────────────────────────────────
-  // BOARD OF DIRECTORS (board-01 – board-07)
-  // Photos:    /mentors/Board of Directors/photos/industry-mentor-XX.avif
-  // Documents: /mentors/Board of Directors/documents/industry-mentor-XX.pdf
-  // Order matches screenshot left-to-right, top-to-bottom.
+  // BOARD OF DIRECTORS (board-01 – board-08)
   // ─────────────────────────────────────────────────────────────────────────────
   {
     id: "board-01",
@@ -1698,8 +1695,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GUIITAR Council",
     experience: "Former Additional Chief Secretary (Home / Forest & Environment), Govt. of Gujarat",
     expertise: ["Public Policy & Governance", "Institutional Leadership", "Strategic Planning", "Innovation Ecosystems"],
-    avatar: "/mentors/Board of Directors/photos/industry-mentor-01.avif",
-    imagePath: "/mentors/Board of Directors/photos/industry-mentor-01.avif",
+    avatar: "/leaders/pk-taneja.png",
+    imagePath: "/leaders/pk-taneja.png",
     documentPath: "/mentors/Board of Directors/documents/industry-mentor-01.pdf",
     status: "Active",
   },
@@ -1712,8 +1709,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GUIITAR Council",
     experience: "25+ Years in Engineering Research & Academic Leadership",
     expertise: ["Biomedical Signal Processing", "AI/ML in Healthcare", "IPR Strategy", "Academic Entrepreneurship"],
-    avatar: "/mentors/Board of Directors/photos/industry-mentor-02.avif",
-    imagePath: "/mentors/Board of Directors/photos/industry-mentor-02.avif",
+    avatar: "/images/original/leadership/provost-gr-sinha.jpg",
+    imagePath: "/images/original/leadership/provost-gr-sinha.jpg",
     documentPath: "/mentors/Board of Directors/documents/industry-mentor-02.pdf",
     status: "Active",
   },
@@ -1726,50 +1723,50 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GUIITAR Council",
     experience: "Board Director, GUIITAR Council",
     expertise: ["Corporate Governance", "Strategic Leadership", "Business Development"],
-    avatar: "/mentors/Board of Directors/photos/industry-mentor-03.avif",
-    imagePath: "/mentors/Board of Directors/photos/industry-mentor-03.avif",
+    avatar: "/images/original/board/utkarsh-yajnik.png",
+    imagePath: "/images/original/board/utkarsh-yajnik.png",
     documentPath: "/mentors/Board of Directors/documents/industry-mentor-03.pdf",
     status: "Active",
   },
   {
     id: "board-04",
-    name: "Ms. Swati Bedekar",
+    name: "Mrs. Swati Bedekar",
     designation: "Director",
     role: "Director",
     domain: "Board of Directors",
     organization: "GUIITAR Council",
-    experience: "Board Director, GUIITAR Council",
+    experience: "Social Entrepreneur, Founder Vatsalya Foundation & Director GUIITAR Council",
     expertise: ["Corporate Governance", "Strategic Leadership", "Innovation Policy"],
-    avatar: "/mentors/Board of Directors/photos/industry-mentor-04.avif",
-    imagePath: "/mentors/Board of Directors/photos/industry-mentor-04.avif",
+    avatar: "/images/original/board/swati-bedekar.png",
+    imagePath: "/images/original/board/swati-bedekar.png",
     documentPath: "/mentors/Board of Directors/documents/industry-mentor-04.pdf",
     status: "Active",
   },
   {
     id: "board-05",
-    name: "Dr. Pujan Vaishnav",
+    name: "Shri Pujan Patel",
     designation: "Director",
     role: "Director",
     domain: "Board of Directors",
     organization: "GUIITAR Council",
     experience: "Board Director, GUIITAR Council",
     expertise: ["Research & Development", "Innovation Ecosystems", "Strategic Advisory"],
-    avatar: "/mentors/Board of Directors/photos/industry-mentor-05.avif",
-    imagePath: "/mentors/Board of Directors/photos/industry-mentor-05.avif",
+    avatar: "/images/original/board/pujan-patel.png",
+    imagePath: "/images/original/board/pujan-patel.png",
     documentPath: "/mentors/Board of Directors/documents/industry-mentor-05.pdf",
     status: "Active",
   },
   {
     id: "board-06",
     name: "Mr. Anupam Jalote",
-    designation: "CEO, iCEM - International Centre for Excellence in Mining",
-    role: "CEO, iCEM",
+    designation: "CEO, iCreate & Director, GUIITAR Council",
+    role: "Director, GUIITAR Council",
     domain: "Board of Directors",
-    organization: "iCEM - International Centre for Excellence in Mining",
-    experience: "Board Director, GUIITAR Council",
-    expertise: ["Mining Technology", "Centre of Excellence Management", "Industry Partnerships"],
-    avatar: "/mentors/Board of Directors/photos/industry-mentor-06.avif",
-    imagePath: "/mentors/Board of Directors/photos/industry-mentor-06.avif",
+    organization: "iCreate / GUIITAR Council",
+    experience: "Veteran incubator leader & former CEO iCreate",
+    expertise: ["Incubation Strategy", "Deep-Tech Acceleration", "Industry Partnerships"],
+    avatar: "/images/original/board/anupam-jalote.png",
+    imagePath: "/images/original/board/anupam-jalote.png",
     documentPath: "/mentors/Board of Directors/documents/industry-mentor-06.pdf",
     status: "Active",
   },
@@ -1780,11 +1777,25 @@ const INITIAL_MENTORS: MentorItem[] = [
     role: "Director",
     domain: "Board of Directors",
     organization: "GUIITAR Council",
-    experience: "Board Director, GUIITAR Council",
-    expertise: ["Business Development", "Legal Advisory", "Entrepreneurship", "Consulting"],
-    avatar: "/mentors/Board of Directors/photos/industry-mentor-07.avif",
-    imagePath: "/mentors/Board of Directors/photos/industry-mentor-07.avif",
+    experience: "Managing Partner, Venture Studio & Director GUIITAR Council",
+    expertise: ["Early-stage Investing", "Startup Mentorship", "Commercialization"],
+    avatar: "/images/original/board/ravin-sanghavi.png",
+    imagePath: "/images/original/board/ravin-sanghavi.png",
     documentPath: "/mentors/Board of Directors/documents/industry-mentor-07.pdf",
+    status: "Active",
+  },
+  {
+    id: "board-08",
+    name: "Shri Mahesh Barot",
+    designation: "Director",
+    role: "Director",
+    domain: "Board of Directors",
+    organization: "GUIITAR Council",
+    experience: "Board Director, GUIITAR Council",
+    expertise: ["Strategic Governance", "Operations", "Industry Relations"],
+    avatar: "/images/original/board/mahesh-barot.png",
+    imagePath: "/images/original/board/mahesh-barot.png",
+    documentPath: "/mentors/Board of Directors/documents/industry-mentor-08.pdf",
     status: "Active",
   },
 ];
@@ -3255,24 +3266,30 @@ export class AdminDataStore {
           }
         }
 
-        // Migrate any cached broken .avif photo paths in localStorage to verified seed paths
+        // Migrate any cached broken .avif or old /mentors/ photo paths in localStorage to verified seed paths
         if (
-          existing.avatar &&
-          existing.avatar.endsWith(".avif") &&
           seed.avatar &&
-          !seed.avatar.endsWith(".avif")
+          (!existing.avatar ||
+            existing.avatar.endsWith(".avif") ||
+            existing.avatar.startsWith("/mentors/") ||
+            seed.avatar.startsWith("/images/original/"))
         ) {
-          updated.avatar = seed.avatar;
-          recordChanged = true;
+          if (updated.avatar !== seed.avatar) {
+            updated.avatar = seed.avatar;
+            recordChanged = true;
+          }
         }
         if (
-          existing.imagePath &&
-          existing.imagePath.endsWith(".avif") &&
           seed.imagePath &&
-          !seed.imagePath.endsWith(".avif")
+          (!existing.imagePath ||
+            existing.imagePath.endsWith(".avif") ||
+            existing.imagePath.startsWith("/mentors/") ||
+            seed.imagePath.startsWith("/images/original/"))
         ) {
-          updated.imagePath = seed.imagePath;
-          recordChanged = true;
+          if (updated.imagePath !== seed.imagePath) {
+            updated.imagePath = seed.imagePath;
+            recordChanged = true;
+          }
         }
 
         // For the expertise array: replace only if every element is a placeholder
