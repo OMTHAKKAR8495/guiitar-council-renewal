@@ -398,9 +398,8 @@ function About() {
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
+                  flexDirection: "column",
+                  gap: "8px",
                   paddingTop: "14px",
                   borderTop: "1px solid var(--border-light, #e2e8f0)",
                 }}
@@ -410,7 +409,7 @@ function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>View Startup Policy</span>
@@ -421,7 +420,7 @@ function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-outline btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download PDF</span>
@@ -523,9 +522,8 @@ function About() {
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
+                  flexDirection: "column",
+                  gap: "8px",
                   paddingTop: "14px",
                   borderTop: "1px solid var(--border-light, #e2e8f0)",
                 }}
@@ -535,7 +533,7 @@ function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#059669", borderColor: "#059669" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px", background: "#059669", borderColor: "#059669" }}
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>View IPR Policy</span>
@@ -546,7 +544,7 @@ function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-outline btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download PDF</span>
@@ -648,9 +646,8 @@ function About() {
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
+                  flexDirection: "column",
+                  gap: "8px",
                   paddingTop: "14px",
                   borderTop: "1px solid var(--border-light, #e2e8f0)",
                 }}
@@ -660,7 +657,7 @@ function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#d97706", borderColor: "#d97706" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px", background: "#d97706", borderColor: "#d97706" }}
                 >
                   <FlaskConical className="w-3.5 h-3.5" />
                   <span>Book Lab Slot</span>
@@ -670,6 +667,7 @@ function About() {
                   to="/innovation"
                   variant="outline"
                   size="sm"
+                  style={{ width: "100%", justifyContent: "center" }}
                   icon={<ExternalLink className="w-3.5 h-3.5" />}
                 >
                   Explore Facilities
@@ -771,9 +769,8 @@ function About() {
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
+                  flexDirection: "column",
+                  gap: "8px",
                   paddingTop: "14px",
                   borderTop: "1px solid var(--border-light, #e2e8f0)",
                 }}
@@ -783,7 +780,7 @@ function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#7c3aed", borderColor: "#7c3aed" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px", background: "#7c3aed", borderColor: "#7c3aed" }}
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   <span>Fill Feedback Form</span>
@@ -793,6 +790,7 @@ function About() {
                   to="/contact"
                   variant="outline"
                   size="sm"
+                  style={{ width: "100%", justifyContent: "center" }}
                   icon={<ExternalLink className="w-3.5 h-3.5" />}
                 >
                   Contact Council
@@ -894,9 +892,8 @@ function About() {
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
+                  flexDirection: "column",
+                  gap: "8px",
                   paddingTop: "14px",
                   borderTop: "1px solid var(--border-light, #e2e8f0)",
                 }}
@@ -906,7 +903,7 @@ function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#0284c7", borderColor: "#0284c7" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px", background: "#0284c7", borderColor: "#0284c7" }}
                 >
                   <FolderOpen className="w-3.5 h-3.5" />
                   <span>Access Startup Resources</span>
@@ -916,6 +913,7 @@ function About() {
                   to="/resources"
                   variant="outline"
                   size="sm"
+                  style={{ width: "100%", justifyContent: "center" }}
                   icon={<ExternalLink className="w-3.5 h-3.5" />}
                 >
                   View Knowledge Base

@@ -668,10 +668,9 @@ export function HomePage() {
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  paddingTop: "12px",
+                  flexDirection: "column",
+                  gap: "8px",
+                  paddingTop: "14px",
                   borderTop: "1px solid var(--border)",
                 }}
               >
@@ -680,7 +679,7 @@ export function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>View Startup Policy</span>
@@ -691,7 +690,7 @@ export function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-outline btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download PDF</span>
@@ -795,10 +794,9 @@ export function HomePage() {
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  paddingTop: "12px",
+                  flexDirection: "column",
+                  gap: "8px",
+                  paddingTop: "14px",
                   borderTop: "1px solid var(--border)",
                 }}
               >
@@ -807,7 +805,7 @@ export function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#059669", borderColor: "#059669" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px", background: "#059669", borderColor: "#059669" }}
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>View IPR Policy</span>
@@ -818,7 +816,7 @@ export function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-outline btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download PDF</span>
@@ -922,10 +920,9 @@ export function HomePage() {
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  paddingTop: "12px",
+                  flexDirection: "column",
+                  gap: "8px",
+                  paddingTop: "14px",
                   borderTop: "1px solid var(--border)",
                 }}
               >
@@ -934,7 +931,7 @@ export function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#d97706", borderColor: "#d97706" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px", background: "#d97706", borderColor: "#d97706" }}
                 >
                   <FlaskConical className="w-3.5 h-3.5" />
                   <span>Book Lab Slot</span>
@@ -943,7 +940,7 @@ export function HomePage() {
                 <Link
                   to="/innovation"
                   className="btn btn-outline btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>Explore Facilities</span>
@@ -1047,10 +1044,9 @@ export function HomePage() {
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  paddingTop: "12px",
+                  flexDirection: "column",
+                  gap: "8px",
+                  paddingTop: "14px",
                   borderTop: "1px solid var(--border)",
                 }}
               >
@@ -1059,7 +1055,7 @@ export function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#7c3aed", borderColor: "#7c3aed" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px", background: "#7c3aed", borderColor: "#7c3aed" }}
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   <span>Fill Feedback Form</span>
@@ -1068,7 +1064,7 @@ export function HomePage() {
                 <Link
                   to="/contact"
                   className="btn btn-outline btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>Contact Council</span>
@@ -1172,10 +1168,9 @@ export function HomePage() {
               <div
                 style={{
                   display: "flex",
-                  gap: "10px",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                  paddingTop: "12px",
+                  flexDirection: "column",
+                  gap: "8px",
+                  paddingTop: "14px",
                   borderTop: "1px solid var(--border)",
                 }}
               >
@@ -1184,7 +1179,7 @@ export function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#0284c7", borderColor: "#0284c7" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px", background: "#0284c7", borderColor: "#0284c7" }}
                 >
                   <FolderOpen className="w-3.5 h-3.5" />
                   <span>Access Startup Resources</span>
@@ -1193,7 +1188,7 @@ export function HomePage() {
                 <Link
                   to="/resources"
                   className="btn btn-outline btn-sm"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>View Knowledge Base</span>
