@@ -854,7 +854,7 @@ export function AdminAnalyticsPage() {
                 borderRadius: "4px",
               }}
             >
-              83+ Historic
+              15+ Incubated (1800+ Mentored)
             </span>
           </div>
           <div

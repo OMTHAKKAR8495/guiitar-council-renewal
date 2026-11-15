@@ -299,6 +299,86 @@ function About() {
         </div>
       </section>
 
+      {/* 13 FOCUS THRUST AREAS */}
+      <section style={{ padding: "48px 0 20px", background: "var(--background)" }}>
+        <div className="container">
+          <SectionTitle
+            badge="Institutional Priority Sectors"
+            title="13 Official Focus Thrust Areas"
+            subtitle="GUIITAR Council actively incubates, funds, and accelerates innovation across 13 government and industry recognized priority domains."
+          />
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "16px",
+              marginTop: "28px",
+            }}
+          >
+            {[
+              { num: "01", name: "Agriculture and Allied Fields", icon: Leaf, desc: "Agri-tech, crop diagnostics, post-harvest automation, precision farming." },
+              { num: "02", name: "Artificial Intelligence & Robotics", icon: Bot, desc: "Autonomous machines, edge vision, neural network deployment, robotics." },
+              { num: "03", name: "Biotechnology & Life Sciences", icon: Dna, desc: "Microbial biopigments, fermentation, biocatalysis, phytopharmaceuticals." },
+              { num: "04", name: "Clean-Tech & Circular Economy", icon: Leaf, desc: "Zero-waste manufacturing, circular biopolymers, industrial solvent recovery." },
+              { num: "05", name: "Cyber Security & Network Defense", icon: ShieldCheck, desc: "Threat intelligence, industrial telemetry protection, cryptographic protocols." },
+              { num: "06", name: "Energy & Power Systems", icon: Zap, desc: "Solar photovoltaic optimization, battery management, hybrid grid storage." },
+              { num: "07", name: "Environmental Challenges & Solutions", icon: Leaf, desc: "Air quality monitoring, floral waste recycling, emissions abatement." },
+              { num: "08", name: "Healthcare & Biomedical Devices", icon: HeartPulse, desc: "Point-of-care diagnostics, Ayurvedic standardization, clinical assistive tech." },
+              { num: "09", name: "Information & Communication Technology (ICT)", icon: Wifi, desc: "Cloud computing, SaaS platforms, institutional digital governance." },
+              { num: "10", name: "Internet of Things (IoT) & Embedded", icon: Cpu, desc: "Industrial sensor telemetry, microcontroller prototyping, smart cities." },
+              { num: "11", name: "Manufacturing & Materials", icon: Factory, desc: "Additive manufacturing, CNC machining, resin casting, mechanical tooling." },
+              { num: "12", name: "Services & Deep-Tech Enablement", icon: Briefcase, desc: "Enterprise workflow automation, legal tech, SME digital empowerment." },
+              { num: "13", name: "Water Utilities: Drinking Water, Wastewater & Storm Water", icon: Droplets, desc: "Effluent treatment, stormwater harvesting, membrane filtration systems." },
+            ].map((t) => (
+              <div
+                key={t.num}
+                className="thrust-item"
+                style={{
+                  background: "var(--card-bg, #ffffff)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "14px",
+                  padding: "18px 20px",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "14px",
+                  transition: "transform 0.15s ease, border-color 0.15s ease",
+                }}
+              >
+                <div
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "10px",
+                    background: "rgba(37, 99, 235, 0.1)",
+                    color: "var(--primary, #2563eb)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <t.icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+                    <span style={{ fontSize: "11px", fontWeight: 800, color: "var(--primary, #2563eb)" }}>
+                      THRUST {t.num}
+                    </span>
+                  </div>
+                  <h4 style={{ margin: "0 0 4px", fontSize: "14.5px", fontWeight: 700, color: "var(--text)" }}>
+                    {t.name}
+                  </h4>
+                  <p style={{ margin: 0, fontSize: "12.5px", color: "var(--text-muted)", lineHeight: 1.45 }}>
+                    {t.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* OFFICIAL POLICY DOCUMENTS */}
       <section style={{ padding: "28px 0 0", background: "var(--background)" }}>
         <div className="container">

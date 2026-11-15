@@ -53,7 +53,7 @@ const ecosystemClusters = [
   {
     id: "startups",
     title: "Incubated Startups",
-    desc: "83+ early-stage ventures building working prototypes, filing patents, and running commercial pilots.",
+    desc: "15+ officially incubated startups and 1,800+ mentored innovators building working prototypes, filing patents, and running commercial pilots.",
     icon: RocketIcon,
     color: "#059669",
   },
@@ -174,6 +174,7 @@ function EcosystemMentorAvatar({ mentor }: { mentor: MentorItem }) {
         border: "2.5px solid #3b82f6",
         boxShadow: "0 4px 14px rgba(37, 99, 235, 0.18)",
         flexShrink: 0,
+        background: domainBg,
       }}
     >
       <img

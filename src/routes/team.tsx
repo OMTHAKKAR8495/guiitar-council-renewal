@@ -43,7 +43,7 @@ interface TeamMember {
   name: string;
   designation: string;
   role: string;
-  category: "Leadership" | "Core Team" | "Technical Associates" | "Academic Mentors";
+  category: "Leadership" | "Core Team" | "Technical Associates" | "Academic Mentors" | "GUIITAR Committee (GUSC)";
   department?: string;
   bio: string;
   responsibilities: string[];
@@ -415,7 +415,154 @@ const ACADEMIC_MENTORS: TeamMember[] = [
   },
 ];
 
-const ALL_MEMBERS = [...BOARD_MEMBERS, ...CORE_TEAM, ...TECHNICAL_ASSOCIATES, ...ACADEMIC_MENTORS];
+const GUSC_MEMBERS: TeamMember[] = [
+  {
+    name: "Prof. G. R. Sinha",
+    designation: "Provost, GSFC University & CEO, GUIITAR Council",
+    role: "Chairperson",
+    category: "GUIITAR Committee (GUSC)",
+    department: "GSFC University Start-up Committee",
+    bio: "Head of the apex institutional startup committee constituted under Office Order No. Provost/092025/142.",
+    responsibilities: [
+      "Apex approval of student/faculty incubation applications",
+      "Sanctioning of prototype grant disbursements (up to ₹2.5 Lakhs)",
+      "Institutional policy liaison with State Nodal Agencies and DST",
+    ],
+    image: "/images/original/leadership/provost-gr-sinha.jpg",
+    document: "/documents/gusc-committee-order.pdf",
+  },
+  {
+    name: "Mr. KiranKumar Parmar",
+    designation: "Senior Manager (Incubation) & SSIP Coordinator",
+    role: "Member Secretary",
+    category: "GUIITAR Committee (GUSC)",
+    department: "GUIITAR Council Operations",
+    bio: "Executive coordinator managing startup scrutiny, grant disbursements, institutional reporting, and quarterly compliance.",
+    responsibilities: [
+      "Convening GUSC evaluation and screening committee sessions",
+      "Documentation of PoC scrutiny and patent disclosure filings",
+      "Quarterly compliance reporting to State Innovation Bodies",
+    ],
+    image: "/images/original/team/kirankumar-parmar.jpg",
+    document: "/documents/gusc-committee-order.pdf",
+  },
+  {
+    name: "VP (Research & Development), GSFC Ltd",
+    designation: "Vice President (R&D), GSFC Limited",
+    role: "External Industry Member",
+    category: "GUIITAR Committee (GUSC)",
+    department: "Fertilizernagar Corporate R&D",
+    bio: "Senior corporate chemical industry leader providing industrial prior-art validation and scale-up mentorship.",
+    responsibilities: [
+      "Industrial feasibility and pilot testing proving bed linkage",
+      "Corporate R&D synergy and green chemical scale-up advisory",
+      "Technology transfer and industrial proof-of-concept evaluation",
+    ],
+    document: "/documents/gusc-committee-order.pdf",
+  },
+  {
+    name: "Dean, School of Technology (SoT)",
+    designation: "Dean, Engineering & Applied Sciences",
+    role: "Institutional Member",
+    category: "GUIITAR Committee (GUSC)",
+    department: "School of Technology",
+    bio: "Overseeing engineering prototype laboratories, Maker Lab integration, and student hardware feasibility.",
+    responsibilities: [
+      "Engineering prototype scrutiny and safety clearances",
+      "Allocation of advanced prototyping facilities and machine shop hours",
+      "Interdisciplinary engineering student project coordination",
+    ],
+    document: "/documents/gusc-committee-order.pdf",
+  },
+  {
+    name: "Dean, School of Science (SoS)",
+    designation: "Dean, Basic & Applied Sciences",
+    role: "Institutional Member",
+    category: "GUIITAR Committee (GUSC)",
+    department: "School of Science",
+    bio: "Supervising biotechnology, chemistry, and environmental science laboratory research and biosafety compliance.",
+    responsibilities: [
+      "Biological and chemical safety protocol review",
+      "Wet-lab incubation and microbial assay verification",
+      "Scientific research due diligence for grant sanctions",
+    ],
+    document: "/documents/gusc-committee-order.pdf",
+  },
+  {
+    name: "Dean, School of Management & Enterprise (SoM&E)",
+    designation: "Dean, Business & Entrepreneurship",
+    role: "Institutional Member",
+    category: "GUIITAR Committee (GUSC)",
+    department: "School of Management & Enterprise",
+    bio: "Guiding venture business models, financial viability, unit economics, and market go-to-market strategies.",
+    responsibilities: [
+      "Business Model Canvas and pricing viability assessment",
+      "Financial projection scrutiny and market size estimation",
+      "Investor pitch preparation and entrepreneurship club integration",
+    ],
+    document: "/documents/gusc-committee-order.pdf",
+  },
+  {
+    name: "Dr. Akhilesh Prajapati",
+    designation: "Associate Professor, Chemical Engineering",
+    role: "Technical Evaluator",
+    category: "GUIITAR Committee (GUSC)",
+    department: "Department of Chemical Engineering",
+    bio: "Senior chemical engineering researcher evaluating process scale-up, reaction engineering, and sustainable materials.",
+    responsibilities: [
+      "Chemical process safety and mass-balance evaluation",
+      "Prototyping milestone verification for grant tranche release",
+      "Technical mentorship in sustainable polymers and resins",
+    ],
+    image: "/team/akhilesh-prajapati.png",
+    document: "/documents/gusc-committee-order.pdf",
+  },
+  {
+    name: "Dr. Mihir Trivedi",
+    designation: "Sr. Assistant Professor, Computer Science",
+    role: "AI & Computing Domain Lead",
+    category: "GUIITAR Committee (GUSC)",
+    department: "Department of Computer Science & Eng.",
+    bio: "Supercomputing lead managing Param Shavak DL resources, edge computing, AI algorithms, and software validation.",
+    responsibilities: [
+      "High-performance computing compute allocation scrutiny",
+      "Software code architecture and machine learning model validation",
+      "Cybersecurity and data protection compliance",
+    ],
+    image: "/team/mihir-trivedi.png",
+    document: "/documents/gusc-committee-order.pdf",
+  },
+  {
+    name: "Dr. Bhoomi Shah",
+    designation: "Assistant Professor & IPR Lead",
+    role: "IPR Scrutiny Lead",
+    category: "GUIITAR Committee (GUSC)",
+    department: "Intellectual Property Rights (IPR) Centre",
+    bio: "Patent search specialist evaluating invention disclosures, prior-art searches, design registrations, and copyright filing.",
+    responsibilities: [
+      "Prior-art search review and patentability assessment",
+      "Invention Disclosure Form (IDF) scrutiny under GUIITAR IPR Policy",
+      "Sanctioning of IPR patent filing grants (up to ₹1.0 Lakh)",
+    ],
+    document: "/documents/gusc-committee-order.pdf",
+  },
+  {
+    name: "President & Secretary, Student Innovation Society (E-Club)",
+    designation: "Student Representatives",
+    role: "Student Innovator Voice",
+    category: "GUIITAR Committee (GUSC)",
+    department: "Entrepreneurship Club (E-Club)",
+    bio: "Elected student leadership voicing grassroots innovator requirements, hackathon initiatives, and maker lab access.",
+    responsibilities: [
+      "Student ideation pipeline feedback to executive committee",
+      "Coordination of peer-to-peer prototyping bootcamps and workshops",
+      "Student founder support advocacy across all three schools",
+    ],
+    document: "/documents/gusc-committee-order.pdf",
+  },
+];
+
+const ALL_MEMBERS = [...BOARD_MEMBERS, ...CORE_TEAM, ...GUSC_MEMBERS, ...TECHNICAL_ASSOCIATES, ...ACADEMIC_MENTORS];
 
 export function TeamPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -423,6 +570,7 @@ export function TeamPage() {
   const categories = [
     "All",
     "Leadership",
+    "GUIITAR Committee (GUSC)",
     "Core Team",
     "Technical Associates",
     "Academic Mentors",
@@ -527,6 +675,70 @@ export function TeamPage() {
               </button>
             ))}
           </div>
+
+          {/* GUSC COMMITTEE HIGHLIGHT BANNER */}
+          {selectedCategory === "GUIITAR Committee (GUSC)" && (
+            <div
+              style={{
+                background: "linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(14, 165, 233, 0.05) 100%)",
+                border: "1.5px solid var(--primary, #2563eb)",
+                borderRadius: "16px",
+                padding: "24px 28px",
+                marginBottom: "32px",
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "16px",
+              }}
+            >
+              <div style={{ maxWidth: "720px" }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    background: "rgba(37, 99, 235, 0.15)",
+                    color: "var(--primary, #2563eb)",
+                    fontSize: "11px",
+                    fontWeight: 800,
+                    padding: "3px 8px",
+                    borderRadius: "6px",
+                    marginBottom: "8px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Office Order No. Provost/092025/142 • Date: 10/09/2025
+                </span>
+                <h3 style={{ margin: "0 0 6px", fontSize: "19px", fontWeight: 800, color: "var(--text)" }}>
+                  GSFC University Start-up Committee (GUSC)
+                </h3>
+                <p style={{ margin: 0, fontSize: "14px", color: "var(--text-muted)", lineHeight: 1.55 }}>
+                  The unified statutory committee constituted by the Provost, GSFC University, merging the University Level Start-up Committee, Technical Scrutiny Committee, and IPR Evaluation Panel to oversee incubation grants, PoC sanctions, and intellectual property protection.
+                </p>
+              </div>
+
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                <a
+                  href="/documents/gusc-committee-order.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>View Committee Order</span>
+                </a>
+                <a
+                  href="/documents/gusc-committee-order.pdf"
+                  download="GUSC_Committee_Order.pdf"
+                  className="btn btn-outline btn-sm"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download PDF</span>
+                </a>
+              </div>
+            </div>
+          )}
 
           {/* TEAM MEMBERS GRID */}
           <div

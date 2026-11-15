@@ -142,7 +142,7 @@ export const MEGA_MENU: MegaMenuCategory[] = [
     ],
     featured: {
       title: "Cohorts Open for 2026",
-      desc: "Join over 83+ incubated ventures transforming technology from Vadodara.",
+      desc: "Join over 15+ officially incubated startups and 1,800+ mentored innovators transforming technology from Vadodara.",
       to: "/apply",
       cta: "Apply for Programs",
     },
@@ -159,8 +159,8 @@ export const MEGA_MENU: MegaMenuCategory[] = [
         badge: "Showcase",
       },
       {
-        title: "12 Thrust Areas",
-        desc: "Biotech, AI/Robotics, CleanTech, Energy & Healthcare",
+        title: "13 Focus Thrust Areas",
+        desc: "Biotech, AI/Robotics, CleanTech, Energy, Water & Healthcare",
         to: "/about",
       },
       {
@@ -546,7 +546,7 @@ export function Header() {
                               <div style={{ flexGrow: 1 }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                                   <span
-                                    style={{ fontSize: "14px", fontWeight: 700, color: "#0f172a" }}
+                                    style={{ fontSize: "14px", fontWeight: 700, color: "var(--text, #0f172a)" }}
                                   >
                                     {item.title}
                                   </span>

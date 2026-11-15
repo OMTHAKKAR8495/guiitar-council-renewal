@@ -677,7 +677,7 @@ const CONTENT_LIST_ITEMS = [
     id: "metric-incubated",
     sort_order: 2,
     data: {
-      value: "83+",
+      value: "15+",
       number: 83,
       suffix: "+",
       label: "Students / Startups Incubated",
@@ -865,7 +865,7 @@ const CONTENT_LIST_ITEMS = [
       icon: "Rocket",
       title: "Incubation Hub",
       desc: "Coworking suites & maker spaces",
-      badge: "83+ Startups",
+      badge: "15+ Startups",
     },
   },
   {

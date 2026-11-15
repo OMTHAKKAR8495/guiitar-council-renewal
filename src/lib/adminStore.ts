@@ -1075,8 +1075,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Market Creators Ltd",
     experience: "Director with expertise in market strategy, business creation and corporate development.",
     expertise: ["Market Strategy", "Business Creation", "Corporate Development", "Sales"],
-    avatar: "/images/mentors/bhavik-b-patel.jpg",
-    imagePath: "/images/mentors/bhavik-b-patel.jpg",
+    avatar: "/images/mentors/kalpesh-shah.jpg",
+    imagePath: "/images/mentors/kalpesh-shah.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-06.pdf",
     status: "Active",
   },
@@ -1089,8 +1089,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "BIZSTART",
     experience: "Founder with experience in startup ecosystem development, business incubation and entrepreneurship coaching.",
     expertise: ["Startup Ecosystem", "Business Incubation", "Entrepreneurship Coaching", "MSME Support"],
-    avatar: "/images/mentors/kavita-saxena.jpg",
-    imagePath: "/images/mentors/kavita-saxena.jpg",
+    avatar: "/images/mentors/hitesh-porwal.jpg",
+    imagePath: "/images/mentors/hitesh-porwal.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-07.pdf",
     status: "Active",
   },
@@ -1103,8 +1103,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Billennium Divas Pvt Ltd",
     experience: "Founder Director with expertise in business strategy, organizational leadership and new venture creation.",
     expertise: ["Business Strategy", "Organizational Leadership", "Venture Creation", "Corporate Governance"],
-    avatar: "/images/mentors/kalpesh-shah.jpg",
-    imagePath: "/images/mentors/kalpesh-shah.jpg",
+    avatar: "/images/mentors/bhavesh-kothari.jpg",
+    imagePath: "/images/mentors/bhavesh-kothari.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-08.pdf",
     status: "Active",
   },
@@ -1117,8 +1117,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "INFINVENT IP",
     experience: "IP law professional and CEO specializing in intellectual property rights, patent prosecution and startup IP strategy.",
     expertise: ["Intellectual Property", "Patent Prosecution", "IP Strategy", "Legal Advisory"],
-    avatar: "/images/mentors/brijesh-m-garala.jpg",
-    imagePath: "/images/mentors/brijesh-m-garala.jpg",
+    avatar: "/images/mentors/bhavik-b-patel.jpg",
+    imagePath: "/images/mentors/bhavik-b-patel.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-09.pdf",
     status: "Active",
   },
@@ -1131,8 +1131,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Oviyan Cast & Forge Pvt. Ltd.",
     experience: "Director in manufacturing and heavy engineering with expertise in casting, forging and industrial operations.",
     expertise: ["Manufacturing", "Casting & Forging", "Industrial Operations", "Engineering"],
-    avatar: "/images/mentors/suresh-p-othayoth.jpg",
-    imagePath: "/images/mentors/suresh-p-othayoth.jpg",
+    avatar: "/images/mentors/brijesh-m-garala.jpg",
+    imagePath: "/images/mentors/brijesh-m-garala.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-10.pdf",
     status: "Active",
   },
@@ -1145,8 +1145,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Santushti Shakes Pvt. Ltd.",
     experience: "MD & CEO with experience in FMCG, food & beverage industry, franchise management and retail scaling.",
     expertise: ["FMCG", "Food & Beverage", "Franchise Management", "Retail Scaling"],
-    avatar: "/images/mentors/hitesh-porwal.jpg",
-    imagePath: "/images/mentors/hitesh-porwal.jpg",
+    avatar: "/images/mentors/bhavesh-chelani.jpg",
+    imagePath: "/images/mentors/bhavesh-chelani.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-11.pdf",
     status: "Active",
   },
@@ -1159,8 +1159,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "FUN2DO Labs Pvt. Ltd.",
     experience: "Founder specializing in EdTech, experiential learning, STEM education and product innovation for children.",
     expertise: ["EdTech", "Experiential Learning", "STEM Education", "Product Innovation"],
-    avatar: "/images/mentors/bhavesh-chelani.jpg",
-    imagePath: "/images/mentors/bhavesh-chelani.jpg",
+    avatar: "/images/mentors/saurabh-jain.png",
+    imagePath: "/images/mentors/saurabh-jain.png",
     documentPath: "/mentors/industry/documents/industry-mentor-12.pdf",
     status: "Active",
   },
@@ -1173,8 +1173,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Freelancing Startup Mentor",
     experience: "Independent startup mentor with experience in business advisory, market research and early-stage venture guidance.",
     expertise: ["Business Advisory", "Market Research", "Startup Mentoring", "Early-Stage Guidance"],
-    avatar: "/images/mentors/ashutosh-tewari.jpg",
-    imagePath: "/images/mentors/ashutosh-tewari.jpg",
+    avatar: "/images/mentors/kavita-saxena.jpg",
+    imagePath: "/images/mentors/kavita-saxena.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-13.pdf",
     status: "Active",
   },
@@ -1187,8 +1187,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GSFC Ltd.",
     experience: "Research manager at GSFC Ltd. with expertise in chemical sciences, industrial R&D and applied research.",
     expertise: ["Chemical Sciences", "Industrial R&D", "Applied Research", "Process Innovation"],
-    avatar: "/images/mentors/bhavesh-kothari.jpg",
-    imagePath: "/images/mentors/bhavesh-kothari.jpg",
+    avatar: "/images/mentors/suresh-p-othayoth.jpg",
+    imagePath: "/images/mentors/suresh-p-othayoth.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-14.pdf",
     status: "Active",
   },
@@ -1202,8 +1202,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GITAM (Deemed to be) University",
     experience: "Senior Venture Coach supporting deep-tech and social innovation startups through structured mentoring and business coaching.",
     expertise: ["Venture Coaching", "Deep-Tech Startups", "Social Innovation", "Business Coaching"],
-    avatar: "/images/mentors/saurabh-jain.png",
-    imagePath: "/images/mentors/saurabh-jain.png",
+    avatar: "/images/mentors/ashutosh-tewari.jpg",
+    imagePath: "/images/mentors/ashutosh-tewari.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-15.pdf",
     status: "Active",
   },
@@ -1245,8 +1245,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "[Organisation — verify from document]",
     experience: "Director of International Business Development with expertise in global market entry, trade and cross-border partnerships.",
     expertise: ["International Business Development", "Global Market Entry", "Trade", "Cross-Border Partnerships"],
-    avatar: "/images/mentors/karan-shah.jpg",
-    imagePath: "/images/mentors/karan-shah.jpg",
+    avatar: "/images/mentors/ashwin-v-parikh.jpg",
+    imagePath: "/images/mentors/ashwin-v-parikh.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-18.pdf",
     status: "Active",
   },
@@ -1259,8 +1259,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Aver India Equipment",
     experience: "Sales and technology leader with expertise in B2B sales, AV & IT equipment distribution and channel management.",
     expertise: ["B2B Sales", "AV & IT Equipment", "Channel Management", "Technology Sales"],
-    avatar: "/images/mentors/ashwin-v-parikh.jpg",
-    imagePath: "/images/mentors/ashwin-v-parikh.jpg",
+    avatar: "/images/mentors/jekishan-k-parmar.jpeg",
+    imagePath: "/images/mentors/jekishan-k-parmar.jpeg",
     documentPath: "/mentors/industry/documents/industry-mentor-19.pdf",
     status: "Active",
   },
@@ -1273,8 +1273,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Pactual IP Law Services LLP",
     experience: "Managing Director of an IP law services firm specializing in patent filing, IP portfolio management and legal consulting.",
     expertise: ["Patent Filing", "IP Portfolio Management", "Legal Consulting", "Intellectual Property"],
-    avatar: "/images/mentors/devang-patel.jpg",
-    imagePath: "/images/mentors/devang-patel.jpg",
+    avatar: "/images/mentors/amitkumar-patel.jpg",
+    imagePath: "/images/mentors/amitkumar-patel.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-20.pdf",
     status: "Active",
   },
@@ -1287,8 +1287,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Civitas Sustainability Foundation",
     experience: "Partnership and outreach leader focused on sustainability, CSR, social impact programs and corporate engagement.",
     expertise: ["Sustainability", "CSR", "Social Impact", "Partnership & Outreach"],
-    avatar: "/images/mentors/jekishan-k-parmar.jpeg",
-    imagePath: "/images/mentors/jekishan-k-parmar.jpeg",
+    avatar: "/images/mentors/karan-shah.jpg",
+    imagePath: "/images/mentors/karan-shah.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-21.pdf",
     status: "Active",
   },
@@ -1301,8 +1301,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Vantage Point Executive Coaching",
     experience: "Founder of an executive coaching practice with expertise in leadership development, coaching and organizational effectiveness.",
     expertise: ["Executive Coaching", "Leadership Development", "Organizational Effectiveness", "Mentoring"],
-    avatar: "/images/mentors/prakash-vaghasiya.jpg",
-    imagePath: "/images/mentors/prakash-vaghasiya.jpg",
+    avatar: "/images/mentors/devang-patel.jpg",
+    imagePath: "/images/mentors/devang-patel.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-22.pdf",
     status: "Active",
   },
@@ -1315,8 +1315,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Vise Organic",
     experience: "CEO with expertise in organic products, sustainable agriculture, agri-business and rural entrepreneurship.",
     expertise: ["Organic Products", "Sustainable Agriculture", "Agri-Business", "Rural Entrepreneurship"],
-    avatar: "/images/mentors/amitkumar-patel.jpg",
-    imagePath: "/images/mentors/amitkumar-patel.jpg",
+    avatar: "/images/mentors/prakash-vaghasiya.jpg",
+    imagePath: "/images/mentors/prakash-vaghasiya.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-23.pdf",
     status: "Active",
   },
@@ -1386,8 +1386,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Tapanshi Financial Pvt. Ltd.",
     experience: "Chartered Accountant and CEO specializing in financial services, investment advisory and wealth management.",
     expertise: ["Financial Services", "Investment Advisory", "Wealth Management", "Chartered Accountancy"],
-    avatar: "/images/mentors/ashish-kumar.jpg",
-    imagePath: "/images/mentors/ashish-kumar.jpg",
+    avatar: "/images/mentors/jitendra-jain.jpeg",
+    imagePath: "/images/mentors/jitendra-jain.jpeg",
     documentPath: "/mentors/industry/documents/industry-mentor-28.pdf",
     status: "Active",
   },
@@ -1400,8 +1400,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Inter University Accelerator Center",
     experience: "Associate Professor and researcher at a national accelerator facility with expertise in physics research and academic mentoring.",
     expertise: ["Physics Research", "Accelerator Science", "Academic Mentoring", "Research & Development"],
-    avatar: "/images/mentors/karmjitsinh-bihola.png",
-    imagePath: "/images/mentors/karmjitsinh-bihola.png",
+    avatar: "/images/mentors/ashish-kumar.jpg",
+    imagePath: "/images/mentors/ashish-kumar.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-29.pdf",
     status: "Active",
   },
@@ -1415,8 +1415,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Electromech Cloudtech Pvt. Ltd.",
     experience: "CEO of an electromechanical and cloud technology company with expertise in industrial automation and tech startups.",
     expertise: ["Industrial Automation", "Cloud Technology", "Electromechanical Systems", "Tech Startups"],
-    avatar: "/images/mentors/shaurin-patel.jpg",
-    imagePath: "/images/mentors/shaurin-patel.jpg",
+    avatar: "/images/mentors/nilesh-vaghela.jpg",
+    imagePath: "/images/mentors/nilesh-vaghela.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-30.pdf",
     status: "Active",
   },
@@ -1430,8 +1430,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Innodesk Designovation Services",
     experience: "Founder of a design and innovation services firm with expertise in product design, design thinking and prototyping.",
     expertise: ["Product Design", "Design Thinking", "Prototyping", "Innovation Services"],
-    avatar: "/images/mentors/anant-acharya.jpg",
-    imagePath: "/images/mentors/anant-acharya.jpg",
+    avatar: "/images/mentors/karmjitsinh-bihola.png",
+    imagePath: "/images/mentors/karmjitsinh-bihola.png",
     documentPath: "/mentors/industry/documents/industry-mentor-31.pdf",
     status: "Active",
   },
@@ -1445,8 +1445,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "MarsBazaar.com",
     experience: "CTO with expertise in e-commerce technology, platform architecture, software engineering and startup scaling.",
     expertise: ["E-Commerce Technology", "Platform Architecture", "Software Engineering", "Startup Scaling"],
-    avatar: "/images/mentors/nilesh-vagrela.jpg",
-    imagePath: "/images/mentors/nilesh-vagrela.jpg",
+    avatar: "/images/mentors/anant-acharya.jpg",
+    imagePath: "/images/mentors/anant-acharya.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-32.pdf",
     status: "Active",
   },
@@ -1459,8 +1459,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "Vexma Technologies",
     experience: "MD & CEO of an advanced manufacturing and 3D printing technology company specializing in industrial prototyping and AM solutions.",
     expertise: ["3D Printing", "Advanced Manufacturing", "Industrial Prototyping", "Additive Manufacturing"],
-    avatar: "/images/mentors/jitendra-jain.jpeg",
-    imagePath: "/images/mentors/jitendra-jain.jpeg",
+    avatar: "/images/mentors/shaurin-patel.jpg",
+    imagePath: "/images/mentors/shaurin-patel.jpg",
     documentPath: "/mentors/industry/documents/industry-mentor-33.pdf",
     status: "Active",
   },
@@ -1649,8 +1649,8 @@ const INITIAL_MENTORS: MentorItem[] = [
     organization: "GSFC University",
     experience: "Faculty Mentor, GSFC University",
     expertise: ["Academic Mentorship", "Research Guidance"],
-    avatar: "/images/original/team/akhilesh-prajapati.jpg",
-    imagePath: "/images/original/team/akhilesh-prajapati.jpg",
+    avatar: "/team/akhilesh-prajapati.png",
+    imagePath: "/team/akhilesh-prajapati.png",
     documentPath: "/mentors/faculty/documents/industry-mentor-09.pdf",
     status: "Active",
   },
@@ -2422,7 +2422,7 @@ const STORAGE_CATEGORIES_KEY = "guiitar_categories_data_v1";
 const STORAGE_STARTUPS_KEY = "guiitar_startups_data_v1";
 const STORAGE_EVENTS_KEY = "guiitar_events_data_v1";
 const STORAGE_REGISTRATIONS_KEY = "guiitar_registrations_data_v1";
-const STORAGE_MENTORS_KEY = "guiitar_mentors_data_v2";
+const STORAGE_MENTORS_KEY = "guiitar_mentors_data_v3";
 const STORAGE_PROGRAMS_KEY = "guiitar_programs_data_v1";
 const STORAGE_FUNDING_KEY = "guiitar_funding_data_v1";
 const STORAGE_RESOURCES_KEY = "guiitar_resources_data_v1";
@@ -3262,6 +3262,32 @@ export class AdminDataStore {
         for (const field of stringFields) {
           if (isPlaceholder(existing[field]) && !isPlaceholder(seed[field])) {
             (updated as Record<string, unknown>)[field] = seed[field];
+            recordChanged = true;
+          }
+        }
+
+        // Migrate any cached broken .avif or old /mentors/ photo paths in localStorage to verified seed paths
+        if (
+          seed.avatar &&
+          (!existing.avatar ||
+            existing.avatar.endsWith(".avif") ||
+            existing.avatar.startsWith("/mentors/") ||
+            seed.avatar.startsWith("/images/original/"))
+        ) {
+          if (updated.avatar !== seed.avatar) {
+            updated.avatar = seed.avatar;
+            recordChanged = true;
+          }
+        }
+        if (
+          seed.imagePath &&
+          (!existing.imagePath ||
+            existing.imagePath.endsWith(".avif") ||
+            existing.imagePath.startsWith("/mentors/") ||
+            seed.imagePath.startsWith("/images/original/"))
+        ) {
+          if (updated.imagePath !== seed.imagePath) {
+            updated.imagePath = seed.imagePath;
             recordChanged = true;
           }
         }

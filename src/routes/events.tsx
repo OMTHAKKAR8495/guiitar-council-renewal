@@ -53,6 +53,7 @@ export const Route = createFileRoute("/events")({
 function Events() {
   const [tab, setTab] = useState<"Upcoming" | "Past">("Upcoming");
   const [registeredIds, setRegisteredIds] = useState<string[]>([]);
+  const [archiveYear, setArchiveYear] = useState<string>("All");
   const [eventsList, setEventsList] = useState<EventItem[]>(() =>
     typeof window !== "undefined" ? AdminDataStore.getEvents() : [],
   );
@@ -427,18 +428,52 @@ function Events() {
             subtitle="Download verified official event reports, attendee rosters, and technical workshop summaries published by GUIITAR Council."
           />
 
+          {/* YEAR FILTER TABS FOR EVENT ARCHIVE */}
+          <div
+            style={{
+              display: "flex",
+              gap: "8px",
+              flexWrap: "wrap",
+              marginTop: "24px",
+              marginBottom: "8px",
+            }}
+          >
+            {["All", "2026", "2025", "2024", "2023", "2019-2022"].map((yr) => (
+              <button
+                key={yr}
+                onClick={() => setArchiveYear(yr)}
+                style={{
+                  padding: "7px 16px",
+                  borderRadius: "9999px",
+                  fontSize: "13px",
+                  fontWeight: 700,
+                  border: "1px solid",
+                  borderColor: archiveYear === yr ? "var(--primary, #2563eb)" : "var(--border)",
+                  background: archiveYear === yr ? "var(--primary, #2563eb)" : "var(--surface)",
+                  color: archiveYear === yr ? "#ffffff" : "var(--text-muted)",
+                  cursor: "pointer",
+                  transition: "all 0.15s ease",
+                }}
+              >
+                {yr === "All" ? "All Years (2019–2026)" : yr}
+              </button>
+            ))}
+          </div>
+
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
               gap: "20px",
-              marginTop: "32px",
+              marginTop: "20px",
             }}
           >
             {[
+              // 2026
               {
                 title: "TOD FOD JOD (TFJ) Workshop Report",
-                date: "10-14 July 2023",
+                date: "12 August 2026",
+                year: "2026",
                 category: "Prototyping & Making",
                 pdfUrl: "/documents/events/2026-tod-fod-jod-workshop.pdf",
                 size: "592 KB",
@@ -447,7 +482,8 @@ function Events() {
               },
               {
                 title: "NCC National Drone Training Camp",
-                date: "14-23 September 2023",
+                date: "10-16 July 2026",
+                year: "2026",
                 category: "Drone & Aerospace",
                 pdfUrl: "/documents/events/2026-ncc-drone-camp.pdf",
                 size: "4.6 MB",
@@ -456,7 +492,8 @@ function Events() {
               },
               {
                 title: "Central Gujarat Startup Ecosystem Seminar (Vibrant Gujarat)",
-                date: "3 October 2023",
+                date: "29 June 2026",
+                year: "2026",
                 category: "Policy & Funding",
                 pdfUrl: "/documents/events/2026-central-gujarat-startup-seminar.pdf",
                 size: "1.4 MB",
@@ -465,7 +502,8 @@ function Events() {
               },
               {
                 title: "Corporate Business Simulation Game Workshop",
-                date: "19 October 2023",
+                date: "17 June 2026",
+                year: "2026",
                 category: "Business Modeling",
                 pdfUrl: "/documents/events/2026-corporate-business-simulation.pdf",
                 size: "1.4 MB",
@@ -474,16 +512,18 @@ function Events() {
               },
               {
                 title: "Venture Creation & Validation Bootcamp",
-                date: "2-3 November 2023",
+                date: "08-10 June 2026",
+                year: "2026",
                 category: "Incubation Track",
                 pdfUrl: "/documents/events/2026-venture-creation-bootcamp.pdf",
                 size: "804 KB",
                 pages: "6 Pages",
-                desc: "Comprehensive 2-day founder sprint covering customer discovery, lean canvas, and proof-of-concept testing.",
+                desc: "Comprehensive 3-day founder sprint covering customer discovery, lean canvas, and proof-of-concept testing.",
               },
               {
                 title: "Orientation on Laser Cutting & 3D Scanning",
-                date: "23 November 2023",
+                date: "05 June 2026",
+                year: "2026",
                 category: "Maker Lab",
                 pdfUrl: "/documents/events/2026-orientation-laser-3d.pdf",
                 size: "961 KB",
@@ -492,7 +532,8 @@ function Events() {
               },
               {
                 title: "National Technology Day Innovation Showcase",
-                date: "11 May 2024",
+                date: "05 May 2026",
+                year: "2026",
                 category: "Institutional",
                 pdfUrl: "/documents/events/2026-national-technology-day.pdf",
                 size: "1.1 MB",
@@ -500,8 +541,9 @@ function Events() {
                 desc: "Commemoration of indigenous technology milestones with prototype demos and student research exhibition.",
               },
               {
-                title: "Seminar on IPR, Professional Values & Business Ethics",
-                date: "25 July 2024",
+                title: "Intellectual Property Rights, Values, Ethics & Standards",
+                date: "09 April 2026",
+                year: "2026",
                 category: "Legal & IPR",
                 pdfUrl: "/documents/events/2026-ipr-values-ethics.pdf",
                 size: "1.0 MB",
@@ -510,7 +552,8 @@ function Events() {
               },
               {
                 title: "Garuda Aerospace Drone Masterclass Phase II",
-                date: "21-23 August 2024",
+                date: "19 March 2026",
+                year: "2026",
                 category: "Aerospace",
                 pdfUrl: "/documents/events/2026-drone-workshop-ii.pdf",
                 size: "3.7 MB",
@@ -519,7 +562,8 @@ function Events() {
               },
               {
                 title: "Shark Tank GSFCU — Ananta National Techfest",
-                date: "14 September 2024",
+                date: "07 March 2026",
+                year: "2026",
                 category: "Pitch Competition",
                 pdfUrl: "/documents/events/2026-shark-tank-gsfcu-ananta.pdf",
                 size: "4.2 MB",
@@ -528,7 +572,8 @@ function Events() {
               },
               {
                 title: "How to Register Industrial Design & Copyrights",
-                date: "8 October 2024",
+                date: "13 February 2026",
+                year: "2026",
                 category: "Legal & IPR",
                 pdfUrl: "/documents/events/2026-register-industrial-design.pdf",
                 size: "1.2 MB",
@@ -537,14 +582,101 @@ function Events() {
               },
               {
                 title: "ABC of Entrepreneurship: From Idea to Incorporation",
-                date: "18 January 2025",
+                date: "31 January 2026",
+                year: "2026",
                 category: "Startup 101",
                 pdfUrl: "/documents/events/2026-abc-entrepreneurship.pdf",
                 size: "1.6 MB",
                 pages: "9 Pages",
                 desc: "Foundational masterclass on enterprise structuring, GST compliance, banking, and early traction metrics.",
               },
-            ].map((rep) => (
+              // 2025
+              {
+                title: "Faculty Entrepreneurship Development (TIDES, IIT Roorkee)",
+                date: "22-23 January 2025",
+                year: "2025",
+                category: "Faculty Program",
+                pdfUrl: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_c2c0878843c94098916b60f2b3a69470.pdf",
+                size: "2.1 MB",
+                pages: "11 Pages",
+                desc: "National level faculty empowerment program on academic spin-offs, patent commercialization, and incubation.",
+              },
+              {
+                title: "TIDES Ignition Incubation Programme (IIT Roorkee)",
+                date: "15-30 December 2025",
+                year: "2025",
+                category: "Incubation Track",
+                pdfUrl: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_7188c495c0704d4ba61c303cad01b588.pdf",
+                size: "1.8 MB",
+                pages: "9 Pages",
+                desc: "Joint acceleration sprint with TIDES, IIT Roorkee for seed-stage deep-tech university ventures.",
+              },
+              {
+                title: "Advanced CAD & 3D Prototyping Workshop",
+                date: "25 November 2025",
+                year: "2025",
+                category: "Maker Lab",
+                pdfUrl: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_395ed8b460cc4d3f882ab902801ebe30.pdf",
+                size: "1.3 MB",
+                pages: "6 Pages",
+                desc: "Hands-on SolidWorks CAD modeling, mesh repair, and precision FDM slicing for student mechanical projects.",
+              },
+              // 2024
+              {
+                title: "Bio-pigments & Sustainable Microbial Colorants Masterclass",
+                date: "18 October 2024",
+                year: "2024",
+                category: "Biotechnology",
+                pdfUrl: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_2744adac028240fd8c431ca57fdbdd17.pdf",
+                size: "1.5 MB",
+                pages: "8 Pages",
+                desc: "Technical exploration of microbial synthesis, bio-fermentation, and replacing synthetic toxic dyes in textiles.",
+              },
+              {
+                title: "National Science Day Innovation & Prototyping Exhibition",
+                date: "28 February 2024",
+                year: "2024",
+                category: "Showcase",
+                pdfUrl: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_0b4cf211ba604617a22df6655c697843.pdf",
+                size: "3.2 MB",
+                pages: "14 Pages",
+                desc: "University-wide showcase of 40+ student working prototypes evaluated by GSFC Ltd corporate scientists.",
+              },
+              // 2023
+              {
+                title: "Patenting in Chemical & Life Sciences Masterclass",
+                date: "14 September 2023",
+                year: "2023",
+                category: "Legal & IPR",
+                pdfUrl: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_87cd494308f14eae95f42e1ab0a01910.pdf",
+                size: "1.7 MB",
+                pages: "10 Pages",
+                desc: "Prior-art search strategies, Indian Patent Act Section 3(d) compliance, and patent prosecution clinic.",
+              },
+              // 2019-2022
+              {
+                title: "Industrial Safety & Hazardous Materials Prototyping Protocol",
+                date: "11 November 2022",
+                year: "2019-2022",
+                category: "Industrial Safety",
+                pdfUrl: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_a36d4d47e2e74717acd42bab3ced339e.pdf",
+                size: "2.4 MB",
+                pages: "12 Pages",
+                desc: "Guidelines for chemical handling, ventilation safety, and lab hygiene during hardware prototype assembly.",
+              },
+              {
+                title: "Inaugural Foundation Workshop on Start-up Incubation & IP Protection",
+                date: "15 October 2019",
+                year: "2019-2022",
+                category: "Ecosystem Inception",
+                pdfUrl: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_8653460f7dfb49c0bdfd4bab4e9e2892.pdf",
+                size: "2.8 MB",
+                pages: "16 Pages",
+                desc: "Inaugural workshop marking the inception of GSFC University's innovation & incubation council.",
+              },
+            ]
+              .filter((rep) => archiveYear === "All" || rep.year === archiveYear)
+              .map((rep) => (
               <article
                 key={rep.title}
                 className="plain-card"

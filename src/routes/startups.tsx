@@ -454,7 +454,7 @@ export function StartupsPage() {
           <span className="section-badge light">Incubation Onboarding</span>
           <h2>Ready to Launch Your Startup from Vadodara?</h2>
           <p>
-            Join 83+ incubated ventures. Get furnished workspace, non-dilutive grant capital up to
+            Join 15+ officially incubated startups and 1,800+ mentored innovators. Get furnished workspace, non-dilutive grant capital up to
             ₹30 Lakhs, and senior industry mentorship.
           </p>
           <div className="button-row">

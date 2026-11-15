@@ -193,13 +193,17 @@ function MentorAvatar({
       onClick={() => onZoom(mentor.name, avatarSrc)}
       aria-label={`Enlarge photo of ${mentor.name}`}
       style={{
-        background: "none",
+        background: domainBg,
         border: "none",
         padding: 0,
         cursor: "zoom-in",
         display: "block",
         margin: "0 auto 16px",
         borderRadius: "50%",
+        width: "64px",
+        height: "64px",
+        position: "relative",
+        boxShadow: "0 4px 12px rgba(37, 99, 235, 0.15)",
       }}
     >
       <img
@@ -212,7 +216,6 @@ function MentorAvatar({
           objectFit: "cover",
           border: "2px solid #3b82f6",
           display: "block",
-          boxShadow: "0 4px 12px rgba(37, 99, 235, 0.15)",
         }}
         loading="lazy"
         onError={() => setImgFailed(true)}
@@ -637,7 +640,7 @@ export function HomePage() {
 
               <div style={{ marginTop: "20px", textAlign: "center" }}>
                 <span style={{ fontSize: "12px", color: "#93c5fd", fontWeight: 600 }}>
-                  Active Innovation Loop • 83+ Startups in Flight
+                  Official Incubation Loop • 15+ Incubated Startups • 1800+ Mentored
                 </span>
               </div>
             </div>
@@ -1493,6 +1496,35 @@ export function HomePage() {
             title="From First Thought to Real-World Impact"
             subtitle="Click any stage below to explore what happens, what support GUIITAR provides, eligibility, and direct actions."
           />
+
+          {/* STATUTORY 4-STAGE SOP VS 8-STAGE TECHNICAL EXECUTION NOTICE */}
+          <div
+            style={{
+              maxWidth: "1000px",
+              margin: "0 auto 28px",
+              padding: "16px 20px",
+              background: "var(--surface-muted, #f8fafc)",
+              border: "1px solid var(--border)",
+              borderRadius: "14px",
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "12px",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <span className="pill blue" style={{ fontSize: "11px", fontWeight: 800 }}>
+                Policy Architecture
+              </span>
+              <span style={{ fontSize: "13px", color: "var(--text)", fontWeight: 600 }}>
+                Formal Startup Policy SOP (4 Stages): <strong>Spark-up</strong> → <strong>Grooming</strong> → <strong>Incubation</strong> → <strong>Graduation</strong>
+              </span>
+            </div>
+            <span style={{ fontSize: "12px", color: "var(--text-muted)" }}>
+              The 8 stages below map technical execution within these 4 statutory SOP stages.
+            </span>
+          </div>
 
           {/* Horizontal Interactive Stepper Bar */}
           <div className="journey-stepper-bar">

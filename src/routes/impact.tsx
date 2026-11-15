@@ -22,7 +22,7 @@ export const Route = createFileRoute("/impact")({
       {
         name: "description",
         content:
-          "Explore verified institutional metrics: 1800+ mentored, 83+ startups incubated, 145+ IPR filed, ₹30L+ grants disbursed at GSFC University.",
+          "Explore verified institutional metrics: 1800+ mentored, 15+ startups incubated, 145+ IPR filed, ₹30L+ grants disbursed at GSFC University.",
       },
       { property: "og:title", content: "Impact Dashboard — GUIITAR Council" },
       {
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/impact")({
 const yearlyBreakdown = {
   All: {
     mentored: "1800+",
-    incubated: "83+",
+    incubated: "15+",
     ipr: "145+",
     grants: "₹30L+",
     events: "115+",
@@ -108,7 +108,7 @@ const timelineMilestones = [
   {
     year: "2026",
     title: "Venture Acceleration & Corporate Pilot Scaling",
-    desc: "Scaled direct grant sanctions to ₹30 Lakhs+ across 83+ active incubated ventures, connecting founders with GSFC Ltd industrial pilots.",
+    desc: "Scaled direct grant sanctions to ₹30 Lakhs+ across 15+ official incubated ventures and 1,800+ mentored innovators, connecting founders with GSFC Ltd industrial pilots.",
   },
 ];
 
