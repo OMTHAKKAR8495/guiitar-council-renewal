@@ -177,16 +177,16 @@ export function WelcomeModal() {
               letterSpacing: "-0.02em",
             }}
           >
-            Welcome to GSFC University
+            Welcome to GUIITAR Council
           </h2>
 
-          {/* Subtitle / GUIITAR Council Branding */}
+          {/* Subtitle / GSFC University Branding */}
           <div
             style={{
               fontSize: "18px",
               fontWeight: 800,
               color: "#ea580c",
-              letterSpacing: "0.04em",
+              letterSpacing: "0.02em",
               textTransform: "uppercase",
               marginBottom: "12px",
               fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif",
@@ -196,7 +196,7 @@ export function WelcomeModal() {
               gap: "6px",
             }}
           >
-            <span>GUIITAR Council</span>
+            <span>by GSFC University</span>
           </div>
 
           <p
