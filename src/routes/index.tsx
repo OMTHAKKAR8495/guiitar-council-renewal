@@ -2580,7 +2580,7 @@ export function HomePage() {
                   </div>
 
                   <ButtonLink
-                    to="/apply"
+                    to={isOrgCard ? "/partner" : `/contact?subject=${encodeURIComponent(`Mentorship Inquiry: ${m.name} (${m.organization})`)}`}
                     variant="outline"
                     size="sm"
                     style={{ width: "100%", justifyContent: "center" }}

@@ -1573,8 +1573,8 @@ const INITIAL_MENTORS: MentorItem[] = [
   {
     id: "faculty-04",
     name: "Dr. Sanjukta Bose Goswami",
-    designation: "Dean, SoI & Associate Professor",
-    role: "Dean, SoI & Associate Professor",
+    designation: "Dean, SoT & Associate Professor",
+    role: "Dean, SoT & Associate Professor",
     domain: "Faculty",
     organization: "GSFC University",
     experience: "Faculty Mentor, GSFC University",
@@ -1670,7 +1670,7 @@ const INITIAL_MENTORS: MentorItem[] = [
   },
   {
     id: "faculty-11",
-    name: "Dr. Arti Hansa",
+    name: "Dr. Arti Hansda",
     designation: "Assistant Professor",
     role: "Assistant Professor",
     domain: "Faculty",
@@ -1744,7 +1744,7 @@ const INITIAL_MENTORS: MentorItem[] = [
   },
   {
     id: "board-05",
-    name: "Shri Pujan Patel",
+    name: "Dr. Pujan Vaishnav",
     designation: "Director",
     role: "Director",
     domain: "Board of Directors",
@@ -2420,9 +2420,9 @@ const INITIAL_REGISTRATIONS: RegistrationItem[] = [
 const STORAGE_IDEAS_KEY = "guiitar_ideas_data_v1";
 const STORAGE_CATEGORIES_KEY = "guiitar_categories_data_v1";
 const STORAGE_STARTUPS_KEY = "guiitar_startups_data_v1";
-const STORAGE_EVENTS_KEY = "guiitar_events_data_v1";
+const STORAGE_EVENTS_KEY = "guiitar_events_data_v2";
 const STORAGE_REGISTRATIONS_KEY = "guiitar_registrations_data_v1";
-const STORAGE_MENTORS_KEY = "guiitar_mentors_data_v3";
+const STORAGE_MENTORS_KEY = "guiitar_mentors_data_v4";
 const STORAGE_PROGRAMS_KEY = "guiitar_programs_data_v1";
 const STORAGE_FUNDING_KEY = "guiitar_funding_data_v1";
 const STORAGE_RESOURCES_KEY = "guiitar_resources_data_v1";
@@ -2864,6 +2864,9 @@ export class AdminDataStore {
   // ================= 4. EVENTS CRUD =================
   static getEvents(): EventItem[] {
     const events = this.getStored<EventItem[]>(STORAGE_EVENTS_KEY, INITIAL_EVENTS);
+    if (!Array.isArray(events) || events.length === 0) {
+      return INITIAL_EVENTS;
+    }
     if (typeof window !== "undefined" && Array.isArray(events)) {
       const ev3Idx = events.findIndex((e) => e.id === "ev-3");
       const defaultEv3 = INITIAL_EVENTS.find((e) => e.id === "ev-3");
@@ -3111,7 +3114,21 @@ export class AdminDataStore {
 
   // ================= 5. MENTORS CRUD =================
   static getMentors(): MentorItem[] {
-    return this.getStored<MentorItem[]>(STORAGE_MENTORS_KEY, INITIAL_MENTORS);
+    const stored = this.getStored<MentorItem[]>(STORAGE_MENTORS_KEY, INITIAL_MENTORS);
+    if (!Array.isArray(stored) || stored.length === 0) return INITIAL_MENTORS;
+    // Auto-heal missing or empty avatars from INITIAL_MENTORS to prevent stale browser cache from breaking mentor photos
+    return stored.map((m) => {
+      const initial = INITIAL_MENTORS.find((im) => im.id === m.id);
+      if (initial && (!m.avatar || !m.imagePath || m.avatar === "" || m.imagePath === "")) {
+        return {
+          ...m,
+          avatar: m.avatar || initial.avatar,
+          imagePath: m.imagePath || initial.imagePath,
+          documentPath: m.documentPath || initial.documentPath,
+        };
+      }
+      return m;
+    });
   }
 
   static getMentorById(id: string): MentorItem | undefined {

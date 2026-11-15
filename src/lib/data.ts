@@ -258,7 +258,7 @@ export const ECOSYSTEM_NODES: EcosystemNode[] = [
     description:
       "State-of-the-art supercomputing, drone testing, 3D printing fabrication, and collaborative co-working suites.",
     keyOfferings: ["Param Shavak Supercomputer", "Advanced Drone Lab", "Makers 3D Printing Lab"],
-    metrics: "6 Specialized Labs",
+    metrics: "9 Specialized Facilities & Labs",
     iconName: "Building2",
   },
   {
@@ -284,7 +284,7 @@ export const ECOSYSTEM_NODES: EcosystemNode[] = [
       "Government Nodal Connects",
       "Corporate Pilot Matchmaking",
     ],
-    metrics: "50+ MOUs Signed",
+    metrics: "20+ Active MoUs & Alliances",
     iconName: "Network",
   },
   {
@@ -293,7 +293,7 @@ export const ECOSYSTEM_NODES: EcosystemNode[] = [
     description:
       "Dedicated rapid PoC tooling, laser cutters, PCB milling, and microcontroller testbenches to build physical MVPs.",
     keyOfferings: ["Precision Laser Cutting", "FDM & Resin 3D Printers", "IoT & Sensor Testbeds"],
-    metrics: "200+ PoCs Built",
+    metrics: "145+ IPR & Working PoCs",
     iconName: "Cpu",
   },
 ];

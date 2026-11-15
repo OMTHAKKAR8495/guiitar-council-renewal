@@ -55,7 +55,7 @@ function Events() {
   const [registeredIds, setRegisteredIds] = useState<string[]>([]);
   const [archiveYear, setArchiveYear] = useState<string>("All");
   const [eventsList, setEventsList] = useState<EventItem[]>(() =>
-    typeof window !== "undefined" ? AdminDataStore.getEvents() : [],
+    AdminDataStore.getEvents(),
   );
 
   // Registration Modal State

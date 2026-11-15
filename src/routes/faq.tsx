@@ -51,7 +51,7 @@ export function FaqPage() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const [faqsList, setFaqsList] = useState<FaqItem[]>([]);
+  const [faqsList, setFaqsList] = useState<FaqItem[]>(() => AdminDataStore.getFaqs());
 
   const loadFaqs = () => {
     setFaqsList(AdminDataStore.getFaqs());
@@ -145,7 +145,7 @@ export function FaqPage() {
               })}
             </div>
 
-            {filteredFaqs.length === 0 && (
+            {filteredFaqs.length === 0 && search.trim() !== "" && (
               <div className="center" style={{ padding: "60px 20px", color: "#64748b" }}>
                 <p style={{ fontSize: "18px", fontWeight: 600 }}>
                   No answers found matching "{search}"

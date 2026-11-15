@@ -295,7 +295,7 @@ export const MEGA_MENU: MegaMenuCategory[] = [
         title: "MOU Signing Process",
         desc: "Streamlined 6-stage institutional onboarding",
         to: "/partner",
-        badge: "50+ MOUs",
+        badge: "MoU Linkages",
       },
     ],
     featured: {
