@@ -64,7 +64,7 @@ export function FeedbackPage() {
               {
                 icon: ShieldCheck,
                 title: "Confidential & Protected",
-                desc: "Submissions are reviewed directly by the CEO Office & Grievance Redressal Committee. Whistleblower protection and strict anonymity are maintained upon request.",
+                desc: "Submissions require your name and verified contact details to enable official follow-up, and are reviewed confidentially by the CEO Office & Grievance Redressal Committee.",
               },
               {
                 icon: Clock,
