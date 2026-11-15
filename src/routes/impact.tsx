@@ -147,13 +147,13 @@ export function ImpactDashboardPage() {
 
           <div
             style={{
-              background: "#f8fafc",
-              border: "1px solid #e2e8f0",
+              background: "var(--surface-muted, #f8fafc)",
+              border: "1px solid var(--border, #e2e8f0)",
               borderRadius: "12px",
               padding: "16px 20px",
               marginBottom: "32px",
               textAlign: "center",
-              color: "#334155",
+              color: "var(--text-body, #334155)",
               fontSize: "14.5px",
               fontWeight: 600,
             }}

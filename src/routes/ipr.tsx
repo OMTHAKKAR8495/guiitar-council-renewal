@@ -489,7 +489,7 @@ export function IPRPage() {
                       width: "44px",
                       height: "44px",
                       borderRadius: "12px",
-                      background: "#fff7ed",
+                      background: "rgba(234, 88, 12, 0.12)",
                       color: "#ea580c",
                       display: "flex",
                       alignItems: "center",

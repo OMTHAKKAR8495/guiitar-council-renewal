@@ -174,9 +174,8 @@ export function PolicyPage() {
       <section style={{ padding: "36px 0 20px", background: "var(--background)" }}>
         <div className="container">
           <div
+            className="amber-notice-box"
             style={{
-              background: "#fff7ed",
-              border: "1.5px solid #f97316",
               borderRadius: "18px",
               padding: "24px 28px",
               display: "flex",
@@ -187,10 +186,10 @@ export function PolicyPage() {
           >
             <AlertTriangle className="w-6 h-6 text-orange-600 flex-shrink-0" style={{ marginTop: "2px" }} />
             <div>
-              <h3 style={{ fontSize: "17px", fontWeight: 800, margin: "0 0 6px 0", color: "#9a3412" }}>
+              <h3 style={{ fontSize: "17px", fontWeight: 800, margin: "0 0 6px 0" }}>
                 Important Institutional Notice on Funding &amp; Procedures
               </h3>
-              <p style={{ fontSize: "14px", color: "#7c2d12", margin: 0, lineHeight: 1.6 }}>
+              <p style={{ fontSize: "14px", margin: 0, lineHeight: 1.6 }}>
                 Under official GUIITAR Council governance, funding (seed loans or grants) is <strong>never guaranteed upon admission</strong>. All capital assistance is strictly subject to institutional screening, statutory fund availability, and milestone verification. The 8-stage innovation roadmap displayed elsewhere is a visitor-friendly conceptual guide; the <strong>four-stage SOP below represents the officially binding legal procedure</strong>.
               </p>
             </div>

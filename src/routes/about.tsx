@@ -1074,7 +1074,7 @@ function About() {
             style={{
               maxWidth: "1000px",
               margin: "0 auto 40px",
-              background: "#ffffff",
+              background: "var(--card-bg, #ffffff)",
               border: "1px solid var(--border)",
               borderRadius: "24px",
               padding: "28px 24px",
@@ -1106,7 +1106,7 @@ function About() {
                     height: "38px",
                     borderRadius: "10px",
                     background: "rgba(37, 99, 235, 0.1)",
-                    color: "#2563eb",
+                    color: "var(--primary, #2563eb)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -1115,10 +1115,10 @@ function About() {
                   <Building2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
+                  <h4 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "var(--text, #0f172a)" }}>
                     Official Team Organizational Chart
                   </h4>
-                  <span style={{ fontSize: "12px", color: "#64748b" }}>
+                  <span style={{ fontSize: "12px", color: "var(--text-muted, #64748b)" }}>
                     President • Provost &amp; CEO • Core Team • SoT • SoS • SoM&amp;E
                   </span>
                 </div>
@@ -1151,7 +1151,7 @@ function About() {
             <div
               style={{
                 width: "100%",
-                background: "#ffffff",
+                background: "var(--surface-muted, #f8fafc)",
                 borderRadius: "16px",
                 padding: "8px",
                 display: "flex",

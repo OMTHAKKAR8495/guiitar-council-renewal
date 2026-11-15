@@ -415,13 +415,13 @@ export function WelcomeModal() {
           className="welcome-footer-strip"
           style={{
             padding: "10px 24px",
-            background: "#f1f5f9",
-            borderTop: "1px solid #e2e8f0",
+            background: "var(--surface-muted, #f1f5f9)",
+            borderTop: "1px solid var(--border, #e2e8f0)",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             fontSize: "11px",
-            color: "#64748b",
+            color: "var(--text-muted, #64748b)",
           }}
         >
           <span style={{ display: "flex", alignItems: "center", gap: "5px" }}>

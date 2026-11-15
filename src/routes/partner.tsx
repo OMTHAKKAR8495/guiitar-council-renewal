@@ -302,7 +302,7 @@ function Partner() {
             style={{
               maxWidth: "1080px",
               margin: "0 auto 40px",
-              background: "#ffffff",
+              background: "var(--card-bg, #ffffff)",
               border: "1px solid var(--border-color, #e2e8f0)",
               borderRadius: "24px",
               padding: "32px 28px",
@@ -332,7 +332,7 @@ function Partner() {
                     height: "38px",
                     borderRadius: "10px",
                     background: "rgba(37, 99, 235, 0.1)",
-                    color: "#2563eb",
+                    color: "var(--primary, #2563eb)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -341,10 +341,10 @@ function Partner() {
                   <Handshake className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "#0f172a" }}>
+                  <h4 style={{ margin: 0, fontSize: "16px", fontWeight: 800, color: "var(--text, #0f172a)" }}>
                     Official Association &amp; Linkages Network
                   </h4>
-                  <span style={{ fontSize: "12px", color: "#64748b" }}>
+                  <span style={{ fontSize: "12px", color: "var(--text-muted, #64748b)" }}>
                     Government • PSUs • Incubators • Accelerators • Academic Partners
                   </span>
                 </div>
@@ -376,7 +376,7 @@ function Partner() {
             <div
               style={{
                 width: "100%",
-                background: "#ffffff",
+                background: "var(--surface-muted, #f8fafc)",
                 borderRadius: "16px",
                 padding: "12px",
                 display: "flex",

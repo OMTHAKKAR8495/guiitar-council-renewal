@@ -139,8 +139,9 @@ function Resources() {
                         style={{
                           fontSize: "11.5px",
                           fontWeight: 700,
-                          background: "#f1f5f9",
-                          color: "#475569",
+                          background: "var(--surface-muted, #f1f5f9)",
+                          border: "1px solid var(--border, transparent)",
+                          color: "var(--text-muted, #475569)",
                           padding: "2px 6px",
                           borderRadius: "4px",
                         }}

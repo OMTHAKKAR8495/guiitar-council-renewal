@@ -190,10 +190,9 @@ export function StartupsPage() {
           </div>
 
           <div
+            className="amber-notice-box"
             style={{
               marginTop: "24px",
-              background: "#fff7ed",
-              border: "1px solid #fed7aa",
               borderRadius: "14px",
               padding: "16px 20px",
               display: "flex",
@@ -203,7 +202,7 @@ export function StartupsPage() {
               gap: "12px",
             }}
           >
-            <div style={{ fontSize: "13px", color: "#9a3412" }}>
+            <div style={{ fontSize: "13px" }}>
               <strong>Policy Note:</strong> Standard incubation tenure is <strong>18 months</strong> after Stage 1 clearance. Seed funding is milestone-linked, subject to fund availability, and never guaranteed upon admission. Monthly reports are mandatory during Grooming and Incubation.
             </div>
             <Link
@@ -390,10 +389,11 @@ export function StartupsPage() {
                       {s.achievements.map((a) => (
                         <span
                           key={a}
+                          className="achievement-tag"
                           style={{
-                            background: "#ffffff",
-                            border: "1px solid #cbd5e1",
-                            color: "#1e293b",
+                            background: "var(--surface-muted, #f8fafc)",
+                            border: "1px solid var(--border, #cbd5e1)",
+                            color: "var(--text-body, #1e293b)",
                             fontSize: "12px",
                             padding: "3px 8px",
                             borderRadius: "6px",

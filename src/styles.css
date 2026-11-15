@@ -3638,10 +3638,56 @@ section {
 
 .dark [style*="background: #f8fafc"],
 .dark [style*="background:#f8fafc"],
+.dark [style*="background: rgb(248, 250, 252)"],
+.dark [style*="background-color: rgb(248, 250, 252)"],
 .dark [style*="background: #f1f5f9"],
-.dark [style*="background:#f1f5f9"] {
-  background: rgba(22, 32, 50, 0.6) !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
+.dark [style*="background:#f1f5f9"],
+.dark [style*="background: rgb(241, 245, 249)"],
+.dark [style*="background-color: rgb(241, 245, 249)"],
+.dark .achievement-tag,
+.dark .expertise-tag {
+  background: rgba(30, 41, 59, 0.75) !important;
+  background-color: rgba(30, 41, 59, 0.75) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #cbd5e1 !important;
+}
+
+/* Amber Policy / Notice Boxes */
+.amber-notice-box {
+  background: #fff7ed;
+  border: 1.5px solid #f97316;
+}
+.amber-notice-box h3,
+.amber-notice-box strong {
+  color: #9a3412;
+}
+.amber-notice-box p,
+.amber-notice-box div {
+  color: #7c2d12;
+}
+.dark .amber-notice-box {
+  background: rgba(249, 115, 22, 0.12) !important;
+  border-color: rgba(249, 115, 22, 0.35) !important;
+}
+.dark .amber-notice-box h3,
+.dark .amber-notice-box strong {
+  color: #fdba74 !important;
+}
+.dark .amber-notice-box p,
+.dark .amber-notice-box div {
+  color: #fed7aa !important;
+}
+
+/* Universal dark mode protection for all tags & pills within cards */
+.dark .plain-card span[style*="background"],
+.dark .startup-card span[style*="background"],
+.dark article span[style*="background"],
+.dark .plain-card span.achievement-tag,
+.dark .plain-card span.expertise-tag {
+  background: rgba(30, 41, 59, 0.82) !important;
+  background-color: rgba(30, 41, 59, 0.82) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #e2e8f0 !important;
 }
 
 /* 13 Focus Thrust Areas */

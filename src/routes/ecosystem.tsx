@@ -419,9 +419,11 @@ export function EcosystemPage() {
                     {m.expertise.map((exp) => (
                       <span
                         key={exp}
+                        className="expertise-tag"
                         style={{
-                          background: "#f1f5f9",
-                          color: "#334155",
+                          background: "var(--surface-muted, #f1f5f9)",
+                          border: "1px solid var(--border, transparent)",
+                          color: "var(--text-body, #334155)",
                           fontSize: "11.5px",
                           padding: "2px 8px",
                           borderRadius: "4px",

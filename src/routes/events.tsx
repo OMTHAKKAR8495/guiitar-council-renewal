@@ -266,7 +266,7 @@ function Events() {
                 </div>
 
                 {/* Live Seats Progress Bar */}
-                <div style={{ background: "#f1f5f9", borderRadius: "9999px", height: "8px", width: "100%", maxWidth: "380px", marginBottom: "16px", overflow: "hidden", border: "1px solid #e2e8f0" }}>
+                <div style={{ background: "var(--surface-muted, #f1f5f9)", borderRadius: "9999px", height: "8px", width: "100%", maxWidth: "380px", marginBottom: "16px", overflow: "hidden", border: "1px solid var(--border, #e2e8f0)" }}>
                   <div
                     style={{
                       height: "100%",
@@ -728,7 +728,7 @@ function Events() {
                 position: "absolute",
                 top: "20px",
                 right: "20px",
-                background: "#f1f5f9",
+                background: "var(--surface-muted, #f1f5f9)",
                 border: "none",
                 borderRadius: "50%",
                 width: "36px",
@@ -737,7 +737,7 @@ function Events() {
                 alignItems: "center",
                 justifyContent: "center",
                 cursor: "pointer",
-                color: "#64748b",
+                color: "var(--foreground, #64748b)",
                 transition: "all 0.2s",
               }}
               onMouseEnter={(e) => {

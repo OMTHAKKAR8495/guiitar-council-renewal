@@ -569,8 +569,8 @@ export function TeamPage() {
                           height: "60px",
                           borderRadius: "14px",
                           objectFit: "cover",
-                          border: "2px solid #e2e8f0",
-                          background: "#f8fafc",
+                          border: "2px solid var(--border, #e2e8f0)",
+                          background: "var(--surface-muted, #f8fafc)",
                           flexShrink: 0,
                         }}
                         onError={(e) => {
@@ -583,8 +583,8 @@ export function TeamPage() {
                           width: "60px",
                           height: "60px",
                           borderRadius: "14px",
-                          background: "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
-                          color: "#2563eb",
+                          background: "rgba(37, 99, 235, 0.12)",
+                          color: "var(--primary, #2563eb)",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",

@@ -1960,10 +1960,11 @@ export function HomePage() {
                     {s.achievements.map((a) => (
                       <span
                         key={a}
+                        className="achievement-tag"
                         style={{
-                          background: "#f1f5f9",
-                          border: "1px solid #e2e8f0",
-                          color: "#334155",
+                          background: "var(--surface-muted, #f1f5f9)",
+                          border: "1px solid var(--border, #e2e8f0)",
+                          color: "var(--text-body, #334155)",
                           fontSize: "12px",
                           padding: "3px 8px",
                           borderRadius: "6px",
@@ -2530,9 +2531,10 @@ export function HomePage() {
                       {m.expertise.slice(0, 2).map((exp) => (
                         <span
                           key={exp}
+                          className="expertise-tag"
                           style={{
-                            background: "#f1f5f9",
-                            color: "#475569",
+                            background: "var(--surface-muted, #f1f5f9)",
+                            color: "var(--text-muted, #475569)",
                             fontSize: "11px",
                             padding: "2px 6px",
                             borderRadius: "4px",
@@ -2600,7 +2602,7 @@ export function HomePage() {
                 position: "absolute",
                 top: "12px",
                 right: "12px",
-                background: "#f1f5f9",
+                background: "var(--surface-muted, #f1f5f9)",
                 border: "none",
                 borderRadius: "50%",
                 width: "32px",
@@ -2610,7 +2612,7 @@ export function HomePage() {
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: "18px",
-                color: "#475569",
+                color: "var(--foreground, #475569)",
                 lineHeight: 1,
               }}
             >
@@ -2710,9 +2712,10 @@ export function HomePage() {
           />
 
           <div
+            className="plain-card"
             style={{
-              background: "#ffffff",
-              border: "1px solid #e2e8f0",
+              background: "var(--surface, #ffffff)",
+              border: "1px solid var(--border, #e2e8f0)",
               borderRadius: "20px",
               padding: "44px",
               boxShadow: "var(--shadow-md)",
@@ -2730,10 +2733,10 @@ export function HomePage() {
             >
               <div>
                 <span className="pill emerald">Featured Venture Case Study</span>
-                <h3 style={{ fontSize: "28px", fontWeight: 900, margin: "8px 0 4px" }}>
+                <h3 style={{ fontSize: "28px", fontWeight: 900, margin: "8px 0 4px", color: "var(--text)" }}>
                   Ayurtrix Healthcare — Three Folding Life
                 </h3>
-                <span style={{ fontSize: "14px", color: "#2563eb", fontWeight: 700 }}>
+                <span style={{ fontSize: "14px", color: "var(--primary, #2563eb)", fontWeight: 700 }}>
                   Founded by GSFC University Student Innovators • ₹2,50,000 SSIP 2.0 Sanction
                 </span>
               </div>
@@ -2746,10 +2749,10 @@ export function HomePage() {
             <div className="case-study-grid" style={{ marginTop: "28px" }}>
               <div
                 style={{
-                  background: "#f8fafc",
+                  background: "var(--surface-muted, #f8fafc)",
                   padding: "20px",
                   borderRadius: "12px",
-                  border: "1px solid #e2e8f0",
+                  border: "1px solid var(--border, #e2e8f0)",
                 }}
               >
                 <span
@@ -2766,7 +2769,7 @@ export function HomePage() {
                   style={{
                     margin: "8px 0 0",
                     fontSize: "14px",
-                    color: "#334155",
+                    color: "var(--text-body, #334155)",
                     lineHeight: 1.55,
                   }}
                 >
@@ -2777,10 +2780,10 @@ export function HomePage() {
 
               <div
                 style={{
-                  background: "#f8fafc",
+                  background: "var(--surface-muted, #f8fafc)",
                   padding: "20px",
                   borderRadius: "12px",
-                  border: "1px solid #e2e8f0",
+                  border: "1px solid var(--border, #e2e8f0)",
                 }}
               >
                 <span
@@ -2788,7 +2791,7 @@ export function HomePage() {
                     fontSize: "12px",
                     fontWeight: 800,
                     textTransform: "uppercase",
-                    color: "#2563eb",
+                    color: "var(--primary, #2563eb)",
                   }}
                 >
                   The Solution & GUIITAR Support
@@ -2797,7 +2800,7 @@ export function HomePage() {
                   style={{
                     margin: "8px 0 0",
                     fontSize: "14px",
-                    color: "#334155",
+                    color: "var(--text-body, #334155)",
                     lineHeight: 1.55,
                   }}
                 >
@@ -2808,10 +2811,10 @@ export function HomePage() {
 
               <div
                 style={{
-                  background: "#f8fafc",
+                  background: "var(--surface-muted, #f8fafc)",
                   padding: "20px",
                   borderRadius: "12px",
-                  border: "1px solid #e2e8f0",
+                  border: "1px solid var(--border, #e2e8f0)",
                 }}
               >
                 <span
@@ -2828,7 +2831,7 @@ export function HomePage() {
                   style={{
                     margin: "8px 0 0",
                     fontSize: "14px",
-                    color: "#334155",
+                    color: "var(--text-body, #334155)",
                     lineHeight: 1.55,
                   }}
                 >

@@ -216,16 +216,17 @@ function PartnerLogoRenderer({ partner }: { partner: PartnerLinkageItem }) {
               width: "38px",
               height: "38px",
               borderRadius: "8px",
-              background: "#f1f5f9",
+              background: "var(--surface-muted, #f1f5f9)",
+              border: "1px solid var(--border, transparent)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#1e3a8a",
+              color: "var(--primary, #1e3a8a)",
             }}
           >
             <Building className="w-4 h-4" />
           </div>
-          <div style={{ fontSize: "11px", fontWeight: 700, color: "#475569" }}>{partner.name}</div>
+          <div style={{ fontSize: "11px", fontWeight: 700, color: "var(--text-muted, #475569)" }}>{partner.name}</div>
         </div>
       );
   }

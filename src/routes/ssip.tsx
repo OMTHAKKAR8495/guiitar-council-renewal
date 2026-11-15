@@ -937,12 +937,12 @@ export function SSIPPage() {
 
                   <div
                     style={{
-                      background: "#f8fafc",
+                      background: "var(--surface-muted, #f8fafc)",
                       padding: "16px",
                       borderRadius: "12px",
-                      border: "1px solid #e2e8f0",
+                      border: "1px solid var(--border, #e2e8f0)",
                       fontSize: "13px",
-                      color: "#475569",
+                      color: "var(--text-muted, #475569)",
                     }}
                   >
                     💡 <strong>Core Requirement:</strong> The innovation must contribute to the development or improvement of a product, process, or service, or represent a scalable business model capable of generating employment or wealth.
