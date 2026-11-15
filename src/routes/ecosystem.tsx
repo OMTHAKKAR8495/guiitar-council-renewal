@@ -108,6 +108,86 @@ function RocketIcon(props: any) {
   );
 }
 
+function EcosystemMentorAvatar({ mentor }: { mentor: MentorItem }) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const avatarSrc = mentor.imagePath || mentor.avatar;
+
+  const initials = useMemo(() => {
+    return (
+      mentor.name
+        .split(" ")
+        .filter(
+          (x) =>
+            x.length > 2 &&
+            !x.includes("Dr.") &&
+            !x.includes("Mr.") &&
+            !x.includes("Mrs.") &&
+            !x.includes("Ms.") &&
+            !x.includes("Prof.") &&
+            !x.includes("CA") &&
+            !x.includes("IAS"),
+        )
+        .slice(0, 2)
+        .map((x) => x[0]?.toUpperCase() || "")
+        .join("") || "GM"
+    );
+  }, [mentor.name]);
+
+  const domainBg =
+    mentor.domain === "Faculty"
+      ? "linear-gradient(135deg, #7c3aed, #6d28d9)"
+      : mentor.domain === "Governance" || mentor.domain === "Board of Directors"
+        ? "linear-gradient(135deg, #0f172a, #1e293b)"
+        : "linear-gradient(135deg, #2563eb, #1d4ed8)";
+
+  if (!avatarSrc || imgFailed) {
+    return (
+      <div
+        className="avatar"
+        style={{
+          width: "72px",
+          height: "72px",
+          borderRadius: "50%",
+          display: "grid",
+          placeItems: "center",
+          background: domainBg,
+          color: "#ffffff",
+          fontSize: "22px",
+          fontWeight: 800,
+          marginBottom: "16px",
+          boxShadow: "0 4px 14px rgba(37, 99, 235, 0.2)",
+        }}
+      >
+        {initials}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      style={{
+        width: "72px",
+        height: "72px",
+        borderRadius: "50%",
+        overflow: "hidden",
+        marginBottom: "16px",
+        border: "2.5px solid #3b82f6",
+        boxShadow: "0 4px 14px rgba(37, 99, 235, 0.18)",
+        flexShrink: 0,
+      }}
+    >
+      <img
+        src={avatarSrc}
+        alt={`Photo of ${mentor.name}`}
+        width={72}
+        height={72}
+        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        onError={() => setImgFailed(true)}
+      />
+    </div>
+  );
+}
+
 export function EcosystemPage() {
   const [selectedDomain, setSelectedDomain] = useState("All");
   const [searchMentor, setSearchMentor] = useState("");
@@ -293,33 +373,7 @@ export function EcosystemPage() {
                 }}
               >
                 <div>
-                  {/* Mentor photo — hidden gracefully when the image file is not yet available */}
-                  {m.imagePath && (
-                    <div
-                      style={{
-                        width: "80px",
-                        height: "80px",
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                        marginBottom: "16px",
-                        border: "2px solid #e2e8f0",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <img
-                        src={m.imagePath}
-                        alt={`Photo of ${m.name}`}
-                        width={80}
-                        height={80}
-                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                        onError={(e) => {
-                          // Hide the entire photo container when the file is not yet available
-                          const el = e.currentTarget.parentElement;
-                          if (el) el.style.display = "none";
-                        }}
-                      />
-                    </div>
-                  )}
+                  <EcosystemMentorAvatar mentor={m} />
 
                   <div
                     style={{

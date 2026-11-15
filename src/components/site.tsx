@@ -552,14 +552,7 @@ export function Header() {
                                   </span>
                                   {item.badge && (
                                     <span
-                                      style={{
-                                        fontSize: "10.5px",
-                                        fontWeight: 700,
-                                        background: isExternal ? "#ecfdf5" : "#eff6ff",
-                                        color: isExternal ? "#047857" : "#2563eb",
-                                        padding: "1px 6px",
-                                        borderRadius: "4px",
-                                      }}
+                                      className={`mega-menu-badge ${isExternal ? "external" : "internal"}`}
                                     >
                                       {item.badge}
                                     </span>

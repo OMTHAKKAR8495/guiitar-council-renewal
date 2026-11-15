@@ -78,6 +78,149 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
+function MentorAvatar({
+  mentor,
+  isOrgCard,
+  onZoom,
+}: {
+  mentor: MentorItem;
+  isOrgCard: boolean;
+  onZoom: (name: string, avatar: string) => void;
+}) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const avatarSrc = mentor.avatar || mentor.imagePath;
+
+  const initials = useMemo(() => {
+    return (
+      mentor.name
+        .split(" ")
+        .filter(
+          (x) =>
+            x.length > 2 &&
+            !x.includes("Dr.") &&
+            !x.includes("Mr.") &&
+            !x.includes("Mrs.") &&
+            !x.includes("Ms.") &&
+            !x.includes("Prof.") &&
+            !x.includes("CA") &&
+            !x.includes("IAS"),
+        )
+        .slice(0, 2)
+        .map((x) => x[0]?.toUpperCase() || "")
+        .join("") || "GM"
+    );
+  }, [mentor.name]);
+
+  const domainBg =
+    mentor.domain === "Faculty"
+      ? "linear-gradient(135deg, #7c3aed, #6d28d9)"
+      : mentor.domain === "Governance" || mentor.domain === "Board of Directors"
+        ? "linear-gradient(135deg, #0f172a, #1e293b)"
+        : "linear-gradient(135deg, #2563eb, #1d4ed8)";
+
+  if (!avatarSrc || imgFailed) {
+    return (
+      <div
+        className="avatar"
+        style={{
+          margin: "0 auto 16px",
+          width: "64px",
+          height: "64px",
+          fontSize: "20px",
+          background: domainBg,
+          color: "#ffffff",
+          boxShadow: "0 4px 12px rgba(37, 99, 235, 0.2)",
+          display: "grid",
+          placeItems: "center",
+          borderRadius: "50%",
+          fontWeight: 800,
+        }}
+      >
+        {initials}
+      </div>
+    );
+  }
+
+  if (isOrgCard) {
+    return (
+      <button
+        type="button"
+        onClick={() => onZoom(mentor.name, avatarSrc)}
+        aria-label={`Enlarge logo of ${mentor.name}`}
+        style={{
+          background: "none",
+          border: "none",
+          padding: 0,
+          cursor: "zoom-in",
+          display: "block",
+          margin: "0 auto 16px",
+        }}
+      >
+        <div
+          style={{
+            width: "80px",
+            height: "80px",
+            borderRadius: "14px",
+            overflow: "hidden",
+            border: "2px solid #0ea5e9",
+            boxShadow: "0 4px 12px rgba(14, 165, 233, 0.18)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "#ffffff",
+          }}
+        >
+          <img
+            src={avatarSrc}
+            alt={`${mentor.name} logo`}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              display: "block",
+            }}
+            loading="lazy"
+            onError={() => setImgFailed(true)}
+          />
+        </div>
+      </button>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => onZoom(mentor.name, avatarSrc)}
+      aria-label={`Enlarge photo of ${mentor.name}`}
+      style={{
+        background: "none",
+        border: "none",
+        padding: 0,
+        cursor: "zoom-in",
+        display: "block",
+        margin: "0 auto 16px",
+        borderRadius: "50%",
+      }}
+    >
+      <img
+        src={avatarSrc}
+        alt={mentor.name}
+        style={{
+          width: "64px",
+          height: "64px",
+          borderRadius: "50%",
+          objectFit: "cover",
+          border: "2px solid #3b82f6",
+          display: "block",
+          boxShadow: "0 4px 12px rgba(37, 99, 235, 0.15)",
+        }}
+        loading="lazy"
+        onError={() => setImgFailed(true)}
+      />
+    </button>
+  );
+}
+
 export function HomePage() {
   // CMS Dynamic Lists with static fallbacks
   const { items: journeyStages } = useCmsList<PathwayStage>(
@@ -2301,96 +2444,11 @@ export function HomePage() {
                   }}
                 >
                   <div>
-                    {m.avatar ? (
-                      isOrgCard ? (
-                        /* Org card: logo displayed as a rounded-rect, clickable to open zoom modal */
-                        <button
-                          type="button"
-                          onClick={() => setPhotoModal({ name: m.name, avatar: m.avatar as string })}
-                          aria-label={`Enlarge logo of ${m.name}`}
-                          style={{
-                            background: "none",
-                            border: "none",
-                            padding: 0,
-                            cursor: "zoom-in",
-                            display: "block",
-                            margin: "0 auto 16px",
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: "80px",
-                              height: "80px",
-                              borderRadius: "14px",
-                              overflow: "hidden",
-                              border: "2px solid #0ea5e9",
-                              boxShadow: "0 4px 12px rgba(14, 165, 233, 0.18)",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              background: "#ffffff",
-                            }}
-                          >
-                            <img
-                              src={m.avatar}
-                              alt={`${m.name} logo`}
-                              style={{
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "contain",
-                                display: "block",
-                              }}
-                              loading="lazy"
-                              onError={(e) => { e.currentTarget.parentElement!.parentElement!.style.display = "none"; }}
-                            />
-                          </div>
-                        </button>
-                      ) : (
-                        /* Individual mentor: circular photo with zoom button */
-                        <button
-                          type="button"
-                          onClick={() => setPhotoModal({ name: m.name, avatar: m.avatar as string })}
-                          aria-label={`Enlarge photo of ${m.name}`}
-                          style={{
-                            background: "none",
-                            border: "none",
-                            padding: 0,
-                            cursor: "zoom-in",
-                            display: "block",
-                            margin: "0 auto 16px",
-                            borderRadius: "50%",
-                          }}
-                        >
-                          <img
-                            src={m.avatar}
-                            alt={m.name}
-                            style={{
-                              width: "64px",
-                              height: "64px",
-                              borderRadius: "50%",
-                              objectFit: "cover",
-                              border: "2px solid #3b82f6",
-                              display: "block",
-                              boxShadow: "0 4px 12px rgba(37, 99, 235, 0.15)",
-                            }}
-                            loading="lazy"
-                            onError={(e) => { e.currentTarget.parentElement!.style.display = "none"; }}
-                          />
-                        </button>
-                      )
-                    ) : (
-                      <div
-                        className="avatar"
-                        style={{ margin: "0 auto 16px", width: "64px", height: "64px", fontSize: "20px" }}
-                      >
-                        {m.name
-                          .split(" ")
-                          .filter((x) => x.length > 2 && !x.includes("Dr.") && !x.includes("Mr.") && !x.includes("Prof."))
-                          .slice(0, 2)
-                          .map((x) => x[0])
-                          .join("") || "GM"}
-                      </div>
-                    )}
+                    <MentorAvatar
+                      mentor={m}
+                      isOrgCard={isOrgCard}
+                      onZoom={(name, avatar) => setPhotoModal({ name, avatar })}
+                    />
 
                     <div style={{ display: "flex", gap: "6px", justifyContent: "center", marginBottom: "8px", flexWrap: "wrap" }}>
                       <span className="pill" style={{ fontSize: "11px" }}>

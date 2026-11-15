@@ -3504,6 +3504,29 @@ section {
   border-color: var(--border);
 }
 
+.mega-menu-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.mega-menu-badge.internal {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.mega-menu-badge.external {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
 .dark .mega-menu-panel {
   background: #111827 !important;
   border-color: #1e293b !important;
@@ -3512,6 +3535,18 @@ section {
 
 .dark .mega-menu-panel span {
   color: #f1f5f9 !important;
+}
+
+.dark .mega-menu-panel span.mega-menu-badge.internal {
+  background: rgba(37, 99, 235, 0.22) !important;
+  color: #93c5fd !important;
+  border: 1px solid rgba(147, 197, 253, 0.35) !important;
+}
+
+.dark .mega-menu-panel span.mega-menu-badge.external {
+  background: rgba(5, 150, 105, 0.22) !important;
+  color: #6ee7b7 !important;
+  border: 1px solid rgba(110, 231, 183, 0.35) !important;
 }
 
 .dark .mega-menu-panel p {

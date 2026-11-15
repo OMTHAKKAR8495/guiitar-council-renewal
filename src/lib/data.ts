@@ -946,7 +946,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Millennium Alliance",
     experience: "Strategic advisor with experience in alliance-building, innovation policy and early-stage startup support.",
-    avatar: "/mentors/industry/photos/industry-mentor-01.avif",
+    avatar: "/images/mentors/sudhir-gupta.jpeg",
     expertise: ["Strategic Advisory", "Alliance Building", "Innovation Policy", "Startup Support"],
   },
   {
@@ -956,7 +956,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Lead Angels Network",
     experience: "Angel investor and startup mentor with extensive experience in venture evaluation and early-stage funding.",
-    avatar: "/mentors/industry/photos/industry-mentor-02.avif",
+    avatar: "/images/mentors/dhruv-nath.jpg",
     expertise: ["Angel Investing", "Venture Evaluation", "Startup Mentorship", "Early-Stage Funding"],
   },
   {
@@ -966,7 +966,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Ravin Sanghavi & Associates",
     experience: "Founder and consultant with expertise in business development, legal advisory and entrepreneurship.",
-    avatar: "/mentors/industry/photos/industry-mentor-03.avif",
+    avatar: "/images/mentors/ravin-sanghavi.jpg",
     expertise: ["Business Development", "Legal Advisory", "Entrepreneurship", "Consulting"],
   },
   {
@@ -976,7 +976,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Gurukul Academy",
     experience: "CEO with experience in educational leadership, skill development and institution building.",
-    avatar: "/mentors/industry/photos/industry-mentor-04.avif",
+    avatar: "/images/mentors/manoj-shukla.jpg",
     expertise: ["Educational Leadership", "Skill Development", "Institution Building", "Mentorship"],
   },
   {
@@ -986,7 +986,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Barodaweb",
     experience: "CEO of a digital solutions company with expertise in web technology, digital marketing and SME enablement.",
-    avatar: "/mentors/industry/photos/industry-mentor-05.avif",
+    avatar: "/images/mentors/rupesh-shah.jpg",
     expertise: ["Web Technology", "Digital Marketing", "SME Enablement", "Business Strategy"],
   },
   {
@@ -997,7 +997,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Market Creators Ltd",
     experience: "Director with expertise in market strategy, business creation and corporate development.",
-    avatar: "/mentors/industry/photos/industry-mentor-06.avif",
+    avatar: "/images/mentors/bhavik-b-patel.jpg",
     expertise: ["Market Strategy", "Business Creation", "Corporate Development", "Sales"],
   },
   {
@@ -1007,7 +1007,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "BIZSTART",
     experience: "Founder with experience in startup ecosystem development, business incubation and entrepreneurship coaching.",
-    avatar: "/mentors/industry/photos/industry-mentor-07.avif",
+    avatar: "/images/mentors/kavita-saxena.jpg",
     expertise: ["Startup Ecosystem", "Business Incubation", "Entrepreneurship Coaching", "MSME Support"],
   },
   {
@@ -1017,7 +1017,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Billennium Divas Pvt Ltd",
     experience: "Founder Director with expertise in business strategy, organizational leadership and new venture creation.",
-    avatar: "/mentors/industry/photos/industry-mentor-08.avif",
+    avatar: "/images/mentors/kalpesh-shah.jpg",
     expertise: ["Business Strategy", "Organizational Leadership", "Venture Creation", "Corporate Governance"],
   },
   {
@@ -1027,7 +1027,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "INFINVENT IP",
     experience: "IP law professional and CEO specializing in intellectual property rights, patent prosecution and startup IP strategy.",
-    avatar: "/mentors/industry/photos/industry-mentor-09.avif",
+    avatar: "/images/mentors/brijesh-m-garala.jpg",
     expertise: ["Intellectual Property", "Patent Prosecution", "IP Strategy", "Legal Advisory"],
   },
   {
@@ -1037,7 +1037,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Oviyan Cast & Forge Pvt. Ltd.",
     experience: "Director in manufacturing and heavy engineering with expertise in casting, forging and industrial operations.",
-    avatar: "/mentors/industry/photos/industry-mentor-10.avif",
+    avatar: "/images/mentors/suresh-p-othayoth.jpg",
     expertise: ["Manufacturing", "Casting & Forging", "Industrial Operations", "Engineering"],
   },
   {
@@ -1047,7 +1047,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Santushti Shakes Pvt. Ltd.",
     experience: "MD & CEO with experience in FMCG, food & beverage industry, franchise management and retail scaling.",
-    avatar: "/mentors/industry/photos/industry-mentor-11.avif",
+    avatar: "/images/mentors/hitesh-porwal.jpg",
     expertise: ["FMCG", "Food & Beverage", "Franchise Management", "Retail Scaling"],
   },
   {
@@ -1057,7 +1057,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "FUN2DO Labs Pvt. Ltd.",
     experience: "Founder specializing in EdTech, experiential learning, STEM education and product innovation for children.",
-    avatar: "/mentors/industry/photos/industry-mentor-12.avif",
+    avatar: "/images/mentors/bhavesh-chelani.jpg",
     expertise: ["EdTech", "Experiential Learning", "STEM Education", "Product Innovation"],
   },
   {
@@ -1067,7 +1067,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Freelancing Startup Mentor",
     experience: "Independent startup mentor with experience in business advisory, market research and early-stage venture guidance.",
-    avatar: "/mentors/industry/photos/industry-mentor-13.avif",
+    avatar: "/images/mentors/ashutosh-tewari.jpg",
     expertise: ["Business Advisory", "Market Research", "Startup Mentoring", "Early-Stage Guidance"],
   },
   {
@@ -1077,7 +1077,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "GSFC Ltd.",
     experience: "Research manager at GSFC Ltd. with expertise in chemical sciences, industrial R&D and applied research.",
-    avatar: "/mentors/industry/photos/industry-mentor-14.avif",
+    avatar: "/images/mentors/bhavesh-kothari.jpg",
     expertise: ["Chemical Sciences", "Industrial R&D", "Applied Research", "Process Innovation"],
   },
   {
@@ -1088,7 +1088,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     organization: "GITAM (Deemed to be) University",
     // NOTE: Organization name "GITAM (deemed to be) University" — verify exact legal name from document.
     experience: "Senior Venture Coach supporting deep-tech and social innovation startups through structured mentoring and business coaching.",
-    avatar: "/mentors/industry/photos/industry-mentor-15.avif",
+    avatar: "/images/mentors/saurabh-jain.png",
     expertise: ["Venture Coaching", "Deep-Tech Startups", "Social Innovation", "Business Coaching"],
   },
   {
@@ -1098,7 +1098,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "CA Chintan Popat & Associates",
     experience: "Chartered Accountant and Company Secretary with expertise in finance, taxation, compliance and startup CFO advisory.",
-    avatar: "/mentors/industry/photos/industry-mentor-16.avif",
+    avatar: "/images/mentors/chintan-popat.jpg",
     expertise: ["Chartered Accountancy", "Company Secretarial", "Taxation & Compliance", "CFO Advisory"],
   },
   {
@@ -1108,7 +1108,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Chatur Ideas",
     experience: "Founder & CEO of a branding and marketing consultancy with expertise in brand strategy, content and growth marketing.",
-    avatar: "/mentors/industry/photos/industry-mentor-17.avif",
+    avatar: "/images/mentors/devesh-chawla.jpeg",
     expertise: ["Brand Strategy", "Content Marketing", "Growth Marketing", "Business Development"],
   },
   {
@@ -1119,7 +1119,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "[Organisation — verify from document]",
     experience: "Director of International Business Development with expertise in global market entry, trade and cross-border partnerships.",
-    avatar: "/mentors/industry/photos/industry-mentor-18.avif",
+    avatar: "/images/mentors/karan-shah.jpg",
     expertise: ["International Business Development", "Global Market Entry", "Trade", "Cross-Border Partnerships"],
   },
   {
@@ -1129,7 +1129,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Aver India Equipment",
     experience: "Sales and technology leader with expertise in B2B sales, AV & IT equipment distribution and channel management.",
-    avatar: "/mentors/industry/photos/industry-mentor-19.avif",
+    avatar: "/images/mentors/ashwin-v-parikh.jpg",
     expertise: ["B2B Sales", "AV & IT Equipment", "Channel Management", "Technology Sales"],
   },
   {
@@ -1139,7 +1139,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Pactual IP Law Services LLP",
     experience: "Managing Director of an IP law services firm specializing in patent filing, IP portfolio management and legal consulting.",
-    avatar: "/mentors/industry/photos/industry-mentor-20.avif",
+    avatar: "/images/mentors/devang-patel.jpg",
     expertise: ["Patent Filing", "IP Portfolio Management", "Legal Consulting", "Intellectual Property"],
   },
   {
@@ -1149,7 +1149,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Civitas Sustainability Foundation",
     experience: "Partnership and outreach leader focused on sustainability, CSR, social impact programs and corporate engagement.",
-    avatar: "/mentors/industry/photos/industry-mentor-21.avif",
+    avatar: "/images/mentors/jekishan-k-parmar.jpeg",
     expertise: ["Sustainability", "CSR", "Social Impact", "Partnership & Outreach"],
   },
   {
@@ -1159,7 +1159,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Vantage Point Executive Coaching",
     experience: "Founder of an executive coaching practice with expertise in leadership development, coaching and organizational effectiveness.",
-    avatar: "/mentors/industry/photos/industry-mentor-22.avif",
+    avatar: "/images/mentors/prakash-vaghasiya.jpg",
     expertise: ["Executive Coaching", "Leadership Development", "Organizational Effectiveness", "Mentoring"],
   },
   {
@@ -1169,7 +1169,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Vise Organic",
     experience: "CEO with expertise in organic products, sustainable agriculture, agri-business and rural entrepreneurship.",
-    avatar: "/mentors/industry/photos/industry-mentor-23.avif",
+    avatar: "/images/mentors/amitkumar-patel.jpg",
     expertise: ["Organic Products", "Sustainable Agriculture", "Agri-Business", "Rural Entrepreneurship"],
   },
   {
@@ -1180,7 +1180,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Independent Consultant",
     experience: "Independent consultant with expertise in business advisory, market strategy and startup mentoring.",
-    avatar: "/mentors/industry/photos/industry-mentor-24.avif",
+    avatar: "/images/mentors/javid-shaikh.jpg",
     expertise: ["Business Advisory", "Market Strategy", "Startup Mentoring", "Consulting"],
   },
   {
@@ -1190,7 +1190,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "INFINVENT IP",
     experience: "IP law partner and advocate with expertise in patent drafting, IP litigation, trademark and legal advisory for startups.",
-    avatar: "/mentors/industry/photos/industry-mentor-25.avif",
+    avatar: "/images/mentors/heena-patel.jpeg",
     expertise: ["Patent Drafting", "IP Litigation", "Trademark", "Legal Advisory"],
   },
   {
@@ -1200,7 +1200,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "L&T Technology Services",
     experience: "Senior Engineer at L&T Technology Services with expertise in engineering services, product development and R&D.",
-    avatar: "/mentors/industry/photos/industry-mentor-26.avif",
+    avatar: "/images/mentors/bhavik-bhansali.jpg",
     expertise: ["Engineering Services", "Product Development", "R&D", "Technology Consulting"],
   },
   {
@@ -1210,7 +1210,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "J K Fertilizers",
     experience: "Business owner in the agri-input sector with expertise in fertilizers, agricultural supply chain and rural markets.",
-    avatar: "/mentors/industry/photos/industry-mentor-27.avif",
+    avatar: "/images/mentors/akash-dadhania.jpg",
     expertise: ["Fertilizers", "Agricultural Supply Chain", "Rural Markets", "Agri-Business"],
   },
   {
@@ -1220,7 +1220,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Tapanshi Financial Pvt. Ltd.",
     experience: "Chartered Accountant and CEO specializing in financial services, investment advisory and wealth management.",
-    avatar: "/mentors/industry/photos/industry-mentor-28.avif",
+    avatar: "/images/mentors/ashish-kumar.jpg",
     expertise: ["Financial Services", "Investment Advisory", "Wealth Management", "Chartered Accountancy"],
   },
   {
@@ -1230,7 +1230,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Inter University Accelerator Center",
     experience: "Associate Professor and researcher at a national accelerator facility with expertise in physics research and academic mentoring.",
-    avatar: "/mentors/industry/photos/industry-mentor-29.avif",
+    avatar: "/images/mentors/karmjitsinh-bihola.png",
     expertise: ["Physics Research", "Accelerator Science", "Academic Mentoring", "Research & Development"],
   },
   {
@@ -1241,7 +1241,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Electromech Cloudtech Pvt. Ltd.",
     experience: "CEO of an electromechanical and cloud technology company with expertise in industrial automation and tech startups.",
-    avatar: "/mentors/industry/photos/industry-mentor-30.avif",
+    avatar: "/images/mentors/shaurin-patel.jpg",
     expertise: ["Industrial Automation", "Cloud Technology", "Electromechanical Systems", "Tech Startups"],
   },
   {
@@ -1252,7 +1252,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Innodesk Designovation Services",
     experience: "Founder of a design and innovation services firm with expertise in product design, design thinking and prototyping.",
-    avatar: "/mentors/industry/photos/industry-mentor-31.avif",
+    avatar: "/images/mentors/anant-acharya.jpg",
     expertise: ["Product Design", "Design Thinking", "Prototyping", "Innovation Services"],
   },
   {
@@ -1263,7 +1263,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     organization: "MarsBazaar.com",
     // NOTE: Verify exact organization name spelling — "MarsBazaar.com" taken directly from screenshot.
     experience: "CTO with expertise in e-commerce technology, platform architecture, software engineering and startup scaling.",
-    avatar: "/mentors/industry/photos/industry-mentor-32.avif",
+    avatar: "/images/mentors/nilesh-vagrela.jpg",
     expertise: ["E-Commerce Technology", "Platform Architecture", "Software Engineering", "Startup Scaling"],
   },
   {
@@ -1273,7 +1273,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Vexma Technologies",
     experience: "MD & CEO of an advanced manufacturing and 3D printing technology company specializing in industrial prototyping and AM solutions.",
-    avatar: "/mentors/industry/photos/industry-mentor-33.avif",
+    avatar: "/images/mentors/jitendra-jain.jpeg",
     expertise: ["3D Printing", "Advanced Manufacturing", "Industrial Prototyping", "Additive Manufacturing"],
   },
   {
@@ -1283,7 +1283,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "LifeSecret Consultancy LLP",
     experience: "Co-founder of a wellness and lifestyle consultancy with expertise in health coaching, wellness programs and social enterprise.",
-    avatar: "/mentors/industry/photos/industry-mentor-34.avif",
+    avatar: "/images/mentors/baljeetsingh-b-sucharia.jpeg",
     expertise: ["Health Coaching", "Wellness Programs", "Social Enterprise", "Lifestyle Consultancy"],
   },
   {
@@ -1293,7 +1293,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Tech Defence Solutions Pvt. Ltd.",
     experience: "Independent Director with expertise in defence technology, corporate governance, strategic leadership and board advisory.",
-    avatar: "/mentors/industry/photos/industry-mentor-35.avif",
+    avatar: "/images/mentors/hemant-mishra.jpg",
     expertise: ["Defence Technology", "Corporate Governance", "Strategic Leadership", "Board Advisory"],
   },
   {
@@ -1304,7 +1304,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     domain: "Industry",
     organization: "Bharat Technologies Pvt. Ltd. [verify full name from document]",
     experience: "CEO-Founder with expertise in technology entrepreneurship, product innovation and business scaling.",
-    avatar: "/mentors/industry/photos/industry-mentor-36.avif",
+    avatar: "/images/mentors/hemal-shah.jpeg",
     expertise: ["Technology Entrepreneurship", "Product Innovation", "Business Scaling", "Startup Leadership"],
   },
 
@@ -1321,7 +1321,7 @@ export const MENTOR_NETWORK: MentorItem[] = [
     organization: "TiE Vadodara",
     // No fabricated personal experience — this is a network card.
     experience: "A network of experienced entrepreneurs, investors and industry leaders committed to fostering entrepreneurship.",
-    avatar: "/mentors/industry/photos/industry-mentor-37.avif",
+    avatar: "/images/mentors/tie-vadodara.svg",
     expertise: ["Entrepreneurship", "Investor Network", "Startup Mentorship", "Industry Linkages"],
   },
 ];
