@@ -80,47 +80,55 @@ const thrust = [
   ["Water (Drinking Water, Wastewater and Storm Water Utilities)", Droplets],
 ] as const;
 
-const teams: { [k: string]: [string, string, string?][] } = {
+const teams: { [k: string]: [string, string, string?, string?][] } = {
   "Board of Directors": [
     [
       "Shri P. K. Taneja, IAS (Retd.)",
       "Chairman, GUIITAR Council & President, GSFC University",
       "Former Additional Chief Secretary (Home / Forest & Environment), Government of Gujarat.",
+      "https://www.linkedin.com/search/results/all/?keywords=P+K+Taneja+IAS+GSFC+University",
     ],
     [
       "Prof. G. R. Sinha",
       "Director & CEO, GUIITAR Council; Provost, GSFC University",
       "Distinguished Academician, IEEE Senior Member, and global researcher with 25+ years in engineering leadership.",
+      "https://www.linkedin.com/in/dr-g-r-sinha-591b8a14/",
     ],
     [
       "Shri Mahesh Barot",
       "Director, GUIITAR Council",
       "Corporate leader providing high-level organizational governance and strategic leadership for GUIITAR Council.",
+      "https://www.linkedin.com/search/results/all/?keywords=Mahesh+Barot+GSFC",
     ],
     [
       "Shri Utkarsh Yajnik",
       "Director, GUIITAR Council",
       "Experienced corporate executive steering institutional growth, venture investments, and enterprise scaling.",
+      "https://www.linkedin.com/search/results/all/?keywords=Utkarsh+Yajnik+GSFC",
     ],
     [
       "Ms. Swati Bedekar",
       "Director, GUIITAR Council",
       "Social entrepreneur and innovation advocate advancing grassroots innovation and women-led entrepreneurship.",
+      "https://www.linkedin.com/in/swati-bedekar-b1626226/",
     ],
     [
       "Dr. Pujan Vaishnav",
       "Director, GUIITAR Council",
       "Academic and technology leader advising on curriculum-integrated entrepreneurship and incubation metrics.",
+      "https://www.linkedin.com/in/pujan-vaishnav-ph-d-8968411b/",
     ],
     [
       "Mr. Anupam Jalote",
       "Director, GUIITAR Council & CEO, iCEM",
       "Chief Executive Officer at International Centre of Excellence in Mining, leading industrial partnerships.",
+      "https://www.linkedin.com/in/anupamjalote/",
     ],
     [
       "Shri Ravin Sanghavi",
       "Director, GUIITAR Council",
       "Entrepreneur, investor, and legal advisory specialist with deep expertise in angel networks and startup compliance.",
+      "https://www.linkedin.com/in/ravinsanghavi/",
     ],
   ],
   "Core Incubation Team": [
@@ -128,37 +136,40 @@ const teams: { [k: string]: [string, string, string?][] } = {
       "Mr. Kirankumar Parmar",
       "Senior Manager (Incubation)",
       "12+ years in university business incubation, SSIP 2.0 grant governance, and startup cohort administration.",
+      "https://www.linkedin.com/in/kiran-parmar-a059b022/",
     ],
     [
       "Mr. Bhuvan Vyas",
       "Manager, Incubation (Ecosystem & Linkages)",
       "Industrial alliances, CSR grant funding, investor relations, and external institutional partnerships.",
+      "https://www.linkedin.com/search/results/all/?keywords=Bhuvan+Vyas+GUIITAR+Council",
     ],
     [
       "Mr. Amit Duggal",
       "Senior Executive (Technical)",
       "Hardware prototyping laboratories, 3D printing slicing, laser cutting tooling, and test rigs.",
+      "https://www.linkedin.com/search/results/all/?keywords=Amit+Duggal+GUIITAR+Council",
     ],
   ],
   "Technical Associates": [
-    ["Mr. Krishay Shah", "Technical Associate", "Design IoT Lab, embedded hardware, sensor calibration & firmware"],
-    ["Ms. Lavanya Jain", "Technical Associate", "Makers Lab 3D printing (SLA/FDM), CAD evaluation & rapid prototyping"],
-    ["Mr. Tirth Darji", "Technical Associate", "Precision laser cutting, mechanical fabrication & workshop tools"],
-    ["Mr. Dev Patel", "Technical Associate", "Computing clusters, software prototype deployment & portal systems"],
-    ["Ms. Chaitali Karpe", "Lab Assistant", "Chemical instrumentation, wet labs & biotechnology experiments"],
-    ["Ms. Nishita Navlani", "Technical Associate", "Technical documentation, screening dossier & monthly progress files"],
-    ["Ms. Priyanshi Vankar", "Technical Associate", "Invention Disclosure Form (IDF) intake & IPR Centre coordination"],
+    ["Mr. Krishay Shah", "Technical Associate", "Design IoT Lab, embedded hardware, sensor calibration & firmware", "https://www.linkedin.com/search/results/all/?keywords=Krishay+Shah+GSFC+University"],
+    ["Ms. Lavanya Jain", "Technical Associate", "Makers Lab 3D printing (SLA/FDM), CAD evaluation & rapid prototyping", "https://www.linkedin.com/search/results/all/?keywords=Lavanya+Jain+GSFC+University"],
+    ["Mr. Tirth Darji", "Technical Associate", "Precision laser cutting, mechanical fabrication & workshop tools", "https://www.linkedin.com/search/results/all/?keywords=Tirth+Darji+GSFC+University"],
+    ["Mr. Dev Patel", "Technical Associate", "Computing clusters, software prototype deployment & portal systems", "https://www.linkedin.com/search/results/all/?keywords=Dev+Patel+GSFC+University"],
+    ["Ms. Chaitali Karpe", "Lab Assistant", "Chemical instrumentation, wet labs & biotechnology experiments", "https://www.linkedin.com/search/results/all/?keywords=Chaitali+Karpe+GSFC+University"],
+    ["Ms. Nishita Navlani", "Technical Associate", "Technical documentation, screening dossier & monthly progress files", "https://www.linkedin.com/search/results/all/?keywords=Nishita+Navlani+GSFC+University"],
+    ["Ms. Priyanshi Vankar", "Technical Associate", "Invention Disclosure Form (IDF) intake & IPR Centre coordination", "https://www.linkedin.com/search/results/all/?keywords=Priyanshi+Vankar+GSFC+University"],
   ],
   "Academic & Departmental Mentors": [
-    ["Dr. Chandra Has", "Assistant Professor, Mechanical Engg (SoT)", "CAD/CAM, rapid mechanical prototyping & materials"],
-    ["Mr. Abidhusain Lodha", "Assistant Professor, Robotics (SoT)", "Drone UAV systems, flight avionics & autonomous mechatronics"],
-    ["Dr. Mihir Trivedi", "Assistant Professor, Computer Science (SoT)", "Param Shavak supercomputing, parallel CUDA & AI/ML"],
-    ["Dr. Akhilesh Prajapati", "Associate Professor, Chemical Engg (SoT)", "Chemical process scale-up, industrial safety & applied chemistry"],
-    ["Ms. Charmi Mehta", "Assistant Professor, Applied Sciences (SoS)", "Applied sciences, research documentation & student cohorts"],
-    ["Dr. Rahul Sharma", "Sr. Assistant Professor, Management (SoM&E)", "Business modeling, venture unit economics & pitch design"],
-    ["Dr. Jignesh Valand", "Assistant Professor, Biotechnology (SoS)", "Microbial biotechnology, bio-pigments & green chemistry"],
-    ["Mr. Anup Upadhyay", "Lab Assistant, Workshop (SoT)", "Machine shop fabrication, structural tooling & lathe operations"],
-    ["Mr. Hemant M Rajput", "IT Coordinator, Central IT", "High-speed campus networking, server management & security"],
+    ["Dr. Chandra Has", "Assistant Professor, Mechanical Engg (SoT)", "CAD/CAM, rapid mechanical prototyping & materials", "https://www.linkedin.com/search/results/all/?keywords=Chandra+Has+GSFC+University"],
+    ["Mr. Abidhusain Lodha", "Assistant Professor, Robotics (SoT)", "Drone UAV systems, flight avionics & autonomous mechatronics", "https://www.linkedin.com/search/results/all/?keywords=Abidhusain+Lodha+GSFC+University"],
+    ["Dr. Mihir Trivedi", "Assistant Professor, Computer Science (SoT)", "Param Shavak supercomputing, parallel CUDA & AI/ML", "https://www.linkedin.com/search/results/all/?keywords=Mihir+Trivedi+GSFC+University"],
+    ["Dr. Akhilesh Prajapati", "Associate Professor, Chemical Engg (SoT)", "Chemical process scale-up, industrial safety & applied chemistry", "https://www.linkedin.com/search/results/all/?keywords=Akhilesh+Prajapati+GSFC+University"],
+    ["Ms. Charmi Mehta", "Assistant Professor, Applied Sciences (SoS)", "Applied sciences, research documentation & student cohorts", "https://www.linkedin.com/search/results/all/?keywords=Charmi+Mehta+GSFC+University"],
+    ["Dr. Rahul Sharma", "Sr. Assistant Professor, Management (SoM&E)", "Business modeling, venture unit economics & pitch design", "https://www.linkedin.com/search/results/all/?keywords=Rahul+Sharma+GSFC+University"],
+    ["Dr. Jignesh Valand", "Assistant Professor, Biotechnology (SoS)", "Microbial biotechnology, bio-pigments & green chemistry", "https://www.linkedin.com/search/results/all/?keywords=Jignesh+Valand+GSFC+University"],
+    ["Mr. Anup Upadhyay", "Lab Assistant, Workshop (SoT)", "Machine shop fabrication, structural tooling & lathe operations", "https://www.linkedin.com/search/results/all/?keywords=Anup+Upadhyay+GSFC+University"],
+    ["Mr. Hemant M Rajput", "IT Coordinator, Central IT", "High-speed campus networking, server management & security", "https://www.linkedin.com/search/results/all/?keywords=Hemant+Rajput+GSFC+University"],
   ],
 };
 
@@ -1309,7 +1320,7 @@ function About() {
             </button>
 
             <div className="team-grid">
-              {visible.map(([n, t, desc]) => {
+              {visible.map(([n, t, desc, linkedin]) => {
                 const leaderPhotos: Record<string, string> = {
                   "Shri P. K. Taneja, IAS (Retd.)": "/team/pk-taneja.png",
                   "Prof. G. R. Sinha": "/images/original/leadership/provost-gr-sinha.jpg",
@@ -1385,11 +1396,16 @@ function About() {
                     )}
                     <div className="team-socials">
                       <a
-                        href="https://www.linkedin.com/company/guiitarcouncil/posts/?feedView=all"
+                        href={
+                          linkedin ||
+                          `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(
+                            n + " GSFC University"
+                          )}`
+                        }
                         target="_blank"
-                        rel="noreferrer"
-                        aria-label="GUIITAR Council LinkedIn"
-                        title="GUIITAR Council LinkedIn"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${n}'s profile on LinkedIn`}
+                        title={`View ${n}'s profile on LinkedIn`}
                       >
                         <Linkedin className="w-4 h-4" />
                       </a>
