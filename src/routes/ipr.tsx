@@ -125,9 +125,52 @@ const IPR_PILLARS = [
   },
 ];
 
+const IPR_SSIP_SCHEDULE = [
+  {
+    category: "Domestic Patent",
+    amount: "₹75,000",
+    description: "Per domestic patent application support covering prior-art search, specification drafting by empaneled attorneys, and Indian Patent Office fees.",
+  },
+  {
+    category: "International Patent",
+    amount: "₹1,50,000",
+    description: "Per international patent application support (PCT / foreign national phase filings in foreign jurisdictions).",
+  },
+  {
+    category: "Copyright",
+    amount: "₹8,000",
+    description: "Software source code, proprietary algorithms, literary works, dramatic creations, and artistic asset registrations.",
+  },
+  {
+    category: "Trademark",
+    amount: "₹12,500",
+    description: "Brand names, enterprise logos, product identity marks, and proprietary slogans under Indian Trade Marks Registry.",
+  },
+  {
+    category: "International Registration of Marks",
+    amount: "₹50,000",
+    description: "International trademark protection under the Madrid Protocol framework across global territories.",
+  },
+  {
+    category: "Industrial Design",
+    amount: "₹9,000",
+    description: "Protection of novel ornamental 3D contours, aesthetic geometric shapes, and design classifications.",
+  },
+  {
+    category: "Plant Variety Registry",
+    amount: "₹33,000",
+    description: "Filing and statutory registry under the Protection of Plant Varieties and Farmers' Rights Authority (PPVFRA).",
+  },
+  {
+    category: "Semiconductor IC Layout-Design (SICLDR)",
+    amount: "₹15,000",
+    description: "Registration under Semiconductor Integrated Circuits Layout-Design Registry for microchip and wafer circuit architectures.",
+  },
+];
+
 const IPR_DOCS = [
   {
-    title: "GSFC University IPR Policy (Version 01)",
+    title: "GSFC University Intellectual Property Rights Policy",
     desc: "Comprehensive 46-page institutional policy approved by President, effective 26 September 2025. Covers definitions, ownership, 70:30 revenue distribution, and tech transfer.",
     type: "PDF Document",
     tag: "Official Policy",
@@ -136,20 +179,47 @@ const IPR_DOCS = [
     primary: true,
   },
   {
-    title: "Invention Disclosure Form (IDF) — Online Portal",
-    desc: "Standard university disclosure intake for novel inventions, chemical formulations, hardware devices, and software code.",
-    type: "Google Form",
-    tag: "Online Submission",
-    url: "https://forms.gle/sUvSDHDubWQVdLHi8",
-    icon: ExternalLink,
+    title: "Standard Operating Procedure (SoP) of GSFCU IPR Policy",
+    desc: "Official institutional SOP document detailing IDF intake, prior-art scrutiny, committee review, attorney allocation, and reimbursement timelines.",
+    type: "PDF Document",
+    tag: "Official SOP",
+    url: "https://drive.google.com/file/d/1krFQgyQ_nasChoSLrFF8zbHzNg1yM9G9/view?usp=sharing",
+    icon: FileCheck,
     primary: true,
   },
   {
     title: "SSIP 2.0 IPR Facilitation Guidelines",
-    desc: "Official Government of Gujarat circular outlining funding caps, allowable legal expenses, and reimbursement procedures for patents.",
+    desc: "Government of Gujarat circular specifying per-application statutory support caps, eligible IP facilitators, and audit norms.",
     type: "PDF Document",
     tag: "Government Circular",
-    url: "/resources",
+    url: "https://drive.google.com/file/d/1hcS-66kn9kpceLXIt119thURJpoLN_rl/view",
+    icon: FileCheck,
+    primary: false,
+  },
+  {
+    title: "GSFC University Startup Committee (GUSC) Order",
+    desc: "Apex statutory committee notification constituting evaluation, screening, and grant sanctioning authorities for student IP and prototyping.",
+    type: "PDF Document",
+    tag: "Office Order",
+    url: "https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_8653460f7dfb49c0bdfd4bab4e9e2892.pdf",
+    icon: FileText,
+    primary: false,
+  },
+  {
+    title: "Official IPR Application Portal (Bitly / Google Form)",
+    desc: "Direct online application portal for students, researchers, faculty, and incubatees to submit novel invention disclosures to GUIITAR IPR Centre.",
+    type: "Online Form",
+    tag: "Online Intake",
+    url: "https://bit.ly/GUIITARIPR",
+    icon: ExternalLink,
+    primary: true,
+  },
+  {
+    title: "Faculty and Students IP Registry",
+    desc: "Consolidated public record of patents, copyrights, and industrial designs filed and published across GSFC University departments.",
+    type: "Directory",
+    tag: "Published Records",
+    url: "https://drive.google.com/file/d/1FnoPviNHJt0b7JqsNwzVYIq5qD96eXhP/view?usp=sharing",
     icon: FileCheck,
     primary: false,
   },
@@ -558,6 +628,76 @@ export function IPRPage() {
                 title="IP Subsidies & Attorney Assistance"
                 subtitle="Reimbursements covering novelty searches, attorney fees, drafting costs, and statutory filing duties."
               />
+
+              {/* OFFICIAL SSIP IPR STATUTORY SUPPORT SCHEDULE */}
+              <div
+                style={{
+                  marginTop: "28px",
+                  background: "var(--card)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "18px",
+                  padding: "28px 24px",
+                  boxShadow: "0 4px 16px -2px rgba(0, 0, 0, 0.04)",
+                }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px", marginBottom: "16px" }}>
+                  <div>
+                    <span className="pill orange" style={{ fontSize: "11px", marginBottom: "6px", display: "inline-block" }}>
+                      Official SSIP Statutory Rate Card
+                    </span>
+                    <h3 style={{ fontSize: "20px", fontWeight: 800, margin: 0 }}>
+                      Per-Application IPR Grant Support Schedule
+                    </h3>
+                  </div>
+                  <a
+                    href="https://bit.ly/GUIITARIPR"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-sm"
+                    style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+                  >
+                    <span>Apply for IPR Support</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", marginBottom: "18px" }}>
+                  Under the Student Startup and Innovation Policy (SSIP), GUIITAR Council extends 100% reimbursed financial support covering government filing duties and empaneled IP facilitator legal fees at the following statutory rates:
+                </p>
+
+                <div style={{ overflowX: "auto" }}>
+                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13.5px", textAlign: "left" }}>
+                    <thead>
+                      <tr style={{ borderBottom: "2px solid var(--border)", background: "var(--surface-muted, #f8fafc)" }}>
+                        <th style={{ padding: "12px 14px", fontWeight: 800 }}>Category of Intellectual Property</th>
+                        <th style={{ padding: "12px 14px", fontWeight: 800, color: "#ea580c" }}>Statutory Grant Amount</th>
+                        <th style={{ padding: "12px 14px", fontWeight: 800 }}>Scope of Official Assistance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {IPR_SSIP_SCHEDULE.map((row, idx) => (
+                        <tr
+                          key={row.category}
+                          style={{
+                            borderBottom: "1px solid var(--border)",
+                            background: idx % 2 === 0 ? "transparent" : "var(--surface-muted, rgba(248, 250, 252, 0.5))",
+                          }}
+                        >
+                          <td style={{ padding: "12px 14px", fontWeight: 700, color: "var(--foreground)" }}>
+                            {row.category}
+                          </td>
+                          <td style={{ padding: "12px 14px", fontWeight: 900, color: "#ea580c", whiteSpace: "nowrap" }}>
+                            {row.amount}
+                          </td>
+                          <td style={{ padding: "12px 14px", color: "var(--muted-foreground)" }}>
+                            {row.description}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
 
               <div
                 style={{

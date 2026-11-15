@@ -40,28 +40,55 @@ export const Route = createFileRoute("/e-club")({
 
 const ECLUB_OBJECTIVES = [
   {
-    title: "Cultivate Entrepreneurial Mindset",
-    desc: "Inspire and nurture the spirit of entrepreneurship among students across all schools (Technology, Science, Management, and Design).",
+    title: "1. Develop Entrepreneurial Skills and Leadership Qualities",
+    desc: "Cultivating managerial confidence, decision-making, team orchestration, and leadership capability among students through direct hands-on venture creation exercises.",
   },
   {
-    title: "Facilitate Idea Generation & Hackathons",
-    desc: "Organize campus-wide ideathons, 36-hour hackathons, prototype challenges, and multidisciplinary design clinics.",
+    title: "2. Promote Innovation",
+    desc: "Inspiring original problem-solving, design thinking, and high-impact technology development across all university schools and interdisciplinary research labs.",
   },
   {
-    title: "Bridge Classroom Learning & Industry Practice",
-    desc: "Connect students with successful startup founders, corporate leaders from GSFC Ltd, and angel investors through masterclasses.",
+    title: "3. Build Industry-Academia Linkages",
+    desc: "Bridging the gap between classroom theory and commercial enterprise challenges through direct interaction with corporate CXOs, industrial mentors from GSFC Ltd, and investors.",
   },
   {
-    title: "Peer-to-Peer Innovation Support",
-    desc: "Create cross-departmental teams combining software coders, mechanical fabricators, biotech researchers, and business pitch designers.",
+    title: "4. Provide Access to Resources",
+    desc: "Enabling seamless student access to GUIITAR prototyping infrastructure, Makers 3D printing suites, IoT labs, prior-art search tools, and seed grant funding.",
   },
   {
-    title: "Pre-Incubation Pipeline to GUIITAR Council",
-    desc: "Channel promising student prototypes directly into the GUIITAR Stage 1 (Spark-up) and SSIP 2.0 grant screening pathways.",
+    title: "5. Create a Supportive Ecosystem",
+    desc: "Fostering a collaborative peer community where aspiring student founders receive continuous guidance, incubation onboarding, and moral/technical backing from idea to graduation.",
+  },
+];
+
+const ECLUB_RESOURCES = [
+  {
+    title: "E-Club Office Bearers",
+    tag: "Student Leadership",
+    desc: "Elected student leadership roster coordinating hackathons, campus workshops, maker events, and student ideation pipelines.",
+    action: "View Office Bearers",
+    url: "https://drive.google.com/file/d/1FnoPviNHJt0b7JqsNwzVYIq5qD96eXhP/view?usp=sharing",
   },
   {
-    title: "Exhibitions & Startup Showcases",
-    desc: "Provide public platforms for student innovators to showcase working prototypes before faculty, industry visitors, and media.",
+    title: "E-Club Faculty Coordinators",
+    tag: "Faculty Advisory",
+    desc: "Dedicated faculty advisors from School of Management, School of Technology, and School of Science providing academic mentoring and institutional support.",
+    action: "View Faculty Coordinators",
+    url: "https://drive.google.com/file/d/1FnoPviNHJt0b7JqsNwzVYIq5qD96eXhP/view?usp=sharing",
+  },
+  {
+    title: "E-Club Student Members Registry",
+    tag: "Active Cohort",
+    desc: "Student innovator community across B.Tech, M.Tech, B.Sc, M.Sc, BBA, and MBA programs participating in club activities and hackathons.",
+    action: "Join / View Members",
+    url: "https://forms.gle/sUvSDHDubWQVdLHi8",
+  },
+  {
+    title: "E-Club Photo Gallery",
+    tag: "Visual Highlights",
+    desc: "Photographs capturing flagship hackathons, startup bootcamps, ideation sprints, demo exhibitions, and hands-on maker workshops.",
+    action: "Open Photo Archive",
+    url: "https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT?usp=sharing",
   },
 ];
 
@@ -155,10 +182,10 @@ export function EClubPage() {
                 Igniting the Entrepreneurial Spirit on Campus
               </h2>
               <p style={{ fontSize: "15px", color: "var(--muted-foreground)", lineHeight: "1.7", marginBottom: "16px" }}>
-                Formally established in <strong>December 2024</strong>, the Entrepreneurship Club (E-Club) of GSFC University is the vibrant heartbeat of student innovation on campus. Operating under the strategic mentorship of the GUIITAR Council, the E-Club is run by passionate student leaders for student innovators.
+                Entrepreneurship is the backbone of innovation, fostering creativity and driving economic growth by transforming ideas into successful ventures. At GSFC University, the Entrepreneurship Club (E-Club) is dedicated to cultivating this spirit among students. By providing resources, mentorship, and a collaborative environment, the E-Club nurtures entrepreneurial skills while bridging the gap between academics and real-world business challenges. Functioning under the GUIITAR Council, the club plays a pivotal role in shaping future leaders who can ideate, create, and scale impactful solutions.
               </p>
               <p style={{ fontSize: "15px", color: "var(--muted-foreground)", lineHeight: "1.7", margin: 0 }}>
-                Whether you have a scribbled idea on a napkin, an engineering project that solved a lab dilemma, or a full prototype ready for seed funding, the E-Club provides the peer circle, mentor hours, and event stages to take it forward.
+                The E-Club actively organises workshops, hackathons, seminars, exhibitions, and networking events, enabling students to engage with entrepreneurs, innovators, investors, and industry experts. Through these initiatives, it transforms innovative ideas into viable business models, promoting self-reliance and innovation across the university. In doing so, the E-Club not only empowers individuals through guided learning and industry collaborations but also strengthens GSFC University's position as a hub of creativity and entrepreneurship.
               </p>
             </div>
 
@@ -313,6 +340,64 @@ export function EClubPage() {
                 <p style={{ fontSize: "13px", color: "var(--muted-foreground)", margin: 0 }}>
                   {ob.affiliation}
                 </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* OFFICIAL E-CLUB RESOURCES & GALLERY */}
+      <section style={{ padding: "60px 0 30px", background: "var(--background)" }}>
+        <div className="container">
+          <SectionTitle
+            badge="Official Institutional Resources"
+            title="E-Club Roster, Coordinators &amp; Gallery"
+            subtitle="Access verified office bearers, faculty mentors, active members, and official event proceedings."
+          />
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "20px",
+              marginTop: "32px",
+            }}
+          >
+            {ECLUB_RESOURCES.map((res) => (
+              <div
+                key={res.title}
+                className="plain-card"
+                style={{
+                  padding: "24px",
+                  borderRadius: "16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  border: "1px solid var(--border)",
+                }}
+              >
+                <div>
+                  <span className="pill orange" style={{ fontSize: "11px", marginBottom: "8px", display: "inline-block" }}>
+                    {res.tag}
+                  </span>
+                  <h3 style={{ fontSize: "18px", fontWeight: 800, margin: "0 0 8px 0" }}>
+                    {res.title}
+                  </h3>
+                  <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", lineHeight: "1.6", margin: "0 0 16px 0" }}>
+                    {res.desc}
+                  </p>
+                </div>
+
+                <a
+                  href={res.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
+                >
+                  <span>{res.action}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             ))}
           </div>

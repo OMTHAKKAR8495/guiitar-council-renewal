@@ -789,6 +789,93 @@ function Events() {
         </div>
       </section>
 
+      {/* OFFICIAL INSTITUTIONAL PHOTOGRAPHIC GALLERIES */}
+      <section style={{ padding: "60px 0 20px", background: "var(--background)" }}>
+        <div className="container">
+          <SectionTitle
+            badge="Visual Documentation"
+            title="Official Institutional Galleries"
+            subtitle="Verified photographs capturing student achievements, startup prototypes, academic alliances, and founder bootcamps."
+          />
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "24px",
+              marginTop: "32px",
+            }}
+          >
+            {[
+              {
+                title: "Student Achievement Gallery",
+                tag: "Awards & Hackathons",
+                desc: "Photographs of GSFC University student innovators winning national hackathons, State SSIP awards, and patent grant felicitations.",
+                link: "https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT?usp=sharing",
+                badge: "Verified Archives",
+              },
+              {
+                title: "Student/Startup Incubated Gallery",
+                tag: "Prototype Deployments",
+                desc: "Hardware prototypes, chemical bioreactors, aerial inspection drones, and MVP trial deployments built in GUIITAR labs.",
+                link: "https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT?usp=sharing",
+                badge: "15+ Ventures",
+              },
+              {
+                title: "Association & Linkages Gallery",
+                tag: "Institutional MoUs",
+                desc: "High-level delegations, bilateral MoU signings with DST, NASSCOM, Garuda Aerospace, iCreate, and international universities.",
+                link: "https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT?usp=sharing",
+                badge: "20+ MoUs",
+              },
+              {
+                title: "E-Club Innovation Gallery",
+                tag: "Campus Culture",
+                desc: "Student-led ideation sprints, peer design-thinking workshops, weekend bootcamps, and Maker Lab after-hours build sessions.",
+                link: "https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT?usp=sharing",
+                badge: "Dec 2024–Present",
+              },
+            ].map((gal) => (
+              <div
+                key={gal.title}
+                className="plain-card"
+                style={{
+                  padding: "26px",
+                  borderRadius: "18px",
+                  border: "1px solid var(--border)",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                    <span className="pill blue" style={{ fontSize: "11px" }}>{gal.tag}</span>
+                    <span style={{ fontSize: "11.5px", fontWeight: 700, color: "var(--text-muted)" }}>{gal.badge}</span>
+                  </div>
+                  <h3 style={{ fontSize: "18px", fontWeight: 800, margin: "0 0 8px 0" }}>
+                    {gal.title}
+                  </h3>
+                  <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", lineHeight: "1.6", margin: "0 0 18px 0" }}>
+                    {gal.desc}
+                  </p>
+                </div>
+                <a
+                  href={gal.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                  style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
+                >
+                  <span>Open High-Resolution Gallery</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* HOST AN EVENT CTA */}
       <section className="section-muted">
         <div className="container split">

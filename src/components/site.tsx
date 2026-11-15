@@ -1136,7 +1136,7 @@ export function Footer() {
             />
           </Link>
           <p>
-            GU Incubation Innovation Technology and Applied Research (GUIITAR) Council was established by GSFC University in Vadodara, Gujarat, and is registered under Section 8 of the Companies Act, 2013 (CIN: U80903GJ2020NPL115312). Dedicated to promoting and supporting creativity, innovation, and entrepreneurship.
+            GU Incubation Innovation Technology and Applied Research (GUIITAR) Council was established by GSFC University in Vadodara, Gujarat, and is registered under Section 8 of the Companies Act, 2013 (CIN: U73100GJ2020NPL115782). Dedicated to promoting and supporting creativity, innovation, and entrepreneurship.
           </p>
           <div className="social">
             <a

@@ -278,7 +278,7 @@ function About() {
                   marginBottom: "6px",
                 }}
               >
-                Our Institutional Commitment
+                Official Statutory & Institutional Identity
               </span>
               <p
                 style={{
@@ -289,11 +289,28 @@ function About() {
                   fontWeight: 500,
                 }}
               >
-                GUIITAR Council is committed to nurturing and developing startups through shared
-                resources, Infrastructure, cutting-edge laboratories, tailored mentorship, extended
-                networking and other standard services such as Co-working space, Equipment, Business
-                support, and Intellectual Property Protection.
+                GU Incubation Innovation Technology and Applied Research (GUIITAR) Council has been established by GSFC University (GSFCU) at Vadodara, dedicated to promoting and supporting creativity, innovation and spirit of enterprise among young minds and innovators. GUIITAR Council is incorporated as a non-profit company under Section 8 of the Companies Act, 2013 (CIN: U73100GJ2020NPL115782; Incorporated on 24 August 2020). GUIITAR Council is committed to nurturing and developing startups through shared resources, infrastructure, cutting-edge laboratories, tailored mentorship, extended networking and standard services including co-working suites, prototyping equipment, business support, and intellectual property protection.
               </p>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "12px",
+                  flexWrap: "wrap",
+                  marginTop: "16px",
+                  paddingTop: "14px",
+                  borderTop: "1px solid rgba(255, 255, 255, 0.2)",
+                  fontSize: "12.5px",
+                  color: "#e0f2fe",
+                }}
+              >
+                <span><b>CIN:</b> U73100GJ2020NPL115782</span>
+                <span>•</span>
+                <span><b>Structure:</b> Section 8 Non-Profit Company</span>
+                <span>•</span>
+                <span><b>Incorporated:</b> 24 August 2020</span>
+                <span>•</span>
+                <span><b>Equity Dilution:</b> 0% on Student Grants</span>
+              </div>
             </div>
           </div>
         </div>

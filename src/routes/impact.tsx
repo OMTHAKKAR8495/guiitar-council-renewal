@@ -42,7 +42,7 @@ const yearlyBreakdown = {
     incubated: "15+",
     ipr: "145+",
     grants: "₹30L+",
-    events: "115+",
+    events: "83+",
     sensitized: "13,000+",
     summary:
       "Cumulative verified track record since inception across GSFC University innovation cohorts.",

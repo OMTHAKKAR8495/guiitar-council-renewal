@@ -50,12 +50,31 @@ export const Route = createFileRoute("/nodal-institute")({
   component: NodalInstitutePage,
 });
 
-const NODAL_INCENTIVES = [
+interface NodalIncentiveItem {
+  title: string;
+  grant: string;
+  badge: string;
+  desc: string;
+  eligibility: string;
+  conditions: string;
+  applicationProcess: string;
+  approvalRequirements: string;
+  sourceDoc: string;
+  points: string[];
+  accent: string;
+}
+
+const NODAL_INCENTIVES: NodalIncentiveItem[] = [
   {
     title: "Seed Support Grant",
     grant: "Up to ₹30.00 Lakhs",
     badge: "Scale-Up Capital",
     desc: "Direct milestone-based fiscal assistance for registered startups to procure machinery, conduct pilot trials, manufacture product batches, and acquire initial customers.",
+    eligibility: "DPIIT-recognized / Gujarat-registered startup entity with functional proof-of-concept / working MVP.",
+    conditions: "Milestone-linked tranches against verified vendor quotations, invoices, and physical progress audits.",
+    applicationProcess: "Submit detailed business deck, financial pro-forma, and machinery breakdown via Gujarat Startup Portal & GUIITAR Nodal Desk.",
+    approvalRequirements: "Technical evaluation and recommendation by GUIITAR Nodal Screening Committee; sanction by Industries Commissionerate, Govt. of Gujarat.",
+    sourceDoc: "Scheme for Assistance for Startups/Innovation (Gujarat Industrial Policy 2020), Resolution No. INC-102020-662998-I.",
     points: [
       "Milestone-linked tranches verified by Nodal Committee",
       "Coverage for raw materials, testing, certifications & tools",
@@ -67,7 +86,12 @@ const NODAL_INCENTIVES = [
     title: "Founder Sustenance Allowance",
     grant: "Up to ₹25,000 / Month",
     badge: "Monthly Living Support",
-    desc: "Monthly living stipend for 1 year to enable founders to focus 100% full-time on building their venture without personal financial distress.",
+    desc: "Monthly living stipend for 1 year (12 months) to enable founders to focus 100% full-time on building their venture without personal financial distress.",
+    eligibility: "Full-time working founders/co-founders of eligible startups registered with GUIITAR Nodal Institute.",
+    conditions: "₹20,000 per month (up to ₹2.40 Lakhs/year) for standard startups; elevated to ₹25,000 per month (up to ₹3.00 Lakhs/year) if startup has ≥1 woman founder/co-founder with minimum 26% equity.",
+    applicationProcess: "Monthly founder timesheet, progress milestones, and attendance submission to GUIITAR Incubation Desk.",
+    approvalRequirements: "Monthly performance review and verification of active startup engagement by Senior Manager (Incubation).",
+    sourceDoc: "Clause 6.1 (Sustenance Allowance), Scheme for Assistance for Startups/Innovation, Industries Commissionerate, Gujarat.",
     points: [
       "₹20,000 per month (up to ₹2.40 Lakhs/year) for standard startups",
       "₹25,000 per month (up to ₹3.00 Lakhs/year) with ≥1 woman founder",
@@ -80,6 +104,11 @@ const NODAL_INCENTIVES = [
     grant: "₹50 Lakhs to ₹3.00 Cr",
     badge: "Venture Equity",
     desc: "Institutional equity financing facilitated in partnership with Gujarat Venture Finance Limited (GVFL) for high-growth tech ventures scaling commercial operations.",
+    eligibility: "Startups demonstrating product-market fit, scalable unit economics, customer revenue traction, and audited growth metrics.",
+    conditions: "Venture equity investment terms, board representation, and shareholder agreements negotiated directly with GVFL fund managers.",
+    applicationProcess: "Comprehensive institutional pitch deck, audited financials, and unit economics review by GUIITAR Nodal Committee.",
+    approvalRequirements: "Official recommendation and dossier submission from GUIITAR Nodal Institute to GVFL Investment Committee.",
+    sourceDoc: "GVFL Startup Fund Agreement & Gujarat Industrial Policy Venture Capital Promotion Framework.",
     points: [
       "Direct recommendation from GUIITAR Nodal Committee to GVFL",
       "Co-investment opportunities with angel syndicates & VCs",
@@ -91,7 +120,12 @@ const NODAL_INCENTIVES = [
     title: "Social Impact Assistance",
     grant: "Up to ₹10.00 Lakhs",
     badge: "Impact Startups",
-    desc: "Specialized fiscal grant for startups demonstrating significant, quantifiable positive impact on rural development, healthcare access, sanitation, or environment.",
+    desc: "Specialized fiscal grant for startups demonstrating significant, quantifiable positive impact on rural development, healthcare access, sanitation, water conservation, or circular economy.",
+    eligibility: "Startups with documented social, environmental, or public-health impact in Gujarat communities or MSME clusters.",
+    conditions: "Measurable impact KPIs verified through field pilots, beneficiary testimonials, and third-party validation reports.",
+    applicationProcess: "Submit Social Impact Assessment Dossier along with technological validation deck to the Nodal Desk.",
+    approvalRequirements: "Special evaluation by GUIITAR Impact Advisory Committee and State Nodal Review Panel.",
+    sourceDoc: "Social Impact Venture Grant Category, Gujarat Industrial Policy 2020 Guidelines.",
     points: [
       "Dedicated social impact evaluation matrix",
       "Pilot deployment support in Gujarat civic and rural areas",
@@ -103,7 +137,12 @@ const NODAL_INCENTIVES = [
     title: "Acceleration Program Grant",
     grant: "Up to ₹3.00 Lakhs",
     badge: "Cohort Support",
-    desc: "Financial assistance to enroll and participate in recognized national and international acceleration programs (Y Combinator, Techstars, iCreate, etc.).",
+    desc: "Financial assistance to enroll and participate in recognized national and international acceleration programs (Y Combinator, Techstars, iCreate, TIDES, MassChallenge, etc.).",
+    eligibility: "Startups formally admitted into accredited national or international accelerators.",
+    conditions: "Reimbursement of actual cohort enrollment fees, residential stay, travel, and international exhibition booth expenses.",
+    applicationProcess: "Submit accelerator admission letter, curriculum schedule, fee structure, and participation objectives to GUIITAR.",
+    approvalRequirements: "Screening committee endorsement verifying accreditation of the accelerator and relevance to venture scaling.",
+    sourceDoc: "Startup Acceleration Support Framework, Scheme for Assistance for Startups/Innovation.",
     points: [
       "Covers program enrollment fees, travel, and cohort residency",
       "Access to global mentor networks and demo days",
@@ -112,14 +151,36 @@ const NODAL_INCENTIVES = [
     accent: "teal",
   },
   {
-    title: "Skill Development & Interest Subsidy",
-    grant: "Up to ₹1 Lakh + 9% Sub.",
-    badge: "Operational Subsidy",
-    desc: "Grant up to ₹1.00 Lakh for team technical upskilling plus an additional 1% interest subsidy (maximum up to 9%) on bank term loans under MSME provisions.",
+    title: "Skill Development Assistance",
+    grant: "Up to ₹1.00 Lakh",
+    badge: "Team Upskilling",
+    desc: "Financial assistance up to ₹1.00 Lakh per startup for technical upskilling, specialized industry certifications, and laboratory training of founder and core team members.",
+    eligibility: "Founders and technical personnel of registered incubated startups.",
+    conditions: "Valid course enrollment certificates from recognized academic bodies, technical training institutes, or industry-standard certification authorities.",
+    applicationProcess: "Submit skill gap justification, syllabus outline, course fee invoices, and completion certificates to GUIITAR Nodal Desk.",
+    approvalRequirements: "Approval by Senior Manager (Incubation) verifying strategic relevance to the startup's core product build.",
+    sourceDoc: "Human Resource Development & Skill Assistance Section, Gujarat Industrial Policy 2020.",
     points: [
-      "Certifications and specialized advanced technical training",
+      "Covers advanced engineering, AI, robotics & certification fees",
+      "Direct reimbursement on production of completion credentials",
+      "Strengthens internal technical capability of startup ventures",
+    ],
+    accent: "indigo",
+  },
+  {
+    title: "Applicable MSME Interest Subsidy",
+    grant: "Up to 9% Interest Relief",
+    badge: "Financial Relief",
+    desc: "Interest subsidy of an additional 1% (maximum up to 9% per annum) on term loans borrowed from Scheduled Commercial Banks or Financial Institutions for plant, machinery, and equipment.",
+    eligibility: "Manufacturing or service startups holding valid MSME / Udyam registration and sanctioned commercial bank term loans.",
+    conditions: "Applicable for up to 5 years; startup must remain prompt in loan servicing with zero non-performing asset (NPA) defaults.",
+    applicationProcess: "Submit Bank Term Loan sanction letter, disbursement schedule, interest calculation certificate, and Udyam certificate.",
+    approvalRequirements: "Verification and forwarding by GUIITAR Nodal Institute to the District Industries Centre (DIC) Vadodara.",
+    sourceDoc: "Scheme for Assistance to Micro, Small and Medium Enterprises (MSMEs), Industries Commissionerate, Gujarat.",
+    points: [
       "Additional 1% interest subsidy on bank commercial term loans",
-      "Maximum up to 9% effective interest rate relief",
+      "Maximum up to 9% effective interest rate relief for 5 years",
+      "Substantially lowers capital borrowing cost for production hardware",
     ],
     accent: "slate",
   },
@@ -459,10 +520,31 @@ export function NodalInstitutePage() {
                 subtitle="All fiscal grants, allowances, venture match-funding, and interest subsidies available through the Nodal Institute."
               />
 
+              {/* STATUTORY DISCLAIMER BANNER */}
+              <div
+                className="amber-notice-box"
+                style={{
+                  borderRadius: "14px",
+                  padding: "18px 22px",
+                  marginTop: "20px",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "12px",
+                }}
+              >
+                <ShieldCheck className="w-5 h-5 flex-shrink-0" style={{ color: "#d97706", marginTop: "2px" }} />
+                <div style={{ fontSize: "13.5px", lineHeight: "1.6" }}>
+                  <strong style={{ display: "block", marginBottom: "4px" }}>
+                    Statutory Governance &amp; Disbursement Notice:
+                  </strong>
+                  Financial assistance, seed capital grants, living allowances, and interest subsidies under the Gujarat Industrial Policy 2020 are milestone-linked and disbursed following formal technical scrutiny, due diligence, and recommendation by the GUIITAR Nodal Screening Committee and approval by the Industries Commissionerate, Government of Gujarat. Submission of an application or registration with the Nodal Institute does not imply automatic entitlement.
+                </div>
+              </div>
+
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
                   gap: "24px",
                   marginTop: "32px",
                 }}
@@ -520,7 +602,7 @@ export function NodalInstitutePage() {
                           fontSize: "14px",
                           lineHeight: "1.6",
                           color: "var(--muted-foreground)",
-                          marginBottom: "20px",
+                          marginBottom: "18px",
                         }}
                       >
                         {item.desc}
@@ -530,7 +612,7 @@ export function NodalInstitutePage() {
                         style={{
                           listStyle: "none",
                           padding: 0,
-                          margin: 0,
+                          margin: "0 0 18px 0",
                           display: "flex",
                           flexDirection: "column",
                           gap: "8px",
@@ -555,6 +637,36 @@ export function NodalInstitutePage() {
                           </li>
                         ))}
                       </ul>
+
+                      {/* STATUTORY BENEFIT DETAILS */}
+                      <div
+                        style={{
+                          borderTop: "1px dashed var(--border)",
+                          paddingTop: "14px",
+                          fontSize: "12px",
+                          color: "var(--muted-foreground)",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "6px",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        <div>
+                          <strong style={{ color: "var(--foreground)" }}>Eligibility: </strong>
+                          {item.eligibility}
+                        </div>
+                        <div>
+                          <strong style={{ color: "var(--foreground)" }}>Conditions: </strong>
+                          {item.conditions}
+                        </div>
+                        <div>
+                          <strong style={{ color: "var(--foreground)" }}>Process &amp; Approval: </strong>
+                          {item.approvalRequirements}
+                        </div>
+                        <div style={{ fontStyle: "italic", color: "#64748b", marginTop: "4px" }}>
+                          Ref: {item.sourceDoc}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}

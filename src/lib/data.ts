@@ -39,11 +39,11 @@ export const VERIFIED_METRICS: MetricItem[] = [
     sublabel: "Non-dilutive grants sanctioned & disbursed",
   },
   {
-    value: "115+",
-    number: 115,
+    value: "83+",
+    number: 83,
     suffix: "+",
-    label: "Events & Workshops",
-    sublabel: "Hackathons, masterclasses & bootcamps",
+    label: "Events & Workshops Organized",
+    sublabel: "Official historical workshops, hackathons & bootcamps",
   },
   {
     value: "13000+",
