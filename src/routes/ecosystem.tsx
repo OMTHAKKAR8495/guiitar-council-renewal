@@ -252,20 +252,30 @@ export function EcosystemPage() {
             >
               <div
                 style={{
-                  width: "110px",
-                  height: "110px",
+                  width: "116px",
+                  height: "116px",
                   borderRadius: "50%",
-                  background: "linear-gradient(135deg, #ea580c, #f59e0b)",
-                  boxShadow: "0 0 45px rgba(234, 88, 12, 0.7)",
+                  background: "#ffffff",
+                  boxShadow:
+                    "0 0 45px rgba(234, 88, 12, 0.5), 0 0 0 4px rgba(255, 255, 255, 0.25), 0 12px 28px rgba(0, 0, 0, 0.35)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
                   margin: "0 auto 16px",
-                  color: "#ffffff",
+                  padding: "16px",
                 }}
               >
-                <GuiitarEmblem className="w-14 h-14" />
+                <img
+                  src="/guiitar-emblem.png"
+                  alt="GUIITAR Council Official Emblem"
+                  style={{
+                    width: "78px",
+                    height: "78px",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                />
               </div>
               <h3
                 style={{ fontSize: "24px", fontWeight: 900, color: "#ffffff", margin: "0 0 4px" }}
