@@ -56,13 +56,13 @@ const FACILITIES_LIST = [
   },
   {
     title: "High-Speed Enterprise Wi-Fi",
-    desc: "Dual gigabit redundant fiber connectivity across Anviksha Innovation Hub with uninterrupted power backup and IT network support.",
+    desc: "High-speed campus fiber connectivity across Anviksha Innovation Hub with uninterrupted power backup and university IT network support.",
     icon: Wifi,
     badge: "Connectivity",
   },
   {
     title: "Multimedia Meeting & Conference Rooms",
-    desc: "12-seater acoustically treated presentation conference room equipped with 4K interactive presentation display, teleconferencing, and glass whiteboards.",
+    desc: "Equipped conference and discussion rooms with audiovisual presentation displays, teleconferencing, and glass whiteboards for team collaboration.",
     icon: Users,
     badge: "Collaboration",
   },

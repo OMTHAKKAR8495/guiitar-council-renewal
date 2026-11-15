@@ -458,8 +458,8 @@ export const STARTUP_DIRECTORY: StartupItem[] = [
     team: "Student Researchers, GSFC University",
     achievements: [
       "SSIP 2.0 Grant Recipient",
-      "3 Patent disclosures under review",
-      "Featured at Gujarat Startup Summit",
+      "3 Patent disclosures submitted for review",
+      "Gujarat Startup Showcase Participant",
     ],
   },
   {
@@ -493,9 +493,9 @@ export const STARTUP_DIRECTORY: StartupItem[] = [
       "Converting holy floral offerings and agricultural organic residues into 100% home-compostable film packaging and single-use plastic alternatives.",
     team: "Chemical & Environmental Science Leads",
     achievements: [
-      "500kg waste diverted",
-      "Zero microplastic breakdown certificate",
-      "Commercial packaging PoC",
+      "SSIP 2.0 Prototyping Grant",
+      "Compostable biopolymer PoC",
+      "500kg waste diversion (Pending Official Confirmation)",
     ],
   },
   {
@@ -511,9 +511,9 @@ export const STARTUP_DIRECTORY: StartupItem[] = [
       "Building custom mission-critical multi-rotor drones for chemical plant surveillance, pipeline thermal imaging, and perimeter security in Vadodara.",
     team: "Robotics & Drone Lab Fellows",
     achievements: [
-      "DGCA compliant flight test cell",
+      "Flight avionics test cell",
       "Thermal payload integration",
-      "Industry pilot partner with GSFC Ltd",
+      "Industry pilot partner trials (Pending Official Confirmation)",
     ],
   },
 ];
@@ -591,7 +591,7 @@ export const LAB_FACILITIES: LabFacility[] = [
       "Param Shavak Deep Learning (DL) GPU Supercomputing System",
       "High-Throughput Multi-GPU Architecture for Massively Parallel Compute",
       "Pre-configured AI/ML Toolchains (PyTorch, TensorFlow, Caffe, OpenCV, CUDA)",
-      "Dedicated Gigabit Research Network with High-Speed Storage Subsystem",
+      "High-Speed Campus Research Network with Enterprise Storage Subsystem",
     ],
     useCases: [
       "Training complex deep neural networks, computer vision, and transformer models",
@@ -619,9 +619,9 @@ export const LAB_FACILITIES: LabFacility[] = [
       "Spaces tailored for peer learning, collaboration, group brainstorming, and product demonstrations.",
     equipment: [
       "Ergonomic Dedicated Founder Workstations & Flex Hot-Desking Desks",
-      "Acoustically Treated Brainstorming Rooms with Full-Wall Glass Whiteboards",
-      "High-Speed Commercial Fiber Internet & 24/7 Redundant Power Backup",
-      "12-Seater Executive Conference Suite with 4K Interactive Presentation Display",
+      "Brainstorming and Discussion Rooms with Full-Wall Glass Whiteboards",
+      "High-Speed Campus Fiber Internet & Redundant Power Backup",
+      "Executive Conference Suite with Presentation Display and Teleconferencing",
       "Private Founder Call Cabins and Collaboration Lounge Areas",
     ],
     useCases: [
@@ -750,7 +750,7 @@ export const LAB_FACILITIES: LabFacility[] = [
       "Screening Committee Presentation Suite with Multi-Display Teleconferencing",
       "Incubatee Workspace Allotment Units & Lockers",
       "Confidential Mentoring Cabins & IPR Clinic Desks",
-      "High-Speed Gigabit LAN & Redundant Enterprise Backhaul",
+      "High-Speed Campus LAN & Enterprise Network Backhaul",
     ],
     useCases: [
       "Institutional Screening Committee (ISC) pitch sessions",

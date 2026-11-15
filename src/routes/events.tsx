@@ -54,6 +54,7 @@ function Events() {
   const [tab, setTab] = useState<"Upcoming" | "Past">("Upcoming");
   const [registeredIds, setRegisteredIds] = useState<string[]>([]);
   const [archiveYear, setArchiveYear] = useState<string>("All");
+  const [lightboxPhoto, setLightboxPhoto] = useState<{ url: string; title: string; category: string } | null>(null);
   const [eventsList, setEventsList] = useState<EventItem[]>(() =>
     AdminDataStore.getEvents(),
   );
@@ -255,28 +256,15 @@ function Events() {
               </div>
 
               <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "12px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "16px" }}>
                   <span className="pill blue" style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontWeight: 700 }}>
                     <Users className="w-3.5 h-3.5" />
-                    <span><b>{featured.registered}</b> Students Registered</span>
+                    <span>Official University Cohort</span>
                   </span>
-                  <span className={`pill ${featured.available > 10 ? "emerald" : "amber"}`} style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontWeight: 700 }}>
+                  <span className="pill emerald" style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontWeight: 700 }}>
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span><b>{featured.available}</b> Seats Available ({featured.capacity} Total)</span>
+                    <span>Registration Open • Prior Reservation Required</span>
                   </span>
-                </div>
-
-                {/* Live Seats Progress Bar */}
-                <div style={{ background: "var(--surface-muted, #f1f5f9)", borderRadius: "9999px", height: "8px", width: "100%", maxWidth: "380px", marginBottom: "16px", overflow: "hidden", border: "1px solid var(--border, #e2e8f0)" }}>
-                  <div
-                    style={{
-                      height: "100%",
-                      width: `${Math.min(100, Math.max(6, Math.round(((featured.registered || 0) / (featured.capacity || 100)) * 100)))}%`,
-                      background: "linear-gradient(90deg, #2563eb, #10b981)",
-                      borderRadius: "9999px",
-                      transition: "width 0.4s ease-in-out",
-                    }}
-                  />
                 </div>
 
                 <h2>{featured.title}</h2>
@@ -299,7 +287,7 @@ function Events() {
                     <MapPin /> {featured.location}
                   </span>
                   <span>
-                    <Users /> <b>{featured.registered}</b> Registered • <b>{featured.available}</b> Seats Available
+                    <Users /> Open Registration • Prior Reservation Required
                   </span>
                 </div>
 
@@ -362,16 +350,10 @@ function Events() {
                 >
                   <span className={`pill ${e.isUpcoming ? "blue" : "muted"}`}>{e.category}</span>
                   {e.isUpcoming ? (
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
-                      <span className="pill blue" style={{ fontSize: "11.5px", fontWeight: 700, padding: "3px 8px", display: "inline-flex", alignItems: "center", gap: "4px" }}>
-                        <Users className="w-3 h-3" />
-                        <b>{e.registered}</b> Registered
-                      </span>
-                      <span className={`pill ${e.available > 5 ? "emerald" : "amber"}`} style={{ fontSize: "11.5px", fontWeight: 700, padding: "3px 8px", display: "inline-flex", alignItems: "center", gap: "4px" }}>
-                        <CheckCircle2 className="w-3 h-3" />
-                        <b>{e.available}</b> Seats Left
-                      </span>
-                    </div>
+                    <span className="pill emerald" style={{ fontSize: "11.5px", fontWeight: 700, padding: "3px 8px", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                      <CheckCircle2 className="w-3 h-3" />
+                      Registration Open
+                    </span>
                   ) : (
                     <span className="date">{e.date}</span>
                   )}
@@ -389,7 +371,7 @@ function Events() {
                   </span>
                   {e.isUpcoming && (
                     <span>
-                      <Users /> <b>{e.registered}</b> Registered • <b>{e.available}</b> Available ({e.capacity} Cap)
+                      <Users /> Open Registration • Limited Capacity
                     </span>
                   )}
                 </div>
@@ -403,7 +385,7 @@ function Events() {
                         className="btn btn-primary btn-sm"
                         onClick={() => openRegistrationModal(e.raw)}
                       >
-                        <span>Register Now ({e.available} Left)</span>
+                        <span>Register for Event</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     )
@@ -813,34 +795,58 @@ function Events() {
                 desc: "Photographs of GSFC University student innovators winning national hackathons, State SSIP awards, and patent grant felicitations.",
                 link: "https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT?usp=sharing",
                 badge: "Verified Archives",
+                linkLabel: "Open Drive Archive",
+                photos: [
+                  { url: "/images/original/banners/shri-harish-mehta.jpg", caption: "Keynote & Founder Felicitation" },
+                  { url: "/images/original/banners/startup-team-management.jpg", caption: "Hackathon Team Strategy" },
+                  { url: "/images/original/banners/awareness-program.jpg", caption: "SSIP Student Awards" },
+                ],
               },
               {
                 title: "Student/Startup Incubated Gallery",
                 tag: "Prototype Deployments",
                 desc: "Hardware prototypes, chemical bioreactors, aerial inspection drones, and MVP trial deployments built in GUIITAR labs.",
-                link: "https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT?usp=sharing",
+                link: "https://drive.google.com/drive/folders/1EspgxXUoavBlETSnxstEfpMGsI_fCFma",
                 badge: "15+ Ventures",
+                linkLabel: "Open SSIP PoC Repository",
+                photos: [
+                  { url: "/images/original/infrastructure/maker-lab.jpg", caption: "Maker Lab 3D Prototyping" },
+                  { url: "/images/original/infrastructure/drone-lab.png", caption: "Drone & Aerial Robotics Lab" },
+                  { url: "/images/original/infrastructure/supercomputer-lab.jpg", caption: "Supercomputer AI Testing" },
+                ],
               },
               {
                 title: "Association & Linkages Gallery",
                 tag: "Institutional MoUs",
-                desc: "High-level delegations, bilateral MoU signings with DST, NASSCOM, Garuda Aerospace, iCreate, and international universities.",
-                link: "https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT?usp=sharing",
+                desc: "High-level delegations, bilateral MoU signings with DST, NASSCOM, Garuda Aerospace, iCreate, and corporate partners.",
+                link: "https://www.guiitarstartupcouncil.org/",
                 badge: "20+ MoUs",
+                linkLabel: "Open Official MoUs Portal",
+                photos: [
+                  { url: "/partners/association-and-linkages.png", caption: "Institutional Association Grid" },
+                  { url: "/images/original/leadership/provost-gr-sinha-team.jpg", caption: "Executive Council Delegation" },
+                  { url: "/images/original/banners/startup-lecture-cultural-center.jpg", caption: "Corporate Ecosystem Assembly" },
+                ],
               },
               {
                 title: "E-Club Innovation Gallery",
                 tag: "Campus Culture",
                 desc: "Student-led ideation sprints, peer design-thinking workshops, weekend bootcamps, and Maker Lab after-hours build sessions.",
-                link: "https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT?usp=sharing",
+                link: "https://forms.gle/sUvSDHDubWQVdLHi8",
                 badge: "Dec 2024–Present",
+                linkLabel: "Open E-Club Portal",
+                photos: [
+                  { url: "/images/original/banners/guiitar-hero-banner.jpg", caption: "Ideation & Innovation Sprint" },
+                  { url: "/images/original/infrastructure/coworking-space.jpg", caption: "Collaborative Workspace Lounge" },
+                  { url: "/images/original/infrastructure/srujan-lab.jpg", caption: "Srujan Prototyping Suite" },
+                ],
               },
             ].map((gal) => (
               <div
                 key={gal.title}
                 className="plain-card"
                 style={{
-                  padding: "26px",
+                  padding: "24px",
                   borderRadius: "18px",
                   border: "1px solid var(--border)",
                   display: "flex",
@@ -856,10 +862,40 @@ function Events() {
                   <h3 style={{ fontSize: "18px", fontWeight: 800, margin: "0 0 8px 0" }}>
                     {gal.title}
                   </h3>
-                  <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", lineHeight: "1.6", margin: "0 0 18px 0" }}>
+                  <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", lineHeight: "1.6", margin: "0 0 16px 0" }}>
                     {gal.desc}
                   </p>
+
+                  {/* 3-Photo Lightbox Previews */}
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "8px", marginBottom: "16px" }}>
+                    {gal.photos.map((p) => (
+                      <button
+                        key={p.url}
+                        type="button"
+                        onClick={() => setLightboxPhoto({ url: p.url, title: p.caption, category: gal.title })}
+                        style={{
+                          background: "var(--surface-muted, #f1f5f9)",
+                          border: "1px solid var(--border)",
+                          borderRadius: "8px",
+                          padding: 0,
+                          overflow: "hidden",
+                          cursor: "zoom-in",
+                          height: "64px",
+                          position: "relative",
+                        }}
+                        title={`Click to view ${p.caption}`}
+                      >
+                        <img
+                          src={p.url}
+                          alt={p.caption}
+                          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                          loading="lazy"
+                        />
+                      </button>
+                    ))}
+                  </div>
                 </div>
+
                 <a
                   href={gal.link}
                   target="_blank"
@@ -867,7 +903,7 @@ function Events() {
                   className="btn btn-outline btn-sm"
                   style={{ width: "100%", justifyContent: "center", display: "inline-flex", alignItems: "center", gap: "6px" }}
                 >
-                  <span>Open High-Resolution Gallery</span>
+                  <span>{gal.linkLabel}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -1250,15 +1286,15 @@ function Events() {
                     <span>📍 {selectedEvent.location}</span>
                   </div>
 
-                  {/* Live Registration & Seat Availability Banner */}
+                  {/* Official Registration Banner */}
                   <div
                     style={{
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
                       gap: "10px",
-                      background: "#f8fafc",
-                      border: "1px solid #e2e8f0",
+                      background: "var(--surface-muted, #f8fafc)",
+                      border: "1px solid var(--border, #e2e8f0)",
                       padding: "8px 14px",
                       borderRadius: "10px",
                       marginTop: "12px",
@@ -1266,13 +1302,13 @@ function Events() {
                       flexWrap: "wrap",
                     }}
                   >
-                    <span style={{ color: "#2563eb", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "5px" }}>
+                    <span style={{ color: "var(--primary, #2563eb)", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "5px" }}>
                       <Users className="w-3.5 h-3.5" />
-                      <b>{selectedEvent.registered || 0}</b> Students Registered
+                      Official GSFC University Cohort Registration
                     </span>
                     <span style={{ color: "#059669", fontWeight: 700, display: "inline-flex", alignItems: "center", gap: "5px" }}>
                       <CheckCircle2 className="w-3.5 h-3.5" />
-                      <b>{Math.max(0, (selectedEvent.capacity || 100) - (selectedEvent.registered || 0))}</b> Seats Available ({selectedEvent.capacity || 100} Total)
+                      Verified Seat Allocation
                     </span>
                   </div>
                 </div>
@@ -1584,6 +1620,81 @@ function Events() {
                 </form>
               </>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* PHOTO LIGHTBOX MODAL */}
+      {lightboxPhoto && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setLightboxPhoto(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(10, 15, 26, 0.88)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9999,
+            padding: "24px",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "var(--surface, #ffffff)",
+              border: "1px solid var(--border)",
+              borderRadius: "18px",
+              maxWidth: "800px",
+              width: "100%",
+              overflow: "hidden",
+              boxShadow: "0 25px 60px -15px rgba(0, 0, 0, 0.6)",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "16px 20px",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              <div>
+                <span style={{ fontSize: "11px", fontWeight: 700, textTransform: "uppercase", color: "#2563eb", letterSpacing: "0.05em" }}>
+                  {lightboxPhoto.category}
+                </span>
+                <h4 style={{ margin: "2px 0 0", fontSize: "16px", fontWeight: 800 }}>{lightboxPhoto.title}</h4>
+              </div>
+              <button
+                type="button"
+                onClick={() => setLightboxPhoto(null)}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                  color: "var(--foreground)",
+                  padding: "6px",
+                  borderRadius: "8px",
+                  display: "flex",
+                }}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div style={{ background: "#050811", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "300px", maxHeight: "65vh", overflow: "hidden" }}>
+              <img
+                src={lightboxPhoto.url}
+                alt={lightboxPhoto.title}
+                style={{ maxWidth: "100%", maxHeight: "65vh", objectFit: "contain", display: "block" }}
+              />
+            </div>
           </div>
         </div>
       )}

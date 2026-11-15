@@ -161,6 +161,9 @@ export function DroneProgramPage() {
                 <li>Joint student internships, live field training, and placement pathways.</li>
                 <li>Collaboration on DGCA Type Certified payload testing benches.</li>
               </ul>
+              <div style={{ marginTop: "14px", paddingTop: "12px", borderTop: "1px dashed rgba(255, 255, 255, 0.2)", fontSize: "12px", color: "#93c5fd" }}>
+                ℹ️ <b>Statutory Notice:</b> Program covers technical avionics, flight simulator hours, and DGCA DigitalSky regulatory curriculum. Commercial Remote Pilot Certificate (RPC) licensing requires formal pilot examination at DGCA-authorized RPTO centres.
+              </div>
             </div>
           </div>
         </div>

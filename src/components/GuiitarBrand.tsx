@@ -41,19 +41,32 @@ export function GuiitarLogo({
   ...props
 }: ImgHTMLAttributes<HTMLImageElement>) {
   return (
-    <img
-      src="/guiitar-council-logo.png"
-      alt={alt}
-      className={className}
-      style={{
-        height: "44px",
-        width: "auto",
-        objectFit: "contain",
-        display: "block",
-        ...style,
-      }}
-      {...props}
-    />
+    <>
+      <img
+        src="/guiitar-council-logo.png"
+        alt={alt}
+        className={`${className} logo-light`}
+        style={{
+          height: "44px",
+          width: "auto",
+          objectFit: "contain",
+          ...style,
+        }}
+        {...props}
+      />
+      <img
+        src="/guiitar-council-logo-dark.png"
+        alt={alt}
+        className={`${className} logo-dark`}
+        style={{
+          height: "44px",
+          width: "auto",
+          objectFit: "contain",
+          ...style,
+        }}
+        {...props}
+      />
+    </>
   );
 }
 
@@ -64,19 +77,32 @@ export function GuiitarFullLogo({
   ...props
 }: ImgHTMLAttributes<HTMLImageElement>) {
   return (
-    <img
-      src="/guiitar-council-logo.png"
-      alt={alt}
-      className={className}
-      style={{
-        height: "44px",
-        width: "auto",
-        objectFit: "contain",
-        display: "block",
-        ...style,
-      }}
-      {...props}
-    />
+    <>
+      <img
+        src="/guiitar-council-logo.png"
+        alt={alt}
+        className={`${className} logo-light`}
+        style={{
+          height: "44px",
+          width: "auto",
+          objectFit: "contain",
+          ...style,
+        }}
+        {...props}
+      />
+      <img
+        src="/guiitar-council-logo-dark.png"
+        alt={alt}
+        className={`${className} logo-dark`}
+        style={{
+          height: "44px",
+          width: "auto",
+          objectFit: "contain",
+          ...style,
+        }}
+        {...props}
+      />
+    </>
   );
 }
 

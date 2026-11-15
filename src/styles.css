@@ -384,6 +384,22 @@ select {
   transition: transform 0.2s ease;
 }
 
+.site-logo-img.logo-light {
+  display: block;
+}
+
+.site-logo-img.logo-dark {
+  display: none !important;
+}
+
+.dark .site-logo-img.logo-light {
+  display: none !important;
+}
+
+.dark .site-logo-img.logo-dark {
+  display: block !important;
+}
+
 .logo-container:hover .site-logo-img {
   transform: scale(1.02);
 }
@@ -3504,6 +3520,20 @@ section {
   border-color: var(--border);
 }
 
+.achievement-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  background: var(--surface-muted, #f1f5f9);
+  border: 1px solid var(--border, #e2e8f0);
+  color: var(--text-body, #334155);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
 .mega-menu-badge {
   font-size: 10.5px;
   font-weight: 700;
@@ -3650,12 +3680,19 @@ section {
 .dark [style*="background:#f1f5f9"],
 .dark [style*="background: rgb(241, 245, 249)"],
 .dark [style*="background-color: rgb(241, 245, 249)"],
+.dark [style*="background: #eff6ff"],
+.dark [style*="background:#eff6ff"],
+.dark [style*="background: rgb(239, 246, 255)"],
+.dark [style*="background: #ecfdf5"],
+.dark [style*="background:#ecfdf5"],
+.dark [style*="background: var(--surface-muted)"],
+.dark [style*="background:var(--surface-muted)"],
 .dark .achievement-tag,
 .dark .expertise-tag {
-  background: rgba(30, 41, 59, 0.75) !important;
-  background-color: rgba(30, 41, 59, 0.75) !important;
-  border-color: rgba(255, 255, 255, 0.12) !important;
-  color: #cbd5e1 !important;
+  background: rgba(30, 41, 59, 0.85) !important;
+  background-color: rgba(30, 41, 59, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #e2e8f0 !important;
 }
 
 /* Amber Policy / Notice Boxes */

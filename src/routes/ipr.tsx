@@ -661,6 +661,17 @@ export function IPRPage() {
                   </a>
                 </div>
 
+                <div style={{ background: "var(--surface-muted, #f1f5f9)", border: "1px solid var(--border)", borderRadius: "12px", padding: "14px 18px", marginBottom: "20px" }}>
+                  <h4 style={{ margin: "0 0 6px 0", fontSize: "14px", fontWeight: 800, color: "var(--foreground)" }}>
+                    ⚖️ Funding Framework & Institutional Grant Structure
+                  </h4>
+                  <p style={{ margin: 0, fontSize: "13px", color: "var(--muted-foreground)", lineHeight: "1.6" }}>
+                    <b>1. Statutory SSIP 2.0 Reimbursement:</b> Direct government rate-card disbursements providing <b>₹75,000</b> per Domestic Patent and <b>₹1,50,000</b> per International Patent for statutory filing fees and empaneled attorney services.
+                    <br />
+                    <b>2. Combined Institutional Co-Funding (Up to ₹1.5L / ₹5.0L):</b> For novel multi-jurisdiction PCT patent specifications, prior-art freedom-to-operate (FTO) litigation analysis, and fast-track industrial commercialization, GUIITAR Council pools institutional incubation reserves to fund up to <b>₹1.5 Lakhs (Domestic)</b> and <b>₹5.0 Lakhs (International/PCT)</b> upon Institutional Screening Committee approval.
+                  </p>
+                </div>
+
                 <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", marginBottom: "18px" }}>
                   Under the Student Startup and Innovation Policy (SSIP), GUIITAR Council extends 100% reimbursed financial support covering government filing duties and empaneled IP facilitator legal fees at the following statutory rates:
                 </p>

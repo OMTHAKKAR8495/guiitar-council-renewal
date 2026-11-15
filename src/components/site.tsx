@@ -1034,7 +1034,7 @@ export function Header() {
                     </div>
                     <span>Live Impact Dashboard</span>
                   </div>
-                  <span className="mobile-nav-badge" style={{ background: "#eff6ff", color: "#2563eb" }}>
+                  <span className="mobile-nav-badge">
                     Live Data
                   </span>
                 </Link>
@@ -1115,25 +1115,13 @@ export function Footer() {
           <Link
             to="/"
             aria-label="GUIITAR Council home"
+            className="logo-container"
             style={{
               display: "inline-block",
               marginBottom: "16px",
-              background: "#ffffff",
-              padding: "8px 14px",
-              borderRadius: "10px",
-              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
             }}
           >
-            <img
-              src="/guiitar-council-logo.png"
-              alt="GUIITAR Council"
-              style={{
-                height: "44px",
-                width: "auto",
-                display: "block",
-                objectFit: "contain",
-              }}
-            />
+            <GuiitarFullLogo style={{ height: "46px", width: "auto" }} />
           </Link>
           <p>
             GU Incubation Innovation Technology and Applied Research (GUIITAR) Council was established by GSFC University in Vadodara, Gujarat, and is registered under Section 8 of the Companies Act, 2013 (CIN: U73100GJ2020NPL115782). Dedicated to promoting and supporting creativity, innovation, and entrepreneurship.
@@ -1218,17 +1206,21 @@ export function Footer() {
           <p className="contact-line">
             <MapPin />
             <span>
-              GUIITAR Council, 2nd Floor, Anviksha Building, GSFC University Campus, Vigyan Bhavan,
+              Room No. 208, Event Room, Second Floor, GUIITAR Council, Anviksha–GSFC University,
               P.O. Fertilizernagar, Vadodara – 391750, Gujarat, India
             </span>
           </p>
+          <div className="contact-line" style={{ display: "flex", alignItems: "center", gap: "8px", color: "inherit" }}>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "var(--primary)" }}>Contact Person:</span>
+            <span style={{ fontSize: "13px", fontWeight: 600 }}>Mr. Kiran Parmar, Senior Manager</span>
+          </div>
+          <a className="contact-line" href="tel:+919313262712">
+            <Phone />
+            <span>Mobile: 09313262712 / +91 9313262712</span>
+          </a>
           <a className="contact-line" href="tel:+912653093750">
             <Phone />
             <span>Tel: +91 (0265) 3093750</span>
-          </a>
-          <a className="contact-line" href="tel:+919313262712">
-            <Phone />
-            <span>Mobile: +91 9313262712</span>
           </a>
           <a className="contact-line" href="mailto:guiitar@gsfcuniversity.ac.in">
             <Mail />

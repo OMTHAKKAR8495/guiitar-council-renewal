@@ -634,8 +634,8 @@ const INITIAL_STARTUPS: StartupItem[] = [
     team: "Student Researchers, GSFC University",
     achievements: [
       "SSIP 2.0 Grant Recipient",
-      "3 Patent disclosures under review",
-      "Featured at Gujarat Startup Summit",
+      "3 Patent disclosures submitted for review",
+      "Gujarat Startup Showcase Participant",
     ],
     patents: 3,
     tags: ["Biotech", "SSIP 2.0", "Incubated"],
@@ -677,9 +677,9 @@ const INITIAL_STARTUPS: StartupItem[] = [
       "Converting holy floral offerings and agricultural organic residues into 100% home-compostable film packaging and single-use plastic alternatives.",
     team: "Chemical & Environmental Science Leads",
     achievements: [
-      "500kg waste diverted",
-      "Zero microplastic breakdown certificate",
-      "Commercial packaging PoC",
+      "SSIP 2.0 Prototyping Grant",
+      "Compostable biopolymer PoC",
+      "500kg waste diversion (Pending Official Confirmation)",
     ],
     patents: 1,
     tags: ["Circular Economy", "Packaging"],
@@ -699,9 +699,9 @@ const INITIAL_STARTUPS: StartupItem[] = [
       "Building custom mission-critical multi-rotor drones for chemical plant surveillance, pipeline thermal imaging, and perimeter security in Vadodara.",
     team: "Robotics & Drone Lab Fellows",
     achievements: [
-      "DGCA compliant flight test cell",
+      "Flight avionics test cell",
       "Thermal payload integration",
-      "Industry pilot partner with GSFC Ltd",
+      "Industry pilot partner trials (Pending Official Confirmation)",
     ],
     patents: 1,
     tags: ["Drones", "Edge AI", "Inspection"],
@@ -3116,15 +3116,18 @@ export class AdminDataStore {
   static getMentors(): MentorItem[] {
     const stored = this.getStored<MentorItem[]>(STORAGE_MENTORS_KEY, INITIAL_MENTORS);
     if (!Array.isArray(stored) || stored.length === 0) return INITIAL_MENTORS;
-    // Auto-heal missing or empty avatars from INITIAL_MENTORS to prevent stale browser cache from breaking mentor photos
+    // Auto-heal missing or stale avatars from INITIAL_MENTORS to prevent stale browser cache from breaking mentor photos
     return stored.map((m) => {
       const initial = INITIAL_MENTORS.find((im) => im.id === m.id);
-      if (initial && (!m.avatar || !m.imagePath || m.avatar === "" || m.imagePath === "")) {
+      if (initial) {
+        const hasValidInitial =
+          initial.avatar &&
+          (initial.avatar.startsWith("/images/") || initial.avatar.startsWith("/leaders/"));
         return {
           ...m,
-          avatar: m.avatar || initial.avatar,
-          imagePath: m.imagePath || initial.imagePath,
-          documentPath: m.documentPath || initial.documentPath,
+          avatar: (hasValidInitial ? initial.avatar : m.avatar) || initial.avatar,
+          imagePath: (hasValidInitial ? initial.imagePath : m.imagePath) || initial.imagePath,
+          documentPath: initial.documentPath || m.documentPath,
         };
       }
       return m;

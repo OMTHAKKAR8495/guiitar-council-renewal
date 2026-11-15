@@ -81,7 +81,7 @@ function Contact() {
             </div>
             <h3>Campus Location</h3>
             <p style={{ fontSize: "13.5px", lineHeight: "1.5", color: "var(--text)" }}>
-              GUIITAR Council, 2nd Floor, Anviksha Building, GSFC University, Vigyan Bhavan, P.O. Fertilizernagar, Vadodara – 391750, Gujarat, India
+              Room No. 208, Event Room, Second Floor, GUIITAR Council, Anviksha–GSFC University, P.O. Fertilizernagar, Vadodara – 391750, Gujarat, India
             </p>
           </article>
 
@@ -90,20 +90,31 @@ function Contact() {
               <Phone />
             </div>
             <h3>Direct Contact</h3>
-            <p style={{ fontSize: "14px", fontWeight: 700, color: "#0f172a", margin: "0 0 2px" }}>
-              Board Line &amp; Mobile
+            <p style={{ fontSize: "14px", fontWeight: 700, color: "var(--foreground)", margin: "0 0 2px" }}>
+              Mr. Kiran Parmar
             </p>
             <span
               style={{
                 fontSize: "12px",
-                color: "#64748b",
+                color: "var(--muted-foreground)",
                 display: "block",
                 marginBottom: "8px",
               }}
             >
-              Incubation Secretariat
+              Senior Manager (Incubation)
             </span>
             <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <a
+                href="tel:+919313262712"
+                style={{
+                  color: "#2563eb",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  fontSize: "13.5px",
+                }}
+              >
+                Mobile: 09313262712 / +91 9313262712
+              </a>
               <a
                 href="tel:+912653093750"
                 style={{
@@ -114,17 +125,6 @@ function Contact() {
                 }}
               >
                 Tel: +91 (0265) 3093750
-              </a>
-              <a
-                href="tel:+919313262712"
-                style={{
-                  color: "#2563eb",
-                  fontWeight: 700,
-                  textDecoration: "none",
-                  fontSize: "13.5px",
-                }}
-              >
-                Mobile: +91 9313262712
               </a>
             </div>
           </article>

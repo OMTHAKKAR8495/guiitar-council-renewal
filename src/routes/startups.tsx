@@ -387,19 +387,7 @@ export function StartupsPage() {
                       style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "6px" }}
                     >
                       {s.achievements.map((a) => (
-                        <span
-                          key={a}
-                          className="achievement-tag"
-                          style={{
-                            background: "var(--surface-muted, #f8fafc)",
-                            border: "1px solid var(--border, #cbd5e1)",
-                            color: "var(--text-body, #1e293b)",
-                            fontSize: "12px",
-                            padding: "3px 8px",
-                            borderRadius: "6px",
-                            fontWeight: 600,
-                          }}
-                        >
+                        <span key={a} className="achievement-tag">
                           ✓ {a}
                         </span>
                       ))}

@@ -1990,19 +1990,7 @@ export function HomePage() {
                     style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px" }}
                   >
                     {s.achievements.map((a) => (
-                      <span
-                        key={a}
-                        className="achievement-tag"
-                        style={{
-                          background: "var(--surface-muted, #f1f5f9)",
-                          border: "1px solid var(--border, #e2e8f0)",
-                          color: "var(--text-body, #334155)",
-                          fontSize: "12px",
-                          padding: "3px 8px",
-                          borderRadius: "6px",
-                          fontWeight: 600,
-                        }}
-                      >
+                      <span key={a} className="achievement-tag">
                         ✓ {a}
                       </span>
                     ))}
