@@ -797,9 +797,9 @@ function Events() {
                 badge: "Verified Archives",
                 linkLabel: "Open Drive Archive",
                 photos: [
-                  { url: "/images/original/banners/shri-harish-mehta.jpg", caption: "Keynote & Founder Felicitation" },
-                  { url: "/images/original/banners/startup-team-management.jpg", caption: "Hackathon Team Strategy" },
-                  { url: "/images/original/banners/awareness-program.jpg", caption: "SSIP Student Awards" },
+                  { url: "/images/achievements/sih-2023.jpg", caption: "Smart India Hackathon 2023 Winners" },
+                  { url: "/images/achievements/student-achievement-nih-2023.jpg", caption: "National Innovation Hackathon 2023" },
+                  { url: "/images/achievements/drone-pilot-license.jpg", caption: "DGCA Drone Pilot Certification" },
                 ],
               },
               {
@@ -810,9 +810,9 @@ function Events() {
                 badge: "15+ Ventures",
                 linkLabel: "Open SSIP PoC Repository",
                 photos: [
-                  { url: "/images/original/infrastructure/maker-lab.jpg", caption: "Maker Lab 3D Prototyping" },
-                  { url: "/images/original/infrastructure/drone-lab.png", caption: "Drone & Aerial Robotics Lab" },
-                  { url: "/images/original/infrastructure/supercomputer-lab.jpg", caption: "Supercomputer AI Testing" },
+                  { url: "/images/incubated/sagiros-eir.jpg", caption: "Sagiros - Incubated Technology Venture" },
+                  { url: "/images/incubated/nerosil-ai-techno.jpeg", caption: "Nerosil AI Techno LLP - Machine Vision" },
+                  { url: "/images/incubated/morphica-naturals.jpg", caption: "Morphica Naturals - Herbal Cosmetics" },
                 ],
               },
               {

@@ -1124,7 +1124,7 @@ export function Footer() {
             <GuiitarFullLogo style={{ height: "46px", width: "auto" }} />
           </Link>
           <p>
-            GU Incubation Innovation Technology and Applied Research (GUIITAR) Council was established by GSFC University in Vadodara, Gujarat, and is registered under Section 8 of the Companies Act, 2013 (CIN: U73100GJ2020NPL115782). Dedicated to promoting and supporting creativity, innovation, and entrepreneurship.
+            GU Incubation Innovation Technology and Applied Research (GUIITAR) Council has been established by GSFC University (GSFCU) at Vadodara, dedicated to promoting and supporting creativity, innovation and spirit of enterprise among young minds and innovators. GUIITAR Council is registered under section 8 of Companies Act, 2013 (CIN: U73100GJ2020NPL115782).
           </p>
           <div className="social">
             <a
@@ -1156,58 +1156,72 @@ export function Footer() {
         </div>
 
         <div>
-          <h3>Explore</h3>
+          <h3>Quick Links</h3>
           <div className="footer-links">
+            <Link to="/">Home</Link>
             <Link to="/about">About GUIITAR</Link>
-            <Link to="/team">Our Team</Link>
-            <Link to="/coworking">Co-Working &amp; Labs</Link>
-            <Link to="/startups">Startup Directory</Link>
-            <Link to="/policy">Startup Policy (4 Stages)</Link>
-            <Link to="/impact">Impact Dashboard</Link>
-            <Link to="/ecosystem">Ecosystem Map</Link>
+            <Link to="/team">GUIITAR Team</Link>
+            <Link to="/team?tab=Faculty">Faculty Mentors</Link>
+            <Link to="/team?tab=Industry">Industry Mentors</Link>
+            <Link to="/team?tab=Committee">GUIITAR Committee</Link>
+            <Link to="/coworking">Infrastructure</Link>
+            <Link to="/coworking">Co-Working Space</Link>
           </div>
         </div>
 
         <div>
-          <h3>Programs &amp; Grants</h3>
+          <h3>Important Resources</h3>
           <div className="footer-links">
-            <Link to="/programs">All Incubation Programs</Link>
-            <Link to="/e-club">E-Club (Student Society)</Link>
-            <Link to="/iic">Institution's Innovation Council</Link>
-            <Link to="/drone-program">Drone Training Program</Link>
-            <Link to="/ssip">SSIP 2.0 Grant Scheme</Link>
-            <Link to="/nodal-institute">Nodal Institute (Policy 2020)</Link>
-            <Link to="/ipr">IPR Centre &amp; 70:30 Policy</Link>
-          </div>
-        </div>
-
-        <div>
-          <h3>Community &amp; Legal</h3>
-          <div className="footer-links">
-            <Link to="/events">Workshops &amp; Events</Link>
-            <Link to="/partner">Partner With Us</Link>
-            <Link to="/resources">Resource Library</Link>
-            <Link to="/faq">Help Center &amp; FAQ</Link>
+            <Link to="/ssip">SSIP</Link>
+            <Link to="/iic">IIC</Link>
+            <a
+              href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_a36d4d47e2e74717acd42bab3ced339e.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}
+            >
+              <span>Startup Policy</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+            <a
+              href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_87cd494308f14eae95f42e1ab0a01910.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}
+            >
+              <span>IPR Policy</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+            <a
+              href="https://drive.google.com/file/d/1FnoPviNHJt0b7JqsNwzVYIq5qD96eXhP/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}
+            >
+              <span>Startup Kit</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
             <a
               href="https://www.guiitarstartupcouncil.org/_files/ugd/ff2b71_36db0b5ca7c64cdca278b62636d850e6.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}
             >
-              <span>Annual Return (MGT-7)</span>
+              <span>Annual Return (FY 2024-25)</span>
               <ExternalLink className="w-3 h-3" />
             </a>
-            <Link to="/contact">Campus Visit &amp; Map</Link>
+            <Link to="/resources">Resource Library</Link>
+            <Link to="/contact">Contact Us</Link>
           </div>
         </div>
 
         <div>
-          <h3>Incubation Office</h3>
+          <h3>Contact Us</h3>
           <p className="contact-line">
             <MapPin />
             <span>
-              Room No. 208, Event Room, Second Floor, GUIITAR Council, Anviksha–GSFC University,
-              P.O. Fertilizernagar, Vadodara – 391750, Gujarat, India
+              Second Floor, GUIITAR Council, Anviksha – GSFC University,
+              P.O. Fertilizernagar, Vadodara – 391750, Gujarat, INDIA
             </span>
           </p>
           <div className="contact-line" style={{ display: "flex", alignItems: "center", gap: "8px", color: "inherit" }}>
@@ -1216,7 +1230,7 @@ export function Footer() {
           </div>
           <a className="contact-line" href="tel:+919313262712">
             <Phone />
-            <span>Mobile: 09313262712 / +91 9313262712</span>
+            <span>(M) : 09313262712 / +91 9313262712</span>
           </a>
           <a className="contact-line" href="tel:+912653093750">
             <Phone />

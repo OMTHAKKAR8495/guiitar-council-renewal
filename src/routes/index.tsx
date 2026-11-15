@@ -35,6 +35,7 @@ import {
   FlaskConical,
   MessageSquare,
   FolderOpen,
+  X,
 } from "lucide-react";
 import { ButtonLink, SectionTitle } from "@/components/site";
 import { GuiitarEmblem, GuiitarFullLogo } from "@/components/GuiitarBrand";
@@ -47,6 +48,8 @@ import {
   ECOSYSTEM_NODES,
   SHOWCASE_PROJECTS,
   STARTUP_DIRECTORY,
+  STUDENT_ACHIEVEMENTS,
+  INCUBATED_STARTUPS_GALLERY,
   LAB_FACILITIES,
   OFFICIAL_FAQS,
   type ShowcaseProject,
@@ -338,16 +341,28 @@ export function HomePage() {
 
   // Photo enlargement modal — holds the mentor whose photo was clicked, or null when closed
   const [photoModal, setPhotoModal] = useState<{ name: string; avatar: string } | null>(null);
+  const [galleryLightbox, setGalleryLightbox] = useState<{
+    title: string;
+    subtitle?: string;
+    tag?: string;
+    image: string;
+    desc?: string;
+  } | null>(null);
 
   const closePhotoModal = useCallback(() => setPhotoModal(null), []);
 
   // Close modal on Escape key
   useEffect(() => {
-    if (!photoModal) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closePhotoModal(); };
+    if (!photoModal && !galleryLightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closePhotoModal();
+        setGalleryLightbox(null);
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [photoModal, closePhotoModal]);
+  }, [photoModal, galleryLightbox, closePhotoModal]);
 
   /**
    * Derive a document path for Industry, Faculty, and Board of Directors mentor records.
@@ -2036,6 +2051,229 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* 7B. STUDENT ACHIEVEMENT GALLERY */}
+      <section className="section-muted" id="student-achievement">
+        <div className="container">
+          <SectionTitle
+            badge="Official Honors & Hackathons"
+            title="Student Achievement"
+            subtitle="Recognizing national hackathon triumphs, State SSIP awards, patent disclosures, and drone pilot certifications earned by GSFC University innovators."
+          />
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+              gap: "24px",
+              marginTop: "32px",
+            }}
+          >
+            {STUDENT_ACHIEVEMENTS.map((item) => (
+              <div
+                key={item.id}
+                className="plain-card"
+                onClick={() =>
+                  setGalleryLightbox({
+                    title: item.title,
+                    subtitle: item.desc,
+                    tag: item.tag,
+                    image: item.image,
+                    desc: item.desc,
+                  })
+                }
+                style={{
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  cursor: "zoom-in",
+                  display: "flex",
+                  flexDirection: "column",
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                  padding: 0,
+                  border: "1px solid var(--border)",
+                }}
+              >
+                <div style={{ position: "relative", height: "200px", overflow: "hidden", background: "#050811" }}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                      transition: "transform 0.3s ease",
+                    }}
+                    loading="lazy"
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "12px",
+                      left: "12px",
+                      display: "flex",
+                      gap: "6px",
+                    }}
+                  >
+                    <span className="pill blue" style={{ fontSize: "11px", fontWeight: 700 }}>
+                      {item.tag}
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "10px",
+                      right: "10px",
+                      background: "rgba(15, 23, 42, 0.75)",
+                      backdropFilter: "blur(4px)",
+                      color: "#ffffff",
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      padding: "3px 8px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    {item.badge}
+                  </div>
+                </div>
+
+                <div style={{ padding: "20px", display: "flex", flexDirection: "column", flex: 1, justifyContent: "space-between" }}>
+                  <div>
+                    <h3 style={{ fontSize: "17px", fontWeight: 800, margin: "0 0 8px 0" }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", margin: 0, lineHeight: 1.55 }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                  <div style={{ marginTop: "14px", display: "flex", alignItems: "center", gap: "4px", color: "var(--primary)", fontSize: "12.5px", fontWeight: 700 }}>
+                    <span>Enlarge Photo</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="center spaced" style={{ marginTop: "28px" }}>
+            <a
+              href="https://drive.google.com/drive/folders/1JXvxN1ys5SzgwIUpajSl8wWqYnuGjkkT?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline btn-md"
+              style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+            >
+              <span>Open Official Student Achievement Drive Archive</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 7C. STUDENT/STARTUP INCUBATED GALLERY */}
+      <section id="student-startup-incubated">
+        <div className="container">
+          <SectionTitle
+            badge="Ventures in Flight"
+            title="Student/Startup Incubated"
+            subtitle="Student-led startup ventures and early-stage companies officially nurtured, funded, and accelerated at GUIITAR Council."
+          />
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+              gap: "24px",
+              marginTop: "32px",
+            }}
+          >
+            {INCUBATED_STARTUPS_GALLERY.map((item) => (
+              <div
+                key={item.id}
+                className="plain-card"
+                onClick={() =>
+                  setGalleryLightbox({
+                    title: item.title,
+                    subtitle: item.founder,
+                    tag: item.tag,
+                    image: item.image,
+                    desc: item.desc,
+                  })
+                }
+                style={{
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  cursor: "zoom-in",
+                  display: "flex",
+                  flexDirection: "column",
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                  padding: 0,
+                  border: "1px solid var(--border)",
+                }}
+              >
+                <div style={{ position: "relative", height: "200px", overflow: "hidden", background: "#050811" }}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                      transition: "transform 0.3s ease",
+                    }}
+                    loading="lazy"
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "12px",
+                      left: "12px",
+                      display: "flex",
+                      gap: "6px",
+                    }}
+                  >
+                    <span className="pill emerald" style={{ fontSize: "11px", fontWeight: 700 }}>
+                      {item.tag}
+                    </span>
+                  </div>
+                </div>
+
+                <div style={{ padding: "20px", display: "flex", flexDirection: "column", flex: 1, justifyContent: "space-between" }}>
+                  <div>
+                    <span style={{ fontSize: "12px", fontWeight: 700, color: "var(--primary)", display: "block", marginBottom: "4px" }}>
+                      {item.founder}
+                    </span>
+                    <h3 style={{ fontSize: "18px", fontWeight: 800, margin: "0 0 8px 0" }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontSize: "13.5px", color: "var(--muted-foreground)", margin: 0, lineHeight: 1.55 }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                  <div style={{ marginTop: "14px", display: "flex", alignItems: "center", gap: "4px", color: "var(--primary)", fontSize: "12.5px", fontWeight: 700 }}>
+                    <span>Enlarge Showcase</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="center spaced" style={{ marginTop: "28px" }}>
+            <a
+              href="https://drive.google.com/drive/folders/1EspgxXUoavBlETSnxstEfpMGsI_fCFma"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline btn-md"
+              style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
+            >
+              <span>Open Official SSIP Approved PoCs &amp; Prototypes Repository</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* 8. FUNDING NAVIGATOR ("Find the Support That Fits Your Idea") */}
       <section>
         <div className="container">
@@ -3089,6 +3327,120 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* GALLERY LIGHTBOX MODAL */}
+      {galleryLightbox && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setGalleryLightbox(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(10, 15, 26, 0.88)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9999,
+            padding: "24px",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "var(--surface, #ffffff)",
+              border: "1px solid var(--border)",
+              borderRadius: "18px",
+              maxWidth: "800px",
+              width: "100%",
+              overflow: "hidden",
+              boxShadow: "0 25px 60px -15px rgba(0, 0, 0, 0.6)",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "16px 20px",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              <div>
+                {galleryLightbox.tag && (
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      color: "#2563eb",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {galleryLightbox.tag}
+                  </span>
+                )}
+                <h4 style={{ margin: "2px 0 0", fontSize: "17px", fontWeight: 800 }}>
+                  {galleryLightbox.title}
+                </h4>
+                {galleryLightbox.subtitle && (
+                  <span style={{ fontSize: "12.5px", color: "var(--muted-foreground)" }}>
+                    {galleryLightbox.subtitle}
+                  </span>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={() => setGalleryLightbox(null)}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                  color: "var(--foreground)",
+                  padding: "6px",
+                  borderRadius: "8px",
+                  display: "flex",
+                }}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div
+              style={{
+                background: "#050811",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: "320px",
+                maxHeight: "65vh",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src={galleryLightbox.image}
+                alt={galleryLightbox.title}
+                style={{ maxWidth: "100%", maxHeight: "65vh", objectFit: "contain", display: "block" }}
+              />
+            </div>
+            {galleryLightbox.desc && (
+              <div
+                style={{
+                  padding: "14px 20px",
+                  borderTop: "1px solid var(--border)",
+                  fontSize: "13.5px",
+                  color: "var(--muted-foreground)",
+                }}
+              >
+                {galleryLightbox.desc}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

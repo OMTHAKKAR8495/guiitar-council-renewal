@@ -518,6 +518,167 @@ export const STARTUP_DIRECTORY: StartupItem[] = [
   },
 ];
 
+export interface AchievementGalleryItem {
+  id: string;
+  title: string;
+  tag: string;
+  desc: string;
+  image: string;
+  badge: string;
+}
+
+export const STUDENT_ACHIEVEMENTS: AchievementGalleryItem[] = [
+  {
+    id: "ach-1",
+    title: "National Innovation Hackathon (NIH) 2023",
+    tag: "National Hackathon",
+    desc: "First prize winners at the National Innovation Hackathon for novel medical assistive hardware prototype.",
+    image: "/images/achievements/student-achievement-nih-2023.jpg",
+    badge: "1st Prize",
+  },
+  {
+    id: "ach-2",
+    title: "Smart India Hackathon (SIH) 2023",
+    tag: "Govt. of India",
+    desc: "GSFC University student team recognized at the SIH Grand Finale for autonomous AI software engineering.",
+    image: "/images/achievements/sih-2023.jpg",
+    badge: "National Finalists",
+  },
+  {
+    id: "ach-3",
+    title: "Smart Ideathon 2023",
+    tag: "State Ideation",
+    desc: "Student ideation winners awarded prototyping seed grant support by the state-level evaluation jury.",
+    image: "/images/achievements/smart-ideathon-2023.jpg",
+    badge: "Cash Prize",
+  },
+  {
+    id: "ach-4",
+    title: "DGCA Certified Drone Pilot Licensees",
+    tag: "Aviation Credential",
+    desc: "GUIITAR student aeronautical researchers certified with official DGCA DigitalSky remote pilot credentials.",
+    image: "/images/achievements/drone-pilot-license.jpg",
+    badge: "DGCA Pilot",
+  },
+  {
+    id: "ach-5",
+    title: "Pujan Innovators Team",
+    tag: "Healthcare SSIP Grant",
+    desc: "SSIP 2.0 sanctioned prototype development for advanced therapeutic wellness formulations.",
+    image: "/images/achievements/pujan-team.jpg",
+    badge: "Grant Sanction",
+  },
+  {
+    id: "ach-6",
+    title: "GUIITAR Council Innovation Honors",
+    tag: "Institutional Excellence",
+    desc: "Annual felicitation ceremony of university student startup founders, innovators, and patent filers.",
+    image: "/images/achievements/guiitar-achievement-1.jpg",
+    badge: "Annual Honors",
+  },
+  {
+    id: "ach-7",
+    title: "Maker Lab Prototyping Distinction",
+    tag: "Engineering Showcase",
+    desc: "Rapid prototyping honors for student-designed multi-rotor UAV frames and 3D printed mechanical linkages.",
+    image: "/images/achievements/ac-01.jpg",
+    badge: "Hardware PoC",
+  },
+  {
+    id: "ach-8",
+    title: "Biomaterials Research Recognition",
+    tag: "Circular Materials",
+    desc: "State distinction for sustainable microbial biopigments and home-compostable packaging resins.",
+    image: "/images/achievements/ac-02.jpg",
+    badge: "CleanTech Award",
+  },
+];
+
+export interface IncubatedGalleryItem {
+  id: string;
+  title: string;
+  tagline: string;
+  founder: string;
+  tag: string;
+  image: string;
+  desc: string;
+}
+
+export const INCUBATED_STARTUPS_GALLERY: IncubatedGalleryItem[] = [
+  {
+    id: "inc-1",
+    title: "Sagiros",
+    tagline: "Deep-Tech Software Engineering & Industrial Automation",
+    founder: "Incubated Venture / EiR Track",
+    tag: "Deep-Tech",
+    image: "/images/incubated/sagiros-eir.jpg",
+    desc: "Advanced industrial digitalization platform providing automated control loop monitoring for process plants.",
+  },
+  {
+    id: "inc-2",
+    title: "Nerosil AI Techno LLP",
+    tagline: "Computer Vision & Edge Surveillance Systems",
+    founder: "AI & Machine Vision Leads",
+    tag: "Artificial Intelligence",
+    image: "/images/incubated/nerosil-ai-techno.jpeg",
+    desc: "Intelligent industrial camera telemetry detecting pipeline thermal leaks and perimeter hazards in real-time.",
+  },
+  {
+    id: "inc-3",
+    title: "Morphica Naturals",
+    tagline: "Standardized Authentic Phytopharmaceutical Cosmetics",
+    founder: "Biotech & Cosmetics Leads",
+    tag: "Clean Beauty & BioTech",
+    image: "/images/incubated/morphica-naturals.jpg",
+    desc: "Sustainable organic wellness and topical cosmetics synthesized using clean chromatography methods.",
+  },
+  {
+    id: "inc-4",
+    title: "Khyati Shah & Rushali",
+    tagline: "Bioactive Healthcare & Therapeutic Formulations",
+    founder: "Student Startup Founders",
+    tag: "Phyto-Pharma",
+    image: "/images/incubated/khyati-shah-rushali.jpg",
+    desc: "Standardized Ayurvedic wellness extracts and herbal therapeutics clinically verified for batch consistency.",
+  },
+  {
+    id: "inc-5",
+    title: "Devashri, Nikunj & Harsh",
+    tagline: "CleanTech Hardware & Prototyping Systems",
+    founder: "Chemical & Mechanical Leads",
+    tag: "Hardware Innovation",
+    image: "/images/incubated/devashri-nikunj-harsh.jpg",
+    desc: "Modular mechanical devices and waste-reduction processing hardware engineered in Anviksha labs.",
+  },
+  {
+    id: "inc-6",
+    title: "Dutt Kalpesh Parekh",
+    tagline: "Smart Instrumentation & Industrial Control",
+    founder: "Venture Lead",
+    tag: "Embedded Systems",
+    image: "/images/incubated/dutt-kalpesh-parekh.jpg",
+    desc: "Microcontroller instrumentation boards designed for smart utility grid and chemical facility telemetry.",
+  },
+  {
+    id: "inc-7",
+    title: "Tejaswa & Nishant",
+    tagline: "Sustainable Materials & Energy Recovery",
+    founder: "Environmental Science Leads",
+    tag: "Circular Economy",
+    image: "/images/incubated/tejaswa-nishant.jpg",
+    desc: "Converting agricultural and organic solid residues into high-value clean fuels and bio-packaging alternatives.",
+  },
+  {
+    id: "inc-8",
+    title: "Vastal Jhaveri & Krupa Christi",
+    tagline: "Advanced Biopolymers & Packaging Formulations",
+    founder: "Polymer Innovators",
+    tag: "Materials Science",
+    image: "/images/incubated/vastal-krupa.jpg",
+    desc: "Biodegradable composite films and eco-friendly resin pellets substituting single-use commercial plastics.",
+  },
+];
+
 export interface LabFacility {
   id: string;
   name: string;
