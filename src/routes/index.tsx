@@ -372,6 +372,20 @@ export function HomePage() {
     image: string;
     desc?: string;
   } | null>(null);
+  const [lightboxLoading, setLightboxLoading] = useState(true);
+  const [lightboxError, setLightboxError] = useState(false);
+
+  const openLightbox = (item: {
+    title: string;
+    subtitle?: string;
+    tag?: string;
+    image: string;
+    desc?: string;
+  }) => {
+    setLightboxLoading(true);
+    setLightboxError(false);
+    setGalleryLightbox(item);
+  };
 
   const closePhotoModal = useCallback(() => setPhotoModal(null), []);
 
@@ -2096,8 +2110,14 @@ export function HomePage() {
               <div
                 key={item.id}
                 className="plain-card"
+                onMouseEnter={() => {
+                  try {
+                    const img = new Image();
+                    img.src = item.image;
+                  } catch {}
+                }}
                 onClick={() =>
-                  setGalleryLightbox({
+                  openLightbox({
                     title: item.title,
                     subtitle: item.desc,
                     tag: item.tag,
@@ -2116,7 +2136,7 @@ export function HomePage() {
                   border: "1px solid var(--border)",
                 }}
               >
-                <div style={{ position: "relative", height: "200px", overflow: "hidden", background: "#050811" }}>
+                <div style={{ position: "relative", height: "200px", overflow: "hidden", background: "#0b1324" }}>
                   <img
                     src={item.image}
                     alt={item.title}
@@ -2215,8 +2235,14 @@ export function HomePage() {
               <div
                 key={item.id}
                 className="plain-card"
+                onMouseEnter={() => {
+                  try {
+                    const img = new Image();
+                    img.src = item.image;
+                  } catch {}
+                }}
                 onClick={() =>
-                  setGalleryLightbox({
+                  openLightbox({
                     title: item.title,
                     subtitle: item.founder,
                     tag: item.tag,
@@ -2235,7 +2261,7 @@ export function HomePage() {
                   border: "1px solid var(--border)",
                 }}
               >
-                <div style={{ position: "relative", height: "200px", overflow: "hidden", background: "#050811" }}>
+                <div style={{ position: "relative", height: "200px", overflow: "hidden", background: "#0b1324" }}>
                   <img
                     src={item.image}
                     alt={item.title}
@@ -3437,20 +3463,90 @@ export function HomePage() {
             </div>
             <div
               style={{
-                background: "#050811",
+                position: "relative",
+                background: "#080d1a",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                minHeight: "320px",
+                minHeight: "360px",
                 maxHeight: "65vh",
                 overflow: "hidden",
               }}
             >
-              <img
-                src={galleryLightbox.image}
-                alt={galleryLightbox.title}
-                style={{ maxWidth: "100%", maxHeight: "65vh", objectFit: "contain", display: "block" }}
-              />
+              {lightboxLoading && (
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "12px",
+                    color: "#94a3b8",
+                    background: "#080d1a",
+                    zIndex: 2,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "50%",
+                      border: "3px solid rgba(59, 130, 246, 0.2)",
+                      borderTopColor: "#3b82f6",
+                      animation: "spin 0.8s linear infinite",
+                    }}
+                  />
+                  <span style={{ fontSize: "13px", fontWeight: 600 }}>Loading photograph...</span>
+                </div>
+              )}
+
+              {lightboxError ? (
+                <div
+                  style={{
+                    padding: "32px 20px",
+                    textAlign: "center",
+                    color: "#94a3b8",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "10px",
+                    zIndex: 2,
+                  }}
+                >
+                  <span style={{ fontSize: "14px", fontWeight: 600, color: "#f87171" }}>
+                    Photograph could not be displayed directly
+                  </span>
+                  <a
+                    href={galleryLightbox.image}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn btn-outline btn-sm"
+                    style={{ marginTop: "8px" }}
+                  >
+                    Open Image in New Tab
+                  </a>
+                </div>
+              ) : (
+                <img
+                  src={galleryLightbox.image}
+                  alt={galleryLightbox.title}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "65vh",
+                    objectFit: "contain",
+                    display: "block",
+                    opacity: lightboxLoading ? 0 : 1,
+                    transition: "opacity 0.25s ease-in-out",
+                  }}
+                  onLoad={() => setLightboxLoading(false)}
+                  onError={() => {
+                    setLightboxLoading(false);
+                    setLightboxError(true);
+                  }}
+                />
+              )}
             </div>
             {galleryLightbox.desc && (
               <div
