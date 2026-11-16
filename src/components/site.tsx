@@ -1127,11 +1127,7 @@ export function Footer() {
           <Link
             to="/"
             aria-label="GUIITAR Council home"
-            className="logo-container"
-            style={{
-              display: "inline-block",
-              marginBottom: "16px",
-            }}
+            className="footer-logo-link"
           >
             <GuiitarFullLogo style={{ height: "46px", width: "auto" }} />
           </Link>

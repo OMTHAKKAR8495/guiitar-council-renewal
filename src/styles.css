@@ -1233,22 +1233,50 @@ section {
 .footer {
   background: #090d16;
   color: #94a3b8;
-  padding-top: 80px;
+  padding-top: 64px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 10;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 0.8fr 0.9fr 1.2fr;
+  grid-template-columns: 1.4fr 0.85fr 0.95fr 1.2fr;
   gap: 48px;
-  padding-bottom: 56px;
+  padding-bottom: 48px;
+  align-items: start;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.footer-brand .footer-logo-link {
+  display: inline-flex;
+  align-items: center;
+  height: auto;
+  min-height: 46px;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+
+/* Dark footer background always uses the crisp white-text dark-mode logo */
+.footer .site-logo-img.logo-light {
+  display: none !important;
+}
+
+.footer .site-logo-img.logo-dark {
+  display: block !important;
 }
 
 .footer-brand p {
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.65;
   color: #94a3b8;
-  margin: 16px 0 22px;
+  margin: 0 0 20px;
 }
 
 .footer-logo {
