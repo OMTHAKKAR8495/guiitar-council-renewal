@@ -20,7 +20,7 @@
       ]
     },
     {
-      "source": "/(guiitar-.*\\.(png|svg|jpg))",
+      "source": "/guiitar-(.*)",
       "headers": [
         {
           "key": "Cache-Control",
