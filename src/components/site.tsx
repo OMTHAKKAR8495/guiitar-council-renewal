@@ -1264,13 +1264,21 @@ export function Footer() {
           gap: "14px",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
           <span>
             © {new Date().getFullYear()} GUIITAR Council, GSFC University. All Rights Reserved.
           </span>
-          <span style={{ fontSize: "12px", color: "#94a3b8", fontWeight: 700, letterSpacing: "0.05em" }}>
+          <strong
+            style={{
+              fontSize: "13px",
+              color: "#ffffff",
+              fontWeight: 900,
+              letterSpacing: "0.06em",
+              display: "inline-block",
+            }}
+          >
             DEVELOPED AND MANAGED BY OM THAKKAR
-          </span>
+          </strong>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
           <Link to="/resources">Policies & Governance</Link>
