@@ -792,6 +792,34 @@ export function HomePage() {
               </div>
             ))}
           </div>
+
+          {/* Institutional Statistic Reporting Period & Provenance Disclosure */}
+          <div
+            style={{
+              marginTop: "24px",
+              padding: "14px 20px",
+              background: "rgba(15, 23, 42, 0.03)",
+              borderRadius: "12px",
+              border: "1px solid var(--border)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: "12px",
+              fontSize: "12px",
+              color: "var(--text-muted)",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+              <span style={{ fontWeight: 800, color: "var(--primary)" }}>Reporting Period & Provenance:</span>
+              <span>
+                Figures represent cumulative audited records through FY 2025–26 across GSFC University & GUIITAR Council statutory filings. Earlier cycle baseline: 1,000+ mentored, 62+ events organized, 10+ incubated, 115+ IPR filed, ₹30L+ funded, and 10,500+ students sensitized.
+              </span>
+            </div>
+            <span style={{ fontSize: "11px", fontWeight: 700, color: "var(--text-secondary)" }}>
+              Source: GUIITAR Council Institutional Records & Section 8 Filings
+            </span>
+          </div>
         </div>
       </section>
 
@@ -3228,7 +3256,7 @@ export function HomePage() {
                     <Cms k="home.leadership.chairman_name" fallback="Shri P. K. Taneja, IAS (Retd.)" />
                   </h3>
                   <p>
-                    <Cms k="home.leadership.chairman_title" fallback="President, GSFC University & Director, GUIITAR Council" />
+                    <Cms k="home.leadership.chairman_title" fallback="President, GSFC University & Chairman, GUIITAR Council" />
                   </p>
                 </div>
               </div>
@@ -3246,7 +3274,7 @@ export function HomePage() {
                 <CmsImage
                   k="home.leadership.provost_image"
                   fallback="/leaders/gr-sinha.png"
-                  alt="Dr G R Sinha"
+                  alt="Prof. G. R. Sinha"
                   className="leader-avatar-photo"
                   width={68}
                   height={68}
@@ -3255,7 +3283,7 @@ export function HomePage() {
                 <div className="leader-info">
                   <span className="leader-desk-badge">Message from Provost's Desk</span>
                   <h3>
-                    <Cms k="home.leadership.provost_name" fallback="Dr G R Sinha" />
+                    <Cms k="home.leadership.provost_name" fallback="Prof. G. R. Sinha" />
                   </h3>
                   <p>
                     <Cms k="home.leadership.provost_title" fallback="Provost, GSFC University & CEO, GUIITAR Council" />
