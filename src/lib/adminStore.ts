@@ -3364,10 +3364,10 @@ export class AdminDataStore {
     }
   }
 
-  static readonly STORE_BUILD_VERSION = "2026_11_16_r2";
+  static readonly STORE_BUILD_VERSION = "2026_11_16_r3";
 
   /**
-   * Refreshes stored canonical seed data (startups, events, programs)
+   * Refreshes stored canonical seed data (startups, events, programs, mentors)
    * while preserving any custom admin records or user submissions.
    */
   static refreshSeedData(): void {
@@ -3390,6 +3390,12 @@ export class AdminDataStore {
       const seedEventIds = new Set(INITIAL_EVENTS.map((e) => e.id));
       const customEvents = storedEvents.filter((e) => !seedEventIds.has(e.id));
       this.setStored(STORAGE_EVENTS_KEY, [...INITIAL_EVENTS, ...customEvents]);
+
+      // 4. Refresh mentors: update seed records to canonical code definitions with verified avatars
+      const storedMentors = this.getMentors();
+      const seedMentorIds = new Set(INITIAL_MENTORS.map((m) => m.id));
+      const customMentors = storedMentors.filter((m) => !seedMentorIds.has(m.id));
+      this.setStored(STORAGE_MENTORS_KEY, [...INITIAL_MENTORS, ...customMentors]);
     } catch (e) {
       console.warn("Failed to refresh seed data:", e);
     }

@@ -91,6 +91,7 @@ function MentorAvatar({
   onZoom: (name: string, avatar: string) => void;
 }) {
   const [imgFailed, setImgFailed] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const avatarSrc = mentor.avatar || mentor.imagePath;
 
   const initials = useMemo(() => {
@@ -182,7 +183,8 @@ function MentorAvatar({
               objectFit: "contain",
               display: "block",
             }}
-            loading="lazy"
+            loading="eager"
+            decoding="async"
             onError={() => setImgFailed(true)}
           />
         </div>
@@ -207,8 +209,26 @@ function MentorAvatar({
         height: "64px",
         position: "relative",
         boxShadow: "0 4px 12px rgba(37, 99, 235, 0.15)",
+        overflow: "hidden",
       }}
     >
+      {/* 0ms Instant Initials Badge while image loads */}
+      <span
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "grid",
+          placeItems: "center",
+          color: "#ffffff",
+          fontSize: "18px",
+          fontWeight: 800,
+          zIndex: 1,
+          opacity: isLoaded ? 0 : 1,
+          transition: "opacity 0.15s ease",
+        }}
+      >
+        {initials}
+      </span>
       <img
         src={avatarSrc}
         alt={mentor.name}
@@ -219,8 +239,14 @@ function MentorAvatar({
           objectFit: "cover",
           border: "2px solid #3b82f6",
           display: "block",
+          position: "relative",
+          zIndex: 2,
+          opacity: isLoaded ? 1 : 0,
+          transition: "opacity 0.2s ease-in-out",
         }}
-        loading="lazy"
+        loading="eager"
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
         onError={() => setImgFailed(true)}
       />
     </button>
@@ -237,6 +263,20 @@ export function HomePage() {
     "home.metrics.list",
     VERIFIED_METRICS,
   );
+
+  useEffect(() => {
+    // Instant background prefetch of mentor avatars for 0-millisecond rendering
+    try {
+      const mentors = AdminDataStore.getMentors();
+      mentors.forEach((m) => {
+        const src = m.avatar || m.imagePath;
+        if (src && (src.startsWith("/images/") || src.startsWith("/leaders/"))) {
+          const img = new Image();
+          img.src = src;
+        }
+      });
+    } catch {}
+  }, []);
 
   // Backend Dynamic Gallery Fetch
   const [galleryItems, setGalleryItems] = useState({
