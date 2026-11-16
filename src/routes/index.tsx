@@ -238,6 +238,30 @@ export function HomePage() {
     VERIFIED_METRICS,
   );
 
+  // Backend Dynamic Gallery Fetch
+  const [galleryItems, setGalleryItems] = useState({
+    achievements: STUDENT_ACHIEVEMENTS,
+    incubated: INCUBATED_STARTUPS_GALLERY,
+  });
+
+  useEffect(() => {
+    let active = true;
+    fetch("/api/gallery")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (active && data?.achievements && data?.incubated) {
+          setGalleryItems({
+            achievements: data.achievements,
+            incubated: data.incubated,
+          });
+        }
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
+
   // 1. Innovation Journey Stage State
   const [activeStageId, setActiveStageId] = useState("ideate");
   const currentStage = useMemo(
@@ -2068,7 +2092,7 @@ export function HomePage() {
               marginTop: "32px",
             }}
           >
-            {STUDENT_ACHIEVEMENTS.map((item) => (
+            {galleryItems.achievements.map((item) => (
               <div
                 key={item.id}
                 className="plain-card"
@@ -2104,6 +2128,7 @@ export function HomePage() {
                       transition: "transform 0.3s ease",
                     }}
                     loading="lazy"
+                    decoding="async"
                   />
                   <div
                     style={{
@@ -2186,7 +2211,7 @@ export function HomePage() {
               marginTop: "32px",
             }}
           >
-            {INCUBATED_STARTUPS_GALLERY.map((item) => (
+            {galleryItems.incubated.map((item) => (
               <div
                 key={item.id}
                 className="plain-card"
@@ -2222,6 +2247,7 @@ export function HomePage() {
                       transition: "transform 0.3s ease",
                     }}
                     loading="lazy"
+                    decoding="async"
                   />
                   <div
                     style={{

@@ -2,6 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import { STUDENT_ACHIEVEMENTS, INCUBATED_STARTUPS_GALLERY } from "./lib/data";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -62,6 +63,62 @@ function applySecurityHeaders(res: Response): Response {
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const url = new URL(request.url);
+
+      // Backend API endpoint: serve student achievements and incubated startups
+      if (url.pathname === "/api/gallery" || url.pathname === "/api/gallery/") {
+        const payload = JSON.stringify({
+          status: "success",
+          timestamp: Date.now(),
+          achievements: STUDENT_ACHIEVEMENTS,
+          incubated: INCUBATED_STARTUPS_GALLERY,
+        });
+        const res = new Response(payload, {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+          },
+        });
+        return applySecurityHeaders(res);
+      }
+
+      if (url.pathname === "/api/gallery/achievements") {
+        const payload = JSON.stringify({
+          status: "success",
+          timestamp: Date.now(),
+          items: STUDENT_ACHIEVEMENTS,
+        });
+        const res = new Response(payload, {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+            "Access-Control-Allow-Origin": "*",
+          },
+        });
+        return applySecurityHeaders(res);
+      }
+
+      if (url.pathname === "/api/gallery/incubated") {
+        const payload = JSON.stringify({
+          status: "success",
+          timestamp: Date.now(),
+          items: INCUBATED_STARTUPS_GALLERY,
+        });
+        const res = new Response(payload, {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+            "Access-Control-Allow-Origin": "*",
+          },
+        });
+        return applySecurityHeaders(res);
+      }
+
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       const normalized = await normalizeCatastrophicSsrResponse(response);
