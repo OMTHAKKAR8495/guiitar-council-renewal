@@ -4,9 +4,7 @@ import {
   Menu,
   X,
   ChevronDown,
-  Instagram,
   Linkedin,
-  Twitter,
   MapPin,
   Phone,
   Mail,
@@ -1143,22 +1141,6 @@ export function Footer() {
               title="GUIITAR Council LinkedIn"
             >
               <Linkedin />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GUIITAR Council X / Twitter"
-            >
-              <Twitter />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GUIITAR Council Instagram"
-            >
-              <Instagram />
             </a>
           </div>
         </div>
