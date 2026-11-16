@@ -8,9 +8,10 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { type ReactNode } from "react";
+import { type ReactNode, useEffect } from "react";
 import { SiteLayout } from "@/components/site";
 import { ThemeProvider } from "@/lib/theme";
+import { AdminDataStore } from "@/lib/adminStore";
 
 import appCss from "../styles.css?url";
 
@@ -94,7 +95,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=5" },
+      { httpEquiv: "Cache-Control", content: "no-cache, no-store, must-revalidate" },
+      { httpEquiv: "Pragma", content: "no-cache" },
+      { httpEquiv: "Expires", content: "0" },
       { title: "GUIITAR Council" },
       { name: "description", content: "GUIITAR Council by GSFC University." },
       { name: "author", content: "GUIITAR Council" },
@@ -142,6 +146,11 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const path = useRouterState({ select: (s) => s.location.pathname });
   const isAdmin = path.startsWith("/admin");
+
+  useEffect(() => {
+    // Ensures client localStorage is in sync with latest deployed seed data version
+    AdminDataStore.ensureFreshStore();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

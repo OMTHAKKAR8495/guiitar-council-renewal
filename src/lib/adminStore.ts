@@ -3364,6 +3364,53 @@ export class AdminDataStore {
     }
   }
 
+  static readonly STORE_BUILD_VERSION = "2026_11_16_r2";
+
+  /**
+   * Refreshes stored canonical seed data (startups, events, programs)
+   * while preserving any custom admin records or user submissions.
+   */
+  static refreshSeedData(): void {
+    if (typeof window === "undefined") return;
+    try {
+      // 1. Refresh startups: update seed records to canonical code definitions
+      const storedStartups = this.getStartups();
+      const seedStartupIds = new Set(INITIAL_STARTUPS.map((s) => s.id));
+      const customStartups = storedStartups.filter((s) => !seedStartupIds.has(s.id));
+      this.setStored(STORAGE_STARTUPS_KEY, [...INITIAL_STARTUPS, ...customStartups]);
+
+      // 2. Refresh programs
+      const storedPrograms = this.getPrograms();
+      const seedProgramIds = new Set(INITIAL_PROGRAMS.map((p) => p.id));
+      const customPrograms = storedPrograms.filter((p) => !seedProgramIds.has(p.id));
+      this.setStored(STORAGE_PROGRAMS_KEY, [...INITIAL_PROGRAMS, ...customPrograms]);
+
+      // 3. Refresh events
+      const storedEvents = this.getEvents();
+      const seedEventIds = new Set(INITIAL_EVENTS.map((e) => e.id));
+      const customEvents = storedEvents.filter((e) => !seedEventIds.has(e.id));
+      this.setStored(STORAGE_EVENTS_KEY, [...INITIAL_EVENTS, ...customEvents]);
+    } catch (e) {
+      console.warn("Failed to refresh seed data:", e);
+    }
+  }
+
+  /**
+   * Ensures client-side storage is always synchronized with the latest deployment,
+   * completely eliminating stale cached data for returning visitors.
+   */
+  static ensureFreshStore(): void {
+    if (typeof window === "undefined") return;
+    try {
+      const currentVersion = localStorage.getItem("guiitar_store_build_version");
+      if (currentVersion !== this.STORE_BUILD_VERSION) {
+        this.migrateMentorData();
+        this.refreshSeedData();
+        localStorage.setItem("guiitar_store_build_version", this.STORE_BUILD_VERSION);
+      }
+    } catch {}
+  }
+
   // ================= 6. INCUBATION PROGRAMS CRUD =================
   static getPrograms(): IncubationProgram[] {
     return this.getStored<IncubationProgram[]>(STORAGE_PROGRAMS_KEY, INITIAL_PROGRAMS);
